@@ -15,3 +15,4 @@ salib==1.4.7
 dendropy
 psycopg2-binary
 ete3
+biopython==1.78
