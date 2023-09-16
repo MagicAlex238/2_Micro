@@ -1,0 +1,883 @@
+Kingdom,Phylum,Class,Order,Familia,Genera,GID,site_2,site_3,site_4,site_5,site_17,site_18,site_21,site_24,site_26,site_28,site_35,site_57,site_58,site_59,site_60,site_69,site_70
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,02d06,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0017794227552581944,0.0,0.0
+Bacteria,Planctomycetes,Planctomycetia,Pirellulales,Pirellulaceae,A17,2,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Aerococcaceae,Abiotrophia,3,0.0,0.0,0.015426317297309209,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.0,0.036182068167016426,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Acetanaerobacterium,4,0.0,0.0,0.0,0.0,0.0,0.0,0.0015819655922483685,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Acetivibrio,5,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Eubacteriaceae,Acetobacterium,6,0.01897173211914248,0.024551927326295114,0.017630076911210525,0.022087244616234125,0.0,0.03775009437523594,0.4532331421791576,5.557210965435042,0.0395872370747671,0.023476933912431035,0.0,0.2467232074016962,0.09606147934678194,0.04204183162246435,0.14413324317591375,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,Achromobacter,7,0.3414911781445646,0.3191750552418365,0.25122859598475,0.5098472298914043,0.9528851244044468,0.4530011325028313,0.24520466679849715,0.0,0.043545960782243806,0.0665179794185546,0.0,0.0,0.05763688760806917,0.09459412115054479,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Acidaminobacteraceae,Acidaminobacter,8,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01601480479732375,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Acidiferrobacterales ,Acidiferrobacteraceae,Acidibacter,9,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Acidobacteria,Acidobacteria,Acidobacteriales,Acidobacteriaceae,Acidicapsa,10,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Acidiferrobacterales,Acidiferrobacteraceae,Acidiferrobacter,11,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01921229586935639,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Acidiphilium,12,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Acidisoma,13,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Acidimicrobiales,Acidimicrobiaceae,Acidithrix,14,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Acidobacteria,Acidobacteria,Acidobacteriales,Acidobacteriaceae,Acidobacterium ,15,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.2460380635357117,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Acidocella,16,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.12931830777757253,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Acidovorax,17,1.479795105293113,3.71961698993371,3.129338651739868,1.890300018406037,0.21175224986765487,3.057757644394111,0.4113110539845758,1.956694477552642,0.00395872370747671,1.7764213327072818,0.04341848180041971,1.4494988434849654,2.785782901056676,1.8883789370423572,0.10142709704971707,1.36,1.16
+Bacteria,Proteobacteria,Gammaproteobacteria,Pseudomonadales,Moraxellaceae,Acinetobacter,18,0.30354771390627966,0.5769702921679352,0.9718579897304801,0.1951039941100681,0.0,0.1887504718761797,0.013446707534111133,0.38239968216130316,0.0,1.0095081582345347,0.0,0.04626060138781804,0.1729106628242075,0.13663595277300916,0.019573650307840137,0.0,0.39
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Actibacterium,19,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Pasteurellales,Pasteurellaceae,Actinobacillus,20,2.6939859609182317,0.1350356002946231,0.13883685567578288,0.17301674949383397,0.0,0.12583364791745313,0.0,0.0,0.0,0.15651289274954022,0.0,0.0,0.1729106628242075,0.01751742984269348,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Actinomycetaceae,Actinobacterium,21,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007236413633403285,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Actinomycetaceae,Actinobacterium VeSm15,22,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Actinomycetaceae,Actinomyces,23,1.2331625877442611,0.30689909157868894,2.201555854287414,0.9147800478556966,0.0,0.15100037750094375,0.0,0.004966229638458482,0.0,0.039128223187385056,0.0,0.0,0.0,0.03503485968538696,0.003558845510516389,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Cellulomonadaceae,Actinotalea,24,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.24334525228446566,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,Advenella,25,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillaceae,AEGEAN-169 marine group,26,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01921229586935639,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Aerococcaceae,Aerococcus,27,0.09485866059571238,0.09820770930518045,0.9277827974524538,1.0988404196576478,0.0,0.13841701270919843,0.0023729483883725526,0.0,0.00395872370747671,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Aeromonadales,Aeromonadaceae,Aeromonas,28,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Propionibacteriales,Propionibacteriaceae,Aestuariimicrobium,29,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007236413633403285,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Bradyrhizobiaceae,Afipia,30,0.01897173211914248,0.0,0.0,0.011043622308117063,0.0,0.0,0.0007909827961241842,0.1936829558998808,0.0,0.023476933912431035,0.007236413633403285,0.0,0.0,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Agaricicola,31,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Pasteurellales,Pasteurellaceae,Aggregatibacter,32,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005338268265774583,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Rhizobiaceae,Agrobacterium,33,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Microbacteriaceae,Agrococcus,34,0.03794346423828496,0.03682789098944267,0.41210304779954604,0.03129026320633168,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Microbacteriaceae,Agromyces,35,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Albidiferax,36,0.0,0.0,0.0,0.0,0.0,0.0,0.003163931184496737,0.0,0.0013195745691589032,0.007825644637477012,0.0,0.0,0.01921229586935639,0.014013943874154784,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Albidiferax sp. 7A-189,37,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,Alcaligenes,38,0.13280212483399734,0.12275963663147557,0.10798422108116447,0.13068286397938522,0.0,0.12583364791745313,0.0,0.0,0.0,0.027389756231169543,0.0,0.0,0.01921229586935639,0.01751742984269348,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Oceanospirillales,Alcanivoracaceae,Alcanivorax,39,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005338268265774583,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Alicycliphilus,40,0.8537279453614115,4.161551681807022,3.589924411045243,1.2755383765875208,0.0,1.1325028312570782,0.0007909827961241842,0.2830750893921335,0.0,0.0626051570998161,0.0,0.0,0.0,0.021020915811232176,0.0017794227552581944,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Alicyclobacillaceae,Alicyclobacillus,41,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Alteromonadales,Chromatiaceae,Alishewanella,42,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01601480479732375,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Eubacteriaceae,Alkalibacter,43,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.18504240555127216,0.0,0.0,0.183280543791594,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Alkaliphilus,44,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.015420200462606013,0.0,0.0,0.014235382042065555,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Pseudomonadales,Moraxellaceae,Alkanindiges,45,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.023476933912431035,0.0,0.0,0.03842459173871278,0.01751742984269348,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Carnobacteriaceae,Alloiococcus,46,0.0,0.0,0.0,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Prevotellaceae,Alloprevotella,47,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04341848180041971,0.0,0.0,0.014013943874154784,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,None specified,None specified,alpha proteobacterium,48,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007236413633403285,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,None specified,None specified,alpha proteobacterium C0014(2010),49,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.11578261813445256,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,None specified,None specified,alpha proteobacterium KC-IT-F2,50,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,None specified,None specified,alpha proteobacterium R-36935,51,0.03794346423828496,0.024551927326295114,0.022037596139013158,0.023927848334253633,0.0,0.0880835535422172,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Erythrobacteraceae,Altererythrobacter,52,0.0,0.0,0.0,0.0,0.0,0.012583364791745311,0.0,0.0,0.00395872370747671,0.5673592362170834,0.0,0.0,0.05763688760806917,0.05955926146515784,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Alteromonadales,Alteromonadaceae,Alteromonas,53,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Amaricoccus,54,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,Amb_Tax,55,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Ambiguous_taxa,Ambiguous_taxa,Ambiguous_taxa,Ambiguous_taxa,Amb_Tax,56,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidetes BD2-2,Ambiguous_taxa,Ambiguous_taxa,Amb_Tax,57,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Chloroplast,Ambiguous_taxa,Ambiguous_taxa,Amb_Tax,58,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,ML635J-21,Ambiguous_taxa,Ambiguous_taxa,Amb_Tax,59,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005278298276635613,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chloroflexi,KD4-96,Ambiguous_taxa,Ambiguous_taxa,Amb_Tax,60,0.0,0.0,0.0,0.0,0.0,0.0,0.0007909827961241842,0.0,0.00395872370747671,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Saccharibacteria,Ambiguous_taxa,Ambiguous_taxa,Ambiguous_taxa,Amb_Tax,61,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Archea,Bathyarchaeota,Ambiguous_taxa,Ambiguous_taxa,Ambiguous_taxa,Amb_Tax,62,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Marinimicrobia (SAR406 clade),Ambiguous_taxa,Ambiguous_taxa,Ambiguous_taxa,Amb_Tax,63,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chloroflexi,Thermomicrobia,JG30-KF-CM45,Ambiguous_taxa,Amb_Tax,64,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Melainabacteria,Obscuribacterales,Ambiguous_taxa,Amb_Tax,65,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Bradyrhizobiaceae,Amb_Tax,66,0.0,0.0,0.0,0.0,0.0,0.0,0.07118845165117658,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Carnobacteriaceae,Amb_Tax,67,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Cellulomonadaceae,Amb_Tax,68,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Amb_Tax,69,0.0,0.0,0.0,0.0,0.0,0.0,0.0023729483883725526,0.0,0.2823889578000053,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Ellin6055,Amb_Tax,70,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Cyanobacteria,SubsectionI,FamilyI,Amb_Tax,71,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,JTB255 marine benthic group,Amb_Tax,72,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Micrococcaceae,Amb_Tax,73,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Amb_Tax,74,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Phyllobacteriaceae,Amb_Tax,75,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Amb_Tax,76,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Amb_Tax,77,0.0,0.0,0.0,0.0,0.0,0.0,0.5180937314613407,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Aminicenantes,None specified,None specified,None specified,Aminicenantes bacterium,78,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Thermoanaerobacterales,Thermoanaerobacteraceae,Ammonifex,79,0.0,0.0,0.0,0.0036812074360390206,0.0,0.0,0.14949574846747082,0.0,0.0,0.40302069883006614,0.0,0.0,0.01921229586935639,0.021020915811232176,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Bacillaceae,Anaerobacillus,80,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Tissierellaceae,Anaerococcus,81,0.0,0.04910385465259023,0.9542279128192697,0.05889931897662433,0.10587612493382743,0.0,0.0,0.0,0.0,0.0,0.0,0.015420200462606013,0.0,0.003503485968538696,0.08185344674187693,0.0,0.0
+Bacteria,Chloroflexi,Anaerolineae,Anaerolineales,Anaerolinaceae,Anaerolinea,82,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007117691021032778,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Myxococcales,Anaeromyxobacteraceae,Anaeromyxobacter,83,0.0,0.012275963663147557,0.026445115366815788,0.03313086692435119,0.0,0.03775009437523594,0.0,0.0,0.0,0.011738466956215518,0.0,0.0,0.01921229586935639,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Anaerospora,84,0.0,0.0,0.0,0.0,0.0,0.0,0.015819655922483685,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Anaerostipes,85,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Mogibacteriaceae,Anaerovorax,86,0.01897173211914248,0.012275963663147557,0.006611278841703947,0.014724829744156082,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.030840400925212026,0.0,0.0,0.00889711377629097,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Xanthobacteraceae,Ancylobacter,87,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Rhodobiaceae,Anderseniella,88,0.01897173211914248,0.012275963663147557,0.015426317297309209,0.03313086692435119,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Bacillaceae,Anoxybacillus,89,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.6345412490362377,0.0,0.0,2.9182533186234387,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Hyphomicrobiaceae,Aquabacter,90,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.03521540086864655,0.0,0.0,0.11527377521613834,0.20320218617524438,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Aquabacterium,91,0.11383039271485487,0.2332433095998036,0.1410406152896842,0.20430701270016566,0.0,1.8497546243865608,0.0,0.09435836313071116,0.0,5.157099816097351,0.01447282726680657,0.0,1.3256484149855907,0.9459412115054479,0.0,5.23,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Phyllobacteriaceae,Aquamicrobium,92,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Aquaspirillum arcticum group,93,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Neisseriales,Alcaligenaceae,Aquaspirillum polymorphum,94,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Legionellales,Coxiellaceae,Aquicella,95,0.01897173211914248,0.012275963663147557,0.004407519227802631,0.011043622308117063,0.0,0.0,0.0,0.0,0.0,0.17998982666197128,0.0,0.0,0.2689721421709894,0.18568475633255088,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Rhodanobacteraceae,Aquimonas,96,0.0,0.0,0.0022037596139013156,0.012884226026136574,0.0,0.0880835535422172,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Aquincola,97,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Intrasporangiaceae,Aquipuribacter,98,0.01897173211914248,0.012275963663147557,0.3636203362937171,0.02760905577029266,0.0,0.025166729583490623,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Sphingobacteriia,Sphingobacteriales,Chitinophagaceae,Arachidicoccus,99,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Arenimonas,100,0.0,0.0,0.0,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.015651289274954024,0.0,0.0,0.01921229586935639,0.01751742984269348,0.0017794227552581944,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Micrococcaceae,Arthrobacter,101,0.512236767216847,0.0859317456420329,1.020340701236309,0.10675501564513161,0.0,0.03775009437523594,0.0,0.004966229638458482,0.0,0.023476933912431035,0.0,0.0,0.11527377521613834,0.01751742984269348,0.023132495818356524,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Caulobacterales,Caulobacteraceae,Arthrospira,102,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Caulobacterales,Caulobacteraceae,Asticcacaulis,103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.011738466956215518,0.0,0.0,0.0,0.007006971937077392,0.0,0.0,0.0
+Bacteria,Actinobacteria,Coriobacteriia,Coriobacteriales,Atopobiaceae,Atopobium,104,0.0,0.0,0.006611278841703947,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Carnobacteriaceae,Atopococcus,105,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Carnobacteriaceae,Atopostipes,106,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Zoogleaceae,Azoarcus,107,0.01897173211914248,0.012275963663147557,0.008815038455605263,0.005521811154058531,0.0,0.0,0.0,0.024831148192292412,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Azonexaceae,Azonexus,108,0.056915196357427436,0.012275963663147557,0.030852634594618417,0.03865267807840972,0.0,0.025166729583490623,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Xanthobacteraceae,Azorhizobium,109,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.037367877860422075,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Azospira,110,1.859229747675963,3.0935428431131844,2.5739912290367366,2.709368672924719,0.31762837480148226,2.252422297722411,36.44453233142179,1.0379419944378228,0.04882425905887942,0.48518996752357474,0.07236413633403285,6.4302235929067075,0.6532180595581172,0.5920891286830396,1.5623331791166946,1.47,1.72
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillaceae,Azospirillum,111,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Pseudomonadales,Pseudomonadaceae,Azotobacter,112,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Bacillaceae,Bacillus,113,0.01897173211914248,0.024551927326295114,0.05729774996143421,0.06258052641266336,11.011116993118051,0.050333459166981245,0.0,0.004966229638458482,0.0,0.3286770747740345,0.0,0.015420200462606013,0.24975984630163303,0.18918824230108958,0.02847076408413111,0.0,0.0
+Bacteria,Proteobacteria,Oligoflexia,Bacteriovoracales,Bacteriovoracaceae,Bacteriovorax,114,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,uncultured,bacterium enrichment culture clone ecb10,115,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0026391491383178063,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,uncultured,bacterium enrichment culture clone ecb9,116,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005278298276635613,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,bacterium enrichment culture clone SRC_DSC20,117,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01447282726680657,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,bacterium ROME35Asa,118,0.13280212483399734,0.1718634912840658,0.16528197104259867,0.24295969077857538,0.0,0.13841701270919843,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,bacterium SH1-4,119,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.021709240900209856,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,bacterium TG161,120,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Bacteroidaceae,Bacteroides,121,0.0,0.0,0.0,0.0018406037180195103,0.0,0.012583364791745311,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Bacteroidaceae,Bacteroidetes bacterium,122,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Porphyromonadaceae,Barnesiella,123,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,None specified,Bauldia,124,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Bdellovibrionales,Bdellovibrionaceae,Bdellovibrio,125,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Thiotrichales,Thiotrichaceae,Beggiatoa,126,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007006971937077392,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Beijerinckiaceae,Beijerinckia,127,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.030840400925212026,0.0,0.0,0.00889711377629097,0.0,0.0
+Bacteria,Chloroflexi,Anaerolineae,Anaerolineales,Anaerolinaceae,Bellilinea,128,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.027389756231169543,0.0,0.0,0.21133525456292027,0.13313246680447044,0.0,1.68,0.0
+Bacteria,Bacteroidetes,Flavobacteriia,Flavobacteriales,Flavobacteriaceae,Bergeyella,129,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,None specified,None specified,beta proteobacterium,130,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,37.48462262102902,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,None specified,None specified,beta proteobacterium LX29,131,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Bifidobacteriales,Bifidobacteriaceae,Bifidobacterium,132,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfovibrionales,Desulfovibrionaceae,Bilophila,133,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Acidobacteria,Blastocatellia,Blastocatellales,Blastocatellaceae,Blastocatella,134,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.7003951950541926,0.0,0.0,0.03842459173871278,0.014013943874154784,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Geodermatophilales,Geodermatophilaceae,Blastococcus,135,0.0,0.14731156395777067,0.006611278841703947,0.012884226026136574,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Blastomonas,136,0.20868905331056725,0.3437269825681316,0.1696894902704013,0.3902079882201362,0.0,2.3405058512646284,0.7474787423373542,2.9400079459674213,0.0,0.6808310834605,0.02894565453361314,0.1233616037008481,0.8261287223823247,0.8548505763234417,0.09786825153920069,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Blautia,137,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003558845510516389,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,Bordetella,138,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Bradyrhizobiaceae,Bosea,139,0.01897173211914248,0.0,0.004407519227802631,0.016565433462175594,0.0,0.10066691833396249,0.0,0.5214541120381406,0.0,0.3834565872363736,0.01447282726680657,0.0,1.1719500480307397,1.394387415478401,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Dermabacteraceae,Brachybacterium,140,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.015420200462606013,0.0,0.0,0.005338268265774583,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Brachymonas,141,0.0,0.0,0.0,0.0,0.0,0.0,0.0007909827961241842,0.0,0.0,0.011738466956215518,0.0,0.0,0.01921229586935639,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Bradyrhizobiaceae,Bradyrhizobiaceae bacterium,142,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Bradyrhizobiaceae,Bradyrhizobium,143,17.68165433504079,16.560274981586055,6.5694074090398225,10.092030185900976,0.05293806246691372,3.875676355857556,0.10599169468064068,0.004966229638458482,0.011876171122430128,2.1011855851625776,0.021709240900209856,0.2313030069390902,1.729106628242075,0.9529481834425254,0.08007402398661874,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Paenibacillaceae,Brevibacillus,144,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Brevibacteriaceae,Brevibacterium,145,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.015420200462606013,0.0,0.0,0.021353073063098332,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Caulobacterales,Caulobacteraceae,Brevundimonas,146,0.8537279453614115,1.0311809477043947,0.11679925953676973,0.2300754647524388,0.21175224986765487,0.7927519818799547,0.4919912991892426,0.7747318235995232,2.974321078884168,9.84466095394608,0.23880164990230843,0.10794140323824211,8.587896253602304,6.975440563360544,0.08007402398661874,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Propionibacteriales,Propionibacteriaceae,Brooklawnia,147,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Flavobacteriia,Flavobacteriales,Cryomorphaceae,Brumimicrobium,148,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Acidobacteria,Solibacteres,Solibacterales,Bryobacteraceae,Bryobacter,149,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Prolixibacteraceae,BSV13,150,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Veillonellaceae,BSV43,151,0.0,0.0,0.0,0.0,0.15881418740074113,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,oca12,BTEX-degrading bacterium enrichment culture,BTEX-degrading bacterium enrichment culture,152,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Buchnera,153,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003558845510516389,0.0,0.0
+Bacteria,Firmicutes,Erysipelotrichi,Erysipelotrichales,Erysipelotrichaceae,Bulleidia,154,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Burkholderiaceae,Burkholderia,155,0.0,0.0,0.004407519227802631,0.034971470642370696,0.5293806246691372,0.03775009437523594,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Burkholderiaceae,Burkholderiales bacterium,156,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01447282726680657,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Burkholderiaceae,Burkholderia-Paraburkholderia,157,0.0,0.0,0.0,0.0,0.0,0.0,0.0015819655922483685,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Buttiauxella,158,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.05462852602304331,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Butyrivibrio,159,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chloroflexi,Anaerolineae,Anaerolineales,Anaerolinaceae,C1_B004,160,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Cellvibrionales,Porticoccaceae,C1-B045,161,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.03842459173871278,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rickettsiales,Holosporaceae,Caedibacter,162,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2.28,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Caenimonas,163,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Caldicoprobacteraceae,Caldicoprobacter,164,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Caldimonas,165,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Caloramator,166,0.0,0.0,0.0,0.0018406037180195103,0.42350449973530974,0.0,0.0,0.0,0.0,0.0,0.0,0.030840400925212026,0.0,0.0,0.019573650307840137,0.0,0.0
+Bacteria,Cyanobacteria,Cyanobacteria,Nostocales,Rivulariaceae,Calothrix,167,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03842459173871278,0.007006971937077392,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Caminicella,168,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Epsilonproteobacteria,Campylobacterales,Campylobacteraceae,Campylobacter,169,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,candidate division TM6 bacterium GW2011_GWE2_42_60,170,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.18091034083508212,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Candidatus Accumulibacter,171,0.0,0.012275963663147557,0.0,0.005521811154058531,0.0,0.0,0.06802452046667985,0.0,0.00791744741495342,0.4969284344797903,0.021709240900209856,0.0,0.5187319884726225,0.599096100620117,0.0017794227552581944,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Microbacteriaceae,Candidatus Aquiluna,172,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Tenericutes,Mollicutes,Entomoplasmatales,Entomoplasmataceae,Candidatus Bacilloplasma,173,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Holosporales,Candidatus Paracaedibacteraceae,Candidatus Captivus,174,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.011738466956215518,0.0,0.0,0.01921229586935639,0.003503485968538696,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,Candidatus Cloacamonas,175,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Burkholderiales,Candidatus Competibacteraceae,Candidatus Competibacter,176,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01921229586935639,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptococcaceae,Candidatus Desulforudis,177,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,27.281279397930387,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,NC10 phylum,Candidatus NC10,Candidatus Methylomirabilales,Candidatus Methylomirabilaceae,Candidatus Methylomirabilis,178,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01921229586935639,0.014013943874154784,0.0,0.0,0.0
+Bacteria,Parcubacteria,Candidatus Moranbacteria,Candidatus Moranbacteria bacterium GW2011_GWE2_35_2-,Candidatus Moranbacteria bacterium GW2011_GWE2_35_2-,Candidatus Moranbacteria bacterium GW2011_GWE2_35_2-,179,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Nitrosomonadales,Gallionellaceae,Candidatus Nitrotoga,180,0.0,0.0,0.006611278841703947,0.007362414872078041,0.0,0.0,0.0,0.0,0.0,0.05869233478107759,0.0,0.0,0.03842459173871278,0.04554531759100305,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Holosporales,Caedimonadaceae,Candidatus Nucleicultrix amoebiphila,181,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.1840219986974456,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Holosporales,Candidatus Paracaedibacteraceae,Candidatus Odyssella,182,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007006971937077392,0.0,0.0,0.0
+Bacteria,Peregrinibacteria,Candidatus Peribacteria,Candidatus Peribacter riflensis,Candidatus Peribacter riflensis,Candidatus Peribacter riflensis,183,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Tenericutes,Mollicutes,Acholeplasmatales,Acholeplasmataceae,Candidatus Phytoplasma,184,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Frankiales,Sporichthyaceae,Candidatus Planktophila,185,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Brachyspirales,Borreliaceae,Candidatus Profftella,186,0.1707455890722823,0.03682789098944267,0.09035414416995395,0.23559727590649732,0.0,0.012583364791745311,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Chlamydiae,Chlamydiia,Parachlamydiales,Rhabdochlamydiaceae,Candidatus Rhabdochlamydi,187,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Candidatus Soleaferrea,188,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0026391491383178063,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Acidobacteria,Solibacteres,Solibacterales,Solibacteraceae,Candidatus Solibacter,189,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Candidatus Symbiobacter,190,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Verrucomicrobia,Spartobacteria,Xanthomonadales,Rhodanobacteraceae,Candidatus Xiphinematobacter,191,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Flavobacteriia,Flavobacteriales,Flavobacteriaceae,Capnocytophaga,192,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.07710100231303006,0.0,0.0,0.01601480479732375,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Caproiciproducens,193,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Thermoanaerobacterales,Carboxydocellaceae,Carboxydocella,194,0.0,0.0,0.0,0.0,0.05293806246691372,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Cardiobacteriales,Cardiobacteriaceae,Cardiobacterium,195,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.015420200462606013,0.0,0.0,0.012455959286807358,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Oceanospirillales,Halomonadaceae,Carnimonas,196,0.0,0.012275963663147557,0.0022037596139013156,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Carnobacteriaceae,Carnobacterium,197,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Caulobacterales,Caulobacteraceae,Caulobacter,198,0.0,0.07365578197888534,0.015426317297309209,0.023927848334253633,0.0,0.16358374229268904,0.007909827961241843,0.0,0.6202000475046845,1.314708299096138,0.0,0.04626060138781804,10.951008645533141,7.115580002102091,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Cedecea,199,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03972983710766786,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Cellulomonadaceae,Cellulomonas,200,0.0,0.0,0.0,0.0,0.15881418740074113,0.0,0.0,0.04469606674612634,0.0,0.0,0.0,0.015420200462606013,0.0,0.0,0.06939748745506957,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Promicromonosporaceae,Cellulosimicrobium,201,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Chitinophagia,Chitinophagales,Chitinophagaceae,Chitinophaga,202,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Chlorobi,Chlorobiales,Chlorobiaceae,Chlorobi bacterium,203,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01447282726680657,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chlorobi,Chlorobia,Chlorobiales,Chlorobiaceae,Chlorochromatium,204,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.009932459276916964,0.0,0.007825644637477012,0.0,0.0,0.0,0.014013943874154784,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Christensenellaceae,Christensenellaceae R-7 group,205,0.0,0.0,0.0,0.0,0.0,0.0,0.08542614198141191,0.0,0.07785489958037528,0.003912822318738506,0.0,0.0,0.0,0.021020915811232176,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Flavobacteriia,Flavobacteriales,Weeksellaceae,Chryseobacterium,206,0.0,0.0,0.0022037596139013156,0.0018406037180195103,18.740074113287452,0.0,0.0,0.0,0.0,0.1956411159369253,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Microbacteriaceae,Chryseoglobus,207,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.015651289274954024,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Micrococcaceae,Citricoccus,208,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Citrobacter,209,0.01897173211914248,0.012275963663147557,0.013222557683407894,0.020246640898214614,0.0,0.0,0.0,0.009932459276916964,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.96,0.0
+Bacteria,Actinobacteria,Acidimicrobiia,Acidimicrobiales,Acidimicrobiaceae,CL500-29 marine group,210,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.01921229586935639,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Microbacteriaceae,Clavibacter,211,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Flavobacteriia,Flavobacteriales,Weeksellaceae,Cloacibacterium,212,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.18375049662296383,0.0,0.0,0.0,0.030840400925212026,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Clostridia bacterium,213,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.18091034083508212,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Clostridium,214,0.0,0.0,0.0,0.0,1.0587612493382743,0.0,0.0,0.009932459276916964,0.0,0.0,0.0,0.06168080185042405,0.0,0.0,0.13345670664436457,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae 1,Clostridium sensu stricto,215,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae 1,Clostridium sensu stricto 1,216,0.0,0.0,0.013222557683407894,0.0036812074360390206,0.0,0.012583364791745311,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae 1,Clostridium sensu stricto 12,217,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae 1,Clostridium sensu stricto 13,218,0.0,0.012275963663147557,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae 1,Clostridium sensu stricto 3,219,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae 1,Clostridium sensu stricto 5,220,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae 1,Clostridium sensu stricto 9,221,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Oceanospirillales,Halomonadaceae,Cobetia,222,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Paenibacillaceae,Cohnella,223,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Coriobacteriia,Coriobacteriales,Coriobacteriaceae,Collinsella,224,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Alteromonadales,Colwelliaceae,Colwellia,225,0.0,0.0,0.004407519227802631,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Comamonas,226,0.0,0.012275963663147557,0.006611278841703947,0.007362414872078041,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.4471858134155744,0.01921229586935639,0.003503485968538696,0.2829282180860529,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Coprococcus,227,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Coprothermobacterota,Coprothermobacteria,Coprothermobacterales,Coprothermobacteraceae,Coprothermobacter,228,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Corynebacteriaceae,Corynebacterium,229,0.0,0.0,0.0,0.0018406037180195103,0.9528851244044468,0.0,0.0,0.12415574096146205,0.0,0.0,0.0,0.21588280647648422,0.0,0.04204183162246435,0.5195914445353927,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Corynebacteriaceae,Corynebacterium 1,230,0.13280212483399734,0.4542106555364596,0.12341053837847367,0.1785385606478925,0.0,0.03775009437523594,0.0,0.0,0.0,0.019564111593692528,0.036182068167016426,0.0,0.03842459173871278,0.02802788774830957,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Legionellales,Coxiellaceae,Coxiella,231,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Methylococcales,Crenotrichaceae,Crenothrix,232,0.0,0.024551927326295114,0.0022037596139013156,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0013195745691589032,0.019564111593692528,0.0,0.0,0.01921229586935639,0.02802788774830957,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Erythrobacteraceae,Croceicoccus,233,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Micrbacteriaceae,Cryobacterium,234,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.01921229586935639,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Cupriavidus,235,0.0,0.0,0.0,0.0,0.0,0.0,0.017401621514732055,0.18871672626142233,0.0,0.03521540086864655,0.0,0.0,0.0,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Microbacteriaceae,Curtobacterium,236,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.26817640047675806,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Curvibacter,237,0.09485866059571238,0.09820770930518045,0.0991691826255592,1.2755383765875208,0.0,0.12583364791745313,0.31560213565354955,0.0,0.005278298276635613,0.18390264898070977,0.01447282726680657,0.0,0.11527377521613834,0.1541533826157026,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Propionibacteriaceae,Cutibacterium,238,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Cyanobacteria,Chroococcales,Cyanobacteriaceae,Cyanobacterium,239,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Melainabacteria,Obscuribacterales,cyanobacterium TDX16,cyanobacterium TDX16,240,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidetes,Cytophagales,Cytophagaceae,Cytophaga,241,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Verrucomicrobia,Spartobacteria,Chthoniobacterales,Chthoniobacteraceae,DA101,242,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Nitrospirae,Nitrospira,Nitrospirales,Thermodesulfovibrionaceae,DCE29,243,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.015420200462606013,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Dechlorobacter,244,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Dechloromonas,245,4.249667994687915,0.3928308372207218,0.2644511536681579,0.5006442113013069,0.0,0.6417516043790109,0.17797112912794147,0.22844656336909017,10.83898551107123,0.11738466956215518,0.05789130906722628,2.235929067077872,0.21133525456292027,0.14364292471008652,1.1868749777572156,0.0,9.45
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Dechlorosoma,246,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Neisseriales,Chromobacteriaceae,Deefgea,247,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillaceae,Defluviicoccus,248,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Chloroflexi,Dehalococcoidia,Dehalobacterales,Dehalobacteraceae,Dehalobacter,249,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptococcaceae,Dehalobacter_Syntrophobotulus,250,0.0,0.0,0.0,0.0,0.10587612493382743,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.019573650307840137,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Dehalobacteriaceae,Dehalobacterium,251,0.09485866059571238,0.2577952369260987,0.24902483637084866,0.3036996134732192,0.0,0.2139172014596703,0.0,0.0,0.0,0.0,0.0,0.0,0.01921229586935639,0.007006971937077392,0.014235382042065555,0.0,44.4
+Bacteria,Chloroflexi,Dehalococcoidia,Dehalococcoidetes,Dehalogenimonadaceae,Dehalogenimonas ,252,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.07960054996743614,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Deinococcus-Thermus,Deinococci,Deinococcales,Deinococcaceae,Deinococcus,253,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Delftia,254,0.32251944602542215,0.24551927326295114,0.27326619212376313,0.3276274618074729,0.0,2.4789228639738266,0.0,0.0,0.0,0.07825644637477011,0.0,0.0,0.01921229586935639,0.02802788774830957,0.003558845510516389,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Nitrosomonadales,Sterolibacteriaceae,Denitratisoma,255,0.1707455890722823,0.24551927326295114,0.1520594133591908,0.24111908706055588,0.0,0.3271674845853781,0.0,0.0,0.0,0.0,0.01447282726680657,0.0,0.0,0.0,0.0,42.9,0.0
+Bacteria,,,,,denitrifying bacterium enrichment culture clone NOB_0_E6,256,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Dermabacteraceae,Dermabacter,257,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,Derxia ,258,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.06512772270062957,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Carnobacteriaceae,Desemzia,259,0.0,0.0,0.0,0.0,0.0,0.0,0.0007909827961241842,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfobacterales,Desulfobacteraceae,Desulfatiglans,260,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptococcaceae,Desulfitobacter,261,0.0,0.0,0.0,0.0,0.10587612493382743,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.63
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptococcaceae,Desulfitobacterium,262,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Syntrophobacterales,Syntrophaceae,Desulfobacca,263,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.021020915811232176,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfobacterales,Desulfobacteraceae,Desulfobacterium,264,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfobacterales,Desulfobulbaceae,Desulfobulbus,265,0.01897173211914248,0.0,0.006611278841703947,0.018406037180195105,0.0,0.0,0.0,0.0,0.1253595840700958,0.0,0.0,0.015420200462606013,0.05763688760806917,0.007006971937077392,0.01601480479732375,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfobacterales,Desulfobulbaceae,Desulfocapsa,266,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfovibrionales,Desulfomicrobiaceae,Desulfomicrobium,267,0.0,0.0,0.0022037596139013156,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.15260007043080173,0.0,0.04626060138781804,0.0,0.007006971937077392,0.09964767429445887,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Syntrophobacterales,Syntrophaceae,Desulfomonile,268,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptococcaceae,Desulfosporosinus,269,0.0,0.0,0.0,0.0018406037180195103,2.2233986236103758,0.050333459166981245,0.036385208621712475,2.0758839888756455,0.0013195745691589032,0.03130257854990805,0.0,3.2845026985350807,0.01921229586935639,0.03853834565392565,67.91878714545003,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptococcaceae,Desulfotomaculum,270,0.22766078542970974,1.9641541861036091,0.31734138440178944,0.36259893244984354,22.23398623610376,1.5729205989681643,0.3021554281194384,13.056217719507348,0.0026391491383178063,3.713268380482843,0.0,0.5088666152659985,3.4966378482228624,3.7662474161790986,1.1850955550019573,0.0,1.55
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfovibrionales,Desulfovibrionaceae,Desulfovibrio,271,0.4932650350977045,0.748833783452001,1.6660422681093947,0.7601693355420578,0.15881418740074113,0.33975084937712347,0.07988926240854262,1.3955105284068337,0.0,3.333724615565207,0.01447282726680657,0.6630686198920586,3.8232468780019215,4.2462249938689,0.3096195594149258,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,unclassified Bacillales,Desulfuribacillus,272,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptococcaceae,Desulfurispora,273,0.07588692847656991,0.09820770930518045,1.536020450889217,0.1951039941100681,1.9587083112758072,0.1761671070844344,0.0,0.0,0.0,0.14868724811206321,0.0,0.0,0.05763688760806917,0.23123007392355394,0.00889711377629097,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfobacterales,Desulfobulbaceae,Desulfurivibrio,274,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.011738466956215518,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfuromonadales,unclassified Desulfuromonadales,Desulfuromonadales bacterium JN18_A94_J,275,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfuromonadales,Desulfuromonadaceae,Desulfuromonas,276,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0007909827961241842,0.0,0.06333957931962736,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.39
+Bacteria,Firmicutes,Clostridia,Natranaerobiales,Anaerobrancaceae,Dethiobacter,277,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.015420200462606013,0.0,0.0,0.042706146126196665,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Tissierellaceae,Dethiosulfatibacter,278,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.030840400925212026,0.0,0.0,0.00889711377629097,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Hyphomicrobiaceae,Devosia,279,0.0,0.04910385465259023,0.004407519227802631,0.018406037180195105,0.0,0.012583364791745311,0.0,0.0,0.0,0.04695386782486207,0.0,0.0,0.0,0.007006971937077392,0.0,0.0,0.0
+Bacteria,Firmicutes,Negativicutes,Veillonellales,Veillonellaceae,Dialister,280,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.014898688915375446,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Diaphorobacter,281,0.18971732119142476,0.3805548735575743,0.3614165766798158,0.20246640898214613,0.0,0.23908393104316092,0.0,0.03476360746920938,0.0,0.007825644637477012,0.0,0.0,0.0,0.007006971937077392,0.02847076408413111,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Dietziaceae,Dietzia,282,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Dinoroseobacter,283,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Dokdonella,284,0.0,0.03682789098944267,0.008815038455605263,0.005521811154058531,0.0,0.03775009437523594,0.0,0.0,0.0,0.0,0.0,0.15420200462606012,0.0,0.0,0.04982383714722943,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Carnobacteriaceae,Dolosigranulum,285,0.0,0.024551927326295114,0.011018798069506579,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillaceae,Dongia,286,0.0,0.03682789098944267,0.01983383652511184,0.011043622308117063,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Dorea,287,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Duganella,288,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Cytophagia,Cytophagales,Cytophagaceae,Dyadobacter,289,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.06168080185042405,0.0,0.0,0.005338268265774583,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Porphyromonadaceae,Dysgonomonas,290,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.015420200462606013,0.0,0.0,0.003558845510516389,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Chromatiales,Ectothiorhodospiraceae,Ectothiorhodospiraceae bacterium,291,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.036182068167016426,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Acidobacteria,Acidobacteriia,Acidobacteriales,Acidobacteriaceae,Edaphobacter,292,0.0,0.5769702921679352,0.01983383652511184,0.034971470642370696,0.0,0.03775009437523594,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Alicyclobacillaceae,Effusibacillus,293,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillaceae,Elstera,294,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Endobacter,295,0.01897173211914248,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Pseudomonadales,Moraxellaceae,Enhydrobacter,296,0.0,0.0,0.0,0.005521811154058531,0.0,0.0,0.0,0.0,0.0,0.0,0.01447282726680657,0.04626060138781804,0.0,0.0,0.06761806469981138,0.0,0.6
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Rhizobiaceae,Ensifer,297,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Micrococcaceae,Enteractinococcus,298,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Enterobacter,299,0.0,0.0,0.0022037596139013156,0.0036812074360390206,0.0,0.0,0.0,0.049662296384584824,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Enterococcaceae,Enterococcus,300,0.0,0.0,0.0,0.0,0.10587612493382743,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0017794227552581944,0.0,0.0
+Bacteria,Actinobacteria,Coriobacteriia,Coriobacteriales,Coriobacteriaceae,Enterorhabdus,301,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Aerococcaceae,Eremococcus,302,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Erwinia,303,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Erysipelotrichia,Erysipelotrichales,Erysipelotrichaceae,Erysipelothrix,304,0.22766078542970974,0.30689909157868894,0.23800603830134207,1.0436223081170624,0.0,1.157669560840569,6.008305319359304,21.617997616209774,0.0013195745691589032,0.050866690143600575,0.0,0.0,0.1344860710854947,0.1681673264898574,0.0,1.09,4.53
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Erythrobacteraceae,Erythrobacter,305,0.0,0.012275963663147557,0.0,0.0018406037180195103,0.0,0.0,0.010282776349614397,0.014898688915375446,0.00395872370747671,0.03521540086864655,0.0,0.015420200462606013,0.09606147934678194,0.05955926146515784,0.0017794227552581944,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Escherichia-Shigella,306,0.18971732119142476,0.527866437515345,0.1961346056372171,0.34971470642370694,0.0,0.22650056625141565,0.0,0.0,0.0013195745691589032,0.011738466956215518,0.0,0.0,0.07684918347742556,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Eubacteriaceae,Eubacteriaceae bacterium,307,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Eubacteriaceae,Eubacterium brachy group,308,0.0,0.012275963663147557,0.0022037596139013156,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Eubacterium coprostanoligenes group,309,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Extensimonas,310,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Tissierellia,,,Ezakiella,311,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Faecalibacterium,312,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Family XIII,Family XIII UCG-002,313,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Hungateiclostridiaceae,Fastidiosipila,314,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Azonexaceae,Ferribacterium,315,0.01897173211914248,0.03682789098944267,0.044075192278026316,0.08282716731087797,0.0,0.050333459166981245,0.0007909827961241842,2.6072705601907034,1.1757409411205828,0.04304104550612357,0.04341848180041971,0.0,0.01921229586935639,0.07357320533931262,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Nitrosomonadales,Gallionellaceae,Ferriphaselus,316,0.01897173211914248,0.012275963663147557,0.03526015382242105,0.03313086692435119,0.0,0.0,0.0023729483883725526,0.0,0.0,0.027389756231169543,0.0,0.0,0.07684918347742556,0.01751742984269348,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Ferritrophicales,Ferritrophicaceae,Ferritrophicum,317,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.7019321224401187,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillaceae,Ferrovibrio,318,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.8685175899290067,0.007825644637477012,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Chitinophagia,Chitinophagales,Chitinophagaceae,Ferruginibacter,319,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.01921229586935639,0.09809760711908348,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptostreptococcaceae,Filifactor,320,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Tissierellia,Tissierellales,Peptoniphilaceae,Finegoldia,321,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Saprospirae,Saprospirales,Chitinophagaceae,Flavisolibacter,322,0.0,0.0,0.0,0.0,0.8470089994706195,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.2467232074016962,0.0,0.0,0.00889711377629097,0.0,0.0
+Bacteria,Bacteroidetes,Flavobacteriia,Flavobacteriales,Flavobacteriaceae,Flavobacterium,323,0.13280212483399734,0.220967345936656,0.8131872975295854,1.846125529173569,0.10587612493382743,0.13841701270919843,0.0,0.25824394119984106,0.0,0.1291231365183707,0.0,0.6013878180416345,0.05763688760806917,0.05605577549661914,0.026691341328872912,0.0,0.0
+Bacteria,Bacteroidetes,Flavobacteriia,Flavobacteriales,Cryomorphaceae,Fluviicola,324,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Fonticella,325,0.01897173211914248,0.0,0.0022037596139013156,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Frankiales,Frankiaceae,Frankia,326,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Nocardioidaceae,Friedmanniella,327,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0017794227552581944,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Microbacteriaceae,Frigoribacterium,328,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Acidaminobacteraceae,Fusibacter,329,0.03794346423828496,0.012275963663147557,0.013222557683407894,0.016565433462175594,0.0,0.025166729583490623,0.0,0.0,0.005278298276635613,0.0,0.0,0.09252120277563608,0.0,0.0,0.11210363358126624,0.0,0.0
+Bacteria,Fusobacteria,Fusobacteriia,Fusobacteriales,Fusobacteriaceae,Fusobacterium,330,0.0,0.0,0.004407519227802631,0.3202650469353948,0.0,0.0,0.0,0.0,0.0,0.0,0.01447282726680657,0.06168080185042405,0.0,0.01751742984269348,0.01601480479732375,0.0,0.0
+Bacteria,Actinobacteria,Rubrobacteria,Gaiellales,Gaiellaceae,Gaiella,331,0.0,0.0,0.0,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Gallionellales,Gallionellaceae,Gallionella,332,0.0,0.0,0.0,0.0,0.0,0.0,0.0007909827961241842,0.004966229638458482,0.0026391491383178063,0.003912822318738506,0.0,0.015420200462606013,0.0,0.003503485968538696,0.0017794227552581944,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,,,gamma proteobacterium,333,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007236413633403285,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Thermoanaerobacterales,Thermoanaerobacteraceae,Gelria,334,0.0,0.0,0.0022037596139013156,0.0036812074360390206,0.0,0.012583364791745311,0.0,0.009932459276916964,0.0,1.737293109519897,0.0,0.0,0.03842459173871278,0.10860806502469957,0.0,0.0,2.3
+Bacteria,Firmicutes,Bacilli,Bacillales,Bacillales incertae sedis,Gemella,335,0.0,0.0,0.01983383652511184,0.0018406037180195103,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Planctomycetes,Planctomycetia,Gemmatales,Gemmataceae,Gemmata,336,0.0,0.0,0.0,0.0,0.10587612493382743,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Gemmatimonadetes,Gemmatimonadetes,Gemmatimonadales,Gemmatimonadaceae,Gemmatimonas,337,0.0,0.012275963663147557,0.0,0.012884226026136574,0.0,0.06291682395872657,0.0,0.0,0.0,0.10955902492467817,0.0,0.04626060138781804,0.0,0.021020915811232176,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Gemmobacter,338,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfuromonadales,Geobacteraceae,Geobacter,339,0.0,0.0,0.0,0.0,0.0,0.0,0.004745896776745105,0.0,0.0,0.0,0.0,0.5551272166538165,0.0,0.0,0.28470764084131106,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Geodermatophilales,Geodermatophilaceae,Geodermatophilus,340,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Bogoriellaceae,Georgenia,341,0.0,0.0,0.0,0.0,0.6881948120698782,0.0,0.0015819655922483685,0.0,0.0,0.023476933912431035,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Nitrosomonadales,Sterolibacteriaceae,Georgfuchsia,342,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.00395872370747671,0.0,0.0036182068167016426,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Geosporobacter_Thermotalea,343,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.030840400925212026,0.0,0.0,0.04982383714722943,0.0,0.0
+Bacteria,Acidobacteria,Holophagae,Holophagales,Holophagaceae,Geothrix,344,0.0,0.03682789098944267,0.004407519227802631,0.007362414872078041,0.0,0.0,0.0,0.0,0.0,0.13694878115584772,0.02894565453361314,0.06168080185042405,0.15369836695485112,0.32932768104263743,0.03380903234990569,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Gluconacetobacter,345,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Micrococcaceae,Glutamicibacter,346,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Corynebacteriales,Nocardiaceae,Gordonia,347,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Gracilibacteraceae,Gracilibacter,348,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Carnobacteriaceae,Granulicatella,349,0.07588692847656991,0.7979376381045912,1.6550234700398883,0.23375667218847782,0.0,0.12583364791745313,0.0,0.0,0.0,0.015651289274954024,0.036182068167016426,0.0,0.0,0.02452440177977087,0.003558845510516389,0.0,0.0
+Bacteria,Acidobacteria,Acidobacteriia,Acidobacteriales,Acidobacteriaceae,Granulicella,350,0.0,0.012275963663147557,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Pasteurellales,Pasteurellaceae,Haemophilus,351,0.6260671599317018,0.4296587282101645,5.070850871586927,0.5061660224553653,0.0,0.44041776771108593,0.0,0.0,0.0,0.015651289274954024,0.05789130906722628,0.3546646106399383,0.07684918347742556,0.04904880355954174,4.7884266343998005,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Myxococcales,Kofleriaceae,Haliangium,352,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.12129749188089368,0.0,0.0,0.01921229586935639,0.03153137371684826,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Cellvibrionales,Halieaceae,Haliea,353,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Oceanospirillales,Halomonadaceae,Halomonas,354,0.0,0.024551927326295114,0.0,0.0,0.0,0.012583364791745311,0.0,0.0,0.0,0.0,0.7453506042405385,0.0,0.0,0.0,0.003558845510516389,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Oceanospirillales,Halomonadaceae,Halomonas sp. RS-22,355,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Tenericutes,Mollicutes,Haloplasmatales,Haloplasmataceae,Haloplasma,356,0.0,0.0,0.0,0.005521811154058531,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.03842459173871278,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Chromatiales,Halothiobacillaceae,Halothiobacillus,357,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Alteromonadales,Alteromonadaceae,HB2-32-21,358,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.06168080185042405,0.0,0.0,0.003558845510516389,0.0,0.0
+Bacteria,Firmicutes,Tissierellia,Tissierellales,Peptoniphilaceae,Helcococcus,359,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Herbaspirillum,360,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01986491855383393,0.0,0.0,0.0036182068167016426,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Herbinix,361,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Herminiimonas,362,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0023729483883725526,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Frankiales,Sporichthyaceae,hgcI clade,363,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Hyphomonadaceae,Hirschia,364,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.014013943874154784,0.0,0.0,0.0
+Bacteria,Firmicutes,Erysipelotrichi,Erysipelotrichales,Erysipelotrichaceae,Holdemania,365,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.009932459276916964,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,,,,,Holospora,366,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Alteromonadales,HTCC2188,HTCC,367,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Intrasporangiaceae,Humibacillus,368,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01921229586935639,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Sinobacteraceae,Hydrocarboniphaga,369,0.0,0.0,0.0,0.0,0.0,0.0,0.010282776349614397,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0017794227552581944,0.0,0.0
+Bacteria,Aquificae,Aquificae,Aquificales,Aquificaceae,Hydrogenobacter,370,0.0,0.0,0.008815038455605263,0.005521811154058531,0.0,0.012583364791745311,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Hydrogenophaga,371,0.0,0.0,0.0022037596139013156,0.005521811154058531,0.0,0.03775009437523594,0.0015819655922483685,0.0,18.261592462590063,4.045858277575616,0.07236413633403285,0.06168080185042405,1.3640730067243036,1.5310233682514103,0.012455959286807358,1.41,0.0
+Bacteria,Bacteroidetes,Chitinophagia,Chitinophagales,Chitinophagaceae,Hydrotalea,372,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Hylemonella,373,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Cytophagia,Cytophagales,Hymenobacteraceae,Hymenobacter,374,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04341848180041971,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Hyphomicrobiaceae,Hyphomicrobium,375,0.7019540884082717,0.6874539651362632,0.6016263745950592,9.5472114853672,0.0,0.7927519818799547,0.0,0.0,0.0,0.16825135970575575,0.5933859179390694,0.030840400925212026,0.15369836695485112,0.0910906351820061,0.039147300615680274,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Hyphomonadaceae,Hyphomonas,376,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.023476933912431035,0.0,0.06168080185042405,0.05763688760806917,0.02452440177977087,0.024911918573614716,0.0,0.0
+Bacteria,Actinobacteria,Acidimicrobiia,Acidimicrobiales,Iamiaceae,Iamia,377,0.0,0.012275963663147557,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,,Inhella,378,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptostreptococcaceae,Intestinibacter,379,0.03794346423828496,0.012275963663147557,0.022037596139013158,0.012884226026136574,0.0,0.1887504718761797,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Neisseriales,Chromobacteriaceae,Iodobacter,380,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,,,,,iron-reducing bacterium enrichment culture clone FeC_1_E2,381,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0036182068167016426,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,,,,,iron-reducing bacterium enrichment culture clone HN17,382,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Intrasporangiaceae,Janibacter,383,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Janthinobacterium,384,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.005338268265774583,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,K82,385,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Rhizobiaceae,Kaistia,386,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Kaistobacter,387,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.07710100231303006,0.0,0.0,0.021353073063098332,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Oceanospirillales,Kangiellaceae,Kangiella,388,0.01897173211914248,0.0,0.015426317297309209,0.005521811154058531,0.0,0.050333459166981245,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,KD1-23,389,0.0,0.0,0.0,0.0,0.05293806246691372,0.0,0.0,0.0,0.0,0.0,0.0,0.030840400925212026,0.0,0.0,0.021353073063098332,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Klebsiella,390,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Kluyvera,391,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.23837902264600713,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Intrasporangiaceae,Knoellia,392,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04304104550612357,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Micrococcaceae,Kocuria,393,0.0,0.0,0.0,0.0,0.05293806246691372,0.0,0.0,0.06456098529996027,0.0,0.0,0.036182068167016426,0.0,0.0,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Intrasporangiaceae,Kytococcus,394,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Xanthobacteraceae,Labrys,395,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.011738466956215518,0.0,0.0,0.0,0.007006971937077392,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Lachnoanaerobaculum,396,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Lachnoclostridium,397,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Lachnoclostridium 5,398,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Lachnospira,399,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Lachnospiraceae NC2004 group,400,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,5.176691034810378,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Chitinophagia,Chitinophagales,Chitinophagaceae,Lacibacter,401,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Lactobacillaceae,Lactobacillus,402,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Streptococcaceae,Lactococcus,403,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Burkholderiaceae,Lautropia,404,0.056915196357427436,0.0,0.0022037596139013156,0.009203018590097553,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.09252120277563608,0.01921229586935639,0.0,0.5516210541300401,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Corynebacteriales,,Lawsonella,405,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.036182068167016426,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Cytophagia,Cytophagales,Cytophagaceae,Leadbetterella,406,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Neisseriales,Chromobacteriaceae,Leeia,407,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Legionellales,Legionellaceae,Legionella,408,0.0,0.0,0.004407519227802631,0.007362414872078041,0.2646903123345686,0.0,0.010282776349614397,0.0,0.0,0.03521540086864655,0.0,0.3392444101773323,0.0,0.03503485968538696,1.4342147407381045,0.0,0.0
+Bacteria,,,,,Legionella-like amoebal pathogen HT99,409,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Microbacteriaceae,Leifsonia,410,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0023729483883725526,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chloroflexi,Anaerolineae,Anaerolineales,Anaerolineaceae,Leptolinea,411,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.07356140003954914,0.0,0.00395872370747671,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Cyanobacteria,Synechococcales,Leptolyngbyaceae,Leptolyngbya,412,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Spirochaetes,Spirochaetia,Leptospirales,Leptospiraceae,Leptonema,413,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Spirochaetes,Spirochaetia,Leptospirales,Leptospiraceae,Leptospira,414,0.0,0.0,0.0,0.0018406037180195103,0.10587612493382743,0.0,0.007909827961241843,0.06952721493841876,0.0,0.0,0.0,0.6168080185042405,0.0,0.0,0.01779422755258194,0.0,0.0
+Bacteria,Nitrospirae,Nitrospira,Nitrospirales,Nitrospiraceae,Leptospirillum,415,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Leptothrix,416,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.019564111593692528,0.0,0.0,0.03842459173871278,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Fusobacteria,Fusobacteriia,Fusobacteriales,Leptotrichiaceae,Leptotrichia,417,0.056915196357427436,0.0,0.0,0.005521811154058531,0.0,0.0,0.0,0.0,0.0,0.0,0.04341848180041971,0.015420200462606013,0.0,0.010510457905616088,0.021353073063098332,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Microbacteriaceae,Leucobacter,418,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chloroflexi,Anaerolineae,Anaerolineales,Anaerolineaceae,Levilinea,419,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Burkholderiaceae,Limnobacter,420,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04695386782486207,0.0,0.0,0.11527377521613834,0.06656623340223522,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Limnohabitans,421,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Chloroflexi,Anaerolineae,Anaerolineales,Anaerolineaceae,Longilinea,422,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.2559974664168272,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Rhodanobacteraceae,Luteibacter,423,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.019564111593692528,0.0,0.0,0.0,0.007006971937077392,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Luteimonas,424,0.01897173211914248,0.07365578197888534,0.024241355752914473,0.029449659488312165,0.0,0.012583364791745311,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Lutispora,425,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.3377036154151768,0.0,0.05869233478107759,0.0,0.0,0.05763688760806917,0.12962898083593175,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Cyanobacteria,Oscillatoriales,Oscillatoriaceae,Lyngbya,426,0.0,0.024551927326295114,0.006611278841703947,0.007362414872078041,0.0,0.0,0.0,0.0,0.0,0.10564620260593965,0.0,0.0,0.11527377521613834,0.07006971937077391,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Bacillaceae,Lysinibacillus,427,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Microbacteriaceae,Lysinimonas,428,0.0,0.07365578197888534,0.0022037596139013156,0.0036812074360390206,0.0,0.0,0.011864741941862765,0.0,0.0,0.054779512462339086,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Lysobacter,429,0.03794346423828496,0.2823471642523938,0.041871432664125,0.06626173384870238,0.0,0.27683402541839686,0.0,0.0,0.0,0.05869233478107759,0.0,0.0,0.07684918347742556,0.01751742984269348,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillaceae,Magnetospirillum,430,0.0,0.012275963663147557,0.0,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.23085651680557184,0.0,0.0,0.2689721421709894,0.28027887748309566,0.0017794227552581944,0.0,0.0
+Bacteria,,,,,marine group,431,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Alteromonadales,Alteromonadaceae,Marinobacter,432,0.0,0.0,0.0,0.0,0.05293806246691372,0.0,0.0,0.42709574890742946,0.0,0.0,0.0,0.0,0.0,0.0,0.019573650307840137,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Oceanospirillales,Oceanospirillaceae,Marinomonas,433,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.014235382042065555,0.0,0.0
+Bacteria,Proteobacteria,Zetaproteobacteria,Mariprofundales,Mariprofundaceae,Mariprofundus,434,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Microbacteriaceae,Marisediminicola,435,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Propionibacteriales,Nocardioidaceae,Marmoricola,436,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Massilia,437,0.20868905331056725,0.5892462558310827,0.15867069220089472,0.23559727590649732,0.0,0.3145841197936328,0.0,0.0,0.0,0.24259498376178737,0.0,0.0,0.30739673390970224,0.07006971937077391,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Phyllobacteriaceae,Mesorhizobium,438,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Phyllobacteriaceae,Mesorhizobium sp. B7,439,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0036182068167016426,0.0,0.0,0.0,0.0,0.0,0.0
+Archaea,Euryarchaeota,Methanobacteria,Methanobacteriales,Methanobacteriaceae,Methanobacterium,440,0.0,0.0,0.0,0.0,0.0,0.0,0.1305121613604904,0.0,0.27974980866168747,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Archaea,Euryarchaeota,Methanomicrobia,Methanomicrobiales,Methanoregulaceae,Methanoregula,441,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Archaea,Euryarchaeota,Methanomicrobia,Methanosarcinales,Methanosaetaceae,Methanosaeta,442,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Methylibium,443,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.015651289274954024,0.0,0.06168080185042405,0.01921229586935639,0.02452440177977087,0.0320296095946475,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Methylococcales,Methylococcaceae,Methylobacter,444,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.01921229586935639,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Methylobacteriaceae,Methylobacterium,445,0.11383039271485487,1.276700220967346,0.12341053837847367,0.21903184244432172,0.0,0.11325028312570783,0.003163931184496737,0.15891934843067143,0.0,0.03521540086864655,0.07960054996743614,0.0,0.09606147934678194,0.02802788774830957,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Beijerinckiaceae,Methylocapsa,446,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Rhodobiaceae,Methyloceanibacter,447,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Beijerinckiaceae,Methylocella,448,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Methylocystaceae,Methylocystis,449,1.897173211914248,2.5042965872821017,1.6682460277232958,2.9044726670347876,0.0,1.8497546243865608,0.0,0.0,0.0,0.023476933912431035,12.656487444822345,0.0,0.01921229586935639,0.01751742984269348,0.0,1.54,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Methylococcales,Methylococcaceae,Methylomicrobium,450,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Methylococcales,Methylococcaceae,Methylomonas,451,0.01897173211914248,0.012275963663147557,0.008815038455605263,0.016565433462175594,0.0,0.012583364791745311,0.0,0.0,0.0,0.0,0.3401114407699544,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Thiotrichales,Piscirickettsiaceae,Methylophaga,452,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0026391491383178063,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Nitrosomonadales,Methylophilaceae,Methylophilus,453,0.0,0.0,0.0,0.0,0.0,0.0,0.0015819655922483685,0.0,0.00395872370747671,0.023476933912431035,0.0,0.0,0.15369836695485112,0.0770766913078513,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Methylocystaceae,Methylosinus,454,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0017794227552581944,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Methylophilales,Methylophilaceae,Methylotenera,455,0.01897173211914248,0.0,0.0,0.0018406037180195103,0.10587612493382743,0.0,0.0,0.0,0.0,0.31302578549908044,0.0,0.6168080185042405,0.5763688760806917,0.45895666187856915,0.037367877860422075,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Methyloversatilis,456,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.8481110254433308,0.0,0.0,0.030250186839389303,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Beijerinckiaceae,Methylovirgula,457,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Alphaproteobacteria Incertae Sedis,Unknown Family,Micavibrio,458,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,,,Micavibrio sp. EPC2,459,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Microbacteriaceae,Microbacterium,460,0.0,0.0,0.0022037596139013156,0.0018406037180195103,0.15881418740074113,0.0,0.0007909827961241842,0.08939213349225268,0.0,0.0,0.0,0.06168080185042405,0.0,0.0,0.04804441439197124,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Microbacteriaceae,Microcella,461,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.00395872370747671,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Micrococcaceae,Micrococcus,462,5.444887118193891,0.9820770930518046,1.4566851047887697,2.1792748021351,0.0,0.5536680508367937,0.0,0.004966229638458482,0.0,0.04304104550612357,0.021709240900209856,0.2467232074016962,0.07684918347742556,0.09809760711908348,0.05694152816826222,0.0,0.0
+Bacteria,Cyanobacteria,Cyanobacteria,Chroococcales,Microcystaceae,Microcystis,463,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Propionibacteriales,Propionibacteriaceae,Microlunatus,464,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Methylobacteriaceae,Microvirga,465,0.0,0.0,0.004407519227802631,0.0,0.0,0.025166729583490623,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.01921229586935639,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Mobilitalea,466,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Pseudomonadales,Moraxellaceae,Moraxella,467,1.859229747675963,0.1964154186103609,0.15646693258699343,1.4522363335173938,0.0,0.28941739021014223,0.0,0.0,0.0,0.03521540086864655,0.0,0.0,0.30739673390970224,0.28027887748309566,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfobacterales,Desulfobulbaceae,MSBL7,468,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,MWH-UniP1 aquatic group,469,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Mycobacteriaceae,Mycobacterium,470,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0023729483883725526,0.0,0.0,0.011738466956215518,0.01447282726680657,0.07710100231303006,0.0,0.007006971937077392,0.003558845510516389,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Caulobacterales,Caulobacteraceae,Mycoplana,471,0.0,0.0,0.0,0.0,0.31762837480148226,0.0,0.0,0.0,0.0,0.0,0.0,0.2313030069390902,0.0,0.0,0.07295633296558596,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Natranaerovirga,472,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,,,,,Naxibacter,473,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Neisseriales,Neisseriaceae,Neisseria,474,0.0,0.0,0.0,0.0,0.05293806246691372,0.0,0.0,0.004966229638458482,0.0,0.03130257854990805,0.01447282726680657,0.015420200462606013,0.0,0.0,0.14413324317591375,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Methylobacteriaceae,Neomegalonema,475,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01921229586935639,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Rhizobiaceae,Neorhizobium,476,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Micrococcaceae,Nesterenkonia,477,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Nevskia,478,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Cytophagia,Cytophagales,Hymenobacteraceae,Nibribacter,479,0.03794346423828496,0.7733857107782961,0.03746391343632236,0.07362414872078042,0.0,0.03775009437523594,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Phyllobacteriaceae,Nitratireductor,480,0.0,0.012275963663147557,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03130257854990805,0.0,0.0,0.07684918347742556,0.04204183162246435,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Bradyrhizobiaceae,Nitrobacter,481,0.03794346423828496,0.0,0.004407519227802631,0.009203018590097553,0.0,0.0,0.0,0.009932459276916964,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Chromatiales,Chromatiaceae,Nitrosococcus,482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.011738466956215518,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Nitrosomonadales,Nitrosomonadaceae,Nitrosomonas,483,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.01921229586935639,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Nitrospirae,Nitrospira,Nitrospirales,Nitrospiraceae,Nitrospira,484,0.0,0.012275963663147557,0.004407519227802631,0.014724829744156082,0.0,0.012583364791745311,0.0,0.004966229638458482,0.0,0.0704308017372931,0.0,0.030840400925212026,0.07684918347742556,0.11911852293031568,0.0,2.82,0.0
+Bacteria,Nitrospirae,Nitrospira,Nitrospirales,Nitrospiraceae,Nitrospirae bacterium,485,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.1722990086113323,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,,,,,Nitrotoga,486,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Nocardiaceae,Nocardia,487,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007117691021032778,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Propionibacteriales,Nocardioidaceae,Nocardioides,488,0.07588692847656991,0.6629020378099681,0.06390902880313816,0.09018958218295602,0.0,0.06291682395872657,0.0,0.0,0.0,0.039128223187385056,0.0,0.0,0.0,0.007006971937077392,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,,Nordella,489,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Noviherbaspirillum,490,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0015819655922483685,0.0,0.0,0.4382360996987127,0.01447282726680657,0.0,0.1729106628242075,0.01751742984269348,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Novosphingobium,491,0.07588692847656991,0.220967345936656,0.03966767305022368,0.09387078961899503,0.8470089994706195,0.36491757896061405,0.806802452046668,0.11918951132300357,0.9870417777308595,1.1934108072152445,2.9524567624285405,1.4957594448727833,3.3621517771373677,2.2562449637389204,1.4698031958432685,0.0,3.2
+Bacteria,Bacteroidetes,Bacteroidia,Flavobacteriales,Cryomorphaceae,NS10 marine group,492,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Oceanicola,493,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Oceaniovalibus,494,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Brucellaceae,Ochrobactrum,495,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Odoribacteraceae,Odoribacter,496,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Cellulomonadaceae,Oerskovia,497,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Oligoflexia,Oligoflexales,Oligoflexaceae,Oligoflexus,498,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Bradyrhizobiaceae,Oligotropha,499,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,,,OM27 clade,500,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.01921229586935639,0.007006971937077392,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Methylophilales,Methylophilaceae,OM43 clade,501,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Cellvibrionales,Halieaceae,OM60(NOR5) clade,502,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,PVC group,Verrucomicrobia,Opitutales,Opitutaceae,Opitutus,503,0.0,0.0,0.0,0.007362414872078041,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Halanaerobiales,Halobacteroidaceae,Orenia,504,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04469606674612634,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Oribacterium,505,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rickettsiales,Rickettsiaceae,Orientia,506,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.009932459276916964,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chloroflexi,Anaerolineae,Anaerolineales,Anaerolineaceae,Ornatilinea,507,0.0,0.0,0.0,0.0,0.0,0.0,0.01107375914573858,0.0,0.0,0.011738466956215518,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Oscillibacter,508,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Oscillospira,509,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003558845510516389,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Ottowia,510,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.01921229586935639,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Oxalicibacterium,511,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Oxobacter,512,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.012455959286807358,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Micrococcaceae,Paenarthrobacter,513,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Paenibacillaceae,Paenibacillus,514,0.0,0.0,0.0,0.0,0.05293806246691372,0.0,0.0,0.0,0.0,0.011738466956215518,0.0,0.0,0.01921229586935639,0.003503485968538696,0.021353073063098332,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Micrococcaceae,Paeniglutamicibacter,515,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Planococcaceae,Paenisporosarcina,516,0.0,0.0,0.0,0.0,0.0,0.012583364791745311,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Brucellaceae,Paenochrobactrum,517,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Porphyromonadaceae,Paludibacter,518,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007117691021032778,0.0,0.0
+Bacteria,Acidobacteria,Solibacteres,Solibacterales,Solibacteraceae (Subgroup 3),Paludibaculum,519,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Nevskiales,Sinobacteraceae,Panacagrimonas,520,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Burkholderiaceae,Pandoraea,521,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Hyphomicrobiaceae,Pannonibacter,522,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.16962220508866616,0.0,0.0910906351820061,0.183280543791594,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Erwiniaceae,Pantoea,523,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Porphyromonadaceae,Parabacteroides,524,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Parablastomonas,525,0.0,0.0,0.0,0.0,0.0,0.0,2.4662843583152063,0.0,0.010556596553271225,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Paracoccus,526,0.7019540884082717,0.220967345936656,0.7096105956762236,0.18221976808393153,0.10587612493382743,0.0880835535422172,0.0,0.0,0.0013195745691589032,0.0665179794185546,0.37629350893697083,0.3855050115651504,0.1344860710854947,0.7567529692043583,0.012455959286807358,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,Parapusillimonas,527,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Sutterellaceae,Parasutterella,528,0.0,0.0,0.008815038455605263,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Hyphomicrobiaceae,Parvibaculum,529,0.0,0.012275963663147557,0.006611278841703947,0.011043622308117063,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0017794227552581944,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Parvularculales,Parvularculaceae,Parvularcula,530,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,,Paucibacter,531,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Burkholderiaceae,Paucimonas,532,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.019564111593692528,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Sphingobacteriia,Sphingobacteriales,Sphingobacteriaceae,Pedobacter,533,0.056915196357427436,2.602504296587282,0.125614297992375,0.11227682679919014,0.0,0.07550018875047187,0.0,0.009932459276916964,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Hyphomicrobiaceae,Pedomicrobium,534,0.0,0.0,0.0022037596139013156,0.009203018590097553,0.0,0.0,0.0,0.0,0.0,0.15651289274954022,0.0,0.0,0.03842459173871278,0.021020915811232176,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfuromonadales,Pelobacteraceae,Pelobacter,535,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0017794227552581944,0.0,0.0
+Bacteria,Chloroflexi,Anaerolineae,Anaerolineales,Anaerolineaceae,Pelolinea,536,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Pelomonas,537,0.0,0.0,0.0,0.0,0.0,0.0,0.00553687957286929,0.20361541517679776,0.0,0.0,0.0,0.41634541249036233,0.0,0.0,0.07651517847610236,0.0,0.0
+Bacteria,Firmicutes,Negativicutes,Selenomonadales,Sporomusaceae,Pelosinus,538,0.0,0.0,0.0,0.0,0.0,0.0,19.458967767451057,0.0,0.009237021984112323,0.0,0.0,0.0,0.01921229586935639,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Syntrophomonadaceae,Pelospora,539,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptococcaceae,Pelotomaculum,540,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.009932459276916964,0.0,0.0,0.0,0.0,0.0,0.0,0.007117691021032778,0.0,23.42
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptostreptococcaceae,Peptoclostridium,541,0.0,0.012275963663147557,0.022037596139013158,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptococcaceae,Peptococcus,542,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Tissierellaceae,Peptoniphilus,543,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03842459173871278,0.003503485968538696,0.0017794227552581944,0.0,0.0
+Bacteria,Proteobacteria,Oligoflexia,Bacteriovoracales,Bacteriovoracaceae,Peredibacter,544,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Porphyromonadaceae,Petrimonas,545,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.00395872370747671,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillaceae,Phaeospirillum,546,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0017794227552581944,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Veillonellaceae,Phascolarctobacterium,547,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Myxococcales,Phaselicystidaceae,Phaselicystis,548,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Caulobacterales,Caulobacteraceae,Phenylobacterium,549,0.30354771390627966,0.30689909157868894,0.22919099984573685,0.3349898766795509,0.0,2.7054234302252422,0.0,0.0,0.39983109445514764,7.160464843291465,1.4328098994138505,1.2644564379336931,1.3640730067243036,1.2612549486739306,0.058720950923520414,5.11,1.25
+Bacteria,Proteobacteria,Alphaproteobacteria,Burkholderiales,Alcaligenaceae,Phreatobacter,550,0.0,0.0,0.004407519227802631,0.0,0.0,0.012583364791745311,0.0,0.0,0.00791744741495342,11.33935907970419,0.13025544540125913,0.0,18.962536023054753,26.079949549802052,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Intrasporangiaceae,Phycicoccus,551,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003558845510516389,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,Pigmentiphaga,552,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micromonosporales,Micromonosporaceae,Pilimelia,553,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Planctomycetes,Planctomycetacia,Pirellulales,Pirellulaceae,Pir4 lineage,554,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,,Piscinibacter,555,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01921229586935639,0.0,0.0,0.0,0.0
+Bacteria,Planctomycetes,Planctomycetia,Planctomycetales,Planctomycetaceae,Planctomyces,556,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.063993831919815,0.01921229586935639,0.0,0.012455959286807358,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Planococcaceae,Planomicrobium,557,0.0,0.0,0.004407519227802631,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01751742984269348,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Microbacteriaceae,Plantibacter,558,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Methylocystaceae,Pleomorphomonas,559,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Pluralibacter,560,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Polaromonas,561,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0007909827961241842,0.0,0.0,0.011738466956215518,0.0036182068167016426,0.09252120277563608,0.0,0.003503485968538696,0.005338268265774583,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Polymorphobacter,562,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007825644637477012,0.0036182068167016426,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Polynucleobacter,563,0.0,0.012275963663147557,0.0022037596139013156,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.03521540086864655,0.0,0.030840400925212026,0.07684918347742556,0.10160109308762219,0.010676536531549166,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Erythrobacteraceae,Porphyrobacter,564,0.01897173211914248,0.012275963663147557,0.015426317297309209,0.03313086692435119,0.0,0.20133383666792498,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.007006971937077392,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Porphyromonadaceae,Porphyromonas,565,0.24663251754885224,1.4853916032408545,4.400907948960928,1.0730719676053746,0.0,0.26425066062665153,0.0,0.004966229638458482,0.0,0.011738466956215518,0.20985599536869526,0.0,0.0,0.05255228952808044,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Prevotellaceae,Prevotella,566,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.019573650307840137,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Prevotellaceae,Prevotella 2,567,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Prevotellaceae,Prevotella 6,568,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Prevotellaceae,Prevotella 7,569,0.3794346423828495,0.4910385465259023,0.4892346342860921,7.990060739922694,0.0,0.46558449729457657,0.0,0.0,0.0,0.09390773564972414,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Cyanobacteria,Synechococcales,Prochloraceae,Prochlorococcus,570,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Marinilabiliales,Prolixibacteraceae,Prolixibacter,571,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Propionibacteriaceae,Propionibacterium,572,21.305255169797004,19.629265897372942,24.968596425501907,19.979753359101785,4.976177871889889,4.165093746067698,0.0,0.2234803337306317,0.0,0.7160464843291466,0.6006223315724727,0.5242868157286045,0.5187319884726225,1.138632939775076,1.9466884942524645,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Propionibacteriales,Propionibacteriaceae,Propionicicella,573,0.0,0.0,0.0,0.0,0.0,0.0,0.34407751631402017,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Nocardioidaceae,Propionicimonas,574,0.0,0.0,0.0,0.0,0.05293806246691372,0.0,0.00553687957286929,0.02979737783075089,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Propionivibrio,575,0.03794346423828496,0.061379818315737786,0.017630076911210525,0.04785569666850727,0.0,0.11325028312570783,0.21989321732252326,3.0740961462058007,0.19529703623551767,0.0626051570998161,0.0036182068167016426,4.872783346183501,0.09606147934678194,0.10160109308762219,2.7883554574895903,0.0,0.84
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Propionivibrio sp. TPP412,576,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Verrucomicrobia,Verrucomicrobiae,Verrucomicrobiales,Verrucomicrobiaceae,Prosthecobacter,577,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.16962220508866616,0.0,0.0,0.007117691021032778,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Proteiniclasticum,578,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Porphyromonadaceae,Proteiniphilum,579,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.6613443825710592,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,,,,Proteobacterium,580,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Erysipelotrichi,Erysipelotrichales,Erysipelotrichaceae,PSB-M-3,581,0.0,0.0,0.0,0.0,0.10587612493382743,0.0,0.0,0.0,0.0,0.0,0.0,0.8789514263685427,0.0,0.0,0.9751236698814905,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Pseudacidovorax,582,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Micrococcaceae,Pseudarthrobacter,583,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Vibrionales,Pseudoalteromonadaceae,Pseudoalteromonas,584,0.0,0.0,0.0,0.0,0.21175224986765487,0.0,0.0,0.0,0.0,0.0,0.0,0.1233616037008481,0.0,0.0,0.09786825153920069,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Microbacteriaceae,Pseudoclavibacter,585,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.05869233478107759,0.0,0.0,0.01921229586935639,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Xanthobacteraceae,Pseudolabrys,586,0.0,0.0,0.0,0.0,0.0,0.0,0.04983191615582361,0.0,0.0,0.011738466956215518,0.0,0.0,0.01921229586935639,0.014013943874154784,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Pseudomonadales,Pseudomonadaceae,Pseudomonas,587,3.4718269778030733,2.0623618954087894,1.4632963836304735,2.40750966316952,2.2763366860772893,13.76620108216937,0.12655724737986948,0.21354787445371473,0.0013195745691589032,1.537739171264233,0.01447282726680657,1.0948342328450271,1.4024975984630164,1.499491994534562,0.2491191857361472,0.0,0.46
+Bacteria,Actinobacteria,Actinobacteria,Pseudonocardiales,Pseudonocardiaceae,Pseudonocardia,588,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Pseudorhodoferax,589,0.01897173211914248,0.03682789098944267,0.022037596139013158,0.04969630038652678,0.0,0.15100037750094375,0.015028673126359502,0.024831148192292412,0.17418384312897522,5.102320303635012,0.1374918590346624,0.0,3.227665706051873,3.1286129699050558,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Oceanospirillales,Oceanospirillaceae,Pseudospirillum,590,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1956411159369253,0.0,0.0,0.0,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Pseudoxanthomonas,591,3.073420603301081,3.707341026270562,2.637900257839875,4.301490889011596,0.0,35.79967283251542,0.0,0.0,0.0,0.5008412567985288,0.0,0.7555898226676947,0.48030739673390976,0.6481449041796588,0.030250186839389303,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Pseudomonadales,Moraxellaceae,Psychrobacter,592,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.014898688915375446,0.0,0.0,0.0,0.0,0.0,0.0,0.0017794227552581944,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,Pusillimonas,593,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Erythrobacteraceae,Qipengyuania,594,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Azonexaceae,Quatrionicoccus,595,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Ralstonia,596,0.0,0.0,0.0,0.0,0.0,0.0,0.06644255487443149,0.014898688915375446,0.0,0.0,0.01447282726680657,0.0,0.0,0.0,0.0017794227552581944,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Ramlibacter,597,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.023476933912431035,0.0,0.0,0.0,0.007006971937077392,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Rehaibacterium,598,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillales Incertae Sedis,Reyranella,599,0.22766078542970974,0.29462312791554135,0.21596844216232894,0.3699613473219216,0.0,0.40266767333584996,0.014237690330235319,0.0,0.11480298751682456,1.1542825840278592,0.3473478544033577,0.0,1.5754082612872238,1.555547770031181,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Alteromonadales,Chromatiaceae,Rheinheimera,600,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.1233616037008481,0.01921229586935639,0.007006971937077392,0.05516210541300402,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,,Rhizobacter,601,0.0,0.0,0.0022037596139013156,0.0036812074360390206,0.0,0.012583364791745311,0.0,0.0,0.0,0.039128223187385056,0.0,0.0,0.01921229586935639,0.02802788774830957,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Rhizobiaceae,Rhizobium,602,0.056915196357427436,0.0859317456420329,0.022037596139013158,0.03681207436039021,0.0,0.025166729583490623,0.0,0.09435836313071116,0.0026391491383178063,0.011738466956215518,0.0,0.0,0.03842459173871278,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Micropepsales,Micropepsaceae,Rhizomicrobium,603,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Rhizorhapis,604,0.0,0.0,0.0,0.0,0.0,0.0,0.0007909827961241842,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Rhodanobacter,605,0.834756213242269,0.7979376381045912,1.4390550278775591,1.0068102337566722,0.0,1.006669183339625,0.0,0.0,0.0,0.14868724811206321,0.0,0.0,0.0,0.1681673264898574,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Rhodobacter,606,0.0,0.0,0.0,0.0,0.10587612493382743,0.0,0.0,0.0,0.0,0.09390773564972414,0.0,6.353122590593678,0.0,0.010510457905616088,0.3060607139044094,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Nocardiaceae,Rhodococcus,607,0.01897173211914248,0.3314510189049841,0.026445115366815788,0.04417448923246825,0.0,0.025166729583490623,0.0,0.0,0.0,0.0,0.0,0.015420200462606013,0.0,0.0,0.00889711377629097,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Rhodocyclaceae bacterium,608,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.39076633620377743,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Rhodocyclus,609,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.4471858134155744,0.0,0.003503485968538696,0.3487668600306061,0.0,0.0
+Bacteria,Bacteroidetes,Cytophagia,Cytophagales,Cytophagaceae,Rhodocytophaga,610,0.0,0.0,0.004407519227802631,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Rhodoferax,611,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0036182068167016426,0.0,0.01921229586935639,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Hyphomicrobiaceae,Rhodomicrobium,612,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Hyphomicrobiaceae,Rhodoplanes,613,0.0,0.012275963663147557,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.06168080185042405,0.0,0.0,0.003558845510516389,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Bradyrhizobiaceae,Rhodopseudomonas,614,0.09485866059571238,0.04910385465259023,0.026445115366815788,0.022087244616234125,0.0,0.03775009437523594,0.02768439786434645,1.0627731426301152,0.0,0.03521540086864655,0.01447282726680657,0.0,0.01921229586935639,0.02802788774830957,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Rhodovarius,615,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.023476933912431035,0.0,0.07710100231303006,0.05763688760806917,0.10160109308762219,0.09608882878394248,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Rhodovastum,616,0.0,0.012275963663147557,0.004407519227802631,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0026391491383178063,0.04304104550612357,0.0,0.0,0.03842459173871278,0.014013943874154784,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Rhodovulum,617,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.4047032124271237,0.0,0.0,0.03842459173871278,0.08058017727639001,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Rikenellaceae,Rikenellaceae RC9 gut group,618,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Caulobacterales,Hyphomonadaceae,Robiginitomaculum,619,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptostreptococcaceae,Romboutsia,620,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Roseateles,621,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Roseburia,622,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Roseibacterium,623,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Roseicyclus,624,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Roseococcus,625,0.0,0.0,0.004407519227802631,0.0,0.0,0.012583364791745311,0.2950365829543207,0.004966229638458482,0.0013195745691589032,0.4617130336111437,0.0036182068167016426,0.0,3.1508165225744476,3.619101005500473,0.005338268265774583,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Roseomonas,626,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Roseovarius,627,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Micrococcaceae,Rothia,628,0.0,0.0,0.0022037596139013156,0.0,0.0,0.03775009437523594,0.0,0.0,0.0,0.0704308017372931,0.036182068167016426,0.0,0.0,0.01751742984269348,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Rubellimicrobium,629,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Rubritepida,630,1.783342819199393,0.18413945494721334,0.11018798069506579,0.23191606847045831,0.0,0.1761671070844344,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Rubrivivax,631,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Pseudomonadales,Pseudomonadaceae,Rugamonas,632,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Hungateiclostridiaceae,Ruminiclostridium,633,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.05255228952808044,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Hungateiclostridiaceae,Ruminiclostridium 1,634,0.0,0.0,0.0022037596139013156,0.0,0.0,0.012583364791745311,0.41763891635356926,0.0,0.0013195745691589032,0.0,0.41247557710398725,0.0,0.01921229586935639,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Aeromonadales,Succinivibrionaceae,Ruminobacter,635,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.011738466956215518,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Ruminococcaceae UCG-005,636,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Ruminococcaceae UCG-014,637,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Ruminococcus,638,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Planococcaceae,Rummeliibacillus,639,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Salimesophilobacter,640,0.0,0.0,0.0,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Microbacteriaceae,Salinibacterium,641,0.0,0.0,0.0,0.0,0.10587612493382743,0.0,0.0,0.0,0.0,0.0,0.0,0.015420200462606013,0.0,0.0,0.0017794227552581944,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Salmonella,642,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Sandaracinobacter,643,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.021709240900209856,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,Sarcina,644,0.13280212483399734,0.03682789098944267,0.14544813451748684,0.12332044910730719,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Planctomycetes,Planctomycetia,Planctomycetales,Planctomycetaceae,Schlesneria,645,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Tissierellaceae,Sedimentibacter,646,0.0,0.0,0.0,0.0,0.05293806246691372,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Saprospirae,Saprospirales,Chitinophagaceae,Sediminibacterium,647,0.0,0.0,0.0,0.0036812074360390206,2.011646373742721,0.012583364791745311,0.5062289895194779,35.30989272943981,0.3312132168588847,0.05869233478107759,0.0,19.676175790285274,0.07684918347742556,0.05255228952808044,0.6744012242428556,1.75,0.0
+Bacteria,None specified,None specified,None specified,None specified,SEEP-SRB1,648,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Saprospirae,Saprospirales,Chitinophagaceae,Segetibacter,649,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Halanaerobiales,Halobacteroidaceae,Selenihalanaerobacter,650,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03476360746920938,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Negativicutes,Selenomonadales,Selenomonadaceae,Selenomonas,651,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Negativicutes,Selenomonadales,Selenomonadaceae,Selenomonas 3,652,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Negativicutes,Selenomonadales,Selenomonadaceae,Selenomonas 4,653,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Yersiniaceae,Serratia,654,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chloroflexi,Anaerolineae,Anaerolineales,Anaerolinaceae,SHD-231,655,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007117691021032778,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Alteromonadales,Shewanellaceae,Shewanella,656,0.13280212483399734,0.1350356002946231,1.3288670471824935,0.16565433462175594,0.0,0.10066691833396249,0.0,0.0,0.0,0.04304104550612357,0.0,0.0,0.03842459173871278,0.03503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Rhizobiaceae,Shinella,657,0.0,0.0,0.0,0.0,0.0,0.012583364791745311,0.0,0.0,0.0,0.011738466956215518,0.0,0.0,0.01921229586935639,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Nitrosomonadales,Gallionellaceae,Sideroxydans,658,0.0,0.0,0.0022037596139013156,0.0,0.0,0.012583364791745311,0.0,0.0,0.4315008841149613,0.027389756231169543,0.0,0.0,0.03842459173871278,0.03153137371684826,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Silanimonas,659,0.15177385695313983,0.14731156395777067,0.07933534610044736,0.1049144119271121,0.0,0.2139172014596703,0.0,0.0,0.0,6.244864420706656,0.0,0.0,0.7108549471661864,0.7357320533931262,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Simplicispira,660,0.910643141718839,1.05573287503069,0.9277827974524538,1.3620467513344376,0.0,2.252422297722411,0.0,0.0,0.0,0.37563094259889657,0.0,0.0,0.5571565802113353,0.553550783029114,0.0,0.0,0.0
+Bacteria,Spirochaetes,Leptospirae,Leptospirales,Sediment-4,SJA-88,661,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillaceae,Skermanella,662,0.0,0.0,0.0,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae,SMB53,663,0.0,0.0,0.0,0.0,0.05293806246691372,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Syntrophobacterales,Syntrophaceae,Smithella,664,5.995067349649022,2.4306408053032165,2.1112017101174603,3.3130866924351188,0.0,2.277589027305902,0.020565552699228794,0.0,11.217703412419835,0.2112924052118793,0.26774730443592154,0.0,0.09606147934678194,0.03853834565392565,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Enterobacteriaceae,Sodalis,665,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,soil bacterium,666,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.09407337723424271,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Myxococcales,Polyangiaceae,Sorangium,667,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,bacteroidales,Rikenellaceae,SP3-e08,668,0.0,0.0,0.004407519227802631,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,,Sphaerotilus,669,0.0,0.0,0.0,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Sphingobacteriia,Sphingobacteriales,Sphingobacteriaceae,Sphingobacterium,670,0.0,0.024551927326295114,0.0,0.0018406037180195103,0.15881418740074113,0.0,0.0,0.0,0.0,0.07434362405603161,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Sphingobium,671,0.0,0.03682789098944267,0.011018798069506579,0.02760905577029266,0.31762837480148226,0.10066691833396249,0.0403401226023334,0.004966229638458482,11.84977963104695,0.08999491333098564,0.1374918590346624,27.016191210485736,0.23054755043227668,0.18568475633255088,1.943129648741948,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,JG34-KF-161,Sphingomonadaceae bacterium Gsoil 690,672,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Sphingomonadaceae bacterium YLT33,673,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.2663723858455749,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Sphingomonas,674,3.2251944602542215,1.8782224404615762,0.26224739405425657,0.5282532670715995,0.0,0.3900843085441047,0.008700810757366027,0.0,0.10028766725607664,0.18390264898070977,0.19538316810188872,0.2467232074016962,0.15369836695485112,0.18568475633255088,0.021353073063098332,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Sphingomonas sp. SO11,675,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.036182068167016426,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Sphingopyxis,676,0.398406374501992,6.174809722563221,0.44075192278026315,0.6626173384870238,0.0,0.5914181452120297,0.006327862368993474,0.004966229638458482,0.04618510992056161,1.8194623782134052,0.0036182068167016426,0.8481110254433308,2.478386167146974,2.371860000700697,0.03558845510516388,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Sphingorhabdus,677,0.01897173211914248,0.03682789098944267,0.0022037596139013156,0.0018406037180195103,0.0,0.0,0.0007909827961241842,0.0,0.022432767675701355,0.03521540086864655,0.0,0.0,0.05763688760806917,0.07357320533931262,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Sphingosinicella,678,0.0,0.0,0.0,0.007362414872078041,0.0,0.012583364791745311,0.0,0.0,0.0,1.498610948076848,3.097185035096606,0.0,0.15369836695485112,0.13313246680447044,0.003558845510516389,0.0,0.0
+Bacteria,Spirochaetes,Spirochaetia,Spirochaetales,Spirochaetaceae,Spirochaeta,679,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,18.35,0.0
+Bacteria,Bacteroidetes,Cytophagia,Cytophagales,Cytophagaceae,Sporocytophaga,680,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Negativicutes,Selenomonadales,Sporomusaceae,Sporomusa,681,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Planococcaceae,Sporosarcina,682,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Staphylococcaceae,Staphylococcus,683,2.7129576930373744,1.829118585808986,8.266302311743836,2.354132155346954,0.5823186871360508,0.47816786208632184,0.0,0.4866905045689313,0.0,0.11738466956215518,0.23880164990230843,0.0,0.09606147934678194,0.22772658795501524,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Xanthobacteraceae,Starkeya,684,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Stenotrophomonas,685,0.09485866059571238,0.20869138227350847,0.15426317297309208,0.16749493833977544,0.0,0.33975084937712347,0.0,0.04469606674612634,0.0,0.019564111593692528,0.0,0.015420200462606013,0.03842459173871278,0.014013943874154784,0.0017794227552581944,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Nevskiales,Sinobacteraceae,Steroidobacter,686,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Streptococcaceae,Streptococcus,687,0.11383039271485487,0.1718634912840658,0.10357670185336183,0.08466777102889747,8.893594494441503,0.06291682395872657,0.0007909827961241842,0.3128724672228844,0.0,0.007825644637477012,0.02894565453361314,0.4780262143407864,0.01921229586935639,0.05255228952808044,0.9306381010000355,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Streptomycetaceae,Streptomyces,688,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.009932459276916964,0.0,0.0,0.0,0.0,0.0,0.010510457905616088,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,Subdoligranulum,689,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Nitrosomonadales,Gallionellaceae,Sulfuricella,690,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Epsilonproteobacteria,Campylobacterales,Helicobacteraceae,Sulfuricurvum,691,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.021709240900209856,0.0,0.01921229586935639,0.014013943874154784,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Hydrogenophilales,Hydrogenophilaceae,Sulfuriferula,692,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Acidiferrobacterales,Acidiferrobacteraceae,Sulfurifustis,693,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.07236413633403285,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Epsilonproteobacteria,Campylobacterales,Helicobacteraceae,Sulfurimonas,694,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Sulfuritalea,695,0.0,0.0,0.0,0.0018406037180195103,0.15881418740074113,0.0,0.0,0.0,0.11216383837850677,0.03521540086864655,0.0,0.04626060138781804,0.0,0.0,0.0320296095946475,0.0,0.0
+Bacteria,Proteobacteria,Epsilonproteobacteria,Campylobacterales,Campylobacteraceae,Sulfurospirillum,696,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Epsilonproteobacteria,,,Sulfurovum,697,0.0,0.0,0.0,0.0,0.0,0.0,0.0007909827961241842,0.0,0.0,0.027389756231169543,0.0,0.0,0.03842459173871278,0.02802788774830957,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Marinilabiliales,Prolixibacteraceae,Sunxiuqinia ,698,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,Sutterella,699,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfobacterales,Desulfobacteraceae,Sva0081 sediment group,700,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Cyanobacteria,Synechococcales,Synechococcaceae,Synechococcus,701,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.009932459276916964,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Syntrophobacterales,Syntrophobacteraceae,Syntrophobacter,702,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.10564620260593965,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Syntrophomonadaceae,Syntrophomonas,703,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04626060138781804,0.0,0.0,0.00889711377629097,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Syntrophobacterales,Syntrophorhabdaceae,Syntrophorhabdus,704,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Syntrophobacterales,Syntrophaceae,Syntrophus,705,0.0,0.0,0.0,0.0,10.217046056114345,0.0,0.0,0.0,0.0,0.015651289274954024,0.0036182068167016426,0.4934464148033924,0.0,0.014013943874154784,0.13879497491013915,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,Tabrizicola,706,0.0,0.0,0.004407519227802631,0.0,0.0,0.0,0.0,0.0,0.0,0.3286770747740345,0.0,0.0,0.05763688760806917,0.05255228952808044,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Rhodanobacteraceae,Tahibacter,707,0.0,0.012275963663147557,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Bradyrhizobiaceae,Tardiphaga,708,0.0,0.0,0.004407519227802631,0.0018406037180195103,0.0,0.0,0.0015819655922483685,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Legionellales,Legionellaceae,Tatlockia,709,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Erwiniaceae,Tatumella,710,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,,Tepidicella,711,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.05146340819719722,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Tepidimonas,712,0.0,0.012275963663147557,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.475134014164417,0.0,0.015420200462606013,8.93371757925072,10.573520653049785,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Intrasporangiaceae,Terrabacter,713,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Chitinophagia,Chitinophagales,Chitinophagaceae,Terrimonas,714,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Propionibacteriaceae,Tessaracoccus,715,0.0,0.0,0.0022037596139013156,0.0018406037180195103,0.0,0.012583364791745311,11.124382044690527,0.6803734604688121,0.009237021984112323,0.0,0.0,0.06168080185042405,0.01921229586935639,0.007006971937077392,0.01601480479732375,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Intrasporangiaceae,Tetrasphaera,716,0.0,0.0,0.0,0.0,0.0,0.012583364791745311,0.0,0.0,0.0,0.015651289274954024,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Thauera,717,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0026391491383178063,0.0,0.0,0.015420200462606013,0.0,0.0,0.005338268265774583,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Family X,Thermicanus,718,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptococcaceae,Thermincola,719,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.63,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Thermoactinomycetaceae,Thermoactinomyces,720,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Acidobacteria,Thermoanaerobaculia,Thermoanaerobaculales,Thermoanaerobaculaceae,Thermoanaerobaculum,721,0.28457598178713717,0.3437269825681316,0.2953037882627763,0.47303515553101416,0.0,0.25166729583490627,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Streptosporangiales,Nocardiopsaceae,Thermobifida,722,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03521540086864655,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Nitrospirae,Nitrospira,Nitrospirales,Nitrospiraceae,Thermodesulfovibrio,723,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1252103141996322,0.0,0.0,3.45821325648415,0.553550783029114,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Thermomonas,724,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.08999491333098564,0.0,0.0,0.0,0.02802788774830957,0.0,0.0,0.0
+Bacteria,Thermi,Deinococci,Thermales,Thermaceae,Thermus,725,0.30354771390627966,3.584581389639087,2.0539039601560263,3.740106755015645,0.0,0.1761671070844344,0.0,0.0,0.0,0.007825644637477012,0.0,0.015420200462606013,0.0,0.007006971937077392,0.005338268265774583,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Chromatiales,Thioalkalispiraceae,Thioalkalispira,726,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Hydrogenophilales,Hydrogenophilaceae,Thiobacillus,727,0.0,0.0,0.0022037596139013156,0.0,0.0,0.012583364791745311,0.0,0.004966229638458482,0.0,0.054779512462339086,0.0,0.07710100231303006,0.0,0.007006971937077392,0.003558845510516389,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Thiotrichales,Thiotrichaceae,Thiothrix,728,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003912822318738506,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Tissierellaceae,Tissierella_Soehngenia,729,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.015420200462606013,0.0,0.0,0.042706146126196665,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillaceae,Tistrella,730,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Spirochaetes,Spirochaetes,Spirochaetales,Spirochaetaceae,Treponema,731,0.0,0.0,0.0,0.0,3.8115404976177873,0.0,0.0,0.0,0.0,0.0,0.0,5.397070161912105,0.0,0.0,0.8754759955870316,0.0,0.0
+Bacteria,Spirochaetes,Spirochaetes,Spirochaetales,Spirochaetaceae,Treponema 2,732,0.01897173211914248,0.024551927326295114,0.01983383652511184,0.02576845205227315,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Carnobacteriaceae,Trichococcus,733,0.0,0.0,0.0,0.0,0.0,0.0,0.0015819655922483685,0.0,0.0026391491383178063,0.0,0.0,0.0,0.0,0.0,0.003558845510516389,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Actinomycetales,Corynebacteriaceae,Turicella,734,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Turicibacterales,Turicibacteraceae,Turicibacter,735,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.004966229638458482,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Spirochaetes,Leptospirae,Leptospirales,Leptospiraceae,Turneriella,736,0.0,0.0,0.0022037596139013156,0.0036812074360390206,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Zoogloeaceae,Uliginosibacterium,737,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,uncultured,738,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Alcaligenaceae,uncultured,739,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chloroflexi,Anaerolineae,Anaerolineales,Anaerolineaceae,uncultured,740,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.07785489958037528,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Caulobacterales,Caulobacteraceae,uncultured,741,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Sphingobacteriia,Sphingobacteriales,Chitinophagaceae,uncultured,742,0.0,0.0,0.0,0.0,0.0,0.0,0.1162744710302551,0.0,0.07389617587289858,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Christensenellaceae,uncultured,743,0.0,0.0,0.0,0.0,0.0,0.0,0.0023729483883725526,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Chromatiales,Chromatiaceae,uncultured,744,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae 1,uncultured,745,0.0,0.0,0.0,0.0,0.0,0.0,0.0007909827961241842,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Clostridiaceae 4,uncultured,746,0.0,0.0,0.0,0.0,0.0,0.0,0.4429503658295432,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,uncultured,747,0.0,0.0,0.0,0.0,0.0,0.0,0.015028673126359502,0.0,0.005278298276635613,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Desulfobacterales,Desulfobacteraceae,uncultured,748,0.0,0.0,0.0,0.0,0.0,0.0,0.0007909827961241842,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Erythrobacteraceae,uncultured,749,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Family XI,uncultured,750,0.0,0.0,0.0,0.0,0.0,0.0,0.0007909827961241842,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Family XIII,uncultured,751,0.0,0.0,0.0,0.0,0.0,0.0,0.0023729483883725526,0.0,0.7125702673458076,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Nitrosomonadales,Gallionellaceae,uncultured,752,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0026391491383178063,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Gemmatimonadetes,Gemmatimonadetes,Gemmatimonadales,Gemmatimonadaceae,uncultured,753,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Gracilibacteraceae,uncultured,754,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Oceanospirillales,Halomonadaceae,uncultured,755,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Hydrogenophilales,Hydrogenophilaceae,uncultured,756,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Hyphomicrobiaceae,uncultured,757,0.0,0.0,0.0,0.0,0.0,0.0,0.006327862368993474,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,uncultured,758,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.14779235174579716,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Methylophilales,Methylophilaceae,uncultured,759,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Nitrosomonadales,Nitrosomonadaceae,uncultured,760,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Nitrospirae,Nitrospira,Nitrospirales,Nitrospiraceae,uncultured,761,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.568129635005674,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Peptococcaceae,uncultured,762,0.0,0.0,0.0,0.0,0.0,0.0,0.0015819655922483685,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Planctomycetes,Planctomycetacia,Planctomycetales,Planctomycetaceae,uncultured,763,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,Porphyromonadaceae,uncultured,764,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Propionibacteriales,Propionibacteriaceae,uncultured,765,0.0,0.0,0.0,0.0,0.0,0.0,0.00553687957286929,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodobacterales,Rhodobacteraceae,uncultured,766,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,uncultured,767,0.0,0.0,0.0,0.0,0.0,0.0,11.056357524223849,0.0,0.9118260272888021,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,Rhodospirillaceae,uncultured,768,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Ruminococcaceae,uncultured,769,0.0,0.0,0.0,0.0,0.0,0.0,0.0015819655922483685,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,uncultured,770,0.0,0.0,0.0,0.0,0.0,0.0,0.0015819655922483685,0.0,0.03430893879813148,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Spirochaetae,Spirochaetes,Spirochaetales,Spirochaetaceae,uncultured,771,0.0,0.0,0.0,0.0,0.0,0.0,0.4018192604310856,0.0,0.3166978965981368,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Syntrophobacterales,Syntrophaceae,uncultured,772,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.009237021984112323,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Syntrophobacterales,Syntrophobacteraceae,uncultured,773,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Syntrophomonadaceae,uncultured,774,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Negativicutes,Selenomonadales,Veillonellaceae,uncultured,775,0.0,0.0,0.0,0.0,0.0,0.0,0.011864741941862765,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Acidimicrobiia,Acidimicrobiales,OM1 clade,uncultured actinobacterium,776,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,JG34-KF-161,uncultured alpha proteobacterium,777,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,SD04E11,uncultured alpha proteobacterium,778,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,uncultured alpha proteobacterium,uncultured alpha proteobacterium,uncultured alpha proteobacterium,779,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Aminicenantes,uncultured Aminicenantes bacterium,uncultured Aminicenantes bacterium,uncultured Aminicenantes bacterium,uncultured Aminicenantes bacterium,780,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Archaea,Bathyarchaeota,uncultured archaeon,uncultured archaeon,uncultured archaeon,uncultured archaeon,781,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Archaea,WSA2,20a-9,uncultured archaeon,uncultured archaeon,uncultured archaeon,782,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,AKIW852,uncultured bacterium,783,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Ignavibacteriae,Ignavibacteria,Ignavibacteriales,BSV26,uncultured bacterium,784,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Ignavibacteriae,Ignavibacteria,Ignavibacteriales,BSV40,uncultured bacterium,785,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Methylococcales,CABC2E06,uncultured bacterium,786,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,uncultured bacterium,787,0.0,0.0,0.0,0.0,0.0,0.0,0.0007909827961241842,0.0,0.03430893879813148,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Ellin6055,uncultured bacterium,788,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Nitrospirae,Nitrospira,Nitrospirales,FW13,uncultured bacterium,789,0.0,0.0,0.0,0.0,0.0,0.0,0.0015819655922483685,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,JG34-KF-161,uncultured bacterium,790,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,JTB255 marine benthic group,uncultured bacterium,791,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Ignavibacteriae,Ignavibacteria,Ignavibacteriales,LD-RB-34,uncultured bacterium,792,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidia,Bacteroidales,ML635J-40 aquatic group,uncultured bacterium,793,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Pseudomonadales,Moraxellaceae,uncultured bacterium,794,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Acidimicrobiia,Acidimicrobiales,OM1 clade,uncultured bacterium,795,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,P5D1-392,uncultured bacterium,796,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Ignavibacteriae,Ignavibacteria,Ignavibacteriales,PHOS-HE36,uncultured bacterium,797,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Spirochaetae,Spirochaetes,Spirochaetales,PL-11B10,uncultured bacterium,798,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5489430207701037,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,uncultured bacterium,799,0.0,0.0,0.0,0.0,0.0,0.0,0.0023729483883725526,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Thermoanaerobacterales,SRB2,uncultured bacterium,800,0.0,0.0,0.0,0.0,0.0,0.0,4.478544591655131,0.0,0.0065978728457945154,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Ignavibacteriae,Ignavibacteria,Ignavibacteriales,SR-FBR-L83,uncultured bacterium,801,0.0,0.0,0.0,0.0,0.0,0.0,0.026893415068222265,0.0,1.922620147264522,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Thermoleophilia,Solirubrobacterales,TM146,uncultured bacterium,802,0.0,0.0,0.0,0.0,0.0,0.0,0.04192208819458177,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,TSAC18,uncultured bacterium,803,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,uncultured,uncultured bacterium,804,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,18.90026655406297,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Thermoleophilia,Gaiellales,uncultured,uncultured bacterium,805,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chloroflexi,Dehalococcoidia,GIF9,uncultured bacterium,uncultured bacterium,806,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Hot Creek 32,uncultured bacterium,uncultured bacterium,807,0.0,0.0,0.0,0.0,0.0,0.0,0.004745896776745105,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chloroflexi,Thermomicrobia,JG30-KF-CM45,uncultured bacterium,uncultured bacterium,808,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Elusimicrobia,Elusimicrobia,Lineage IV,uncultured bacterium,uncultured bacterium,809,0.0,0.0,0.0,0.0,0.0,0.0,0.0015819655922483685,0.0,1.035866036789739,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,PeM15,uncultured bacterium,uncultured bacterium,810,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,uncultured bacterium,uncultured bacterium,811,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,SAR11 clade,uncultured bacterium,uncultured bacterium,812,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.6901374996701064,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Acidobacteria,Holophagae,Subgroup 23,uncultured bacterium,uncultured bacterium,813,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Sva0485,uncultured bacterium,uncultured bacterium,814,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.08709192156448761,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,MB-A2-108,uncultured bacterium,uncultured bacterium,uncultured bacterium,815,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Saccharibacteria,uncultured bacterium,uncultured bacterium,uncultured bacterium,uncultured bacterium,816,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Aminicenantes,uncultured bacterium,uncultured bacterium,uncultured bacterium,uncultured bacterium,817,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.00791744741495342,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidetes BD2-2,uncultured bacterium,uncultured bacterium,uncultured bacterium,818,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidetes VC2.1 Bac22,uncultured bacterium,uncultured bacterium,uncultured bacterium,819,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,WCHB1-32,uncultured bacterium,uncultured bacterium,uncultured bacterium,820,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.6017260035364599,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Chloroplast,uncultured bacterium,uncultured bacterium,uncultured bacterium,821,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Chloroflexi,KD4-96,uncultured bacterium,uncultured bacterium,uncultured bacterium,822,0.0,0.0,0.0,0.0,0.0,0.0,0.02214751829147716,0.0,0.06202000475046844,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Gemmatimonadetes,BD2-11 terrestrial group,uncultured bacterium,uncultured bacterium,uncultured bacterium,823,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04882425905887942,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,TM6 (Dependentiae),uncultured bacterium,uncultured bacterium,uncultured bacterium,uncultured bacterium,824,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.009237021984112323,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,ML635J-21,uncultured bacterium,uncultured bacterium,uncultured bacterium,825,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.00395872370747671,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Acetothermia,uncultured bacterium,uncultured bacterium,uncultured bacterium,uncultured bacterium,826,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0013195745691589032,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Omnitrophica,uncultured bacterium,uncultured bacterium,uncultured bacterium,uncultured bacterium,827,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,ARKICE-90,uncultured bacterium,uncultured bacterium,uncultured bacterium,828,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,PAUC34f,uncultured bacterium,uncultured bacterium,uncultured bacterium,uncultured bacterium,829,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Parcubacteria,Candidatus Moranbacteria,uncultured bacterium,uncultured bacterium,uncultured bacterium,830,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Peregrinibacteria,uncultured bacterium,uncultured bacterium,uncultured bacterium,uncultured bacterium,831,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,OPB41,uncultured bacterium,uncultured bacterium,uncultured bacterium,832,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Gracilibacteria,uncultured bacterium,uncultured bacterium,uncultured bacterium,uncultured bacterium,833,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Microgenomates,Candidatus Levybacteria,uncultured bacterium,uncultured bacterium,uncultured bacterium,834,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Microgenomates,Candidatus Woesebacteria,uncultured bacterium,uncultured bacterium,uncultured bacterium,835,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,WS2,uncultured bacterium,uncultured bacterium,uncultured bacterium,uncultured bacterium,836,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidetes BD2-2,uncultured Bacteroidetes bacterium,uncultured Bacteroidetes bacterium,uncultured Bacteroidetes bacterium,837,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Saccharibacteria,uncultured Candidatus Saccharibacteria bacterium,uncultured Candidatus Saccharibacteria bacterium,uncultured Candidatus Saccharibacteria bacterium,uncultured Candidatus Saccharibacteria bacterium,838,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Chromatiales,uncultured Chromatiales bacterium,uncultured Chromatiales bacterium,839,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,uncultured Clostridiales bacterium,uncultured Clostridiales bacterium,840,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Chloroplast,uncultured Cyanobacterium sp.,uncultured Cyanobacterium sp.,uncultured Cyanobacterium sp.,841,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Cyanobacteria,Cyanobacteria,SubsectionI,FamilyI,uncultured Cyanobium sp.,842,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidetes BD2-2,uncultured Cytophagales bacterium,uncultured Cytophagales bacterium,uncultured Cytophagales bacterium,843,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,Sva0485,uncultured delta proteobacterium,uncultured delta proteobacterium,844,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Thermoanaerobacterales,SRB2,uncultured Firmicutes bacterium,845,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0026391491383178063,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Bacteroidetes BD2-2,uncultured gamma proteobacterium,uncultured gamma proteobacterium,uncultured gamma proteobacterium,846,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Microgenomates,Candidatus Curtissbacteria,uncultured Microgenomates group bacterium,uncultured Microgenomates group bacterium,uncultured Microgenomates group bacterium,847,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Microgenomates,Candidatus Woesebacteria,uncultured Microgenomates group bacterium,uncultured Microgenomates group bacterium,uncultured Microgenomates group bacterium,848,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,uncultured Rhizobiales bacterium,uncultured Rhizobiales bacterium,849,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhodospirillales,DA111,uncultured Roseospira sp.,850,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,JG34-KF-161,uncultured soil bacterium,851,0.0,0.0,0.0,0.0,0.0,0.0,0.0007909827961241842,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Deltaproteobacteria,43F-1404R,uncultured Syntrophaceae bacterium,uncultured Syntrophaceae bacterium,852,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Oxalobacteraceae,Undibacterium,853,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.07988926240854262,0.0,0.0,0.050866690143600575,0.02894565453361314,0.0,0.0,0.01751742984269348,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,unidentified,854,0.09485866059571238,0.024551927326295114,0.028648874980717106,0.060739922694643844,0.0,0.03775009437523594,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.01921229586935639,0.0,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,unidentified Cytophagales/green sulfur bacterium OPB56,855,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.007825644637477012,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,unidentified eubacterium clone BSV75,856,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,unidentified eubacterium clone BSV85,857,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Bacillales,Planococcaceae,Ureibacillus,858,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,None specified,None specified,None specified,None specified,vadinBC27 wastewater-sludge group,859,0.09485866059571238,0.18413945494721334,0.08374286532825,0.11043622308117064,0.0,0.07550018875047187,0.0,0.0,0.0013195745691589032,0.24650780608052586,0.0,0.0,0.1729106628242075,0.3363346529797148,0.0,0.0,0.0
+Bacteria,Firmicutes,Bacilli,Lactobacillales,Enterococcaceae,Vagococcus,860,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Lachnospiraceae,Vallitalea,861,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.00791744741495342,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Bradyrhizobiaceae,Variibacter,862,0.056915196357427436,0.024551927326295114,0.3570090574520131,0.13068286397938522,0.0,0.03775009437523594,0.045877002175202686,0.0,0.0,9.793794263802482,0.021709240900209856,0.0,0.6340057636887608,0.6726693059594296,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Variovorax,863,2.1627774615822424,0.8102136017677388,1.536020450889217,0.8374746916988772,0.0,1.6610041525103814,0.004745896776745105,0.02979737783075089,0.0,0.21911804984935634,0.0,0.0,0.19212295869356388,0.1716708124583961,0.0,0.0,0.0
+Bacteria,Firmicutes,Clostridia,Clostridiales,Veillonellaceae,Veillonella,864,3.2821096566116488,0.29462312791554135,2.860479978843908,0.46383213694091663,0.10587612493382743,0.25166729583490627,0.0,0.0,0.0,0.04304104550612357,0.0,0.04626060138781804,0.11527377521613834,0.03853834565392565,0.11744190184704083,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Verminephrobacter,865,0.0,0.0,0.0022037596139013156,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Vibrionales,Vibrionaceae,Vibrio,866,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.023752342244860256,0.0,0.9479701859758305,0.015420200462606013,0.0,0.0,0.021353073063098332,0.0,0.0
+Bacteria,Chloroflexi,Anaerolineae,Anaerolineales,Anaerolinaceae,WCHB1-05,867,0.0,0.0,0.0,0.0,0.05293806246691372,0.0,0.0,0.0,0.0,0.0,0.0,0.6476484194294526,0.0,0.0,0.6334745008719171,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Corynebacteriales,Nocardiaceae,Williamsia,868,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Bacteroidetes,Flavobacteriia,Flavobacteriales,Flavobacteriaceae,Winogradskyella,869,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04626060138781804,0.0,0.0,0.13879497491013915,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Caulobacterales,Caulobacteraceae,Woodsholea,870,0.0,0.0,0.006611278841703947,0.005521811154058531,0.0,0.0,0.0,0.0,0.0,0.4538873889736667,0.0036182068167016426,0.0,0.42267050912584053,0.28728584942017305,0.0,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Rhizobiales,Xanthobacteraceae,Xanthobacter,871,0.0,0.0,0.0,0.0018406037180195103,0.0,0.0,0.0,0.0,0.0,0.4069335211488046,0.0,0.015420200462606013,2.7089337175792507,3.051536278597204,0.03380903234990569,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Xanthomonadaceae bacterium WWH73,872,0.0,0.0,0.0022037596139013156,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Xanthomonas,873,0.01897173211914248,0.012275963663147557,0.0022037596139013156,0.0036812074360390206,0.0,0.025166729583490623,0.0,0.004966229638458482,0.0,0.015651289274954024,0.0,0.0,0.0,0.02802788774830957,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Xenophilus,874,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Xanthomonadales,Xanthomonadaceae,Xylella,875,0.0,0.0,0.0,0.0036812074360390206,0.0,0.10066691833396249,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Burkholderiales,unclassified Burkholderiales,Xylophilus,876,0.0,0.012275963663147557,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.16433853738701726,0.0,0.0,0.0,0.003503485968538696,0.0,0.0,0.0
+Bacteria,Proteobacteria,Gammaproteobacteria,Enterobacteriales,Yersiniaceae,Yersinia,877,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Microbacteriaceae,Yonghaparkia,878,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.011738466956215518,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Z-35,879,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Actinobacteria,Actinobacteria,Micrococcales,Microbacteriaceae,Zimmermannella,880,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Bacteria,Proteobacteria,Betaproteobacteria,Rhodocyclales,Rhodocyclaceae,Zoogloea,881,0.01897173211914248,0.024551927326295114,0.006611278841703947,0.011043622308117063,0.0,0.0,0.0,0.02979737783075089,0.0,0.03130257854990805,0.0,0.04626060138781804,0.05763688760806917,0.014013943874154784,0.005338268265774583,0.0,0.0
+Bacteria,Proteobacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Zymomonas,882,0.0,0.012275963663147557,0.0022037596139013156,0.0036812074360390206,0.0,0.0,0.11231955704963419,0.0,0.0,0.003912822318738506,0.0,0.0,0.01921229586935639,0.01751742984269348,0.0,0.0,0.0
