@@ -2,7 +2,7 @@
 This is the repository for the Dissertation "Nobel Microorganisms associated with MIC"
 The first notebook is a visualisation the**Physicochemical** data analysis. These repository corresponds to the Session 3.3 and 4.5 in the main text.
 
-| Notebook                   | Description                                                                                                  |
+| Notebook                    |Description                                                                                                  |
 |----------------------------|--------------------------------------------------------------------------------------------------------------|
 |**1_Splitdf.ipynb**     | Explaination of the data, then I separate the data into categories according to the failure study and the physicochemical study that distinguise three differnet degrees of corrosion.  The notebook analyse the type of data distribution. More details can be found in the main text of the dissertation (4.4.1). |
 | **2_Filtering.ipynb**     | A notebook 1. Identify the most relevant bacteria genus(GIDs) amongts the 880 genus by filering out the percentage that is in a concentration of less than 2%, the genera are then sorted and an extracolumn tells the influence frecuency of those genera, lastly the data is divided into three traffic lights. A small statistic is done with the number of GID, count, Unique, top and frequency. |
