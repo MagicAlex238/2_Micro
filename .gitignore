@@ -5,3 +5,4 @@ data_whole/
 dataml/
 log
 .venv
+config.py
