@@ -18,3 +18,4 @@ ete3
 biopython==1.78
 plotly.express
 tabule
+dendropy
