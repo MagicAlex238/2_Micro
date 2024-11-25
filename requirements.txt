@@ -17,5 +17,5 @@ psycopg2-binary
 ete3
 biopython==1.78
 plotly.express
-tabule
+tabulate
 dendropy

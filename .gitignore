@@ -1,8 +1,5 @@
 .venv/
 *.log
-data/
-data_whole/
-dataml/
 log
 .venv
 config.py
