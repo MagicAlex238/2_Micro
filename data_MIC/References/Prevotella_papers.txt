@@ -94,3 +94,35 @@ Number of papers: 10
 Search term: Prevotella[Organism] AND biofilm AND (corrosion OR MIC)
 Number of papers: 29
 --------------------------------------------------
+
+Search term: Prevotella[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 12
+--------------------------------------------------
+
+Search term: Prevotella[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 27
+--------------------------------------------------
+
+Search term: Prevotella[Organism] AND corrosion
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Prevotella[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 223
+--------------------------------------------------
+
+Search term: Prevotella[Organism] AND 'material deterioration'
+Number of papers: 6
+--------------------------------------------------
+
+Search term: Prevotella[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Prevotella[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 10
+--------------------------------------------------
+
+Search term: Prevotella[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 29
+--------------------------------------------------

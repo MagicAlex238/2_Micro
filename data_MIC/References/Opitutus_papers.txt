@@ -10,3 +10,7 @@ Number of papers: 4
 Search term: Opitutus[Organism] AND (metal reduction OR iron reduction)
 Number of papers: 4
 --------------------------------------------------
+
+Search term: Opitutus[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 4
+--------------------------------------------------

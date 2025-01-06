@@ -162,3 +162,43 @@ Number of papers: 2
 Search term: Paracoccus[Organism] AND (hydrogen sulfide OR H2S) AND (corrosion OR 'metal deterioration')
 Number of papers: 2
 --------------------------------------------------
+
+Search term: Paracoccus[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 55
+--------------------------------------------------
+
+Search term: Paracoccus[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 237
+--------------------------------------------------
+
+Search term: Paracoccus[Organism] AND cytochrome c3
+Number of papers: 4
+--------------------------------------------------
+
+Search term: Paracoccus[Organism] AND corrosion
+Number of papers: 9
+--------------------------------------------------
+
+Search term: Paracoccus[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 8
+--------------------------------------------------
+
+Search term: Paracoccus[Organism] AND 'material deterioration'
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Paracoccus[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 8
+--------------------------------------------------
+
+Search term: Paracoccus[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 2
+--------------------------------------------------
+
+Search term: Paracoccus[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 2
+--------------------------------------------------
+
+Search term: Paracoccus[Organism] AND (hydrogen sulfide OR H2S) AND (corrosion OR 'metal deterioration')
+Number of papers: 2
+--------------------------------------------------

@@ -6,3 +6,7 @@ Number of papers: 1
 Search term: Psb-m-3[Organism] AND (metal reduction OR iron reduction)
 Number of papers: 1
 --------------------------------------------------
+
+Search term: Psb-m-3[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 1
+--------------------------------------------------

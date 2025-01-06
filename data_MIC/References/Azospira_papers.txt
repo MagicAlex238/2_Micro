@@ -46,3 +46,27 @@ Number of papers: 22
 Search term: Azospira[Organism] AND biocorrosion
 Number of papers: 1
 --------------------------------------------------
+
+Search term: Azospira[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 11
+--------------------------------------------------
+
+Search term: Azospira[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 22
+--------------------------------------------------
+
+Search term: Azospira[Organism] AND biocorrosion
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Azospira[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 11
+--------------------------------------------------
+
+Search term: Azospira[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 22
+--------------------------------------------------
+
+Search term: Azospira[Organism] AND biocorrosion
+Number of papers: 1
+--------------------------------------------------

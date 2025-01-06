@@ -78,3 +78,23 @@ Number of papers: 2
 Search term: Novosphingobium[Organism] AND biofilm AND (corrosion OR MIC)
 Number of papers: 4
 --------------------------------------------------
+
+Search term: Novosphingobium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 4
+--------------------------------------------------
+
+Search term: Novosphingobium[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 9
+--------------------------------------------------
+
+Search term: Novosphingobium[Organism] AND corrosion
+Number of papers: 6
+--------------------------------------------------
+
+Search term: Novosphingobium[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 2
+--------------------------------------------------
+
+Search term: Novosphingobium[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 4
+--------------------------------------------------

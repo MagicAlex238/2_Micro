@@ -6,3 +6,7 @@ Number of papers: 2
 Search term: Roseateles[Organism] AND (metal reduction OR iron reduction)
 Number of papers: 2
 --------------------------------------------------
+
+Search term: Roseateles[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 2
+--------------------------------------------------

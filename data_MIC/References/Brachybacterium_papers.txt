@@ -78,3 +78,43 @@ Number of papers: 2
 Search term: Brachybacterium[Organism] AND ('metal deterioration' OR 'metallic corrosion')
 Number of papers: 1
 --------------------------------------------------
+
+Search term: Brachybacterium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Brachybacterium[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 2
+--------------------------------------------------
+
+Search term: Brachybacterium[Organism] AND corrosion
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Brachybacterium[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 2
+--------------------------------------------------
+
+Search term: Brachybacterium[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Brachybacterium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Brachybacterium[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 2
+--------------------------------------------------
+
+Search term: Brachybacterium[Organism] AND corrosion
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Brachybacterium[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 2
+--------------------------------------------------
+
+Search term: Brachybacterium[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 1
+--------------------------------------------------

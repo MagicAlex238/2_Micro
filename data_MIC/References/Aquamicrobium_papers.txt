@@ -14,3 +14,11 @@ Number of papers: 1
 Search term: Aquamicrobium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
 Number of papers: 1
 --------------------------------------------------
+
+Search term: Aquamicrobium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Aquamicrobium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 1
+--------------------------------------------------

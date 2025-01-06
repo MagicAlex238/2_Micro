@@ -14,3 +14,11 @@ Number of papers: 1
 Search term: Pseudarthrobacter[Organism] AND (MIC OR 'microbiologically influenced corrosion')
 Number of papers: 1
 --------------------------------------------------
+
+Search term: Pseudarthrobacter[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Pseudarthrobacter[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 1
+--------------------------------------------------

@@ -126,3 +126,35 @@ Number of papers: 132
 Search term: Enterococcus[Organism] AND biofilm AND (corrosion OR MIC)
 Number of papers: 286
 --------------------------------------------------
+
+Search term: Enterococcus[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 59
+--------------------------------------------------
+
+Search term: Enterococcus[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 239
+--------------------------------------------------
+
+Search term: Enterococcus[Organism] AND corrosion
+Number of papers: 40
+--------------------------------------------------
+
+Search term: Enterococcus[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 3104
+--------------------------------------------------
+
+Search term: Enterococcus[Organism] AND 'material deterioration'
+Number of papers: 11
+--------------------------------------------------
+
+Search term: Enterococcus[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 22
+--------------------------------------------------
+
+Search term: Enterococcus[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 132
+--------------------------------------------------
+
+Search term: Enterococcus[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 286
+--------------------------------------------------

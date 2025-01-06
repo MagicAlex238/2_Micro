@@ -126,3 +126,63 @@ Number of papers: 13
 Search term: Corynebacterium[Organism] AND biofilm AND (corrosion OR MIC)
 Number of papers: 13
 --------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 24
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 66
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND corrosion
+Number of papers: 17
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 194
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND 'material deterioration'
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 13
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 24
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 66
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND corrosion
+Number of papers: 17
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 194
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND 'material deterioration'
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 13
+--------------------------------------------------
+
+Search term: Corynebacterium[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 13
+--------------------------------------------------

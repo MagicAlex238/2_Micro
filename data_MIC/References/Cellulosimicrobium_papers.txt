@@ -46,3 +46,27 @@ Number of papers: 4
 Search term: Cellulosimicrobium[Organism] AND (MIC OR 'microbiologically influenced corrosion')
 Number of papers: 2
 --------------------------------------------------
+
+Search term: Cellulosimicrobium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Cellulosimicrobium[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 4
+--------------------------------------------------
+
+Search term: Cellulosimicrobium[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 2
+--------------------------------------------------
+
+Search term: Cellulosimicrobium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Cellulosimicrobium[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 4
+--------------------------------------------------
+
+Search term: Cellulosimicrobium[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 2
+--------------------------------------------------

@@ -10,3 +10,7 @@ Number of papers: 1
 Search term: Oerskovia[Organism] AND (MIC OR 'microbiologically influenced corrosion')
 Number of papers: 1
 --------------------------------------------------
+
+Search term: Oerskovia[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 1
+--------------------------------------------------

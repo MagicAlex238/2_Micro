@@ -162,3 +162,43 @@ Number of papers: 5
 Search term: Halomonas[Organism] AND (hydrogen sulfide OR H2S) AND (corrosion OR 'metal deterioration')
 Number of papers: 1
 --------------------------------------------------
+
+Search term: Halomonas[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 23
+--------------------------------------------------
+
+Search term: Halomonas[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 28
+--------------------------------------------------
+
+Search term: Halomonas[Organism] AND corrosion
+Number of papers: 9
+--------------------------------------------------
+
+Search term: Halomonas[Organism] AND biocorrosion
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Halomonas[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 10
+--------------------------------------------------
+
+Search term: Halomonas[Organism] AND 'material deterioration'
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Halomonas[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 5
+--------------------------------------------------
+
+Search term: Halomonas[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 2
+--------------------------------------------------
+
+Search term: Halomonas[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 5
+--------------------------------------------------
+
+Search term: Halomonas[Organism] AND (hydrogen sulfide OR H2S) AND (corrosion OR 'metal deterioration')
+Number of papers: 1
+--------------------------------------------------

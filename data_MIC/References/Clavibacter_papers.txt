@@ -78,3 +78,43 @@ Number of papers: 13
 Search term: Clavibacter[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
 Number of papers: 1
 --------------------------------------------------
+
+Search term: Clavibacter[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Clavibacter[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 8
+--------------------------------------------------
+
+Search term: Clavibacter[Organism] AND corrosion
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Clavibacter[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 13
+--------------------------------------------------
+
+Search term: Clavibacter[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Clavibacter[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Clavibacter[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 8
+--------------------------------------------------
+
+Search term: Clavibacter[Organism] AND corrosion
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Clavibacter[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 13
+--------------------------------------------------
+
+Search term: Clavibacter[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 1
+--------------------------------------------------
