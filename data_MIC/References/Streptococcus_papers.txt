@@ -1,0 +1,108 @@
+
+Search term: Streptococcus[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 81
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 420
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND corrosion
+Number of papers: 145
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND biocorrosion
+Number of papers: 6
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 5117
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND 'material deterioration'
+Number of papers: 41
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 84
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 201
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 499
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 81
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 420
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND corrosion
+Number of papers: 145
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND biocorrosion
+Number of papers: 6
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 5117
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND 'material deterioration'
+Number of papers: 41
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 84
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 201
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 499
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 81
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 420
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND corrosion
+Number of papers: 145
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND biocorrosion
+Number of papers: 6
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 5117
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND 'material deterioration'
+Number of papers: 41
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 84
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 201
+--------------------------------------------------
+
+Search term: Streptococcus[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 499
+--------------------------------------------------

@@ -1,0 +1,164 @@
+
+Search term: Mycobacterium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 67
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 318
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND corrosion
+Number of papers: 176
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND biocorrosion
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 3607
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND 'material deterioration'
+Number of papers: 24
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 20
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 125
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 86
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (hydrogen sulfide OR H2S) AND (corrosion OR 'metal deterioration')
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (hydrogen sulfide OR H2S) AND (corrosion OR 'metal deterioration')
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 67
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 318
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND corrosion
+Number of papers: 176
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND biocorrosion
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 3607
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND 'material deterioration'
+Number of papers: 24
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 20
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 125
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 86
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (hydrogen sulfide OR H2S) AND (corrosion OR 'metal deterioration')
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 67
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 318
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND corrosion
+Number of papers: 176
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND biocorrosion
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 3607
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND 'material deterioration'
+Number of papers: 24
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 20
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 125
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 86
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (hydrogen sulfide OR H2S) AND (corrosion OR 'metal deterioration')
+Number of papers: 3
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (sulfate reduction OR dsrAB OR aprAB)
+Number of papers: 67
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (metal reduction OR iron reduction)
+Number of papers: 318
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND corrosion
+Number of papers: 176
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND biocorrosion
+Number of papers: 1
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (MIC OR 'microbiologically influenced corrosion')
+Number of papers: 3607
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND 'material deterioration'
+Number of papers: 24
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND ('metal deterioration' OR 'metallic corrosion')
+Number of papers: 20
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (acid production) AND (corrosion OR 'metal deterioration' OR MIC)
+Number of papers: 125
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND biofilm AND (corrosion OR MIC)
+Number of papers: 86
+--------------------------------------------------
+
+Search term: Mycobacterium[Organism] AND (hydrogen sulfide OR H2S) AND (corrosion OR 'metal deterioration')
+Number of papers: 3
+--------------------------------------------------
