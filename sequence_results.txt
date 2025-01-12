@@ -1,0 +1,41 @@
+
+    Sequence Retrieval Summary
+    -------------------------
+    Total genera processed: 27
+    Successful retrievals: 26
+    Failed retrievals: 1
+    Success rate: 96.3%
+    Total time elapsed: 0:05:32.067171
+
+    Successful Genera:
+    --------------------
+    - Azospira: 100 sequences
+- Brachybacterium: 100 sequences
+- Brevibacterium: 100 sequences
+- Bulleidia: 97 sequences
+- Clostridium: 100 sequences
+- Corynebacterium: 100 sequences
+- Enterococcus: 100 sequences
+- Gelria: 15 sequences
+- Halomonas: 100 sequences
+- Legionella: 100 sequences
+- Mycobacterium: 100 sequences
+- Mycoplana: 100 sequences
+- Neisseria: 100 sequences
+- Novosphingobium: 100 sequences
+- Oerskovia: 100 sequences
+- Opitutus: 100 sequences
+- Oxobacter: 39 sequences
+- Paracoccus: 100 sequences
+- Phenylobacterium: 100 sequences
+- Porphyrobacter: 100 sequences
+- Prevotella: 100 sequences
+- Pseudarthrobacter: 100 sequences
+- Pseudoalteromonas: 100 sequences
+- Streptococcus: 100 sequences
+- Tepidimonas: 100 sequences
+- Thiobacillus: 100 sequences
+
+    Missing Genera:
+    --------------------
+    - Psb-m-3
