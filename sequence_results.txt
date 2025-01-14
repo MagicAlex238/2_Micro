@@ -1,41 +1,95 @@
 
     Sequence Retrieval Summary
     -------------------------
-    Total genera processed: 27
-    Successful retrievals: 26
-    Failed retrievals: 1
-    Success rate: 96.3%
-    Total time elapsed: 0:05:32.067171
+    Total genera processed: 81
+    Successful retrievals: 50
+    Failed retrievals: 31
+    Success rate: 61.7%
+    Total time elapsed: 0:37:31.682180
 
     Successful Genera:
     --------------------
-    - Azospira: 100 sequences
-- Brachybacterium: 100 sequences
-- Brevibacterium: 100 sequences
-- Bulleidia: 97 sequences
-- Clostridium: 100 sequences
-- Corynebacterium: 100 sequences
-- Enterococcus: 100 sequences
-- Gelria: 15 sequences
-- Halomonas: 100 sequences
-- Legionella: 100 sequences
-- Mycobacterium: 100 sequences
-- Mycoplana: 100 sequences
+    - Mycoplana: 100 sequences
 - Neisseria: 100 sequences
 - Novosphingobium: 100 sequences
 - Oerskovia: 100 sequences
 - Opitutus: 100 sequences
-- Oxobacter: 39 sequences
-- Paracoccus: 100 sequences
-- Phenylobacterium: 100 sequences
-- Porphyrobacter: 100 sequences
-- Prevotella: 100 sequences
-- Pseudarthrobacter: 100 sequences
 - Pseudoalteromonas: 100 sequences
 - Streptococcus: 100 sequences
 - Tepidimonas: 100 sequences
 - Thiobacillus: 100 sequences
+- Acetobacterium: 100 sequences
+- Achromobacter: 100 sequences
+- Acidisoma: 100 sequences
+- Acidovorax: 100 sequences
+- Aestuariimicrobium: 33 sequences
+- Afipia: 100 sequences
+- Anoxybacillus: 100 sequences
+- Beta_proteobacterium: 100 sequences
+- Blastomonas: 100 sequences
+- Bradyrhizobium: 100 sequences
+- Brevundimonas: 100 sequences
+- Candidatus_desulforudis: 2 sequences
+- Caulobacter: 100 sequences
+- Chryseobacterium: 100 sequences
+- Cutibacterium: 100 sequences
+- Dechloromonas: 100 sequences
+- Desulfomicrobium: 100 sequences
+- Desulfosporosinus: 100 sequences
+- Desulfotomaculum: 100 sequences
+- Desulfovibrio: 100 sequences
+- Enhydrobacter: 100 sequences
+- Erysipelothrix: 100 sequences
+- Geothrix: 100 sequences
+- Hydrogenophaga: 100 sequences
+- Micrococcus: 100 sequences
+- Pseudoxanthomonas: 100 sequences
+- Ralstonia: 100 sequences
+- Sediminibacterium: 100 sequences
+- Silanimonas: 36 sequences
+- Simplicispira: 100 sequences
+- Smithella: 100 sequences
+- Sphingobium: 100 sequences
+- Sphingomonas: 100 sequences
+- Sphingopyxis: 100 sequences
+- Staphylococcus: 100 sequences
+- Syntrophus: 100 sequences
+- Tessaracoccus: 100 sequences
+- Thermincola: 36 sequences
+- Treponema: 100 sequences
+- Variovorax: 100 sequences
+- Gallionella: 100 sequences
 
     Missing Genera:
     --------------------
-    - Psb-m-3
+    - Azospira
+- Brachybacterium
+- Brevibacterium
+- Bulleidia
+- Clostridium
+- Corynebacterium
+- Enterococcus
+- Gelria
+- Halomonas
+- Legionella
+- Mycobacterium
+- Oxobacter
+- Paracoccus
+- Phenylobacterium
+- Porphyrobacter
+- Prevotella
+- Psb-m-3
+- Pseudarthrobacter
+- Bacillus
+- Clostridium_sensu_stricto_12
+- Herbaspirillum
+- Methylocystis
+- Nitrospira
+- Phreatobacter
+- Propionibacterium
+- Propionivibrio
+- Pseudomonas
+- Pseudorhodoferax
+- Ruminiclostridium_1
+- Oxalobacteraceae_unclassified
+- Wchb1-05
