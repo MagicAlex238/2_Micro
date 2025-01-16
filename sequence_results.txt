@@ -1,11 +1,11 @@
 
     Sequence Retrieval Summary
     -------------------------
-    Total genera processed: 60
-    Successful retrievals: 60
+    Total genera processed: 84
+    Successful retrievals: 79
     Failed retrievals: 5
-    Success rate: 100.0%
-    Total time elapsed: 0:29:49.341933
+    Success rate: 94.0%
+    Total time elapsed: 0:14:44.380118
 
     Successful Genera:
     --------------------
@@ -69,11 +69,30 @@
 - Thermincola: 36 sequences
 - Treponema: 100 sequences
 - Variovorax: 100 sequences
+- Brachybacterium: 100 sequences
+- Brevibacterium: 100 sequences
+- Bulleidia: 97 sequences
+- Enterococcus: 100 sequences
+- Gelria: 15 sequences
+- Legionella: 100 sequences
+- Mycobacterium: 100 sequences
+- Mycoplana: 100 sequences
+- Neisseria: 100 sequences
+- Oerskovia: 100 sequences
+- Opitutus: 100 sequences
+- Oxobacter: 39 sequences
+- Paracoccus: 100 sequences
+- Phenylobacterium: 100 sequences
+- Porphyrobacter: 100 sequences
+- Prevotella: 100 sequences
+- Pseudarthrobacter: 100 sequences
+- Pseudoalteromonas: 100 sequences
+- Tepidimonas: 100 sequences
 
     Missing Genera:
     --------------------
-    - Clostridium_sensu_stricto_12
-- Psb-m-3
+    - Psb-m-3
+- Clostridium_sensu_stricto_12
 - Ruminiclostridium_1
 - Oxalobacteraceae_unclassified
 - Wchb1-05
