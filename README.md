@@ -27,30 +27,47 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
-*Notebook __7_Picrust_Functional.ipynb__ needs to have installed miniconda, to be able to install
-picrust2 here a short list of instructions: 
-Install Miniconda:
-Download Miniconda in home directory (~)
-From Ubuntu terminal:
-bashCopywget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
-Accept license terms and default installation options
+*Notebook Instructions for
 
-Create PICRUSt2 Environment:
-bashCopyconda create -n picrust2 -c bioconda -c conda-forge picrust2
-conda activate picrust2
+# 5_Sequences_qiime.ipynb Notebook
+# download the installation file
+wget https://data.qiime2.org/distro/core/qiime2-2023.7-py38-linux-conda.yml
 
-Install Jupyter Support:
-bashCopyconda install ipykernel
-python -m ipykernel install --user --name=picrust2 --display-name="Python (picrust2)"
+# Create the environment from the downloaded file
+conda env create -n qiime2-2023.7 -f qiime2-2023.7-py38-linux-conda.yml
 
-Install Required Packages:
-bashCopyconda install -y pandas numpy biopython
+# Create and activate environment
+conda create -n qiime2-2023.7 -c conda-forge -c bioconda qiime2
+conda activate qiime2-2023.7
+
+# Verify installation
+qiime --help
+
+# Install additional required packages
+conda install -c bioconda -c conda-forge \
+    biopython \
+    pandas \
+    numpy \
+    matplotlib \
+    seaborn
+
+# Import Visualisation tools
+conda install -c bioconda -c conda-forge \
+    itol-uploader \
+    ete3
+
+# Install PICRUSt2 plugin
+conda install -c conda-forge -c bioconda q2-picrust2
+
+# Install ipykernel  
+conda install ipykernel  
+# Install the kernel for Jupyter 
+python -m ipykernel install --user --name qiime2-2023.7 --display-name "Python (QIIME2)"
 
 Usage:
 Navigate to repo: cd /path/to/repo
-Activate environment: conda activate picrust2
+Activate environment: conda activate qiime
 Open VS Code: code .
-In notebook: Select "Python (picrust2)" kernel
+In notebook: Select "Python (qiime)" kernel
 
-Note: PICRUSt2 environment is separate from the regular .venv environment.
+Note: qiime environment is separate from the regular .venv environment.
