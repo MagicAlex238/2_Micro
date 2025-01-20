@@ -71,3 +71,24 @@ Open VS Code: code .
 In notebook: Select "Python (qiime)" kernel
 
 Note: qiime environment is separate from the regular .venv environment.
+
+# Notebook 6_Picrust_Functional 
+
+# Activate qiime
+conda activate qiime2-2023.7
+# install in terminal
+pip install --no-deps https://github.com/picrust/q2-picrust2/archive/refs/heads/master.zip
+# Refresh the QIIME2 cache:
+qiime dev refresh-cache
+# Verify the installation:
+qiime picrust2 --help
+should see the available PICRUSt2 commands listed5.
+# If that doesnt work 
+conda install -c bioconda -c conda-forge picrust2
+pip install --no-deps https://github.com/picrust/q2-picrust2/archive/refs/heads/master.zip
+# after installation refresh the QIIME2 cache:
+qiime dev refresh-cache
+# Verify the installation:
+qiime picrust2 --help
+# or you can do like me and avoid the drama of the installations by using colab
+
