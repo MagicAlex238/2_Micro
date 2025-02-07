@@ -1,4 +1,7 @@
 {
     "search.decorations.colors": true,
     "graphviz-interactive-preview.view.themeColors": true
+    "python.analysis.maxFileSize":1024,
+    "python.analysis.indexing":false,
+    "python.analysis.exclude":["**/site-packages/**", "**/_pycache_/**"]
 }
