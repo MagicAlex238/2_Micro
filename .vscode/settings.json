@@ -13,5 +13,6 @@
     },
     "files.watcherExclude": {
         "**/node_modules/**": true
-    }
+    },
+    "workbench.settings.enableNaturalLanguageSearch": false
 }
