@@ -1,8 +1,0 @@
-old                                      new                                      ref
-c1c70f3eb5bcd91926a605bd66afa953db146781 fbaea02d74f7c732fda5f9f09eb47d8277f2de75 refs/heads/backup_jan19
-788f504f3183b8f796406274161ad9844d5650cf 6af911c46df513175608fa6d8965550f3d2218cf refs/heads/main
-8b086de8e6cb95bec595ce1a9479fa1012c3e26f fbaea02d74f7c732fda5f9f09eb47d8277f2de75 refs/original/refs/heads/backup_jan19
-59efa16686c4206fee093dc64ea380751d188250 14d4ef6c9f2c0d4b093d180beefe255efcc3bb3b refs/original/refs/heads/main
-df621660f9aaa330281c8d7ba572cf334aac7942 3758a409dd3965fc1f4ce7df1b5d938d758ef4a4 refs/original/refs/remotes/origin/main
-dd49dee205abd88ff7a50500bb881d9f392bc046 3c7163638bd1242fdcf758be10035fad31086ccc refs/original/refs/stash
-58e9147c47d6c3bb3aa515b010946ce25c28cef7 7c53459cd2cdad85d2d576d98d2da6f2d831660c refs/stash
