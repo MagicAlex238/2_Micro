@@ -19,3 +19,4 @@ biopython==1.78
 plotly.express
 tabulate
 dendropy
+python3-pyqt5 == 5.15.11
