@@ -9,7 +9,6 @@ LEGEND_SHAPES	1	1	1	1	1	1
 LEGEND_COLORS	#4A0404	#000033	#654321	#9370DB	#000080	#8B0000
 LEGEND_LABELS	chk-core-us	chk-core	core-us	chk-us	chk	us
 DATA
-	#000000
 Azospira	#000033
 Brachybacterium	#000080
 Brevibacterium	#000080
