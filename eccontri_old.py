@@ -1,5 +1,12 @@
 #====================================OLD VERSION===================================
 #=================== IMPORTS =======================================================
+'''!pip install fuzzywuzzy
+!pip install lxml pandas
+!pip install pyarrow
+!pip install openpyxl
+!pip install python-Levenshtein
+!pip install -U kaleido
+!pip install natsort'''
 # Standard library imports
 import os
 import sys
@@ -19,6 +26,7 @@ from IPython.display import display
 import pandas as pd
 import numpy as np
 import openpyxl
+import Levenshtein
 from scipy.signal import savgol_filter
 from community import community_louvain
 from joblib import Parallel, delayed
@@ -43,9 +51,7 @@ import pyarrow.parquet as pq
 
 os.environ['DISPLAY'] = ':0'
 
-# large galaxies input and output #large size dir for large files hosted instead in kaggle
 large_dir = Path("/home/beatriz/MIC")
-
 # Directory to output large files # eccontris, compilated db
 output_large = large_dir / "output_large"
 
