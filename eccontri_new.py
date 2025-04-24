@@ -53,14 +53,20 @@ import pyarrow.parquet as pq
 
 os.environ['DISPLAY'] = ':0'
 
-# large galaxies input and output #large size dir for large files hosted instead in kaggle
-large_dir = Path("/home/beatriz/MIC")
-output_large = large_dir / "output_large"
+# 1. FAST Parquet Loading (Use PyArrow Engine)
+#ECcontri_Uniprot_path = Path("/kaggle/input/eccontri-uniprot/output_large/ECcontri_Uniprot.parquet")
+ECcontri_Uniprot_path = Path("/home/beatriz/MIC/output_large/ECcontri_Uniprot.parquet")   
+ECcontri_Uniprot = pd.read_parquet(ECcontri_Uniprot_path, engine='pyarrow')  
+                        
+print(f"Loading {ECcontri_Uniprot_path.name}...")
+start_parquet = time.time()
 
-ECcontri_Uniprot_path = output_large/ "ECcontri_Uniprot.parquet"
-ECcontri_Uniprot = pd.read_parquet(ECcontri_Uniprot_path, engine="pyarrow")
+parquet_elapsed = time.time() - start_parquet
+print(f"Loaded {len(ECcontri_Uniprot)} rows in {parquet_elapsed:.2f}s")
 
 # Load from JSON with timing
+# json_path = Path("/kaggle/input/...)
+output_large = Path("/home/beatriz/MIC/output_large")
 json_path = output_large/ "ec_records_flat.json"
 print(f"Starting JSON load from {json_path}...")
 with open(json_path, 'r') as f:
@@ -69,27 +75,24 @@ with open(json_path, 'r') as f:
 #====================================NEW VERSION===============================================================
 def enrich_eccontri_data(eccontri_df, ec_records_flat):
     """
-        import sys
-    #sys.path.append('/kaggle/input/corrosion-scoring') 
-    sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
-    from corrosion_scoring.global_terms import (
-    #from global_terms import (
-        metal_terms, 
     Enrich the ECcontri_Uniprot dataframe with complete information from ec_records dictionary
-    It does search protein names, enzyme names and EC numbers for metadata to enrich the orginal eccontri
-    then when it founds an Uncharacterised protein, it replaces this name with the enzyme names corresponding by the EC number
-    Parameters:    eccontri_df : pandas DataFrame original ECcontri_Uniprot data with EC numbers in format x.x.x.x
-                   ec_records : list of Dictionary where keys are EC numbers (without 'EC:' prefix) and values are metadata dictionaries
+    and apply scoring to rows not already scored from ec_records.
 
-    Returns:       enriched_df : pandas DataFrame with original OTUs contribution abundances + additional metadata columns
+    It searches protein names, enzyme names and EC numbers for metadata to enrich the original eccontri.
+    When it finds an Uncharacterised protein, it replaces this name with the enzyme names corresponding to the EC number.
+    After enrichment with ec_records data, it uses imported scoring modules to calculate scores for rows
+    that didn't receive scoring data during the enrichment process.
+
+    Parameters:    eccontri_df : pandas DataFrame original ECcontri_Uniprot data with EC numbers in format EC:x.x.x.x
+                ec_records : list of Dictionary where keys are EC numbers (without 'EC:' prefix) and values are metadata dictionaries
+
+    Returns:       enriched_df : pandas DataFrame with additional metadata columns and scoring applied
     """
-    import sys
-    #sys.path.append('/kaggle/input/corrosion-scoring')  
-    sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
-
+    # Try to import scoring modules - adding support for both environments
     try:
-        #from global_terms import (
-        from corrosion_scoring.global_terms import (
+        # First try the kaggle path
+        sys.path.append('/kaggle/input/corrosion-scoring')
+        from global_terms import (
             metal_terms, 
             corrosion_mechanisms, 
             pathway_categories, 
@@ -101,159 +104,239 @@ def enrich_eccontri_data(eccontri_df, ec_records_flat):
         )
         import scoring_system as score_sys
         using_imported_modules = True
+        print("Successfully imported scoring modules from Kaggle path")
+    except ImportError:
+        try:
+            # Then try the local path
+            sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
+            from corrosion_scoring.global_terms import (
+                metal_terms, 
+                corrosion_mechanisms, 
+                pathway_categories, 
+                organic_categories,
+                corrosion_synergies, 
+                functional_categories, 
+                corrosion_keyword_groups, 
+                metal_mapping
+            )
+            import corrosion_scoring.scoring_system as score_sys
+            using_imported_modules = True
+            print("Successfully imported scoring modules from local path")
+        except ImportError as e:
+            print(f"Warning: Could not import scoring modules: {e}")
+            using_imported_modules = False
 
-        print("Successfully imported scoring modules")
-    except ImportError as e:
-        print(f"Warning: Could not import scoring modules: {e}")
-        using_imported_modules = False
-    
     # Make a copy to avoid modifying the original
     enriched_df = eccontri_df.copy()
 
     start_time = time.time()
 
-    # 1. Create dictionaries for faster lookups
+    # Create dictionaries for faster lookups
     print("Creating lookup dictionaries...")
 
     # EC number dictionary flaten
     ec_dict = {record['ec_number']: record for record in ec_records_flat if 'ec_number' in record}
     print(f"Created EC dictionary with {len(ec_dict)} entries")
 
-    # Protein name dictionary (handles both string and list formats)
+    # Protein name dictionary
     protein_name_dict = {}
     for record in ec_records_flat:
-        enzyme_names = record.get('enzyme_names', [])  # Default to empty list
-        if isinstance(enzyme_names, str):
-            # Handle semicolon-separated strings
-            names = [n.strip().lower() for n in enzyme_names.split(';') if n.strip()]
-        elif isinstance(enzyme_names, list):
-            # Handle already-split lists
-            names = [n.strip().lower() for n in enzyme_names if n.strip()]
-        else:
-            names = []
-        
-        for name in names:
-            protein_name_dict[name] = record
-    
+        enzyme_names_str = record.get('enzyme_names', '')
+        if enzyme_names_str:
+            # Handle both string and list formats
+            if isinstance(enzyme_names_str, list):
+                names = enzyme_names_str
+            else:
+                # Flattened records will have enzyme_names as semicolon-separated string
+                names = [name.strip() for name in enzyme_names_str.split(';')]
+            
+            for name in names:
+                if name:  # Skip empty names
+                    protein_name_dict[name.lower()] = record
     print(f"Created protein name dictionary with {len(protein_name_dict)} entries")
 
-    # 2. Create a mapping dictionary to store all matches
+    # Create a mapping dictionary to store all matches
     idx_to_metadata = {}
 
-    # 3. Initialise Metadata  columns
+    # Add all metadata columns
     metadata_columns = ['enzyme_names', 'enzyme_class', 'pathways', 'hierarchy', 'metals_consolidated', 'corrosion_mechanisms', 'corrosion_relevance_score', 
                         'corrosion_relevance', 'metal_scores', 'overall_metal_score',  'corrosion_mechanism_scores', 'overall_corrosion_score', 
                         'functional_categories', 'overall_functional_score', 'corrosion_keyword_groups',  
                         'corrosion_keyword_scores', 'overall_keyword_score', 'corrosion_synergies',
-                        'pathway_categories', 'organic_processes', 'overall_organic_process_score']
+                        'organic_processes', 'overall_organic_process_score']
     for col in metadata_columns:
         enriched_df[col] = None
 
     # a boolean 'has_metal' column
     enriched_df['has_metal'] = False
-    #=========================================================================================
-    # Only proceed if we have metadata (either from EC or from protein/enzyme name)
-    def _apply_metadata(df, idx, metadata, row):
-        """Applies metadata to a specific row in the DataFrame."""
 
-        """Applies metadata to a specific row in the DataFrame."""
-        if metadata:
-            # Protein Name Update
-            if pd.isna(df.at[idx, 'protein_name']) or df.at[idx, 'protein_name'].lower() == "uncharacterized protein":
-                enzyme_names = metadata.get('enzyme_names')
-                if enzyme_names:
-                    if isinstance(enzyme_names, list):
-                        row['protein_name'] = '; '.join(enzyme_names)
+    # Define progress reporting
+    total_rows = len(enriched_df)
+    log_interval = max(1, min(10000, total_rows // 20))  # Log at most 20 times, minimum every 10000 rows
+
+    print(f"Processing {total_rows} rows with logging every {log_interval} rows")
+
+    # try protein name matches
+    print("Performing protein name matches...")
+    # Get rows without EC+Genus matches
+    remaining_indices = set(enriched_df.index) - set(idx_to_metadata.keys())
+    mask_remaining = enriched_df.index.isin(remaining_indices)
+    mask_valid_protein = enriched_df['protein_name'].notna() & (enriched_df['protein_name'] != "Uncharacterized protein")
+    mask_protein_match = mask_remaining & mask_valid_protein
+
+    # This part still needs row-by-row processing for fuzzy matching
+    protein_matches = 0
+    for idx in enriched_df.index[mask_protein_match]:
+        if idx % log_interval == 0:
+            print(f"Processing protein matches: row {idx}/{total_rows} ({idx/total_rows*100:.1f}%)")
+            
+        protein_name = enriched_df.loc[idx, 'protein_name'].lower()
+
+        # Direct lookup in protein name dictionary
+        if protein_name in protein_name_dict:
+            idx_to_metadata[idx] = protein_name_dict[protein_name]
+            protein_matches += 1
+        else:
+            # Try partial matches
+            for name, record in protein_name_dict.items():
+                if name in protein_name or protein_name in name:
+                    idx_to_metadata[idx] = record
+                    protein_matches += 1
+                    break
+
+    print(f"Found {protein_matches} protein name matches")
+
+    # For any remaining rows, try EC-only matching
+    print("Performing EC-only matches...")
+    # Get rows without matches so far
+    remaining_indices = set(enriched_df.index) - set(idx_to_metadata.keys())
+    mask_remaining = enriched_df.index.isin(remaining_indices)
+    mask_valid_ec = enriched_df['EC'].notna()
+    mask_ec_match = mask_remaining & mask_valid_ec
+
+    ec_only_matches = 0
+    for idx in enriched_df.index[mask_ec_match]:
+        if idx % log_interval == 0:
+            print(f"Processing EC matches: row {idx}/{total_rows} ({idx/total_rows*100:.1f}%)")
+            
+        ec_num = enriched_df.loc[idx, 'EC']
+        if ec_num in ec_dict:
+            idx_to_metadata[idx] = ec_dict[ec_num]
+            ec_only_matches += 1
+
+    print(f"Found {ec_only_matches} EC-only matches")
+
+    # Apply all metadata in one go based on the matches we found
+    print("Applying metadata to matched rows...")
+    for idx, metadata in idx_to_metadata.items():
+        if idx % log_interval == 0:
+            print(f"Applying metadata: row {idx}/{total_rows} ({idx/total_rows*100:.1f}%)")
+
+        # Only proceed if we have metadata (either from EC or from protein/enzyme name)
+        if metadata is not None:
+
+            # If protein_name is missing or uncharacterized, try to fill it with enzyme_names
+            if pd.isna(enriched_df.at[idx, 'protein_name']) or enriched_df.at[idx, 'protein_name'].lower() == "uncharacterized protein":
+                if 'enzyme_names' in metadata and metadata['enzyme_names']:
+                    # Handle both flattened (string) and non-flattened (list) records
+                    if isinstance(metadata['enzyme_names'], list):
+                        enriched_df.at[idx, 'protein_name'] = '; '.join(metadata['enzyme_names'])
                     else:
-                        row['protein_name'] = str(enzyme_names)
-            # Basic Metadata
-            basic_fields = ['enzyme_names', 'enzyme_class', 'pathways', 'pathway_categories', 'hierarchy', 'corrosion_mechanisms',
-                            'functional_categories', 'corrosion_keyword_groups', 'corrosion_synergies', 'organic_processes']
-            for field in basic_fields:
-                value = metadata.get(field)
-                if value:
-                    if isinstance(value, list):
-                        row[field] = '; '.join(map(str, value))
+                        enriched_df.at[idx, 'protein_name'] = str(metadata['enzyme_names'])
+
+            # Add basic metadata
+            for field in ['enzyme_names', 'enzyme_class', 'pathways', 'hierarchy', 'corrosion_mechanisms',
+                          'functional_categories',  'corrosion_keyword_groups', 'corrosion_synergies', 'organic_processes']:
+                if field in metadata and metadata[field]:
+                    if isinstance(metadata[field], list):
+                        enriched_df.at[idx, field] = '; '.join(str(v) for v in metadata[field])
                     else:
-                        row[field] = str(value)
-            # Corrosion Relevance
+                        enriched_df.at[idx, field] = str(metadata[field])
+            
+            # add corrosion_relevance category:
             if 'corrosion_relevance' in metadata:
-                row['corrosion_relevance'] = metadata['corrosion_relevance']
-            # Metals Consolidated + Metal Flag
-            metals = metadata.get('metals_consolidated')
-            if metals:
-                if isinstance(metals, list):
-                    row['metals_consolidated'] = '; '.join(metals)
-                else:
-                    row['metals_consolidated'] = str(metals)
+                enriched_df.at[idx, 'corrosion_relevance'] = metadata['corrosion_relevance']
 
-            # Score Fields
-            score_fields = ['overall_metal_score', 'overall_corrosion_score', 'overall_functional_score',
+            # add the consolidated metals field:
+            if 'metals_consolidated' in metadata and metadata['metals_consolidated']:
+                if isinstance(metadata['metals_consolidated'], list):
+                    enriched_df.at[idx, 'metals_consolidated'] = '; '.join(metadata['metals_consolidated'])
+                    # Set has_metal flag based on whether metals exist
+                    enriched_df.at[idx, 'has_metal'] = len(metadata['metals_consolidated']) > 0
+                else:
+                    enriched_df.at[idx, 'metals_consolidated'] = str(metadata['metals_consolidated'])
+                    # Set has_metal flag for string case too
+                    enriched_df.at[idx, 'has_metal'] = bool(metadata['metals_consolidated'])
+
+            # Adding the scores for each component, simple score fields, handle in a loop
+            score_fields = ['overall_metal_score', 'overall_corrosion_score', 'overall_functional_score', 
                             'overall_keyword_score', 'overall_organic_process_score', 'overall_synergy_score',
                             'corrosion_relevance_score']
+            
             for field in score_fields:
-                value = metadata.get(field)
-                try:
-                    row[field] = float(value) if value is not None else None
-                except (ValueError, TypeError):
-                    print(f"Row {idx}: Could not convert {field} to float")
-                    row[field] = None
-            # Dictionary Fields
-            dict_fields = ['metal_scores', 'corrosion_mechanism_scores', 'corrosion_keyword_scores',
-                        'organic_process_scores', 'corrosion_synergy_scores']
+                if field in metadata:
+                    try:
+                        enriched_df.at[idx, field] = float(metadata.get(field, 0))
+                    except (ValueError, TypeError):
+                        print(f"Row {idx}: Could not convert {field} to float")
+                        enriched_df.at[idx, field] = None
+            
+            # For dictionary score fields, handle in a loop too
+            dict_fields = ['metal_scores', 'corrosion_mechanism_scores', 'corrosion_keyword_scores', 
+                           'organic_process_scores', 'corrosion_synergy_scores']
+            
             for field in dict_fields:
-                value = metadata.get(field)
-                row[field] = json.dumps(value) if value else None  #Handle null values
-        return row  
-    #===========================================================================================
-
-    # 4. Helper function and Map-based enrichement to avoid DF iteration
-    def _enrich_row(row):
-        protein_name = row['protein_name']
-        ec_num = row['EC']
-        idx = row.name
-        metadata = None  # Initialize metadata
-
-        if protein_name and protein_name.lower() != "uncharacterized protein":
-            protein_name = protein_name.lower()
-            metadata = protein_name_dict.get(protein_name)
-            if not metadata:  # Try partial match if no direct match
-                for name, record in protein_name_dict.items():
-                    if name in protein_name or protein_name in name:
-                        metadata = record
-                        break
-        else:
-            if ec_num:  # If protein name is missing, try EC-only matching
-                metadata = ec_dict.get(ec_num)
-
-        # If metadata found, apply it; otherwise try to generate it with scoring system if available
-        if metadata:
-            row = _apply_metadata(eccontri_df, idx, metadata, row)
-            eccontri_df.loc[idx] = row  # Update row in eccontri_df
-        elif using_imported_modules and protein_name:
-            # If no metadata found but scoring modules available, try to generate scores
-            # This is useful for proteins not in ec_records but still in our dataframe
-            try:
-                # Generate text to analyze
-                analysis_text = protein_name
-                if not pd.isna(row.get('enzyme_class')):
-                    analysis_text += ' ' + row['enzyme_class']
+                if field in metadata:
+                    enriched_df.at[idx, field] = json.dumps(metadata.get(field, {}))
+                            
+    # Now perform scoring for all rows, regardless of whether they got metadata from EC records
+    if using_imported_modules:
+        print("Calculating scores for rows with missing score data...")
+        scores_calculated = 0
+        scores_already_present = 0
+        
+        for idx in enriched_df.index:
+            if idx % log_interval == 0:
+                print(f"Processing scoring: row {idx}/{total_rows} ({idx/total_rows*100:.1f}%)")
+            
+            # Check if this row already has scoring data
+            if (enriched_df.at[idx, 'overall_metal_score'] is not None and 
+                enriched_df.at[idx, 'overall_corrosion_score'] is not None and
+                enriched_df.at[idx, 'corrosion_relevance_score'] is not None):
+                scores_already_present += 1
+                continue  # Skip rows that already have scores
                 
-                # Calculate scores using the scoring system
-                score_results = score_sys.calculate_overall_scores(analysis_text)
-                
-                # Apply the generated scores to the row
-                for key, value in score_results.items():
-                    if key in row:
-                        if isinstance(value, list):
-                            row[key] = '; '.join(map(str, value))
-                        elif isinstance(value, dict):
-                            row[key] = json.dumps(value)
-                        else:
-                            row[key] = value
-                
-                # Calculate corrosion relevance
-                if all(k in score_results for k in ['overall_metal_score', 'overall_corrosion_score', 'overall_organic_process_score', 'overall_keyword_score']):
+            # Only calculate scores if we have some text to analyze
+            protein_name = enriched_df.at[idx, 'protein_name']
+            if protein_name is not None and not pd.isna(protein_name):
+                try:
+                    # Generate text to analyze
+                    analysis_text = protein_name
+                    
+                    # Add enzyme class if available
+                    enzyme_class = enriched_df.at[idx, 'enzyme_class'] 
+                    if enzyme_class is not None and not pd.isna(enzyme_class):
+                        analysis_text += ' ' + enzyme_class
+                    
+                    # Add pathways if available
+                    pathways = enriched_df.at[idx, 'pathways']
+                    if pathways is not None and not pd.isna(pathways):
+                        analysis_text += ' ' + pathways
+                        
+                    # Calculate scores using the scoring system
+                    score_results = score_sys.calculate_overall_scores(analysis_text)
+                    
+                    # Update scores in the dataframe
+                    for key, value in score_results.items():
+                        if key in enriched_df.columns:
+                            if isinstance(value, list):
+                                enriched_df.at[idx, key] = '; '.join(map(str, value))
+                            elif isinstance(value, dict):
+                                enriched_df.at[idx, key] = json.dumps(value)
+                            else:
+                                enriched_df.at[idx, key] = value
+                    
+                    # Calculate corrosion relevance explicitly
                     corrosion_relevance_score, corrosion_relevance = score_sys.calculate_corrosion_relevance_score(
                         score_results.get('overall_metal_score', 0),
                         score_results.get('overall_corrosion_score', 0),
@@ -262,46 +345,42 @@ def enrich_eccontri_data(eccontri_df, ec_records_flat):
                         score_results.get('overall_synergy_score', 0),
                         score_results.get('overall_functional_score', 0)
                     )
-                    row['corrosion_relevance_score'] = corrosion_relevance_score
-                    row['corrosion_relevance'] = corrosion_relevance
-                
-                # Update row in dataframe
-                eccontri_df.loc[idx] = row
-            except Exception as e:
-                print(f"Error generating scores for row {idx}: {e}")
-           
-        return row
-    # Apply function over each row
-    eccontri_df = eccontri_df.apply(_enrich_row, axis=1)
-
-    #==========================================================================================================================
-     # 7. Row Processing Setup # Define progress reporting
-    total_rows = len(enriched_df)
-    log_interval = max(1, min(10000, total_rows // 20))  # Log at most 20 times, minimum every 10000 rows
-
-    print(f"Processing {total_rows} rows with logging every {log_interval} rows")
-
-    # 8. Report and Return
-    total_time = time.time() - start_time
-    total_rows = len(eccontri_df)
-
+                    enriched_df.at[idx, 'corrosion_relevance_score'] = corrosion_relevance_score
+                    enriched_df.at[idx, 'corrosion_relevance'] = corrosion_relevance
+                    
+                    scores_calculated += 1
+                    
+                except Exception as e:
+                    print(f"Error calculating scores for row {idx}: {e}")
+        
+        print(f"Scoring complete: {scores_calculated} rows scored, {scores_already_present} rows already had scores")
+                      
+    # Final report
+    end_time = time.time()
+    total_time = end_time - start_time
     print(f"Completed enrichment in {total_time:.2f} seconds")
     print(f"Processed {total_rows} rows at {total_rows/total_time:.1f} rows/second")
 
-    metadata_counts = {col: eccontri_df[col].notnull().sum() for col in metadata_columns}
+    # Count non-null values in the metadata columns to see success rate
+    metadata_counts = {col: enriched_df[col].notnull().sum() for col in metadata_columns}
     print("\nMetadata population statistics:")
     for col, count in metadata_counts.items():
         print(f"  {col}: {count} rows ({count/total_rows*100:.1f}%)")
 
-    return eccontri_df
+    return enriched_df
 #========================================================================================================================+
-
-
 if __name__ == "__main__":
-    pre_ECcontri_Uniprot_enriched= enrich_eccontri_data(ECcontri_Uniprot, ec_records_flat)
+    # Record overall start time
+    start_time_main = time.time()
     
-    pre_path = output_large / "pre_ECcontri_Uniprot_enriched_v2.parquet"
+    # Run the enrichment function
+    pre_ECcontri_Uniprot_enriched = enrich_eccontri_data(ECcontri_Uniprot, ec_records_flat)
+    
+    # Save the result - supporting both environments
+    # pre_path = Path('/kaggle/working/ECcontri_Uniprot_enriched.parquet')
+    # pre_ECcontri_Uniprot_enriched.to_parquet(pre_path)
+    
+    # Then local path
+    pre_path = output_large / "pre_ECcontri_Uniprot_enriched.parquet"
     pre_ECcontri_Uniprot_enriched.to_parquet(pre_path)
-
-    print(f"Saved {pre_path} with {len(pre_ECcontri_Uniprot_enriched)} rows")
-    print(f"File exists: {pre_path.exists()} | Size: {pre_path.stat().st_size} bytes")
+#========================================================================================================================+
