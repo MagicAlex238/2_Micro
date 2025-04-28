@@ -77,24 +77,29 @@ pathway_categories = {
         'manganese oxide', 'pyrolusite', 'birnessite',
         'manganese cycling', 'manganese mineral', 'manganese transport'
     ], 
-        'iron_sulfur_redox': [
+    'iron_sulfur_redox': [
         'iron metabolism', 'sulfur metabolism', 'iron oxidation', 'iron reduction', 
         'iron reduc', 'ferric reduc', 'sulfate reduc', 'sulfide', 'sulfite', 
         'thiosulfate', 'sulfur oxidation', 'SRB',
         'Fe-S cluster', 'iron-sulfur cluster', 'ferredoxin',
-        'rubredoxin', 'ferritin', 'bacterioferritin'
+        'rubredoxin', 'ferritin', 'bacterioferritin',   'PWY-7221',  # Iron reduction
+            'HEME-BIOSYNTHESIS-II',  # Iron-containing compounds
+            'P125-PWY'  # Metal resistance
     ],
     'ocre_formation': [
         'ocre', 'iron_oxide', 'iron_deposit', 'metal oxide', 'ochre formation', 
         'iron oxide deposits', 'iron precipitation', 'rust formation',
         'ferrihydrite', 'goethite', 'magnetite', 'hematite',
-        'mineral precipitation', 'iron mineral'
+        'mineral precipitation', 'iron mineral', 'PWY-7219',  # Iron oxidation
     ],
     'sulfur_metabolism': [
         'sulfur', 'sulfate', 'sulfide', 'thiosulfate', 'sulfite', 'sulfonate',
         'sulfate reduction', 'sulfur oxidation', 'sulfur respiration',
         'SRB', 'dsrAB', 'APS reductase', 'sulfide:quinone oxidoreductase',
-        'sulfur disproportionation', 'dissimilatory sulfate reduction'
+        'sulfur disproportionation', 'dissimilatory sulfate reduction',
+        'PWY-6932',  # Sulfate reduction
+        'SO4ASSIM-PWY',  # Sulfate assimilation
+        'SULFATE-CYS-PWY'  # Sulfate to cysteine
     ],
     'electron_transfer': [
         'cytochrome', 'electron transport', 'oxidoreductase', 'redox',
@@ -108,7 +113,11 @@ pathway_categories = {
         'organic acid', 'fatty acid', 'butyric acid', 'butyrate', 'propionate', 'propionic acid',
         'carboxylic acid', 'lactate', 'lactic acid', 'formate', 'formic acid',
         'citrate', 'citric acid', 'succinate', 'succinic acid', 'fumarate', 'fumaric acid',
-        'malate', 'malic acid', 'pyruvate', 'pyruvic acid'
+        'malate', 'malic acid', 'pyruvate', 'pyruvic acid',  'CENTFERM-PWY',  # Central fermentation pathways
+        'FERMENTATION-PWY',  # Mixed acid fermentation
+        'GLYCOLYSIS',  # Glucose fermentation
+        'PWY-5100',  # Pyruvate fermentation
+        'GALACTUROCAT-PWY'  # Galacturonate degradation
     ],
     'metal_organic_interaction': [
         'siderophore', 'metal binding', 'metal chelation', 'iron chelation',
@@ -123,7 +132,9 @@ pathway_categories = {
         'polysaccharide biosynthesis', 'extracellular polymeric substance',
         'cell aggregation', 'quorum sensing', 'biofilm maturation',
         'biofilm regulation', 'biofilm dispersion', 'cell-cell adhesion',
-        'matrix production', 'pellicle', 'floc formation'
+        'matrix production', 'pellicle', 'floc formation', 'COLANSYN-PWY',  # Colanic acid (biofilm)
+            'EXOPOLYSACC-PWY',  # Exopolysaccharide
+            'GLUCOSE1PMETAB-PWY'  # UDP-glucose synthesis
     ],
     'carbon_metabolism': [
         'carbon fixation', 'carbon utilization', 'carbohydrate metabolism',
