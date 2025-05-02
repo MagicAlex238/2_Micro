@@ -8,37 +8,46 @@ import math
 import sys
 import os
 
-# Determine the environment and set up paths accordingly
-if os.path.exists('/kaggle/input'):
-    # Kaggle environment
-    sys.path.append('/kaggle/input/corrosion-scoring')
-    
-    # Direct import in Kaggle
-    from global_terms import (
-        metal_terms, 
-        corrosion_mechanisms, 
-        pathway_categories, 
-        organic_categories, 
-        corrosion_synergies, 
-        functional_categories, 
-        corrosion_keyword_groups, 
+try:
+    # Try relative import (for package installation)
+    from .global_terms import (
+        metal_terms,
+        corrosion_mechanisms,
+        pathway_categories,
+        organic_categories,
+        corrosion_synergies,
+        functional_categories,
+        corrosion_keyword_groups,
         metal_mapping,
     )
-else:
-    # Local environment
-    sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
-    
-    # Package import in local environment
-    from corrosion_scoring.global_terms import (
-        metal_terms, 
-        corrosion_mechanisms, 
-        pathway_categories, 
-        organic_categories, 
-        corrosion_synergies, 
-        functional_categories, 
-        corrosion_keyword_groups, 
-        metal_mapping,
-    )
+except ImportError:
+    # Fall back to absolute imports
+    if os.path.exists('/kaggle/input'):
+        # Kaggle environment
+        sys.path.append('/kaggle/input/corrosion-scoring')
+        from global_terms import (
+            metal_terms,
+            corrosion_mechanisms,
+            pathway_categories,
+            organic_categories,
+            corrosion_synergies,
+            functional_categories,
+            corrosion_keyword_groups,
+            metal_mapping,
+        )
+    else:
+        # Local environment
+        sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
+        from corrosion_scoring.global_terms import (
+            metal_terms,
+            corrosion_mechanisms,
+            pathway_categories,
+            organic_categories,
+            corrosion_synergies,
+            functional_categories,
+            corrosion_keyword_groups,
+            metal_mapping,
+        )
 
 # Scoring weights
 METAL_SCORE_WEIGHT = 1.5
