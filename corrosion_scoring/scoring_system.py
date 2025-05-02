@@ -1,19 +1,44 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+"""
+Corrosion Relevance Scoring System: functions for corrosion relevance evaluation.
+"""
 import math
 import sys
+import os
 
-sys.path.append(
-    "/home/beatriz/MIC/2_Micro/corrosion_scoring"
-)  # /kaggle/input/corrosion-scoring
-from corrosion_scoring.global_terms import (
-    metal_terms,
-    corrosion_mechanisms,
-    pathway_categories,
-    organic_categories,
-    corrosion_synergies,
-    functional_categories,
-    corrosion_keyword_groups,
-    metal_mapping,
-)
+# Determine the environment and set up paths accordingly
+if os.path.exists('/kaggle/input'):
+    # Kaggle environment
+    sys.path.append('/kaggle/input/corrosion-scoring')
+    
+    # Direct import in Kaggle
+    from global_terms import (
+        metal_terms, 
+        corrosion_mechanisms, 
+        pathway_categories, 
+        organic_categories, 
+        corrosion_synergies, 
+        functional_categories, 
+        corrosion_keyword_groups, 
+        metal_mapping,
+    )
+else:
+    # Local environment
+    sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
+    
+    # Package import in local environment
+    from corrosion_scoring.global_terms import (
+        metal_terms, 
+        corrosion_mechanisms, 
+        pathway_categories, 
+        organic_categories, 
+        corrosion_synergies, 
+        functional_categories, 
+        corrosion_keyword_groups, 
+        metal_mapping,
+    )
 
 # Scoring weights
 METAL_SCORE_WEIGHT = 1.5
