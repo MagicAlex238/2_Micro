@@ -117,7 +117,7 @@ def assign_mechanism_from_pathway(pathways):
     return list(set(detected_mechanisms))  # Return unique mechanisms
 
 
-def calculate_overall_scores(text, brenda_metals=None):
+def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     """Calculate all the overall scores for a given text.
     Args:
         text: Text to analyze (combined enzyme names, class, pathways, reactions)
@@ -142,11 +142,14 @@ def calculate_overall_scores(text, brenda_metals=None):
 
     # Score corrosion mechanisms
     corrosion_score, corrosion_matches = score_keyword_matches(text, corrosion_mechanisms)   
+    if pathways is None:
+        pathways = []
     if pathways:
         pathway_mechanisms = assign_mechanism_from_pathway(pathways)
         for mechanism in pathway_mechanisms:
             if mechanism not in corrosion_matches:
                 corrosion_matches[mechanism] = 1.0  
+                
     results["corrosion_mechanism_scores"] = corrosion_matches
     results["overall_corrosion_score"] = float(corrosion_score)
     results["corrosion_mechanisms"] = list(corrosion_matches.keys())

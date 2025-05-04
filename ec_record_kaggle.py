@@ -10,7 +10,8 @@
 !pip install pyarrow
 !pip install python-Levenshtein
 !pip install openpyxl
-!pip install adjustText'''
+!pip install adjustText
+!pip install git+https://github.com/MagicAlex238/2_Micro.git'''
 # Standard library imports
 import os
 import sys
@@ -47,6 +48,8 @@ import os
 import csv
 import json
 import pyarrow.parquet as pq
+# Own Scoring system
+import corrosion_scoring as cs
 
 # Set up logging
 logging.basicConfig(
@@ -333,21 +336,6 @@ brenda_data = parse_brenda_file()
 #=============================================
 def process_brenda_data(brenda_data):
     """Process BRENDA data to extract clean metal information while keeping other data intact"""
-    import sys
-    #sys.path.append('/kaggle/input/corrosion-scoring') 
-    sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
-    from corrosion_scoring.global_terms1 import (
-    #from global_terms import (
-        metal_terms, 
-        corrosion_mechanisms, 
-        pathway_categories, 
-        organic_categories,
-        corrosion_synergies, 
-        functional_categories, 
-        corrosion_keyword_groups, 
-        metal_mapping
-    )
-    import corrosion_scoring.scoring_system as score_sys
     
     processed_data = {}
 
@@ -381,135 +369,92 @@ def process_brenda_data(brenda_data):
                 if metal_lower in entry_lower:
                     if metal not in processed_data[ec_number]['clean_metals']:
                         processed_data[ec_number]['clean_metals'].append(metal)
-        using_imported_modules = True
-        if using_imported_modules:
-            # Use the scoring system module for comprehensive scoring
-            score_results = score_sys.calculate_overall_scores(
-                all_text, 
-                brenda_metals=processed_data[ec_number]['clean_metals']
+        # Use the scoring system module for comprehensive scoring
+        score_results = cs.calculate_overall_scores(
+            all_text, 
+            brenda_metals=processed_data[ec_number]['clean_metals'],
+            pathways=' '.join(processed_data[ec_number].get('pathways', []))
+        )
+                
+        # Update the processed data with scores from the module
+        processed_data[ec_number]['corrosion_mechanisms'] = score_results['corrosion_mechanisms']
+        processed_data[ec_number]['organic_processes'] = score_results['organic_processes']
+        processed_data[ec_number]['corrosion_synergies'] = score_results['corrosion_synergies']
+        
+       # Add pathway categories - transform from scoring format to expected format
+        for category_info in score_results.get('functional_categories', []):
+            category = category_info.get('category')
+            if category:
+                processed_data[ec_number]['pathway_categories'][category] = True
+        
+        # Add metal information
+        processed_data[ec_number]['metals_involved'] = score_results['metals_involved']
+        
+        # Define corrosion-relevant metals using cs.metal_terms 
+        corrosion_relevant_metals = [metal for metal in cs.metal_terms if metal in cs.corrosion_metals]
+
+        processed_data[ec_number]['corrosion_metals_from_brenda'] = [
+            metal for metal in processed_data[ec_number]['clean_metals']
+            if metal in corrosion_relevant_metals
+        ]
+        
+        # Calculate pathway scores
+        pathways = []  # No pathways directly from BRENDA, but include for API consistency
+        enzyme_names = []  # No names from BRENDA, but include for API consistency
+        enzyme_class = ""  # No class from BRENDA, but include for API consistency
+        
+        pathway_score, pathway_category_scores = cs.calculate_pathway_score(
+            rec.get('pathways', []), enzyme_names, enzyme_class_text
+)
+        # Calculate synergy score
+        synergy_score = cs.check_metal_organic_synergy(processed_data[ec_number]['clean_metals'], 
+            []  # No enzyme names in BRENDA
+        )
+        
+        # Calculate final corrosion relevance score using the module
+        corrosion_relevance_score, corrosion_relevance = cs.calculate_corrosion_relevance_score(
+            score_results.get('overall_metal_score', 0),
+            score_results.get('overall_corrosion_score', 0),
+            pathway_score,  score_results.get('overall_organic_process_score', 0),
+            score_results.get('overall_keyword_score', 0),
+            synergy_score, score_results.get('overall_functional_score', 0)
             )
             
-            # Update the processed data with scores from the module
-            processed_data[ec_number]['corrosion_mechanisms'] = score_results['corrosion_mechanisms']
-            processed_data[ec_number]['organic_processes'] = score_results['organic_processes']
-            processed_data[ec_number]['corrosion_synergies'] = score_results['corrosion_synergies']
-            
-            # Add pathway categories - transform from scoring format to expected format
-            for category_info in score_results.get('functional_categories', []):
-                category = category_info.get('category')
-                if category:
-                    processed_data[ec_number]['pathway_categories'][category] = True
-            
-            # Add metal information
-            processed_data[ec_number]['metals_involved'] = score_results['metals_involved']
-            
-            # Define corrosion-relevant metals
-            corrosion_relevant_metals = ['iron', 'manganese', 'copper', 'nickel', 'cobalt', 'sulfide', 
-                                        'sulfate', 'chloride', 'Al3+', 'Cr3+']
-            
-            processed_data[ec_number]['corrosion_metals_from_brenda'] = [
-                metal for metal in processed_data[ec_number]['clean_metals']
-                if metal in corrosion_relevant_metals
-            ]
-            
-            # Calculate pathway scores
-            pathways = []  # No pathways directly from BRENDA, but include for API consistency
-            enzyme_names = []  # No names from BRENDA, but include for API consistency
-            enzyme_class = ""  # No class from BRENDA, but include for API consistency
-            
-            pathway_score, pathway_category_scores = score_sys.calculate_pathway_score(
-                pathways, enzyme_names, enzyme_class
-            )
-            
-            # Calculate synergy score
-            synergy_score = score_sys.check_metal_organic_synergy(
-                processed_data[ec_number]['clean_metals'], 
-                []  # No enzyme names in BRENDA
-            )
-            
-            # Calculate final corrosion relevance score using the module
-            corrosion_relevance_score, corrosion_relevance = score_sys.calculate_corrosion_relevance_score(
-                score_results.get('overall_metal_score', 0),
-                score_results.get('overall_corrosion_score', 0),
-                pathway_score,
-                score_results.get('overall_organic_process_score', 0),
-                score_results.get('overall_keyword_score', 0),
-                synergy_score,
-                score_results.get('overall_functional_score', 0)
-            )
-            
-            processed_data[ec_number]['corrosion_relevance_score'] = corrosion_relevance_score
-            processed_data[ec_number]['corrosion_relevance'] = corrosion_relevance
-            
+        processed_data[ec_number]['corrosion_relevance_score'] = corrosion_relevance_score
+        processed_data[ec_number]['corrosion_relevance'] = corrosion_relevance
+
+        # Calculate comprehensive corrosion relevance score
+        corrosion_score = 0
+        
+        # Score based on metal involvement
+        corrosion_score += len(processed_data[ec_number]['corrosion_metals_from_brenda']) * 1.5
+        
+        # Score based on corrosion mechanisms
+        corrosion_score += len(processed_data[ec_number]['corrosion_mechanisms']) * 2.0
+        
+        # Score based on pathway categories related to corrosion
+        for pathway in cs.pathway_categories.keys():
+            if pathway in processed_data[ec_number]['pathway_categories']:
+                corrosion_score += 1.0
+               
+        # Score based on organic processes relevant to corrosion
+        for process in cs.organic_categories.keys():
+            if process in processed_data[ec_number]['organic_processes']:
+                corrosion_score += cs.organic_categories[process].get('weight', 0.5)
+                        
+        # Score based on corrosion synergies
+        corrosion_score += len(processed_data[ec_number]['corrosion_synergies']) * 2.0
+        
+        # Set corrosion relevance category
+        if corrosion_score >= 5:
+            processed_data[ec_number]['corrosion_relevance'] = 'high'
+        elif corrosion_score >= 2:
+            processed_data[ec_number]['corrosion_relevance'] = 'medium'
         else:
-            # Use the original scoring approach if module import failed
-            # Check for corrosion mechanisms
-            for mechanism, terms in corrosion_mechanisms.items():
-                if any(term.lower() in all_text for term in terms):
-                    processed_data[ec_number]['corrosion_mechanisms'].append(mechanism)
-
-            # Check for pathway categories
-            for category, terms in pathway_categories.items():
-                if any(term.lower() in all_text for term in terms):
-                    processed_data[ec_number]['pathway_categories'][category] = True
-
-            # Check for organic matter processes
-            for category, terms in organic_categories.items():
-                if any(term.lower() in all_text for term in terms):
-                    processed_data[ec_number]['organic_processes'][category] = True
-
-            # Check for corrosion synergies
-            for synergy, terms in corrosion_synergies.items():
-                if any(term.lower() in all_text for term in terms):
-                    processed_data[ec_number]['corrosion_synergies'].append(synergy)
-
-            # Add corrosion relevance information
-            corrosion_relevant_metals = ['iron', 'manganese', 'copper', 'nickel', 'cobalt', 'sulfide', 
-                                        'sulfate', 'chloride', 'Al3+', 'Cr3+']
-            
-            processed_data[ec_number]['corrosion_metals_from_brenda'] = [
-                metal for metal in processed_data[ec_number]['clean_metals']
-                if metal in corrosion_relevant_metals
-            ]
-
-            # Calculate comprehensive corrosion relevance score
-            corrosion_score = 0
-            
-            # Score based on metal involvement
-            corrosion_score += len(processed_data[ec_number]['corrosion_metals_from_brenda']) * 1.5
-            
-            # Score based on corrosion mechanisms
-            corrosion_score += len(processed_data[ec_number]['corrosion_mechanisms']) * 2.0
-            
-            # Score based on pathway categories related to corrosion
-            corrosion_related_pathways = ['organic_acid_metabolism', 'metal_organic_interaction', 
-                                        'biofilm_formation', 'sulfur_metabolism', 'nitrogen_metabolism',
-                                        'manganese_processes', 'electron_transfer', 'iron_sulfur_redox', 
-                                        'ocre_formation', 'hydrogen_metabolism']
-            
-            for pathway in corrosion_related_pathways:
-                if pathway in processed_data[ec_number]['pathway_categories']:
-                    corrosion_score += 1.0
-                    
-            # Score based on organic processes relevant to corrosion
-            corrosion_related_processes = ['degradation', 'oxidation','reduction']
-            for process in corrosion_related_processes:
-                if process in processed_data[ec_number]['organic_processes']:
-                    corrosion_score += 0.5
-                            
-            # Score based on corrosion synergies
-            corrosion_score += len(processed_data[ec_number]['corrosion_synergies']) * 2.0
-            
-            # Set corrosion relevance category
-            if corrosion_score >= 5:
-                processed_data[ec_number]['corrosion_relevance'] = 'high'
-            elif corrosion_score >= 2:
-                processed_data[ec_number]['corrosion_relevance'] = 'medium'
-            else:
-                processed_data[ec_number]['corrosion_relevance'] = 'low'
-            
-            # Store the numerical score
-            processed_data[ec_number]['corrosion_relevance_score'] = corrosion_score
+            processed_data[ec_number]['corrosion_relevance'] = 'low'
+        
+        # Store the numerical score
+        processed_data[ec_number]['corrosion_relevance_score'] = corrosion_score
 
     return processed_data
 
@@ -940,15 +885,14 @@ def consolidate_metal_terms(brenda_metals, text_detected_metals):
     Returns:  list: Consolidated list of unique, standardized metal symbols.
     """
     # Import metal_mapping from global terms module
-    from global_terms_py import metal_mapping
-    
+   
     consolidated = set()
     all_metals = (brenda_metals or []) + (text_detected_metals or [])
     
     for metal in all_metals:
         metal_norm = metal.strip().lower()
         # Check if the normalized term matches any key in the standard mapping
-        for key, symbol in metal_mapping.items():
+        for key, symbol in cs.metal_mapping.items():
             if key in metal_norm:
                 consolidated.add(symbol)
                 break
@@ -958,7 +902,7 @@ def consolidate_metal_terms(brenda_metals, text_detected_metals):
     return list(consolidated)
 
 #================================ MAIN FUNCTION ======================================
-def create_metabolism_database():
+def create_metabolism_database(sample_size=None):
     """
     Build a list of dictionaries, each representing a single EC record.
     
@@ -974,22 +918,6 @@ def create_metabolism_database():
         
     Returns:  list: List of dictionaries, each containing information about an enzyme
     """
-    global brenda_data
-    import sys
-    #sys.path.append('/kaggle/input/corrosion-scoring') 
-    sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
-    from corrosion_scoring.global_terms1 import (
-    #from global_terms import (
-        metal_terms, 
-        corrosion_mechanisms, 
-        pathway_categories, 
-        organic_categories,
-        corrosion_synergies, 
-        functional_categories, 
-        corrosion_keyword_groups, 
-        metal_mapping
-    )
-    import corrosion_scoring.scoring_system as score_sys
     
     try:
         # Read all necessary files
@@ -1007,21 +935,21 @@ def create_metabolism_database():
         metal_patterns = extract_metal_coordination_patterns(metal_binding_data)
         ec_pathway_mapping = read_ec_pathway_mapping() or {}
 
-        '''# If sample_size is specified, take a random sample
+        # If sample_size is specified, take a random sample
         if sample_size and isinstance(sample_size, int) and sample_size > 0:
             print(f"Running with sample of {sample_size} EC numbers")
             ec_keys = list(ec_to_names.keys())
             if len(ec_keys) > sample_size:
                 ec_sample_keys = random.sample(ec_keys, sample_size)
-                ec_to_names = {k: ec_to_names[k] for k in ec_sample_keys}'''
+                ec_to_names = {k: ec_to_names[k] for k in ec_sample_keys}
 
         print(f"Loaded: {len(ec_to_names)} enzymes, {len(pathway_data)} pathways, {len(brenda_en)} BRENDA entries")
 
-        # Get EC to reaction mapping 
+        # 1. Get EC to reaction mapping 
         print("Creating EC to reaction mapping...")
         ec_to_rxn = create_ec_to_reaction_mapping()
         
-        # extract protein information
+        # 2. extract protein information
         print("Preparing protein database...")
         protein_database = []
         # From BRENDA
@@ -1037,7 +965,7 @@ def create_metabolism_database():
                             'protein_name': protein_name,
                             'brenda_data': data
                         })
-        # From MetalPDB
+        # 3. From MetalPDB
         if metal_binding_data:
             for site_key, site_data in metal_binding_data.items():
                 for chain in site_data.get('site_chains', []):
@@ -1053,7 +981,7 @@ def create_metabolism_database():
         print(f"Error loading data sources: {e}")
     
         return []
-    # Track statistics for validation
+    # 4. Track statistics for validation
     stats = {
         'total_enzymes': 0,
         'with_brenda_data': 0,
@@ -1065,7 +993,7 @@ def create_metabolism_database():
     }
     
     start_time_record = time.time()
-    # Prepare a list to store all records
+    # 5. Prepare a list to store all records
     ec_records = []
     stats['total_enzymes'] = len(ec_to_names)
 
@@ -1085,7 +1013,7 @@ def create_metabolism_database():
         except Exception:
             pass  # Skip if error occurs
     
-    # Pre-compute KO lookups - do this once
+    # 6. Pre-compute KO lookups - do this once
     print("Pre-computing KO lookups...")
     ko_lookup = {}
     for ko, data in ko_ec.items():
@@ -1096,7 +1024,7 @@ def create_metabolism_database():
                         ko_lookup[ec_number] = []
                     ko_lookup[ec_number].append(ko)
     
-    # Populate from ec_to_names for basic enzyme names
+    # 7. Populate from ec_to_names for basic enzyme names
     print("Building enzyme records...")
     for ec_number, names in ec_to_names.items():
         # Data validation for EC number format
@@ -1118,7 +1046,7 @@ def create_metabolism_database():
             'metals_from_brenda': [],
             'corrosion_metals_from_brenda': []
         }
-        # Add pathways from EC-pathway mapping
+        # 8. Add pathways from EC-pathway mapping
         if ec_number in ec_pathway_mapping:
             for pathway_id in ec_pathway_mapping[ec_number]:
                 # Standardize to map prefix
@@ -1132,7 +1060,7 @@ def create_metabolism_database():
                     if pathway_name not in record['pathways']:
                         record['pathways'].append(pathway_name)
 
-        # Add pathways from KO data
+        # 9. Add pathways from KO data
         if ec_number in ko_ec and isinstance(ko_ec[ec_number], list):
             for path in ko_ec[ec_number]:
                 if path not in record['pathways']:
@@ -1151,7 +1079,7 @@ def create_metabolism_database():
         if ko_ids:
             stats['with_ko'] += 1
 
-        # Build reaction list
+        # 10. Build reaction list
         rxns = ec_to_rxn.get(ec_number, [])
         for rxn_id in rxns:
             if rxn_id in reaction_equation:
@@ -1168,22 +1096,22 @@ def create_metabolism_database():
         if rxns:
             stats['with_reactions'] += 1
 
-        # Add module information
+        # 11. Add module information
         for module_id, module_desc in module_info.items():
             if f"[EC:{ec_number}]" in module_desc:
                 record['modules'].append({'id': module_id, 'description': module_desc})
 
-        # Reconcile metals from BRENDA with text mining
+        # 12. Reconcile metals from BRENDA with text mining
         record['metals_from_brenda'] = []
         record['corrosion_metals_from_brenda'] = []
 
-        # Add BRENDA metal information
+        # 13. Add BRENDA metal information
         if brenda_en and ec_number in brenda_en:
             record['metals_from_brenda'] = brenda_en[ec_number].get('clean_metals', [])
             record['corrosion_metals_from_brenda'] = brenda_en[ec_number].get('corrosion_metals_from_brenda', [])
             stats['with_brenda_data'] += 1
 
-        # Check if EC number is valid
+        # 14. Check if EC number is valid
         ec_number = record['ec_number']
         has_valid_ec = ec_number.count('.') == 3 and all(part.isdigit() for part in ec_number.split('.'))
         # Initialize protein_name to None as a default
@@ -1197,13 +1125,13 @@ def create_metabolism_database():
     elapsed_time_record = time.time() - start_time_record
     print(f"Processing took {elapsed_time_record:.2f} seconds")
 
-     # Process records in batches to avoid memory issues
+     # 15. Process records in batches to avoid memory issues
     print("Processing protein names and calculating scores...")
     batch_size = 1000  # Adjust based on available memory
     for i in range(0, len(ec_records), batch_size):
         batch = ec_records[i:i+batch_size]
         
-        # Process protein names in batch
+        # 16. Process protein names in batch
         for rec in batch:
             # Process protein name matches
             try:
@@ -1241,7 +1169,7 @@ def create_metabolism_database():
             except Exception as e:
                 print(f"Error processing protein name {rec.get('protein_name')}: {e}")
 
-        # Calculate scores for this batch
+        # 17. Calculate scores for this batch
         for rec in batch:
             # Build text for scoring once
             enzyme_names = rec.get('enzyme_names', []) or []
@@ -1255,30 +1183,30 @@ def create_metabolism_database():
                 if isinstance(r, dict) and 'equation' in r:
                     reaction_text += " " + r['equation']
 
-            # Combined text for all scoring
+            # 18. Combined text for all scoring
             all_text = f"{names_text} {class_text} {' '.join(pathways)} {reaction_text}".lower()
             using_imported_modules = True
             # Score metals, mechanisms, etc. all at once
             try:
                 if using_imported_modules:
                     # Use the scoring system module if available
-                    score_results = score_sys.calculate_overall_scores(
+                    score_results = cs.calculate_overall_scores(
                         all_text, 
-                        brenda_metals=rec.get('metals_from_brenda', [])
+                        brenda_metals=rec.get('metals_from_brenda', []),
+                        pathways=' '.join(rec.get('pathways', []))
                     )
                     
                     # Merge the score results into the record
                     rec.update(score_results)
                     
-                    # Consolidate metals using the module function
-                    rec['metals_consolidated'] = score_sys.consolidate_metal_terms(
+                    # 19. Consolidate metals using the module function
+                    rec['metals_consolidated'] = cs.consolidate_metal_terms(
                         rec.get('metals_from_brenda', []),
                         rec.get('metals_involved', [])
                     )
                 else:
-                    # Fall back to original inline scoring logic
-                    # Score metals
-                    metal_score, metal_matches = score_keyword_matches(all_text, metal_terms)
+                    # 20. Fall back to original inline scoring logic# Score metals
+                    metal_score, metal_matches = cs.score_keyword_matches(all_text, cs.metal_terms)
                     for metal in rec.get('metals_from_brenda', []):
                         if metal not in metal_matches:
                             metal_matches[metal] = 1.0
@@ -1287,21 +1215,21 @@ def create_metabolism_database():
                     rec['metal_scores'] = metal_matches
                     rec['overall_metal_score'] = float(metal_score)
                     
-                    # Score corrosion mechanisms  
-                    corrosion_score, corrosion_matches = score_keyword_matches(all_text, corrosion_mechanisms)
+                    # 21.Score corrosion mechanisms  
+                    corrosion_score, corrosion_matches = cs.score_keyword_matches(all_text, cs.corrosion_mechanisms)
                     rec['corrosion_mechanisms'] = list(corrosion_matches.keys())
                     rec['corrosion_mechanism_scores'] = corrosion_matches
                     rec['overall_corrosion_score'] = float(corrosion_score)
                     
-                    # Score synergies
-                    synergy_score, synergy_matches = score_keyword_matches(all_text, corrosion_synergies)
+                    # 22. Score synergies
+                    synergy_score, synergy_matches = cs.score_keyword_matches(all_text, cs.corrosion_synergies)
                     rec['corrosion_synergies'] = list(synergy_matches.keys())
                     rec['corrosion_synergy_scores'] = synergy_matches
                     rec['overall_synergy_score'] = float(synergy_score)
                     
-                    # Score functional categories
-                    functional_terms = {cat: details['terms'] for cat, details in functional_categories.items()}
-                    func_score, func_matches = score_keyword_matches(all_text, functional_terms)
+                    # 23. Score functional categories
+                    functional_terms = {cat: details['terms'] for cat, details in cs.functional_categories.items()}
+                    func_score, func_matches = cs.score_keyword_matches(all_text, functional_terms)
                     weighted_func_matches = {}
                     for cat, match_score in func_matches.items():
                         original_weight = functional_categories[cat]['score']
@@ -1311,25 +1239,25 @@ def create_metabolism_database():
                                                  for cat, score in weighted_func_matches.items()]
                     rec['overall_functional_score'] = float(sum(weighted_func_matches.values()))
                     
-                    # Score organic processes
-                    organic_score, organic_matches = score_keyword_matches(all_text, organic_categories)
+                    # 24. Score organic processes
+                    organic_score, organic_matches = cs.score_keyword_matches(all_text, cs.organic_categories)
                     rec['organic_processes'] = list(organic_matches.keys())
                     rec['organic_process_scores'] = organic_matches
                     rec['overall_organic_process_score'] = float(organic_score)
                     
-                    # Score keyword groups
-                    keyword_score, keyword_matches = score_keyword_matches(all_text, corrosion_keyword_groups)
+                    # 25. Score keyword groups
+                    keyword_score, keyword_matches = cs.score_keyword_matches(all_text, cs.corrosion_keyword_groups)
                     rec['corrosion_keyword_groups'] = list(keyword_matches.keys())
                     rec['corrosion_keyword_scores'] = keyword_matches
                     rec['overall_keyword_score'] = float(keyword_score)
                     
-                    # Consolidate metals
-                    rec['metals_consolidated'] = consolidate_metal_terms(
+                    # 26. Consolidate metals
+                    rec['metals_consolidated'] = cs.consolidate_metal_terms(
                         rec.get('metals_from_brenda', []),
                         rec.get('metals_involved', [])
                     )
                 
-                # Update statistics (same for both paths)
+                # 27. Update statistics (same for both paths)
                 if rec['metals_consolidated']:
                     stats['with_metal_involvement'] += 1
             
@@ -1339,7 +1267,7 @@ def create_metabolism_database():
             except Exception as e:
                 print(f"Error scoring data for {rec.get('ec_number')}: {e}")
                 
-    # Process metal binding in a separate pass
+    # 28. Process metal binding in a separate pass
     print("Processing metal binding information...")
     try:
         # Add metal binding information to records
@@ -1351,7 +1279,7 @@ def create_metabolism_database():
 
             for metal in all_metals:
                 # Try to map to standard symbol
-                for metal_name, symbol in metal_mapping.items():
+                for metal_name, symbol in cs.metal_mapping.items():
                     if metal_name in metal.lower() or symbol.lower() in metal.lower():
                         # Check if we have binding data for this metal
                         if symbol in metal_patterns.get('residue_binding', {}):
@@ -1369,7 +1297,7 @@ def create_metabolism_database():
     except Exception as e:
         print(f"Error processing metal binding data: {e}")
 
-    # Process KO hierarchy information
+    # 29- Process KO hierarchy information
     print("Processing KO hierarchy...")
     if 'D' in ko_hierarchy:
         for ko, info in ko_hierarchy.get('D', {}).items():
@@ -1396,13 +1324,13 @@ def create_metabolism_database():
                         except Exception as e:
                             print(f"Error processing KO hierarchy for {rec.get('ec_number')}: {e}")
     
-    # Calculate pathway statistics
+    # 30. Calculate pathway statistics
     print("Calculating pathway statistics...")
     for rec in ec_records:
         if rec['pathways']:
             stats['with_pathways'] += 1
     
-    # Calculate final corrosion relevance scores using the scoring module
+    # 31. Calculate final corrosion relevance scores using the scoring module
     print("Calculating corrosion relevance scores...")
     for rec in ec_records:
         try:
@@ -1411,20 +1339,26 @@ def create_metabolism_database():
             pathways = rec.get('pathways', []) or []
             
             if using_imported_modules:
-                # Calculate pathway scores using the module function
-                pathway_score, pathway_category_scores = score_sys.calculate_pathway_score(
-                    pathways, enzyme_names, enzyme_class_text
+                # 32. Calculate pathway scores using the module 
+                pathway_score, pathway_category_scores = cs.calculate_pathway_score(
+                    rec.get('pathways', []), enzyme_names, enzyme_class_text
                 )
-                
-                # Check for metal-organic synergy
-                synergy_score = score_sys.check_metal_organic_synergy(
+                # Extract mechanisms from pathways
+                if rec.get('pathways'):
+                    pathway_text = '\n'.join(rec.get('pathways', []))
+                    pathway_mechanisms = cs.assign_mechanism_from_pathway(pathway_text)
+                    existing_mechanisms = rec.get('corrosion_mechanisms', [])
+                    rec['corrosion_mechanisms'] = list(set(existing_mechanisms + pathway_mechanisms))
+
+                # 33. Check for metal-organic synergy
+                synergy_score = cs.check_metal_organic_synergy(
                     rec.get('metals_consolidated', []), 
-                    enzyme_names
+                    enzyme_names, pathways
                 )
                 rec['metal_organic_synergy_score'] = synergy_score
                 
-                # Calculate final corrosion relevance score using the module function
-                corrosion_relevance_score, corrosion_relevance = score_sys.calculate_corrosion_relevance_score(
+                # 34. Calculate final corrosion relevance score using the module function
+                corrosion_relevance_score, corrosion_relevance = cs.calculate_corrosion_relevance_score(
                     rec.get('overall_metal_score', 0),
                     rec.get('overall_corrosion_score', 0),
                     pathway_score,
@@ -1433,119 +1367,22 @@ def create_metabolism_database():
                     synergy_score,
                     rec.get('overall_functional_score', 0)
                 )
-            else:
-                # Replicate original pathway scoring logic but using global terms directly
-                pathway_score = 0
-                pathway_category_scores = {}
-                
-                # Add pathway categories from BRENDA data or calculate them
-                ec_number = rec.get('ec_number')
-                if ec_number in brenda_en and 'pathway_categories' in brenda_en[ec_number]:
-                    # Get pathway categories from BRENDA
-                    rec['pathway_categories'] = brenda_en[ec_number]['pathway_categories']
-                    # Score each pathway category
-                    for category in rec['pathway_categories']:
-                        pathway_category_scores[category] = 1.0  # Base score of 1.0 for each category
-                        pathway_score += 1.0
-                else:
-                    # If not available from BRENDA, check against pathway terms
-                    rec['pathway_categories'] = {}
-                    all_text = ' '.join(rec.get('enzyme_names', '') or []) + ' ' + (rec.get('enzyme_class', '') or '') + ' ' + ' '.join(rec.get('pathways', []))
-                    all_text = all_text.lower()
             
-                    for category, terms in pathway_categories.items():
-                        if any(term.lower() in all_text for term in terms):
-                            rec['pathway_categories'][category] = True
-                            pathway_category_scores[category] = 1.0
-                            pathway_score += 1.0
-
-                # Define corrosion-relevant categories to check
-                corrosion_relevant_categories = [
-                    'iron_sulfur_redox', 'ocre', 'acid_production', 
-                    'electron_transfer', 'biofilm', 'sulfide'
-                ]
+                # 45.Add pathway scores to record (same for both paths)
+                rec['pathway_category_scores'] = pathway_category_scores
+                rec['overall_pathway_category_score'] = sum(pathway_category_scores.values())
+                rec['pathway_score'] = float(pathway_score)
                 
-                # Extract terms from relevant categories in corrosion_keyword_groups
-                corrosion_pathway_terms = []
-                for category in corrosion_relevant_categories:
-                    if category in corrosion_keyword_groups:
-                        corrosion_pathway_terms.extend(corrosion_keyword_groups[category])
-                
-                # Check pathway names against these terms
-                for pathway in rec.get('pathways', []):
-                    pathway_lower = pathway.lower()
-                    if any(term.lower() in pathway_lower for term in corrosion_pathway_terms):
-                        pathway_score += 1
-                
-                # Use the organic_acid_metabolism category directly for organic acid terms
-                organic_acid_terms = pathway_categories.get('organic_acid_metabolism', [])
-                
-                name_text = ' '.join(rec.get('enzyme_names', []))
-                if any(term.lower() in name_text.lower() for term in organic_acid_terms):
-                    pathway_score += 0.5  # Smaller weight for organic terms alone
-
-                # Add synergy bonus for metal-organic combination using terms from global collections
-                synergy_score = 0
-                relevant_metals = ['Fe', 'Mn', 'Cu']  # Standard symbols from metal_mapping
-                
-                metal_found = False
-                for metal in rec.get('metals_consolidated', []):
-                    # Check if the metal is one of our relevant metals
-                    metal_lower = metal.lower()
-                    for key, symbol in metal_mapping.items():
-                        if (key == metal_lower or symbol.lower() == metal_lower) and symbol in relevant_metals:
-                            metal_found = True
-                            break
-                    if metal_found:
-                        break
-                
-                if metal_found and any(term.lower() in name_text.lower() for term in organic_acid_terms):
-                    synergy_score = 1.0  # Higher weight for metal-organic combination
-                
-                rec['metal_organic_synergy_score'] = synergy_score
-  
-                # Calculate final score using original logic but with scoring weights from the module
-                # if available, otherwise use the original hardcoded weights
-                metal_score = rec.get('overall_metal_score', 0) * 1.5  # METAL_SCORE_WEIGHT
-                mech_score = rec.get('overall_corrosion_score', 0) * 2.0  # CORROSION_MECHANISM_WEIGHT
-                process_score = rec.get('overall_organic_process_score', 0) * 1.0  # ORGANIC_PROCESS_WEIGHT
-                keyword_score = rec.get('overall_keyword_score', 0) * 0.5  # KEYWORD_SCORE_WEIGHT
-                func_score = rec.get('overall_functional_score', 0) * 0.7  # FUNCTIONAL_SCORE_WEIGHT
-                weighted_synergy = synergy_score * 0.6  # SYNERGY_SCORE_WEIGHT
-                
-                corrosion_relevance_score = float(
-                    metal_score + 
-                    mech_score + 
-                    pathway_score + 
-                    process_score + 
-                    keyword_score + 
-                    weighted_synergy + 
-                    func_score
-                )
-                
-                # Categorize using original thresholds
-                if corrosion_relevance_score >= 5:  # HIGH_RELEVANCE_THRESHOLD
-                    corrosion_relevance = 'high'
-                elif corrosion_relevance_score >= 2:  # MEDIUM_RELEVANCE_THRESHOLD
-                    corrosion_relevance = 'medium'
-                else:
-                    corrosion_relevance = 'low'
-            
-            # Add pathway scores to record (same for both paths)
-            rec['pathway_category_scores'] = pathway_category_scores
-            rec['overall_pathway_category_score'] = sum(pathway_category_scores.values())
-            rec['pathway_score'] = float(pathway_score)
-            
-            # Store final scores in record (same for both paths)
-            rec['corrosion_relevance_score'] = corrosion_relevance_score
-            rec['corrosion_relevance'] = corrosion_relevance
+                # 46. Store final scores in record (same for both paths)
+                rec['corrosion_relevance_score'] = corrosion_relevance_score
+                rec['corrosion_relevance'] = corrosion_relevance
             
         except Exception as e:
             print(f"Error calculating corrosion score for {rec.get('ec_number')}: {e}")
             rec['corrosion_relevance_score'] = 0
             rec['corrosion_relevance'] = 'unknown'        
 
-    # Filter records without content
+    # 47. Filter records without content
     print("Filtering records...")
     filtered_ec_records = []
     for rec in ec_records:
@@ -1568,7 +1405,7 @@ def create_metabolism_database():
         if (has_valid_protein or has_valid_enzyme or has_valid_ec) or (has_mechanisms or has_pathways or has_metals_consolidated):
             filtered_ec_records.append(rec)
 
-    # Replace original list with filtered version
+    # 48. Replace original list with filtered version
     ec_records = filtered_ec_records
 
     # Print summary statistics
@@ -1580,7 +1417,7 @@ def create_metabolism_database():
     print(f"Records with KO terms: {stats['with_ko']} ({stats['with_ko']/stats['total_enzymes']*100:.1f}%)")
     print(f"Records with corrosion mechanisms: {stats['with_corrosion_mechanisms']} ({stats['with_corrosion_mechanisms']/stats['total_enzymes']*100:.1f}%)")
 
-    # Validate the data - check for missing essential fields
+    # 49. Validate the data - check for missing essential fields
     validation_issues = []
     for i, rec in enumerate(ec_records):
         if not rec.get('ec_number'):
@@ -1604,7 +1441,7 @@ from pathlib import Path
 import json
 
 if __name__ == "__main__":
-    ec_records = create_metabolism_database() 
+    ec_records = create_metabolism_database(sample= 1500) 
     #json_path = Path("/kaggle/working/")
     output_large = Path("/home/beatriz/MIC/output_large") 
     json_path = output_large / "ec_records.json"
