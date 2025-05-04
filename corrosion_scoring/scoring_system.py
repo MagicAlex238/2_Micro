@@ -21,7 +21,7 @@ try:
         metal_mapping,
     )
 except ImportError:
-    # Fall back to absolute imports
+    '''# Fall back to absolute imports
     if os.path.exists('/kaggle/input'):
         # Kaggle environment
         sys.path.append('/kaggle/input/corrosion-scoring')
@@ -47,7 +47,7 @@ except ImportError:
             functional_categories,
             corrosion_keyword_groups,
             metal_mapping,
-        )
+        )'''
 
 # Scoring weights
 METAL_SCORE_WEIGHT = 1.5
