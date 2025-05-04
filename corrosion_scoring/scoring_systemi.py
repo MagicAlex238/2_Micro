@@ -7,7 +7,7 @@ Corrosion Relevance Scoring System: functions for corrosion relevance evaluation
 import math
 import sys
 sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring') # /kaggle/input/corrosion-scoring
-from corrosion_scoring.global_terms1 import (
+from corrosion_scoring.global_terms import (
     metal_terms, 
     corrosion_mechanisms, 
     pathway_categories, 
