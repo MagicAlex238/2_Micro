@@ -1,7 +1,7 @@
  #==================================RUN METABOLISM DB =============================
 #============ IMPORTS AND INSTALLS =======================
 # Making sure to use same python version for compatibility
-'''!sudo apt-get update -y
+!sudo apt-get update -y
 !sudo apt-get install python3.10
 !sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
 !python --version
@@ -10,7 +10,7 @@
 !pip install pyarrow
 !pip install python-Levenshtein
 !pip install openpyxl
-!pip install adjustText'''
+!pip install adjustText
 !pip install git+https://github.com/MagicAlex238/2_Micro.git
 # Standard library imports
 import os
@@ -58,8 +58,8 @@ logging.basicConfig(
 )
 # ===========================## 9.1 Setting up Paths and Parsing the Dataframes ==================
 
-#db_dir = Path("/kaggle/input/databases/Databases")
-db_dir = Path("/home/beatriz/MIC/Databases")
+db_dir = Path("/kaggle/input/databases/Databases")
+#db_dir = Path("/home/beatriz/MIC/Databases")
 
 def setup_paths():
     """Set up paths for database access"""
@@ -1430,14 +1430,12 @@ def create_metabolism_database(sample_size=None):
     return ec_records
 #=========================================  RUNNING THE PIPELINE ================================================ 
 
-from pathlib import Path
-import json
 
 if __name__ == "__main__":
     ec_records = create_metabolism_database(sample_size= 1500) 
-    #json_path = Path("/kaggle/working/")
-    output_large = Path("/home/beatriz/MIC/output_large") 
-    json_path = output_large / "ec_records.json"
+    json_path = Path("/kaggle/working/")
+    #output_large = Path("/home/beatriz/MIC/output_large") 
+    #json_path = output_large / "ec_records.json"
     
     with open(json_path, 'w', encoding="utf-8") as f:
         json.dump(ec_records, f, ensure_ascii=False, indent=2)
