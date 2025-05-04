@@ -109,7 +109,7 @@ def enrich_eccontri_data(eccontri_df, ec_records_flat):
         try:
             # Then try the local path
             sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
-            from corrosion_scoring.global_terms import (
+            from corrosion_scoring.global_terms1 import (
                 metal_terms, 
                 corrosion_mechanisms, 
                 pathway_categories, 

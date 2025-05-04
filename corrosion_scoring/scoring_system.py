@@ -10,7 +10,7 @@ import os
 
 try:
     # Try relative import (for package installation)
-    from .global_terms import (
+    from .global_terms1 import (
         metal_terms,
         corrosion_mechanisms,
         pathway_categories,
@@ -25,7 +25,7 @@ except ImportError:
     if os.path.exists('/kaggle/input'):
         # Kaggle environment
         sys.path.append('/kaggle/input/corrosion-scoring')
-        from global_terms import (
+        from corrosion_scoring.global_terms1 import (
             metal_terms,
             corrosion_mechanisms,
             pathway_categories,
@@ -38,7 +38,7 @@ except ImportError:
     else:
         # Local environment
         sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
-        from corrosion_scoring.global_terms import (
+        from corrosion_scoring.global_terms1 import (
             metal_terms,
             corrosion_mechanisms,
             pathway_categories,

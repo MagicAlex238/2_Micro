@@ -336,7 +336,7 @@ def process_brenda_data(brenda_data):
     import sys
     #sys.path.append('/kaggle/input/corrosion-scoring') 
     sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
-    from corrosion_scoring.global_terms import (
+    from corrosion_scoring.global_terms1 import (
     #from global_terms import (
         metal_terms, 
         corrosion_mechanisms, 
@@ -978,7 +978,7 @@ def create_metabolism_database():
     import sys
     #sys.path.append('/kaggle/input/corrosion-scoring') 
     sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
-    from corrosion_scoring.global_terms import (
+    from corrosion_scoring.global_terms1 import (
     #from global_terms import (
         metal_terms, 
         corrosion_mechanisms, 
