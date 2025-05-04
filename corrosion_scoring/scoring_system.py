@@ -21,33 +21,8 @@ try:
         metal_mapping,
     )
 except ImportError:
-    '''# Fall back to absolute imports
-    if os.path.exists('/kaggle/input'):
-        # Kaggle environment
-        sys.path.append('/kaggle/input/corrosion-scoring')
-        from corrosion_scoring.global_terms import (
-            metal_terms,
-            corrosion_mechanisms,
-            pathway_categories,
-            organic_categories,
-            corrosion_synergies,
-            functional_categories,
-            corrosion_keyword_groups,
-            metal_mapping,
-        )
-    else:
-        # Local environment
-        sys.path.append('/home/beatriz/MIC/2_Micro/corrosion_scoring')
-        from corrosion_scoring.global_terms import (
-            metal_terms,
-            corrosion_mechanisms,
-            pathway_categories,
-            organic_categories,
-            corrosion_synergies,
-            functional_categories,
-            corrosion_keyword_groups,
-            metal_mapping,
-        )'''
+    print"Critical error"
+
 
 # Scoring weights
 METAL_SCORE_WEIGHT = 1.5
@@ -119,6 +94,28 @@ def consolidate_metal_terms(brenda_metals, text_detected_metals):
             consolidated.add(metal.strip())
     return list(consolidated)
 
+def assign_mechanism_from_pathway(pathways):
+    """Map pathways to corrosion mechanisms based on pathway keywords"""
+    pathway_to_mechanism = {
+        'nitrogen': 'nitrogen_metabolism',
+        'nitrate': 'nitrogen_metabolism',
+        'nitrite': 'nitrogen_metabolism',
+        'denitrification': 'nitrogen_metabolism',
+        'nitrification': 'nitrogen_metabolism',
+        'manganese': 'manganese_metabolism',
+        'mn_redox': 'manganese_metabolism'
+    }
+    
+    detected_mechanisms = []
+    for pathway in pathways.split(';'):
+        pathway_lower = pathway.lower()
+        for keyword, mechanism in pathway_to_mechanism.items():
+            if keyword in pathway_lower:
+                detected_mechanisms.append(mechanism)
+                break
+    
+    return list(set(detected_mechanisms))  # Return unique mechanisms
+
 
 def calculate_overall_scores(text, brenda_metals=None):
     """Calculate all the overall scores for a given text.
@@ -144,10 +141,15 @@ def calculate_overall_scores(text, brenda_metals=None):
     results["overall_metal_score"] = float(metal_score)
 
     # Score corrosion mechanisms
-    corrosion_score, corrosion_matches = score_keyword_matches(text, corrosion_mechanisms)
-    results["corrosion_mechanisms"] = list(corrosion_matches.keys())
+    corrosion_score, corrosion_matches = score_keyword_matches(text, corrosion_mechanisms)   
+    if pathways:
+        pathway_mechanisms = assign_mechanism_from_pathway(pathways)
+        for mechanism in pathway_mechanisms:
+            if mechanism not in corrosion_matches:
+                corrosion_matches[mechanism] = 1.0  
     results["corrosion_mechanism_scores"] = corrosion_matches
     results["overall_corrosion_score"] = float(corrosion_score)
+    results["corrosion_mechanisms"] = list(corrosion_matches.keys())
 
     # Score synergies
     synergy_score, synergy_matches = score_keyword_matches(text, corrosion_synergies)
