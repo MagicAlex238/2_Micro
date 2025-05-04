@@ -21,7 +21,7 @@ try:
         metal_mapping,
     )
 except ImportError:
-    print"Critical error"
+    print("Critical error")
 
 
 # Scoring weights
