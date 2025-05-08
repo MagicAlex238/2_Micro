@@ -1,4 +1,4 @@
-```mermaid
+``m̀ermaid
 graph TD;
     A[Data Preparation & Filtering] -->|↓| B[Feature Selection];
     B -->|↓| C[Literature Analysis];
@@ -19,7 +19,7 @@ graph TD;
     C --> C1[MIC literature research];
     C --> C2[Known vs. candidate bacteria differentiation];
     C --> C3[API calls for taxonomic information];
-    C --> C4[Functional gene analysis (dsrAB, aprAB genes)];
+    C --> C4[Functional gene analysis - dsrAB, aprAB genes];
 
     D --> D1[Sequence retrieval for bacteria taxa];
     D --> D2[Alignment, consensus trees];
@@ -33,4 +33,5 @@ graph TD;
 
     F --> F1[Visualizing the results];
     F --> F2[Protein visualization];
-    F --> F3[Integrated data presentation];
+    F --> F3[Integrated data presentation]
+    ```
