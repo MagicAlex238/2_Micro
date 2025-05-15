@@ -4,3 +4,8 @@ log
 .venv
 config.py
 Token.git.backup
+*.pkl
+*.csv
+*.npy
+*.h5
+__pycache__/
