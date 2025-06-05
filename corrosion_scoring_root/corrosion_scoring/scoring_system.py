@@ -3,6 +3,7 @@
 
 """
 Corrosion Relevance Scoring System: functions for corrosion relevance evaluation.
+Updated to use unified functional_categories scoring approach.
 """
 import math
 import sys
@@ -17,14 +18,14 @@ try:
         organic_categories,
         corrosion_synergies,
         functional_categories,
-        corrosion_keyword_groups,
+        corrosion_keyword_groups, 
         metal_mapping,
     )
 except ImportError:
     print("Critical error")
 
 
-# Scoring weights
+# Scoring weights - keeping existing structure
 METAL_SCORE_WEIGHT = 1.5
 CORROSION_MECHANISM_WEIGHT = 2.0
 ORGANIC_PROCESS_WEIGHT = 1.0
@@ -95,24 +96,27 @@ def consolidate_metal_terms(brenda_metals, text_detected_metals):
     return list(consolidated)
 
 def assign_mechanism_from_pathway(pathways):
-    """Map pathways to corrosion mechanisms based on pathway keywords"""
-    pathway_to_mechanism = {
-        'nitrogen': 'nitrogen_metabolism',
-        'nitrate': 'nitrogen_metabolism',
-        'nitrite': 'nitrogen_metabolism',
-        'denitrification': 'nitrogen_metabolism',
-        'nitrification': 'nitrogen_metabolism',
-        'manganese': 'manganese_metabolism',
-        'mn_redox': 'manganese_metabolism'
-    }
+    """Map pathways to corrosion mechanisms by directly matching terms from global_terms.
+    Uses pathway_categories and corrosion_mechanisms from global_terms without hardcoded mappings.
+    """
+    if not pathways:
+        return []
     
     detected_mechanisms = []
-    for pathway in pathways.split(';'):
-        pathway_lower = pathway.lower()
-        for keyword, mechanism in pathway_to_mechanism.items():
-            if keyword in pathway_lower:
-                detected_mechanisms.append(mechanism)
-                break
+    
+    # Convert pathways to single string if it's a list
+    if isinstance(pathways, list):
+        pathways_text = ' '.join(pathways)
+    else:
+        pathways_text = str(pathways)
+    
+    pathways_lower = pathways_text.lower()
+    
+    # Directly check pathway terms against corrosion mechanism terms
+    for mechanism_name, mechanism_terms in corrosion_mechanisms.items():
+        # Check if any mechanism terms appear in the pathways
+        if any(term.lower() in pathways_lower for term in mechanism_terms):
+            detected_mechanisms.append(mechanism_name)
     
     return list(set(detected_mechanisms))  # Return unique mechanisms
 
@@ -122,6 +126,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     Args:
         text: Text to analyze (combined enzyme names, class, pathways, reactions)
         brenda_metals: Metals from BRENDA database
+        pathways: Pathway information for additional mechanism detection
     Returns:
         Dictionary containing all overall scores and matched categories
     """
@@ -160,7 +165,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     results["corrosion_synergy_scores"] = synergy_matches
     results["overall_synergy_score"] = float(synergy_score)
 
-    # Score functional categories
+    # Score functional categories - ENHANCED to be primary scoring method
     functional_terms = {
         cat: details["terms"] for cat, details in functional_categories.items()
     }
@@ -182,17 +187,18 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     results["organic_process_scores"] = organic_matches
     results["overall_organic_process_score"] = float(organic_score)
 
-    # Score keyword groups
+    # REMOVED: corrosion_keyword_groups scoring - now unified under functional_categories
+    # Kept for backward compatibility but not used in final scoring
     keyword_score, keyword_matches = score_keyword_matches(text, corrosion_keyword_groups)
     results["corrosion_keyword_groups"] = list(keyword_matches.keys())
     results["corrosion_keyword_scores"] = keyword_matches
-    results["overall_keyword_score"] = float(keyword_score)
+    results["overall_keyword_score"] = float(keyword_score) 
 
     return results
 
 
 def calculate_pathway_score(pathways, enzyme_names, enzyme_class):
-    """Calculate pathway score based on corrosion relevance.
+    """Calculate pathway score based on corrosion relevance using functional_categories directly.
     Args:
         pathways: List of pathway names/descriptions
         enzyme_names: List of enzyme names
@@ -209,30 +215,22 @@ def calculate_pathway_score(pathways, enzyme_names, enzyme_class):
     )
     all_text = all_text.lower()
 
-    # Score pathway categories
+    # Score pathway categories using pathway_categories dictionary
     for category, terms in pathway_categories.items():
         if any(term.lower() in all_text for term in terms):
             pathway_category_scores[category] = 1.0
             pathway_score += 1.0
 
-    # Use corrosion-related terms from corrosion_keyword_groups
-    corrosion_relevant_groups = [
-        "iron_sulfur_redox",
-        "ocre",
-        "acid_production",
-        "electron_transfer",
-        "biofilm",
-        "sulfide",
-    ]
-
+    # Apply functional_categories weights directly to pathways - using exact keys from global_terms
     for pathway in pathways or []:
         pathway_lower = pathway.lower()
-        for group in corrosion_relevant_groups:
-            if group in corrosion_keyword_groups:
-                for term in corrosion_keyword_groups[group]:
-                    if term.lower() in pathway_lower:
-                        pathway_score += 1.0
-                        break
+        for func_cat, details in functional_categories.items():
+            # Check if any terms from this functional category match the pathway
+            if any(term.lower() in pathway_lower for term in details["terms"]):
+                # Use the score directly from functional_categories
+                weight = details["score"] / 2.0  # Scale down for pathway component
+                pathway_score += weight
+                break
 
     # Organic acid terms from pathway_categories and organic_categories
     organic_terms = []
@@ -270,7 +268,7 @@ def check_metal_organic_synergy(metals, enzyme_names, pathways):
             organic_terms.extend(organic_categories[category])
 
     if any(
-        metal in metals for metal in ["iron", "Fe", "manganese", "Mn", "copper", "Cu"]
+        metal in metals for metal in ["iron", "Fe", "manganese", "Mn", "copper", "Cu", "Nickel", "Ni"]
     ) and any(term.lower() in name_text for term in organic_terms) or any(
         term.lower() in pathway_text for term in organic_terms
     ):
@@ -289,24 +287,25 @@ def calculate_corrosion_relevance_score(
     functional_score=0,
 ):
     """Calculate final corrosion relevance score and category.
+    UPDATED: functional_score now carries more weight as primary scoring method
     Args:
         metal_score: Metal involvement score
         mech_score: Corrosion mechanism score
-        pathway_score: Pathway relevance score
+        pathway_score: Pathway relevance score  
         process_score: Organic process score
-        keyword_score: Keyword group score
+        keyword_score: Keyword group score (reduced weight for backward compatibility)
         synergy_score: Synergy score
-        functional_score: Functional category score
+        functional_score: Functional category score (PRIMARY)
     Returns:
         Corrosion relevance score and category
     """
-    # Apply weights
+    # Apply weights - UPDATED to emphasize functional_score
     weighted_metal_score = metal_score * METAL_SCORE_WEIGHT
     weighted_mech_score = mech_score * CORROSION_MECHANISM_WEIGHT
     weighted_process_score = process_score * ORGANIC_PROCESS_WEIGHT
-    weighted_keyword_score = keyword_score * KEYWORD_SCORE_WEIGHT
+    weighted_keyword_score = keyword_score * (KEYWORD_SCORE_WEIGHT * 0.5)
     weighted_synergy_score = synergy_score * SYNERGY_SCORE_WEIGHT
-    weighted_functional_score = functional_score * FUNCTIONAL_SCORE_WEIGHT
+    weighted_functional_score = functional_score * (FUNCTIONAL_SCORE_WEIGHT * 1.5)  # Increased weight as primary method
 
     # Calculate final score
     corrosion_relevance_score = float(
