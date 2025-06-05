@@ -220,7 +220,7 @@ corrosion_keyword_groups = {
 'electron_transfer': ['direct eet', 'redox', 'electron transfer', 'omc', 'deet', 'cytochrome', 'electron transfer', 'conductive pili', 'nanowire', 'mtrABC', 'omcS', 'oxidoreductase', 'redox', 'reductase', 'oxidase', 'extracellular electron transfer'], 
 'biofilm': ['biofilm formation', 'quorum sensing', 'extracellular matrix', 'EPS', 'surface disruption', 'polysaccharide', 'adhesin', 'biofilm', 'extracellular polymeric substance', 'curli', 'exopolymer', 'attachment', 'colonization', 'alginate', 'cellulose', 'biofilm architecture'], 
 'sulfide': ['sulfide', 'sulfur reduction', 'desulfovibrio', 'h2s', 'hydrogen sulfide', 'sulfide precipitation'], 
-'metal_binding': ['metal chelation', 'metal binding', 'siderophore', 'complexation', 'chelator', 'metallophore', 'iron complex', 'metal transport', 'chelate formation', 'biogenic_iron_oxide', 'microbial_iron_precipitation], 
+'metal_binding': ['metal chelation', 'metal binding', 'siderophore', 'complexation', 'chelator', 'metallophore', 'iron complex', 'metal transport', 'chelate formation', 'biogenic_iron_oxide', 'microbial_iron_precipitation'],
 'nitrogen': ['denitrification', 'nitrate reduction', 'nitrite reduction', 'nitrogen metabolism', 'nitrate', 'nitrite', 'nitrification', 'ammonification'], 
 'manganese': ['manganese reduction', 'mn redox', 'manganese oxidation', 'mn reduction', 'birnessite', 'pyrolusite', 'manganese mineral'], 
 'methanogenesis': ['methanogenesis', 'methanobacterium', 'archaea', 'methane production', 'hydrogenotrophic methanogenesis', 'acetoclastic methanogenesis'], 
