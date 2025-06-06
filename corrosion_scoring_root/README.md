@@ -3,7 +3,8 @@
 This is a scoring system module package made to reuse the scoring system and the global terms so that scoring remains homogeneous and there is no need to recode the terms each time, reducing the risk of inconsistency.
 
 **Project Structure:**
-
+2_Micro
+|
 corrosion_scoring_root/
 ├── corrosion_scoring/         # Python package (importable code)
 │   ├── __init__.py            # Package initialization
