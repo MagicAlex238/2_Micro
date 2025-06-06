@@ -105,7 +105,7 @@ organic_categories = {
 'oxidation': ['oxidation', 'oxidase', 'oxidoreductase', 'dehydrogenase','hydroxylation', 'oxygenase', 'monooxygenase', 'dioxygenase'], 
 'reduction': ['reduction', 'reductase', 'hydrogenase', 'dehydrogenase','3-oxoacyl reductase', 'enoyl reductase', 'beta-ketoacyl reductase', 'ketoacyl reductase','nitrate reduction', 'sulfate reduction', 'electron donation', 'reduction potential'],
 'fatty_acid_metabolism': ['3-oxoacyl', 'enoyl', 'beta-ketoacyl', 'acyl-acp', 'fatty acid synthesis', 'malonyl'],
-'stress_response_terms '= ['oxidative stress', 'nitrosative stress', 'metal stress', 'osmotic stress', 'stringent response', 'SOS response', 'heat shock response', 'cold shock response', 'general stress response', 'sigma factors']
+'stress_response_terms ': ['oxidative stress', 'nitrosative stress', 'metal stress', 'osmotic stress', 'stringent response', 'SOS response', 'heat shock response', 'cold shock response', 'general stress response', 'sigma factors']
 }
 
 #===============================================
