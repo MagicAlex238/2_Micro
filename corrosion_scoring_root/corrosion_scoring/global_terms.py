@@ -28,7 +28,7 @@ metal_terms = {
 'nitrite': ['NO2-', 'nitrite', 'nitrites'],
 'chloride': ['Cl-', 'chloride', 'chlorine', 'hypochlorite', 'chlorate'],
 'sulfate': ['SO4-2', 'sulfate', 'sulfates'],
-'sulfide': ['S2-', 'sulfide', 'sulfides', 'H2S', 'hydrogen sulfide', 'pyrite', 'pyrrhotite'],
+'sulfide': ['S2-', 'sulfide', 'sulfides', 'H2S', 'hydrogen sulfide', 'pyrite', 'pyrrhotite', 'metal sulfide precipitation'],
 'thiosulfate': ['S2O3-2', 'thiosulfate'],
 'oxygen': ['O2', 'oxygen', 'oxidase', 'superoxide', 'peroxide', 'hydroxyl radical'],
 'hydrogen': ['H2', 'hydrogen', 'hydrogenase', 'hydrogen uptake', 'hydrogen evolution'],
@@ -45,12 +45,14 @@ corrosion_mechanisms = {
 'iron_metabolism': ['iron reducction', 'ferric reducction', 'iron oxidation', 'ferrous oxidation', 'iron uptake', 'iron transport', 'iron storage', 'iron homeostasis', 'siderophore production', 'iron-sulfur cluster', 'ferritin', 'bacterioferritin', 'heme biosynthesis'], 
 'sulfur_metabolism': ['sulfate reduc', 'sulfide', 'sulfite', 'thiosulfate', 'sulfur oxidation', 'SRB', 'sulfur disproportionation', 'sulfate-reducing bacteria', 'sulfur respiration', 'sulfite reduction', 'elemental sulfur', 'polysulfide'], 
 'h2_consumption': ['hydrogenase', 'hydrogen uptake', 'hydrogen consumption', 'h2', 'H2 oxidation', 'H2ase', 'hydrogen metabolism'],
-'direct_eet': ['cytochrome', 'electron transfer', 'conductive pili', 'nanowire', 'mtrABC', 'omcS', 'oxidoreductase', 'redox', 'reductase', 'oxidase', 'electron conduit', 'direct electron transfer', 'extracellular electron transfer'], 
+'direct_eet': ['extracellular electron transfer', 'EET', 'solid-state respiration',  'electrode respiration', 'bioelectricity', 'microbial nanowires',
+    'type IV pili', 'conductive biofilms', 'interfacial electron transfer', 'mediated electron transfer', 'flavin secretion', 'riboflavin shuttle','cytochrome', 'electron transfer', 'conductive pili', 'nanowire', 'mtrABC', 'omcS', 'oxidoreductase', 'redox', 'reductase', 'oxidase', 'electron conduit', 'direct electron transfer', 'extracellular electron transfer'], 
 'carbon_metabolism': ['carbon fixation', 'carbon utilization', 'carbohydrate metabolism', 'glycolysis', 'TCA cycle', 'carbon flux', 'carbon assimilation', 'carbon catabolite repression', 'carbonation', 'carbonate precipitation'], 
 'indirect_eet': ['shuttle', 'mediator', 'redox mediator', 'electron shuttle', 'flavin', 'quinone', 'humic substance', 'pyocyanin', 'phenazine', 'riboflavin'], 
 'acid_production': ['acid', 'acidification', 'fermentation', 'lactic acid', 'formic acid', 'acetic acid', 'oxalic acid', 'organic acid', 'acetate production', 'lactate metabolism', 'formate production', 'proton generation', 'low pH', 'carbonic acid', 'citric acid', 'gluconic acid'], 
 'metal_chelation': ['siderophore', 'metal binding', 'chelator', 'metallophore', 'iron complex', 'metal transport', 'chelation', 'metal complexation', 'metal sequestration', 'chelate formation', 'metal ligand'], 
-'biofilm_formation': ['polysaccharide', 'adhesin', 'biofilm', 'EPS', 'extracellular polymeric substance', 'curli', 'exopolymer', 'extracellular matrix', 'adhesion', 'colonization', 'attachment', 'surface', 'adherence', 'biofilm maturation', 'quorum sensing', 'alginate production', 'cellulose production'], 
+'biofilm_formation': ['polysaccharide', 'adhesin', 'biofilm', 'EPS', 'extracellular polymeric substance', 'curli', 'exopolymer', 'extracellular matrix', 'adhesion', 'colonization', 'attachment', 'surface', 'adherence', 'biofilm maturation', 'quorum sensing', 'alginate production', 'cellulose production',
+                          'quorum sensing', 'autoinducer', 'AI-2', 'AHL', 'acyl homoserine lactone','c-di-GMP', 'biofilm matrix', 'eDNA', 'extracellular DNA', 'biofilm dispersal', 'matrix metalloprotease', 'biofilm regulation', 'stringent response', '(p)ppGpp', 'biofilm architecture'], 
 
 'manganese_metabolism': ['manganese oxidation', 'manganese reduction', 'Mn-oxide formation', 'Mn-oxide dissolution', 'Mn cycling', 'birnessite formation', 'pyrolusite formation', 'Mn precipitation'], 
 'metal_transformation': ['iron reduction', 'manganese oxidation', 'metal oxide', 'ochre formation', 'iron oxide deposits', 'iron precipitation', 'rust formation', 'metal deposition', 'metal solubilization', 'mineral dissolution', 'mineral precipitation', 'metal mobilization', 'co-precipitation', 'biosorption'], 
@@ -63,7 +65,8 @@ corrosion_mechanisms = {
 'microbe_metal_synergy': ['metal-microbe interaction', 'biomineralization', 'biosorption', 'bioaccumulation', 'metal-binding proteins', 'metallothionein', 'metal-enzyme complex'], 
 'cathodic_depolarization': ['cathodic depolarization', 'hydrogen depolarization', 'cathodic reaction enhancement', 'electron acceptor consumption', 'cathodic process acceleration'],
 'passivity_breakdown': ['passivation breakdown', 'passive film disruption', 'oxide layer dissolution', 'passive layer damage', 'depassivation'],
-'concentration_cells': ['concentration cell', 'differential concentration', 'ion concentration gradient', 'oxygen concentration cell', 'metal ion gradient']
+'concentration_cells': ['concentration cell', 'differential concentration', 'ion concentration gradient', 'oxygen concentration cell', 'metal ion gradient'],
+'syntrophic_interactions': ['syntrophic', 'cross-feeding', 'metabolic coupling', 'interspecies', 'consortia', 'metabolic cooperation']
 }
 
 #===============================================
@@ -86,7 +89,8 @@ pathway_categories = {
 'halogen_related': ['halogen', 'chloride', 'bromide', 'iodide', 'fluoride','halide', 'dehalogenation', 'haloperoxidase', 'haloacid','chlorination', 'bromination', 'halomethane', 'haloalkane','organohalide', 'halotolerance', 'salt tolerance','halophilic', 'chloride transport', 'halide channel','hypochlorite', 'chlorate reduction', 'perchlorate reduction' ],
 'methanogenesis': ['methanogenesis', 'methanobacterium', 'archaea', 'methane production', 'methyl-coenzyme M reductase', 'methanogenic', 'coenzyme F420','methyl-H4MPT', 'CO2 reduction', 'acetoclastic methanogenesis', 'hydrogenotrophic methanogenesis', 'methylotrophic methanogenesis', 'methanotrophy' ],
 'silicon_metabolism': [ 'silicon uptake', 'silicate transport', 'silicon cycling', 'diatom frustule','silicification', 'biogenic silica', 'silicon precipitation'],
-'phosphorus_metabolism': ['phosphate uptake', 'phosphate transport', 'polyphosphate', 'phosphorus cycling','phosphate precipitation', 'struvite formation', 'phosphate solubilization']
+'phosphorus_metabolism': ['phosphate uptake', 'phosphate transport', 'polyphosphate', 'phosphorus cycling','phosphate precipitation', 'struvite formation', 'phosphate solubilization'],
+'microaerobic_conditions': ['microaerophilic', 'oxygen-limited', 'hypoxic', 'microaerobic']
 } 
 
 #===============================================
@@ -100,7 +104,8 @@ organic_categories = {
 'fermentation': ['fermentation', 'anaerobic metabolism', 'mixed acid fermentation','alcohol fermentation', 'lactic acid fermentation', 'homolactic fermentation', 'heterolactic fermentation'], 
 'oxidation': ['oxidation', 'oxidase', 'oxidoreductase', 'dehydrogenase','hydroxylation', 'oxygenase', 'monooxygenase', 'dioxygenase'], 
 'reduction': ['reduction', 'reductase', 'hydrogenase', 'dehydrogenase','3-oxoacyl reductase', 'enoyl reductase', 'beta-ketoacyl reductase', 'ketoacyl reductase','nitrate reduction', 'sulfate reduction', 'electron donation', 'reduction potential'],
-'fatty_acid_metabolism': ['3-oxoacyl', 'enoyl', 'beta-ketoacyl', 'acyl-acp', 'fatty acid synthesis', 'malonyl'] 
+'fatty_acid_metabolism': ['3-oxoacyl', 'enoyl', 'beta-ketoacyl', 'acyl-acp', 'fatty acid synthesis', 'malonyl'],
+'stress_response_terms '= ['oxidative stress', 'nitrosative stress', 'metal stress', 'osmotic stress', 'stringent response', 'SOS response', 'heat shock response', 'cold shock response', 'general stress response', 'sigma factors']
 }
 
 #===============================================
@@ -229,11 +234,11 @@ corrosion_keyword_groups = {
 'oxygen': ['o2 consumption', 'aerobic respiration', 'oxygen reduction', 'oxygen consumption', 'oxygen depletion', 'oxygen-limited', 'oxygen stress'], 
 'corrosion_general': ['corrosion', 'deterioration', 'pitting', 'microbially influenced corrosion','MIC', 'metal deterioration', 'galvanic corrosion', 'crevice corrosion', 'stress corrosion'], 
 'exoelectrogen': ['exoelectrogen', 'electrochemically active', 'EAB', 'extracellular respiration', 'electrode respiration', 'bioelectrosynthesis'], 
-'enzymatic_corrosion': ['enzyme-mediated corrosion', 'metalloenzyme', 'laccase', 'peroxidase', 'enzyme-catalyzed', 'oxidoreductase'], 
-'metal_precipitation': ['metal precipitation', 'biomineralization', 'mineral formation', 'mineral precipitation', 'crystal nucleation'], 
+'enzymatic_corrosion': ['biogenic minerals', 'metal efflux pump', 'metal homeostasis', 'metal detoxification', 'heavy metal resistance', 'metal stress response', 'enzyme-mediated corrosion', 'metalloenzyme', 'laccase', 'peroxidase', 'enzyme-catalyzed', 'oxidoreductase'], 
+'metal_precipitation': ['metal-organic frameworks','metal precipitation', 'biomineralization', 'mineral formation', 'mineral precipitation', 'crystal nucleation'], 
 'chloride_attack': ['chloride attack', 'chloride corrosion', 'pitting initiation', 'chloride penetration', 'hypochlorite', 'halide corrosion'], 
 'ph_regulation': ['pH buffering', 'pH homeostasis', 'acid resistance', 'pH gradient', 'proton pump', 'pH regulation'],
-'dealloying': ['dealloying', 'selective corrosion', 'dezincification', 'preferential dissolution', 'parting', 'alloy corrosion'] 
+'dealloying': ['dealloying', 'selective corrosion', 'dezincification', 'preferential dissolution', 'parting', 'alloy corrosion', 'metalloid','metal nanoparticles',]
 }
 
 #===============================================
