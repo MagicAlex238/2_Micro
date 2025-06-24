@@ -136,56 +136,56 @@ functional_categories = {
 'justification': 'Beech, I.B., Gaylarde, C.C. (1999). Recent advances in the study of biocorrosion. Rev Microbiol, 30(3):177-190. SRB critical in closed water systems'
 },
 'acid_production': {'terms': ['acid', 'acidification', 'fermentation', 'lactic acid', 'formic acid', 'acetic acid', 'oxalic acid', 'organic acid', 'acetate production', 'lactate metabolism', 'formate production', 'carbonic acid', 'citric acid'], 
-'score': 1.4, # VERY HIGH for HVAC - organic acids major issue
+'score': 1.4,
 'justification': 'Videla, H.A., Herrera, L.K. (2005). Microbiologically influenced corrosion: looking to the future. Int Microbiol, 8(3):169-180'
-},
+}, # VERY HIGH for HVAC - organic acids major issue
 'o2_consumption': {
 'terms': ['o2_consumption', 'aerobic_respiration', 'oxygen reduction', 'oxygen consumption', 'oxygen depletion', 'oxygen-limited growth'], 
-'score': 1.2, # VERY HIGH for HVAC - oxygen depletion creates aggressive conditions
+'score': 1.2, 
 'justification': 'Geesey, G.G., Bremer, P.J. (1990). Biofouling of engineered water systems. Biotechnol Bioeng, 36(10):1039-1046'
-},
+},# VERY HIGH for HVAC - oxygen depletion creates aggressive conditions
 'electron transfer & redox': {'terms': ['direct_eet', 'redox', 'electron_transfer', 'omc', 'deet', 'cytochrome', 'electron transfer', 'conductive pili', 'nanowire', 'mtrABC', 'omcS', 'oxidoreductase', 'redox', 'reductase', 'oxidase', 'extracellular electron transfer'], 
-'score': 1.3, # Important but secondary to chemical mechanisms in HVAC
-'justification': 'Jones, D.A. (1996). Principles and Prevention of Corrosion, 2nd ed. All corrosion fundamentally involves electron transfer'},
+'score': 1.3, 
+'justification':  'Jones, D.A. (1996). Principles and Prevention of Corrosion, 2nd ed. All corrosion fundamentally involves electron transfer'},# Important but secondary to chemical mechanisms in HVAC
 
 'biofilm_formation': {'terms': ['biofilm_formation', 'metal_chelation', 'quorum_sensing', 'extracellular_matrix', 'EPS', 'surface_disruption', 'polysaccharide', 'adhesin', 'biofilm', 'extracellular polymeric substance', 'curli', 'exopolymer', 'extracellular matrix', 'adhesion', 'colonization', 'attachment', 'alginate', 'cellulose'], 
-'score': 1.3, #  biofilms major problem in closed systems
+'score': 1.3, 
 'justification': 'Borenstein, S.W. (1994). Microbiologically Influenced Corrosion Handbook. Industrial Press. Biofilms critical in closed water systems'
-},
+},#  biofilms major problem in closed systems
 
 'metal binding / chelation': {'terms': ['metal_chelation', 'metal_binding', 'siderophore', 'complexation', 'chelator', 'metallophore', 'iron complex', 'metal transport', 'chelate formation', 'metal ligand'], 
-'score': 1.2, # Important in closed loops
+'score': 1.2, 
 'justification': 'Herrera, L.K., Videla, H.A. (2009). Role of iron-reducing bacteria in corrosion and protection of carbon steel. Int Biodeterior Biodegradation, 63(7):891-895'
-},
+},# Important in closed loops
 # ochre score based on organic matter involvement in possible formation of Fe complexes similar to green rust 
 'ocre': {'terms': ['ocre', 'iron_oxide', 'iron_deposit', 'metal oxide', 'ochre formation', 'iron oxide deposits', 'iron precipitation', 'rust formation', 'ferrihydrite', 'goethite', 'magnetite'], 
-'score': 1.1, # represents active Fe-organic complexation 
+'score': 1.1, 
 'justification': 'Cornell, R.M., Schwertmann, U. (2003). The Iron Oxides. Green rust and iron-organic complexes indicate active corrosion processes'
-},
+},# represents active Fe-organic complexation 
 # SECONDARY MECHANISMS (0.7-1.1) - HVAC-adjusted scores
 'nitrogen_reduction': {'terms': ['denitrification', 'nitrate_reduction', 'nitrite_reduction', 'nitrate respiration', 'nitrous oxide reduction', 'nitric oxide metabolism'], 
-'score': 1.0, # Moderate for HVAC - affects redox conditions
+'score': 1.0,
 'justification': 'Flemming, H.C. (1996). Economically relevant microorganisms in technical systems. Materials and Corrosion, 47(7):391-398'
-},
+}, # Moderate for HVAC - affects redox conditions
 'manganese_reduction': {'terms': ['manganese_reduction', 'mn_redox', 'manganese oxidation', 'birnessite formation', 'pyrolusite formation'], 
 'score': 1.0, # Moderate for HVAC - Mn cycling affects redox
 'justification': 'Tebo, B.M., et al. (2004). Biogenic manganese oxides: properties and mechanisms of formation. Annu Rev Earth Planet Sci, 32:287-328'
 },
 'sulfide_production': {'terms': ['sulfide', 'sulfur_reduction', 'desulfovibrio', 'hydrogen sulfide', 'H2S', 'sulfide precipitation'], 
-'score': 1.0, # Direct corrosive attack but secondary to SRB iron-sulfur redox
-'justification': 'Sulfide causes direct corrosive attack on iron and steel surfaces'
+'score': 1.0, 
+'justification': 'Sulfide causes direct corrosive attack on iron and steel surfaces'# Direct corrosive attack but secondary to SRB iron-sulfur redox
 },
 'methanogenesis': {'terms': ['methanogenesis', 'methanobacterium', 'archaea', 'methane production', 'methyl-coenzyme M reductase'], 
-'score': 0.7, # REDUCED for HVAC - uncommon in aerobic systems
+'score': 0.7, 
 'justification': 'Mori, K., et al. (2010). Methanogens in microbiologically influenced corrosion: a review. Microorganisms, 8(7):995'
-},
+},# REDUCED for HVAC - uncommon in aerobic systems
 'h2_consumption': {'terms': ['h2_consumption', 'hydrogenase', 'hydrogen uptake', 'hydrogen consumption', 'h2', 'H2 oxidation', 'H2ase', 'hydrogen metabolism'], 
-'score': 0.6, # Enables cathodic depolarization
+'score': 0.6, 
 'justification': 'Javaherdashti, R. (2008). Microbiologically Influenced Corrosion: An Engineering Insight. Springer'
-},
+},# Enables cathodic depolarization
 'fumarate_formation': {'terms': ['fumarate', 'propionibacterium', 'fumarate reduction', 'fumarate respiration'], 
-'score': 0.5 # Lower priority in HVAC
-},
+'score': 0.5 
+},# Lower priority in HVAC
 'nitrogen_metabolism': {'terms': ['nitrogen_metabolism', 'nitrification', 'ammonification', 'nitrogen fixation', 'anammox'], 
 'score': 1.0,
 'justification': 'Nitrogen cycling influences local redox and pH conditions in water systems'
@@ -207,9 +207,9 @@ functional_categories = {
 'justification': 'pH regulation affects local corrosion conditions'
 },
 'chloride_interactions': {'terms': ['chloride attack', 'chloride-induced corrosion', 'pitting initiation', 'chloride penetration', 'halide corrosion'], 
-'score': 0.7, # REDUCED for HVAC - less critical in closed systems vs marine
+'score': 0.7, 
 'justification': 'Chloride attack less common in closed-loop HVAC systems with treated water'
-},
+},# REDUCED for HVAC - less critical in closed systems vs marine
 'dealloying_mechanisms': {'terms': ['selective corrosion', 'dezincification', 'dealuminification', 'preferential dissolution', 'parting'], 
 'score': 0.6, # REDUCED for HVAC - brass/bronze less common in modern systems
 'justification': 'Newman, R.C. (2019). The dissolution and passivation kinetics of stainless steels containing molybdenum. Corros Sci, 25(5):331-339'
