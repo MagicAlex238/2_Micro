@@ -53,7 +53,6 @@ corrosion_mechanisms = {
 'metal_chelation': ['siderophore', 'metal binding', 'chelator', 'metallophore', 'iron complex', 'metal transport', 'chelation', 'metal complexation', 'metal sequestration', 'chelate formation', 'metal ligand'], 
 'biofilm_formation': ['polysaccharide', 'adhesin', 'biofilm', 'EPS', 'extracellular polymeric substance', 'curli', 'exopolymer', 'extracellular matrix', 'adhesion', 'colonization', 'attachment', 'surface', 'adherence', 'biofilm maturation', 'quorum sensing', 'alginate production', 'cellulose production',
                           'quorum sensing', 'autoinducer', 'AI-2', 'AHL', 'acyl homoserine lactone','c-di-GMP', 'biofilm matrix', 'eDNA', 'extracellular DNA', 'biofilm dispersal', 'matrix metalloprotease', 'biofilm regulation', 'stringent response', '(p)ppGpp', 'biofilm architecture'], 
-
 'manganese_metabolism': ['manganese oxidation', 'manganese reduction', 'Mn-oxide formation', 'Mn-oxide dissolution', 'Mn cycling', 'birnessite formation', 'pyrolusite formation', 'Mn precipitation'], 
 'metal_transformation': ['iron reduction', 'manganese oxidation', 'metal oxide', 'ochre formation', 'iron oxide deposits', 'iron precipitation', 'rust formation', 'metal deposition', 'metal solubilization', 'mineral dissolution', 'mineral precipitation', 'metal mobilization', 'co-precipitation', 'biosorption'], 
 'ph_modulation': ['acid tolerance', 'alkaline tolerance', 'proton pump', 'pH homeostasis', 'pH stress', 'pH regulation', 'acid resistance', 'pH buffering', 'pH gradient', 'acidophile', 'alkaliphile'], 
