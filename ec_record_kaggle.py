@@ -1,20 +1,45 @@
  #==================================RUN METABOLISM DB =============================
 #============ IMPORTS AND INSTALLS =======================
-# Making sure to use same python version for compatibility
-'''!sudo apt-get update -y
-!sudo apt-get install python3.10
-!sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
-!python --version
-!pip install fuzzywuzzy
-!pip install lxml pandas
-!pip install pyarrow
-!pip install python-Levenshtein
-!pip install openpyxl
-!pip install adjustText'''
-!pip install git+https://github.com/MagicAlex238/2_Micro.git
-# Standard library imports
 import os
 import sys
+from pathlib import Path
+sys.path.append(os.path.abspath('..'))  # Ensures the project root is in Python's search path
+
+if Path("/kaggle").exists():
+    # Making sure to use same python version for compatibility
+    !sudo apt-get update -y
+    !sudo apt-get install python3.10
+    !sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
+    !python --version
+    !pip install fuzzywuzzy
+    !pip install lxml pandas
+    !pip install pyarrow
+    !pip install python-Levenshtein
+    !pip install openpyxl
+    !pip install adjustText
+    
+    # Create directory structure
+    !mkdir -p corrosion_scoring
+    
+    # Download the necessary files each session always
+    !wget -O corrosion_scoring/__init__.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring/__init__.py
+    !wget -O corrosion_scoring/global_terms.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring/global_terms.py
+    !wget -O corrosion_scoring/scoring_system.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring/scoring_system.py
+    !wget -O corrosion_scoring/term_processor.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring/term_processor.py
+    # Add current directory to path
+    import sys
+    sys.path.append(os.getcwd())
+    
+    # Import package
+    import corrosion_scoring as cs
+else:
+    print("Running in local (VSCode) environment")
+    
+    ## When in vscode local env first time only
+    #!pip install git+https://github.com/MagicAlex238/2_Micro.git #subdirectory=corrosion_scoring_root
+    import corrosion_scoring as cs
+
+# Standard library imports
 import ast
 import subprocess
 import logging
@@ -22,7 +47,6 @@ import time
 from datetime import datetime
 import shutil
 from io import StringIO
-from pathlib import Path
 import re
 from IPython import get_ipython
 from IPython.display import display
@@ -48,8 +72,6 @@ import os
 import csv
 import json
 import pyarrow.parquet as pq
-# Own Scoring system
-import corrosion_scoring as cs
 
 # Set up logging
 logging.basicConfig(
@@ -57,9 +79,10 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 # ===========================## 9.1 Setting up Paths and Parsing the Dataframes ==================
-
-#db_dir = Path("/kaggle/input/databases/Databases")
-db_dir = Path("/home/beatriz/MIC/Databases")
+if Path("/kaggle").exists():
+    db_dir = Path("/kaggle/input/databases/Databases")
+else:
+    db_dir = Path("/home/beatriz/MIC/Databases")
 
 def setup_paths():
     """Set up paths for database access"""
@@ -289,7 +312,6 @@ def parse_brenda_file():
                   ec_detailed_info[current_ec] = {
                       'metals': [],
                       'cofactors': [],
-                      'reactions': [],
                       'substrates': [],
                       'inhibitors': []
                   }
@@ -306,11 +328,6 @@ def parse_brenda_file():
                       # Extract cofactor information
                       cofactor_info = line.split('\t')[1]
                       ec_detailed_info[current_ec]['cofactors'].append(cofactor_info)
-
-                  elif line.startswith('RE\t'):
-                      # Extract detailed reaction information
-                      reaction_info = line.split('\t')[1]
-                      ec_detailed_info[current_ec]['reactions'].append(reaction_info)
 
                   elif line.startswith('SP\t') or line.startswith('NSP\t'):
                       # Extract substrate information
@@ -342,7 +359,6 @@ def process_brenda_data(brenda_data):
     for ec_number, data in brenda_data.items():
         processed_data[ec_number] = {
             'cofactors': data.get('cofactors', []),
-            'reactions': data.get('reactions', []),
             'substrates': data.get('substrates', []),
             'inhibitors': data.get('inhibitors', []),
             'raw_metals': data.get('metals', []),
@@ -917,10 +933,8 @@ def create_metabolism_database(sample_size=None):
         print("Loading data sources...")
         ec_to_names = read_enzyme_names() or {}
         enzyme_class = read_enzyme_class() or {}
-        reaction_equation = read_reaction_data() or {}
         ko_ec = read_ko_data() or {}
         ko_hierarchy = read_ko_hierarchy() or {}
-        pathway_data = read_pathway_data() or {}
         module_info = read_module_data() or {}
         compound_info = read_compound_data() or {}
         brenda_en = process_brenda_data(brenda_data) or {}
