@@ -71,74 +71,25 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     results = {}
     text_lower = text.lower()
 
-    # Score metals - simplified since all data has metals
+    # Score metals 
     metal_score = 0.0
     detected_metals = []
-    for metal in metal_terms:
+    for metal in cs.metal_terms:
         if metal.lower() in text_lower:
             detected_metals.append(metal)
             metal_score += 1.0
     
     # Consolidate metals
-    consolidated_metals = consolidate_metal_terms(brenda_metals, detected_metals)
+    consolidated_metals = cs.consolidate_metal_terms(brenda_metals, detected_metals)
     results["consolidated_metals"] = consolidated_metals
     results["overall_metal_score"] = float(metal_score)
 
-    # Score synergies
-    synergy_score = 0.0
-    synergy_matches = {}
-    total_individual_synergy_terms_found = 0 
-
-    for synergy_group, terms in corrosion_synergies.items():
-        group_hits = 0
-        for term in terms:
-            if term.lower() in text_lower:
-                group_hits += 1
-                total_individual_synergy_terms_found += 1
-
-        if group_hits > 0:
-            synergy_matches[synergy_group] = math.log(group_hits + 1)
-
-    if total_individual_synergy_terms_found >= 2:
-        for score_val in synergy_matches.values():
-            synergy_score += score_val # Sum up scores if threshold met
-        results["corrosion_synergies"] = list(synergy_matches.keys())
-    else:
-        # If less than 2 individual terms found, reset score and matches
-        synergy_score = 0.0
-        synergy_matches = {}
-        results["corrosion_synergies"] = []
-    # contextual matching of synergies across different categories0
-
-    inferred_synergies_found = []
-    inferred_synergy_score = 0.0
-
-    # Rule 1: Metal + Specific Functional Category + Specific Mechanism
-    if 'Fe' in consolidated_metals and \
-    'Oxidoreductase Activity' in functional_categories and \
-    'Microbial Influenced Corrosion' in mechanisms_found:
-    inferred_synergies_found.append('Fe-MIC-Redox Synergy')
-    inferred_synergy_score += 5.0 # Example score
-
-    # Rule 2: Presence of 'sulfide' compound + Metal + Reductase FC
-    if any('sulfide' in c for c in corrosion_relevant_compounds) and \
-    ('Fe' in consolidated_metals or 'Cu' in consolidated_metals) and \
-    'Reductase Activity' in functional_categories: # Assuming 'Reductase Activity' is an FC
-    inferred_synergies_found.append('Sulfidic Metal Biocorrosion')
-    inferred_synergy_score += 7.0
-
-    # Add these to your results dictionary:
-    results['inferred_synergies'] = inferred_synergies_found
-    results['overall_inferred_synergy_score'] = inferred_synergy_score
-    
-    results["corrosion_synergies"] = list(synergy_matches.keys())
-    results["corrosion_synergy_scores"] = synergy_matches
-    results["overall_synergy_score"] = float(synergy_score)
-
+    #========================================================================
     # Score functional categories - PRIMARY scoring method
     functional_score = 0.0
-    func_matches = {}
-    for cat, details in functional_categories.items():
+    func_matches = {} #dict storages weighted score
+    detected_fc_names = set()  # to take into account for coocurrence
+    for cat, details in cs.functional_categories.items():
         category_hits = 0
         for term in details["terms"]:
             if term.lower() in text_lower:
@@ -149,20 +100,194 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
             weighted_score = base_score * details["score"]
             func_matches[cat] = weighted_score
             functional_score += weighted_score
+            detected_fc_names.add(cat)
 
     results["functional_categories"] = [
         {"category": cat, "score": score}
         for cat, score in func_matches.items()
     ]
     results["overall_functional_score"] = float(functional_score)
+    #=====================================================================
 
+    # The functional categories to check for co-occurrence 
+    subcategories_fc = ["o2_consumption","nitrogen_metabolism", "iron_metabolism","sulfur_metabolism","h2_consumption","direct_eet",
+    "carbon_metabolism","indirect_eet","organic_acid_metabolism","metal_binding_chelation","biofilm_formation","manganese_processes",
+    "methanogenesis","fumarate_formation","halogen_related","phosphorus_metabolism"
+    ]
+
+    def detect_functional_category_synergies(text_lower, functional_categories, subcategories_fc):
+        """ Detect synergies based on co-occurrence of terms from different functional categories.
+        Args:text_lower: Lowercase text to analyze
+            functional_categories: Dictionary of functional categories and their terms
+            subcategories_fc: List of functional category names to check
+        Returns: Dict containing synergy detection results"""
+        
+        # Step 1: Detect which functional categories have hits and collect their terms
+        detected_categories = {}
+        all_found_terms = set()
+        
+        for category in subcategories_fc:
+            if category in functional_categories:
+                terms = functional_categories[category]['terms']
+                found_terms = [term for term in terms if term.lower() in text_lower]
+                
+                if found_terms:
+                    detected_categories[category] = found_terms
+                    all_found_terms.update(found_terms)
+        
+        # Step 2: Check for meaningful synergies
+        synergy_results = {
+            'fc_cooccurrence_synergy_hit': False,
+            'synergy_score': 0.0,
+            'synergy_child_terms_found': [],
+            'synergy_categories_involved': [],
+            'synergy_description': ''
+        }
+        
+        # Require at least 2 different functional categories
+        if len(detected_categories) < 2:
+            return synergy_results
+        
+        # Define high-priority synergy combinations with their scores
+        priority_synergies = {
+            ('organic_acid_metabolism', 'metal_binding_chelation'): {
+                'score': 3.0,
+                'description': 'TOC-chelation Synergy (TOC-chelate)'
+            },
+            ('iron_metabolism', 'organic_acid_metabolism'): {
+                'score': 2.8,
+                'description': 'Iron-Organic Acid Synergy (acid-enhanced Fe corrosion)'
+            },
+            ('biofilm_formation', 'metal_binding_chelation'): {
+                'score': 2.7,
+                'description': 'biofilm-chelate Synergy (biofilm-chelate-corrosion)'
+            },
+            ('o2_consumption', 'iron_metabolism'): {
+                'score': 2.5,
+                'description': 'Oxygen-Iron Synergy (aerobic Fe corrosion)'
+            },
+            ('sulfur_metabolism', 'iron_metabolism'): {
+                'score': 2.4,
+                'description': 'Sulfur-iron Synergy (SRB-mediated corrosion)'
+            },
+            ('sulfur_metabolism', 'h2_consumption'): {
+                'score': 2.3,
+                'description': 'Sulfur-Hydrogen Synergy (SRB-mediated corrosion)'
+            },
+            ('biofilm_formation', 'iron_metabolism'): {
+                'score': 2.2,
+                'description': 'Biofilm-Iron Synergy (biofilm-enhanced Fe corrosion)'
+            },
+            ('nitrogen_metabolism', 'iron_metabolism'): {
+                'score': 2.0,
+                'description': 'Nitrogen-Iron Synergy (nitrate-enhanced Fe corrosion)'
+            }
+        }
+        
+        # Step 3: Check for priority synergies first
+        max_synergy_score = 0.0
+        best_synergy = None
+        involved_categories = []
+        
+        for synergy_pair, synergy_info in priority_synergies.items():
+            cat1, cat2 = synergy_pair
+            if cat1 in detected_categories and cat2 in detected_categories:
+                # Calculate combined term count from both categories
+                combined_terms = set(detected_categories[cat1] + detected_categories[cat2])
+                
+                # Require at least 3 terms total for high-confidence synergy
+                if len(combined_terms) >= 3:
+                    current_score = synergy_info['score']
+                    if current_score > max_synergy_score:
+                        max_synergy_score = current_score
+                        best_synergy = synergy_info
+                        involved_categories = [cat1, cat2]
+        
+        # Step 4: If no priority synergy found, check for general multi-category synergy
+        if max_synergy_score == 0.0 and len(detected_categories) >= 2:
+            # General synergy: any 2+ categories with sufficient terms
+            if len(all_found_terms) >= 4:  # Require more terms for general synergy
+                max_synergy_score = 1.5  # Lower score for general synergy
+                involved_categories = list(detected_categories.keys())
+                best_synergy = {
+                    'description': f'Multi-pathway Synergy ({len(detected_categories)} categories)'
+                }
+        
+        # Step 5: Populate results if synergy detected
+        if max_synergy_score > 0.0:
+            # Collect all terms from involved categories
+            synergy_terms = set()
+            for cat in involved_categories:
+                if cat in detected_categories:
+                    synergy_terms.update(detected_categories[cat])
+            
+            synergy_results.update({
+                'fc_cooccurrence_synergy_hit': True,
+                'synergy_score': max_synergy_score,
+                'synergy_child_terms_found': sorted(list(synergy_terms)),
+                'synergy_categories_involved': involved_categories,
+                'synergy_description': best_synergy['description']
+            })
+        
+        return synergy_results
+
+    # Consolidate Final Synergy Results ---
+    if fc_cooccurrence_synergy_hit:
+        # The new FC co-occurrence synergy takes precedence and populates the fields
+        results["corrosion_synergies"] = final_corrosion_synergies_list
+        results["overall_synergy_score"] = float(final_synergy_score)
+        # Note: No 'corrosion_synergy_scores' for this new type, as it's a direct flag/boost.
+    else:
+        # Fall back to the old keyword-based synergy if the new one didn't hit
+        results["corrosion_synergies"] = sorted(list(keyword_synergy_groups_found))
+        results["overall_synergy_score"] = float(keyword_synergy_score)
+
+    #=================
+    synergy_results = detect_functional_category_synergies(
+    text_lower, functional_categories, subcategories_fc
+    )
+    
+    # Legacy keyword synergy detection (as fallback)
+    keyword_synergy_score = 0.0
+    keyword_synergy_groups_found = set()
+    
+    for synergy_group, terms in corrosion_synergies.items():
+        group_hits = 0
+        for term in terms:
+            if term.lower() in text_lower:
+                group_hits += 1
+        if group_hits > 0:
+            keyword_synergy_score += math.log(group_hits + 1)
+            keyword_synergy_groups_found.add(synergy_group)
+
+    # Choose best synergy result
+    if synergy_results['fc_cooccurrence_synergy_hit']:
+        # Use functional category synergy
+        results["corrosion_synergies"] = synergy_results['synergy_child_terms_found']
+        results["overall_synergy_score"] = float(synergy_results['synergy_score'])
+        results["synergy_type"] = "functional_category_cooccurrence"
+        results["synergy_description"] = synergy_results['synergy_description']
+        results["synergy_categories"] = synergy_results['synergy_categories_involved']
+    elif keyword_synergy_score > 0:
+        # Fall back to keyword synergy
+        results["corrosion_synergies"] = sorted(list(keyword_synergy_groups_found))
+        results["overall_synergy_score"] = float(keyword_synergy_score)
+        results["synergy_type"] = "keyword_based"
+        results["synergy_description"] = "Keyword-based synergy detection"
+    else:
+        # No synergy detected
+        results["corrosion_synergies"] = []
+        results["overall_synergy_score"] = 0.0
+        results["synergy_type"] = "none"
+        results["synergy_description"] = "No synergies detected"
+   
     return results
 
 def calculate_corrosion_relevance_score(
     metal_score,
     synergy_score=0,
     functional_score=0,
-):
+    ):
     """Calculate final corrosion relevance score and category.
     UPDATED: functional_score now carries more weight as primary scoring method
     
