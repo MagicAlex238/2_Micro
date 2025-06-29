@@ -16,6 +16,12 @@ class TermProcessor:
         """Basic normalization without lemmatization"""
         return re.sub(r'[\W_]+', '', term).lower()
     
+    def matches_normalized(self, term: str, text: str) -> bool:
+        """Check if normalized term appears in text"""
+        norm_term = self._normalize_term(term)
+        norm_text = self._normalize_term(text)
+        return norm_term in norm_text
+    
     def _create_priority_dict(self, taxonomy: dict) -> OrderedDict:
         """Create search priority structure"""
         return OrderedDict(
