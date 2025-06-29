@@ -8,6 +8,7 @@ Updated to use unified functional_categories scoring approach.
 import math
 import sys
 import os
+from .term_processor import TermProcessor 
 
 try:
     # Try relative import (for package installation)
@@ -20,7 +21,12 @@ try:
 except ImportError:
     print("Critical error")
 
-# Scoring weights - updated structure
+
+# Normalising terms before scoring and mathching
+processor = TermProcessor(functional_categories)
+normalized_functional_categories = processor.get_normalized_taxonomy()
+
+# Scoring weights - 
 METAL_SCORE_WEIGHT = 0.5
 FUNCTIONAL_SCORE_WEIGHT = 1.5
 SYNERGY_SCORE_WEIGHT = 2.0
@@ -31,13 +37,9 @@ MEDIUM_RELEVANCE_THRESHOLD = 2.0
 
 def consolidate_metal_terms(brenda_metals, text_detected_metals):
     """Consolidate metal names from BRENDA and text mining into standardized symbols.
-    
-    Args:
-        brenda_metals: Metals obtained from BRENDA data
+    Args:  brenda_metals: Metals obtained from BRENDA data
         text_detected_metals: Metals detected from text mining
-        
-    Returns:
-        Consolidated list of unique, standardized metal symbols
+    Returns:    Consolidated list of unique, standardized metal symbols
     """
     consolidated = set()
     all_metals = (brenda_metals or []) + (text_detected_metals or [])
@@ -75,7 +77,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     metal_score = 0.0
     detected_metals = []
     for metal in cs.metal_terms:
-        if metal.lower() in text_lower:
+        if processor.matches_normalized(metal, text_lower):
             detected_metals.append(metal)
             metal_score += 1.0
     
@@ -92,7 +94,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     for cat, details in cs.functional_categories.items():
         category_hits = 0
         for term in details["terms"]:
-            if term.lower() in text_lower:
+            if processor.matches_normalized(term, text_lower):
                 category_hits += 1
         
         if category_hits > 0:
@@ -129,7 +131,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
         for category in subcategories_fc:
             if category in functional_categories:
                 terms = functional_categories[category]['terms']
-                found_terms = [term for term in terms if term.lower() in text_lower]
+                found_terms = [term for term in terms if processor.matches_normalized(term, text_lower)]
                 
                 if found_terms:
                     detected_categories[category] = found_terms
@@ -231,17 +233,6 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
         
         return synergy_results
 
-    # Consolidate Final Synergy Results ---
-    if fc_cooccurrence_synergy_hit:
-        # The new FC co-occurrence synergy takes precedence and populates the fields
-        results["corrosion_synergies"] = final_corrosion_synergies_list
-        results["overall_synergy_score"] = float(final_synergy_score)
-        # Note: No 'corrosion_synergy_scores' for this new type, as it's a direct flag/boost.
-    else:
-        # Fall back to the old keyword-based synergy if the new one didn't hit
-        results["corrosion_synergies"] = sorted(list(keyword_synergy_groups_found))
-        results["overall_synergy_score"] = float(keyword_synergy_score)
-
     #=================
     synergy_results = detect_functional_category_synergies(
     text_lower, functional_categories, subcategories_fc
@@ -254,7 +245,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     for synergy_group, terms in corrosion_synergies.items():
         group_hits = 0
         for term in terms:
-            if term.lower() in text_lower:
+            if processor.matches_normalized(term, text_lower):
                 group_hits += 1
         if group_hits > 0:
             keyword_synergy_score += math.log(group_hits + 1)
