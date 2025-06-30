@@ -217,7 +217,7 @@ typing_extensions==4.12.2
 tzdata==2024.2
 umap-learn==0.5.7
 uri-template==1.3.0
-urllib3==1.26.19
+urllib3== 2.5.0 # version compatible is 1.26.19 but updated to latest for security incase of use will reverse
 wcwidth==0.2.13
 webcolors==24.11.1
 webencodings==0.5.1
