@@ -24,7 +24,7 @@ except ImportError:
 
 # Normalising terms before scoring and mathching
 processor = TermProcessor(functional_categories)
-normalized_functional_categories = processor.get_normalized_taxonomy()
+normalized_functional_categories = processor.normalized_taxonomy
 
 # Scoring weights - 
 METAL_SCORE_WEIGHT = 0.5
