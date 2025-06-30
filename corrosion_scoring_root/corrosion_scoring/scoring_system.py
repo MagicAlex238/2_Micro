@@ -76,13 +76,13 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     # Score metals 
     metal_score = 0.0
     detected_metals = []
-    for metal in cs.metal_terms:
+    for metal in metal_terms:
         if processor.matches_normalized(metal, text_lower):
             detected_metals.append(metal)
             metal_score += 1.0
     
     # Consolidate metals
-    consolidated_metals = cs.consolidate_metal_terms(brenda_metals, detected_metals)
+    consolidated_metals = consolidate_metal_terms(brenda_metals, detected_metals)
     results["consolidated_metals"] = consolidated_metals
     results["overall_metal_score"] = float(metal_score)
 
@@ -91,7 +91,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     functional_score = 0.0
     func_matches = {} #dict storages weighted score
     detected_fc_names = set()  # to take into account for coocurrence
-    for cat, details in cs.functional_categories.items():
+    for cat, details in functional_categories.items():
         category_hits = 0
         for term in details["terms"]:
             if processor.matches_normalized(term, text_lower):
