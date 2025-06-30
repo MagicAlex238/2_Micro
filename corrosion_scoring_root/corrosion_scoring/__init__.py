@@ -2,3 +2,4 @@
 
 from .global_terms import *
 from .scoring_system import *
+from .term_processor import TermProcessor 
