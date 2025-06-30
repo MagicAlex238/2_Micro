@@ -10,7 +10,7 @@ The first notebook is a visualisation the**Physicochemical** data analysis. Thes
 | **4_Bacteria_Influencing_corrosion.ipynb**| Notebook for literature research on MIC, to differenciate the known and candidate bacteria on the selected_list of bacteria, the notebook uses API calls to |
 | **5_Sequences_qiime.ipynb**      | A notebook for invert search of the sequences from the curated data bacteria taxa which serve to make posterior a phylogenetic analysis and to know how this bacteria relate to each other from the evolutionary stand point|
 | **6_Picrust_Functional.ipynb** | A notebook to analyse the functional and sequence relationships between newly identified bacteria and known corrosion-influencing microorganism, needs special environment and installation shown elsewhere*|
-| **7_visual_protein.ipynb** | A notebook to visualise the computational results of the picrust2 prediction|
+
 
 ## Environment
 
