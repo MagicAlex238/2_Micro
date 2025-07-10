@@ -13,9 +13,22 @@ class TermProcessor:
         self.normalized_taxonomy = self._create_priority_dict(taxonomy)
     
     def _normalize_term(self, term: str) -> str:
-        """Basic normalization without lemmatization"""
-        return re.sub(r'[\W_]+', '', term).lower()
-    
+        """Enhanced normalization with corrosion-specific substitutions"""
+        substitutions = {
+            'reduc': 'reduction',
+            'oxid': 'oxidation', 
+            'ferri': 'iron',
+            'ferro': 'iron',
+            'sulph': 'sulf',
+            'metallo': 'metal',
+            'corrosi': 'corrosion'
+        }
+        
+        base_term = re.sub(r'[\W_]+', '', term).lower()
+        for pattern, replacement in substitutions.items():
+            base_term = re.sub(f'^{pattern}', replacement, base_term)
+        return base_term
+
     def matches_normalized(self, term: str, text: str) -> bool:
         """Check if normalized term appears in text"""
         norm_term = self._normalize_term(term)
@@ -36,17 +49,3 @@ class TermProcessor:
             if norm_term in terms:
                 return category
         return None
-#===============    
-def _normalize_term(self, term: str) -> str:
-    """Context-aware normalization for corrosion terms"""
-    substitutions = {
-        'reduc': 'reduction',
-        'oxid': 'oxidation',
-        'ferri': 'iron',
-        'ferro': 'iron',
-        'sulph': 'sulf'  # British/American spelling
-    }
-    base_term = re.sub(r'[\W_]+', '', term).lower()
-    for pattern, replacement in substitutions.items():
-        base_term = re.sub(f'^{pattern}', replacement, base_term)
-    return base_term
