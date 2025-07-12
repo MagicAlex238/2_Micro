@@ -35,61 +35,56 @@ SYNERGY_SCORE_WEIGHT = 2.0
 HIGH_RELEVANCE_THRESHOLD = 5.0
 MEDIUM_RELEVANCE_THRESHOLD = 2.0
 
-    '''def consolidate_metal_terms(brenda_metals, text_detected_metals):
-    """Consolidate metal names from BRENDA and text mining into standardized symbols.
-    Args:  brenda_metals: Metals obtained from BRENDA data
-        text_detected_metals: Metals detected from text mining
-    Returns:    Consolidated list of unique, standardized metal symbols
+def score_keyword_matches(text, keyword_list):
+    """Score keyword matches in text.
+    
+    Args:
+        text: Text to analyze
+        keyword_list: List of keywords to search for
+        
+    Returns:
+        Tuple of (score, matched_terms)
     """
-    consolidated = set()
-    all_metals = (brenda_metals or []) + (text_detected_metals or [])
+    text_lower = text.lower()
+    score = 0.0
+    matches = []
+    
+    for keyword in keyword_list:
+        if processor.matches_normalized(keyword, text_lower):
+            matches.append(keyword)
+            score += 1.0
+    
+    return score, matches
 
-    for metal in all_metals:
-        metal_norm = metal.strip().lower()
-        # Check if the normalized term matches any key in the standard mapping
-        for key, symbol in metal_mapping.items():
-            if key in metal_norm:
-                consolidated.add(symbol)
-                break
-        else:
-            # If no mapping is found, add the original
-            consolidated.add(metal.strip())
-    return list(consolidated)'''
 # To be added to scoring_system.py
 def consolidate_metal_terms(brenda_metals: list, text_detected_metals: list) -> list:
     """
     Consolidates metals identified from BRENDA data and those detected via text mining.
     Ensures unique metal terms.
     """
-    all_metals = set(brenda_metals)
-    for metal in text_detected_metals:
+    all_metals = set(brenda_metals or [])
+    for metal in (text_detected_metals or []):
         all_metals.add(metal)
     return list(all_metals)
 
 def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     """Calculate all the overall scores for a given text.
     
-    Args:
-        text: Text to analyze (combined enzyme names, class, pathways, reactions)
+    Args: text: Text to analyze (combined enzyme names, class, pathways, reactions)
         brenda_metals: Metals from BRENDA database
         pathways: Pathway information for additional mechanism detection
-        
-    Returns:
-        Dictionary containing all overall scores and matched categories
+    Returns: Dictionary containing all overall scores and matched categories
     """
     if brenda_metals is None:
         brenda_metals = []
 
     results = {}
     text_lower = text.lower()
+    # Convert pathways to a single string if it's a list for assign_mechanism_from_pathway
+    pathways_for_mechanism = ' '.join(pathways) if isinstance(pathways, list) else (pathways or "")
 
-    # Score metals 
-    metal_score = 0.0
-    detected_metals = []
-    for metal in metal_terms:
-        if processor.matches_normalized(metal, text_lower):
-            detected_metals.append(metal)
-            metal_score += 1.0
+    # Score metals
+    metal_score, detected_metals = score_keyword_matches(text, metal_terms) # metal_matches are from text
     
     # Consolidate metals
     consolidated_metals = consolidate_metal_terms(brenda_metals, detected_metals)
@@ -291,14 +286,10 @@ def calculate_corrosion_relevance_score(
     ):
     """Calculate final corrosion relevance score and category.
     UPDATED: functional_score now carries more weight as primary scoring method
-    
-    Args:
+    Args:functional_score: Functional category score (PRIMARY)
         metal_score: Metal involvement score
         synergy_score: Synergy score  
-        functional_score: Functional category score (PRIMARY)
-        
-    Returns:
-        Corrosion relevance score and category
+    Returns:  Corrosion relevance score and category
     """
     # Apply weights - functional_score is now primary
     weighted_metal_score = metal_score * METAL_SCORE_WEIGHT
@@ -321,3 +312,5 @@ def calculate_corrosion_relevance_score(
         corrosion_relevance = "low"
 
     return corrosion_relevance_score, corrosion_relevance
+
+
