@@ -35,7 +35,7 @@ SYNERGY_SCORE_WEIGHT = 2.0
 HIGH_RELEVANCE_THRESHOLD = 5.0
 MEDIUM_RELEVANCE_THRESHOLD = 2.0
 
-def consolidate_metal_terms(brenda_metals, text_detected_metals):
+    '''def consolidate_metal_terms(brenda_metals, text_detected_metals):
     """Consolidate metal names from BRENDA and text mining into standardized symbols.
     Args:  brenda_metals: Metals obtained from BRENDA data
         text_detected_metals: Metals detected from text mining
@@ -54,7 +54,17 @@ def consolidate_metal_terms(brenda_metals, text_detected_metals):
         else:
             # If no mapping is found, add the original
             consolidated.add(metal.strip())
-    return list(consolidated)
+    return list(consolidated)'''
+# To be added to scoring_system.py
+def consolidate_metal_terms(brenda_metals: list, text_detected_metals: list) -> list:
+    """
+    Consolidates metals identified from BRENDA data and those detected via text mining.
+    Ensures unique metal terms.
+    """
+    all_metals = set(brenda_metals)
+    for metal in text_detected_metals:
+        all_metals.add(metal)
+    return list(all_metals)
 
 def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     """Calculate all the overall scores for a given text.
