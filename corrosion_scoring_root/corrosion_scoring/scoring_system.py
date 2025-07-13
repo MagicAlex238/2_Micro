@@ -56,16 +56,27 @@ def score_keyword_matches(text, keyword_list):
     
     return score, matches
 
-# To be added to scoring_system.py
-def consolidate_metal_terms(brenda_metals: list, text_detected_metals: list) -> list:
+def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
     """
-    Consolidates metals identified from BRENDA data and those detected via text mining.
-    Ensures unique metal terms.
-    """
-    all_metals = set(brenda_metals or [])
-    for metal in (text_detected_metals or []):
-        all_metals.add(metal)
-    return list(all_metals)
+    Consolidates metal names from BRENDA and text mining into standardized symbols.
+    Parameters:  brenda_metals (list of str): Metals obtained from BRENDA data.
+        text_detected_metals (list of str): Metals detected from text mining.
+    Returns: list: Consolidated list of unique, standardized metal symbols.
+    """   
+    consolidated = set()
+    all_metals = (brenda_metals or []) + (text_detected_metals or [])
+    
+    for metal in all_metals:
+        metal_norm = metal.strip().lower() #processor.matches_normalized(term, text_lower)
+        # Check if the normalized term matches any key in the standard mapping
+        for key, symbol in cs.metal_mapping.items():
+            if key in metal_norm:
+                consolidated.add(symbol)
+                break
+        else:
+            # If no mapping is found, add the original
+            consolidated.add(metal.strip())
+    return list(consolidated)
 
 def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     """Calculate all the overall scores for a given text.
