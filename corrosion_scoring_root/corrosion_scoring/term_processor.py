@@ -1,6 +1,5 @@
 import re
 from collections import OrderedDict
-from global_terms import sort_functional_categories
 
 class TermProcessor:
     """Normalizes and matches corrosion terms with priority handling"""

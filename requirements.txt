@@ -131,7 +131,7 @@ parso==0.8.4
 partd==1.4.2
 patsy==1.0.1
 pexpect==4.9.0
-pillow==11.2.1
+#pillow==11.2.1 # Vulnerable version, commented out for archiving purposes
 pip-api==0.0.34
 pip-requirements-parser==32.0.1
 pip_audit==2.9.0
@@ -165,7 +165,7 @@ PyYAML==6.0.2
 pyzmq==26.2.0
 RapidFuzz==3.12.2
 referencing==0.35.1
-requests==2.32.3 # updated because security warning 
+#requests==2.32.3 # updated because security warning, however will be use when needed, vulnerabilities still no updated by creators
 retrying==1.3.4
 rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
