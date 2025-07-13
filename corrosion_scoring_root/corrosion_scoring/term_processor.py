@@ -6,7 +6,7 @@ class TermProcessor:
     
     def __init__(self, taxonomy: dict):
         self.priority_order = ['iron_metabolism', 'sulfur_metabolism', 'organic_acid_metabolism',
-                                 'direct_eet', 'biofilm_formation', 'o2_consumption', 'metal binding / chelation', 'nitrogen_metabolism', 'manganese_processes', 'h2_consumption', 'halogen_related', 'methanogenesis', 'carbon_metabolism', 'indirect_eet', 'fumarate_formation', 'phosphorus_metabolism']
+                                 'direct_eet', 'biofilm_formation', 'o2_consumption', 'metal_binding_chelation', 'nitrogen_metabolism', 'manganese_processes', 'h2_consumption', 'halogen_related', 'methanogenesis', 'carbon_metabolism', 'indirect_eet', 'fumarate_formation', 'phosphorus_metabolism']
     self.normalized_taxonomy = self._create_priority_dict(taxonomy)
 
     def _normalize_term(self, term: str) -> str:
