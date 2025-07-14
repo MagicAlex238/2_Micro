@@ -16,7 +16,7 @@ try:
         metal_terms,
         corrosion_synergies,
         functional_categories,
-        metal_mapping
+        metal_mapping, pathway_categories, corrosion_mechanisms
     )
 except ImportError:
     print("Critical error")
@@ -55,6 +55,22 @@ def score_keyword_matches(text, keyword_list):
             score += 1.0
     
     return score, matches
+
+def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
+    """
+    Identifies and extracts corrosion mechanism terms from pathway text.
+    This function is for POPULATION, NOT SCORING.
+    """
+    found_mechanisms = []
+    text_lower = pathway_text.lower()
+
+    for mechanism_name, keywords in corrosion_mechanisms.items():
+        for keyword in keywords:
+            if keyword in text_lower:
+                found_mechanisms.append(mechanism_name)
+                break # Found a keyword for this mechanism, move to next mechanism
+
+    return list(set(found_mechanisms)) # Return unique mechanisms
 
 def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
     """
