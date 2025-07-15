@@ -16,15 +16,16 @@ try:
         metal_terms,
         corrosion_synergies,
         functional_categories,
-        metal_mapping, pathway_categories, corrosion_mechanisms
+        metal_mapping, pathway_categories, corrosion_mechanisms # Not for scoring
     )
 except ImportError:
     print("Critical error")
 
 
-# Normalising terms before scoring and mathching
+# IInsnstantiaeteNormalising terms before scoring and mathching
 processor = TermProcessor(functional_categories)
 normalized_functional_categories = processor.normalized_taxonomy
+_mechanism_term_processor = TermProcessor(global_terms.corrosion_mechanism)
 
 # Scoring weights - 
 METAL_SCORE_WEIGHT = 0.5
@@ -56,21 +57,25 @@ def score_keyword_matches(text, keyword_list):
     
     return score, matches
 
-def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
+def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
     """
-    Identifies and extracts corrosion mechanism terms from pathway text.
+    Identifies and extracts corrosion mechanism terms from the given text
+    using the module's _mechanism_term_processor instance.
     This function is for POPULATION, NOT SCORING.
     """
-    found_mechanisms = []
-    text_lower = pathway_text.lower()
+    found_mechanisms = set() # Use a set to ensure unique mechanisms
 
-    for mechanism_name, keywords in corrosion_mechanisms.items():
-        for keyword in keywords:
-            if keyword in text_lower:
-                found_mechanisms.append(mechanism_name)
-                break # Found a keyword for this mechanism, move to next mechanism
+    # Tokenize the input text into individual words/phrases to process
+    # This regex pulls out sequences of word characters (letters, numbers, underscore)
+    terms_to_process = re.findall(r'\b\w+\b', text_to_analyze.lower())
 
-    return list(set(found_mechanisms)) # Return unique mechanisms
+    for term in terms_to_process:
+        # Use the _mechanism_term_processor to find the highest priority category match
+        category = _mechanism_term_processor.find_first_category(term)
+        if category:
+            found_mechanisms.add(category)
+
+    return list(found_mechanisms)
 
 def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
     """
@@ -108,7 +113,12 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     results = {}
     text_lower = text.lower()
     # Convert pathways to a single string if it's a list for assign_mechanism_from_pathway
-    pathways_for_mechanism = ' '.join(pathways) if isinstance(pathways, list) else (pathways or "")
+    if pathways:
+        pathways_for_mechanism = ' '.join(pathways) if isinstance(pathways, list) else (pathways or "")
+        # Call assign_mechanism_from_pathway which uses the module's global TermProcessor instance
+        results['corrosion_mechanisms'] = assign_mechanism_from_pathway(pathways_for_mechanism)
+    else:
+        results['corrosion_mechanisms'] = [] # Default if no pathways
 
     # Score metals
     metal_score, detected_metals = score_keyword_matches(text, metal_terms) # metal_matches are from text
