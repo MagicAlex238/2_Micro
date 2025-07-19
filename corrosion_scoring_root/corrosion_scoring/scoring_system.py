@@ -25,7 +25,8 @@ except ImportError:
 # IInsnstantiaeteNormalising terms before scoring and mathching
 processor = TermProcessor(functional_categories)
 normalized_functional_categories = processor.normalized_taxonomy
-_mechanism_term_processor = TermProcessor(global_terms.corrosion_mechanism)
+_mechanism_term_processor = TermProcessor(corrosion_mechanisms)
+_pathway_processor = TermProcessor(pathway_categories)
 
 # Scoring weights - 
 METAL_SCORE_WEIGHT = 0.5
@@ -89,15 +90,16 @@ def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
     
     for metal in all_metals:
         metal_norm = metal.strip().lower() #processor.matches_normalized(term, text_lower)
+        found_mapping = False # Flag to check if a mapping was found
         # Check if the normalized term matches any key in the standard mapping
         for key, symbol in cs.metal_mapping.items():
             if key in metal_norm:
                 consolidated.add(symbol)
-                break
-        else:
-            # If no mapping is found, add the original
+                found_mapping = True
+            break # Found a mapping, move to the next metal
+        if not found_mapping:
+            # If no mapping is found after checking all keys, add the original
             consolidated.add(metal.strip())
-    return list(consolidated)
 
 def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     """Calculate all the overall scores for a given text.
