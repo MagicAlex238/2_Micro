@@ -1,4 +1,4 @@
-adjustText==1.3.0
+adjustText
 alabaster==1.0.0
 anyio==3.7.1
 argon2-cffi==23.1.0
@@ -10,12 +10,11 @@ attrs==24.2.0
 babel==2.16.0
 beautifulsoup4==4.12.3
 bibtexparser==1.4.3
-biom-format==2.1.16
-biopython==1.78
-bleach==6.2.0
+biom-format
+biopython
 blinker==1.9.0
-blosc2==2.7.1
-bokeh==3.7.0
+blosc2
+bokeh
 boolean.py==5.0
 CacheControl==0.14.3
 certifi==2024.8.30
@@ -24,7 +23,7 @@ charset-normalizer==3.4.0
 click==8.1.8
 cloudpickle==3.1.1
 comm==0.2.2
-contourpy==1.3.1
+contourpy
 #corrosion_scoring @ git+https://github.com/MagicAlex238/2_Micro.git@b1087c36991f4cfec1cb9344095b2cd92b326694
 crossrefapi==1.6.0 # upgrading it degrades urllib3 which has a security warning. Instead, use habanero or direct requests to the Crossref REST API.
 cycler==0.12.1
@@ -57,13 +56,13 @@ git-filter-repo==2.47.0
 GPUtil==1.4.0
 greenlet==3.1.1
 h11==0.16.0
-h5py==3.12.1
-httpcore==1.0.7
+h5py
+httpcore
 httpx==0.28.1
 humanize==4.11.0
 idna==3.10
 imagesize==1.4.1
-imbalanced-learn==0.12.4
+imbalanced-learn
 importlib_metadata==8.6.1
 ipykernel==6.29.5
 ipython==8.29.0
@@ -90,7 +89,7 @@ jupyterlab_server==2.27.3
 jupyterlab_widgets==3.0.13
 kaleido==0.2.1
 kiwisolver==1.4.7
-kneed==0.8.5
+kneed
 Levenshtein==0.27.1
 license-expression==30.4.1
 llvmlite==0.43.0
@@ -99,8 +98,8 @@ lxml==5.3.0
 lz4==4.4.3
 markdown-it-py==3.0.0
 MarkupSafe==3.0.2
-matplotlib==3.10.1
-matplotlib-inline==0.1.7
+matplotlib
+matplotlib-inline
 mdurl==0.1.2
 memory-profiler==0.61.0
 mistune==3.0.2
@@ -117,9 +116,9 @@ nest-asyncio==1.6.0
 networkx==3.0
 notebook==7.4.2
 notebook_shim==0.2.4
-numba==0.60.0
+numba
 numexpr==2.10.2
-numpy==1.24.3
+numpy
 openpyxl==3.1.5
 outcome==1.3.0.post0
 overrides==7.7.0
@@ -131,6 +130,7 @@ parso==0.8.4
 partd==1.4.2
 patsy==1.0.1
 pexpect==4.9.0
+pillow
 #pillow==11.2.1 # Vulnerable version, commented out for archiving purposes
 pip-api==0.0.34
 pip-requirements-parser==32.0.1
@@ -151,9 +151,9 @@ pycparser==2.22
 Pygments==2.18.0
 pynndescent==0.5.13
 pyparsing==3.2.0
-PyQt5==5.15.11
-PyQt5-Qt5==5.15.16
-PyQt5_sip==12.16.1
+PyQt5
+#PyQt5-Qt5==5.15.16
+#PyQt5_sip==12.16.1
 PySocks==1.7.1
 python-dateutil==2.9.0.post0
 python-dotenv==0.19.0
@@ -165,6 +165,7 @@ PyYAML==6.0.2
 pyzmq==26.2.0
 RapidFuzz==3.12.2
 referencing==0.35.1
+requests
 #requests==2.32.3 # updated because security warning, however will be use when needed, vulnerabilities still no updated by creators
 retrying==1.3.4
 rfc3339-validator==0.1.4
@@ -217,7 +218,8 @@ typing_extensions==4.12.2
 tzdata==2024.2
 umap-learn==0.5.7
 uri-template==1.3.0
-urllib3== 2.5.0 # version compatible is 1.26.19 but updated to latest for security incase of use will reverse
+#urllib3
+#urllib3== 2.5.0 # version compatible is 1.26.19 but updated to latest for security incase of use will reverse
 wcwidth==0.2.13
 webcolors==24.11.1
 webencodings==0.5.1
