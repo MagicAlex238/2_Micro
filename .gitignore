@@ -2,6 +2,7 @@
 *.log
 log
 .venv
+.venv_general
 config.py
 Token.git.backup
 *.pkl
