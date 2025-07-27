@@ -2,6 +2,7 @@
 This is the repository for the Dissertation "Nobel Microorganisms associated with MIC"
 The first notebook is a visualisation the**Physicochemical** data analysis. These repository corresponds to the Session 3.3 Materials and Methods and 4.5 Results and Discussion in the main text.
 
+
 | Notebook                    |Description                                                                                                  |
 |----------------------------|--------------------------------------------------------------------------------------------------------------|
 |**1_Splitdf.ipynb**     | Explaination of the data, then I separate the data into categories according to the failure study and the physicochemical study that distinguise three differnet degrees of corrosion.  The notebook analyse the type of data distribution. More details can be found in the main text of the dissertation (4.4.1). |
@@ -14,36 +15,89 @@ The first notebook is a visualisation the**Physicochemical** data analysis. Thes
 
 ## Environment
 
-Use the requirements file in this repo to create a new virtual environment for this task.
-
+my_mic_project/
+├── .venv_general/           # For general notebooks (Notebooks 1, 2, 3 and 6)
+├── .venv_notebook4/         # For Notebook 4 (Api calls with incompatible packages)
+├── .venv_qiime/             # For Notebook 5 (Conda environment for QIIME)
+├── notebooks/
+│   ├── 1_splitdf.ipynb
+│   ├── 2_Filtering.ipynb
+│   ├── 3_Feature_selection.ipynb
+│   ├── 4_Bacteria_Influencing_corrosion.ipynb
+│   ├── 5_Sequences_qiime.ipynb
+│   └── 6_picrust_functional.ipynb
+├── requirements/
+│   ├── general_requirements.txt
+│   ├── notebook4_requirements.txt
+│   ├── qiime_environment.yml  # For Conda
+└── README.md
+Following are instructions for local installation for example on vscode, done once. For Kaggle and Colab all installations have to be done every time the notebook is running.
+## Instructions to install environments per notebook 1,2,3 and 6
+1_ .venv_general/ 
 We have also added a [Makefile](Makefile) which has the recipe called 'setup' which will run all the commands for setting up the environment. Feel free to check and use if you are tired of copy pasting so many commands.
 
 ```BASH
-make setup
-#or
-pyenv local 3.9.8
-python -m venv .venv
-source .venv/bin/activate
+2_For Linux
+#
+pyenv local 3.11.0
+python -m venv .venv_general
+source ./.venv_general/bin/activate
+python -m ipykernel install --user --name general_venv --display-name "general_env (Python 3.11)"
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r general_requirements.txt
 ```
-*Notebook Instructions for
+3_ For powershell in Windows
 
-# 5_Sequences_qiime.ipynb Notebook
-# download the installation file
+```
+python -m venv .venv_general
+.\.venv_general\Scripts\Activate.ps1.
+python -m ipykernel install --user --name general_venv --display-name "general_env (Python 3.11)"
+pip install --upgrade pip
+pip install -r general_requirements.txt
+```
+## Instructions to install environments per notebook 4
+4 .venv_notebook4/ 
+For Linux
+#
+pyenv local 3.9.0
+python -m venv .venv_notebook4
+source ./.venv_notebook4/bin/activate.
+python -m ipykernel install --user --name notebook4_env --display-name "notebook4_env (Python 3.9)"
+pip install --upgrade pip
+pip install -r notebook4_requirements.txt
+```
+5_ For powershell in Windows
+
+python -m venv .venv_notebook4
+.\.venv_notebook4\Scripts\Activate.ps1
+python -m ipykernel install --user --name .venv_notebook4 --display-name ".venv_notebook4 (Python 3.9)"
+pip install --upgrade pip
+pip install -r notebook4_requirements.txt
+```
+##  Instructions to install environments per .venv_qiime. Notebook 5_Sequences_qiime.ipynb`
+qimme can only be used with linux installation, therefore the whole code has to be done under wsl2 linux for windows subsystem. It is necesary to install it first
+# 1 Install WSL2 using Powershell
+wsl --install # with administrations right
+open new ubuntu and setup username and password
+Install Miniconda within Ubuntu (WSL) terminal: Located on the new ubuntu terminal run
+# 2 download the installation file for miniconda using bash shell
+wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.12.0-Linux-x86_64.sh -O miniconda_installer.sh
+# 3 cloning the repository
+git clone https://github.com/magicalex238/2_Micro.git # 
+# 4 Navigate to the repository in wsl
+cd 2_Micro
+# 5. Download the requirements file for the qiime package using bash
 wget https://data.qiime2.org/distro/core/qiime2-2023.7-py38-linux-conda.yml
-
-# Create the environment from the downloaded file
+# 6 Create the environment from the downloaded file in bash
 conda env create -n qiime2-2023.7 -f qiime2-2023.7-py38-linux-conda.yml
 
-# Create and activate environment
-conda create -n qiime2-2023.7 -c conda-forge -c bioconda qiime2
+# 7 Activate environment
 conda activate qiime2-2023.7
 
 # Verify installation
 qiime --help
 
-# Install additional required packages
+# 8 Install additional required packages
 conda install -c bioconda -c conda-forge \
     biopython \
     pandas \
@@ -51,44 +105,22 @@ conda install -c bioconda -c conda-forge \
     matplotlib \
     seaborn
 
-# Import Visualisation tools
+# 9 Import Visualisation tools
 conda install -c bioconda -c conda-forge \
     itol-uploader \
     ete3
 
-# Install PICRUSt2 plugin
+# 10 Install PICRUSt2 plugin
 conda install -c conda-forge -c bioconda q2-picrust2
 
-# Install ipykernel  
+# 11 Install ipykernel  
 conda install ipykernel  
-# Install the kernel for Jupyter 
+# 12 Install the kernel for Jupyter 
 python -m ipykernel install --user --name qiime2-2023.7 --display-name "Python (QIIME2)"
 
-Usage:
+10 Usage:
 Navigate to repo: cd /path/to/repo
 Activate environment: conda activate qiime
 Open VS Code: code .
 In notebook: Select "Python (qiime)" kernel
-
-Note: qiime environment is separate from the regular .venv environment.
-
-# Notebook 6_Picrust_Functional 
-
-# Activate qiime
-conda activate qiime2-2023.7
-# install in terminal
-pip install --no-deps https://github.com/picrust/q2-picrust2/archive/refs/heads/master.zip
-# Refresh the QIIME2 cache:
-qiime dev refresh-cache
-# Verify the installation:
-qiime picrust2 --help
-should see the available PICRUSt2 commands listed5.
-# If that doesnt work 
-conda install -c bioconda -c conda-forge picrust2
-pip install --no-deps https://github.com/picrust/q2-picrust2/archive/refs/heads/master.zip
-# after installation refresh the QIIME2 cache:
-qiime dev refresh-cache
-# Verify the installation:
-qiime picrust2 --help
-# or you can do like me and avoid the drama of the installations by using colab
 
