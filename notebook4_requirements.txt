@@ -1,0 +1,11 @@
+pandas
+numpy
+matplotlib
+Biopython
+requests==2.32.3
+urllib3==2.2.1
+beautifulsoup4
+openpyxl
+scholarly==1.7.11
+crossref-restful==0.6.0
+ipykernel

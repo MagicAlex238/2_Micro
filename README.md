@@ -31,7 +31,7 @@ my_mic_project/
 │   ├── notebook4_requirements.txt
 │   ├── qiime_environment.yml  # For Conda
 └── README.md
-Following are instructions for local installation for example on vscode, done once. For Kaggle and Colab all installations have to be done every time the notebook is running.
+Following are instructions for local installation for vscode, done once. For Kaggle and Colab all installations have to be done every time the notebook is running.
 ## Instructions to install environments per notebook 1,2,3 and 6
 1_ .venv_general/ 
 We have also added a [Makefile](Makefile) which has the recipe called 'setup' which will run all the commands for setting up the environment. Feel free to check and use if you are tired of copy pasting so many commands.
@@ -39,8 +39,9 @@ We have also added a [Makefile](Makefile) which has the recipe called 'setup' wh
 ```BASH
 2_For Linux
 #
-pyenv local 3.11.0
-python -m venv .venv_general
+sudo apt update
+sudo apt install python3.12-venv
+python3 -m venv .venv_general
 source ./.venv_general/bin/activate
 python -m ipykernel install --user --name general_venv --display-name "general_env (Python 3.11)"
 pip install --upgrade pip

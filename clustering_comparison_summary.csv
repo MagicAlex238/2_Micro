@@ -1,0 +1,31 @@
+protein_identifier,cluster_pathways,cluster_matches,pathways,pathway_matches
+Gallionella - glutathione transfer...,3,4,Glutathione metabolism; Metabolism of xenobiotics by cytochrome P450; Drug metabolism - cytochrome P450; Drug metabolism - other enzymes; Transporters [BR:ko02000]; Chemical carcinogenesis - DNA adducts; Antimicrobial resistance genes [BR:ko01504],electron_transfer; corrosion_general
+Pseudarthrobacter - phosphoenolpyruvate ...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Pseudarthrobacter - dna ligase (ec 6.5.1...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Thermincola - ferredoxin---nadp+ r...,4,3,proteins [BR:ko00194],
+Gallionella - 3-oxoacyl-[ reductas...,2,2,Fatty acid biosynthesis; Biotin metabolism; Lipid biosynthesis proteins [BR:ko01004],acid_production
+Gallionella - siroheme-synthase [...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Acidisoma - 3-oxoacyl-[ reductas...,2,2,Fatty acid biosynthesis; Biotin metabolism; Lipid biosynthesis proteins [BR:ko01004],acid_production
+Aestuariimicrobium - 3-oxoacyl-[ reductas...,2,2,Fatty acid biosynthesis; Biotin metabolism; Lipid biosynthesis proteins [BR:ko01004],acid_production
+Gallionella - assimilatory sulfite...,0,1,Sulfur metabolism; ; Sulfur cycle,iron_sulfur_redox
+Flavisolibacter - assimilatory sulfite...,0,1,Sulfur metabolism; ; Sulfur cycle,iron_sulfur_redox
+Mycoplana - 3-oxoacyl-[ reductas...,2,2,Fatty acid biosynthesis; Biotin metabolism; Lipid biosynthesis proteins [BR:ko01004],acid_production
+Flavisolibacter - glutathione hydrolas...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Gallionella - aspartate transamina...,1,2,"Arginine biosynthesis; Alanine, aspartate and glutamate metabolism; Cysteine and methionine metabolism; Arginine and proline metabolism; Tyrosine metabolism; Phenylalanine metabolism; Phenylalanine, tyrosine and tryptophan biosynthesis; Novobiocin biosynthesis; Carbon fixation by Calvin cycle; Isoquinoline alkaloid biosynthesis; Tropane, piperidine and pyridine alkaloid biosynthesis; ; Exosome [BR:ko04147]; Amino acid related enzymes [BR:ko01007]",acid_production
+Thermincola - 3-oxoacyl-[ reductas...,2,2,Fatty acid biosynthesis; Biotin metabolism; Lipid biosynthesis proteins [BR:ko01004],acid_production
+Acidisoma - aspartate transamina...,1,2,"Arginine biosynthesis; Alanine, aspartate and glutamate metabolism; Cysteine and methionine metabolism; Arginine and proline metabolism; Tyrosine metabolism; Phenylalanine metabolism; Phenylalanine, tyrosine and tryptophan biosynthesis; Novobiocin biosynthesis; Carbon fixation by Calvin cycle; Isoquinoline alkaloid biosynthesis; Tropane, piperidine and pyridine alkaloid biosynthesis; ; Exosome [BR:ko04147]; Amino acid related enzymes [BR:ko01007]",acid_production
+Gallionella - isocitrate-dehydroge...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Gallionella - bifunctional glutami...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Gallionella - glutamine--fructose-...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Acidisoma - glutamine-dependent ...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Clostridium - 2-iminoacetate-synth...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Acidisoma - beta-ketoacyl-[ synt...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Flavisolibacter - aspartate 1-decarbox...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Acidisoma - 3-oxoacyl-[ synthase...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Acidisoma - dna ligase (ec 6.5.1...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Acidisoma - biotin--[ ligase (ec...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Anoxybacillus - aspartate transamina...,1,2,"Arginine biosynthesis; Alanine, aspartate and glutamate metabolism; Cysteine and methionine metabolism; Arginine and proline metabolism; Tyrosine metabolism; Phenylalanine metabolism; Phenylalanine, tyrosine and tryptophan biosynthesis; Novobiocin biosynthesis; Carbon fixation by Calvin cycle; Isoquinoline alkaloid biosynthesis; Tropane, piperidine and pyridine alkaloid biosynthesis; ; Exosome [BR:ko04147]; Amino acid related enzymes [BR:ko01007]",acid_production
+Flavisolibacter - udp-3-o-acyl-n-acety...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Mycoplana - glutathione hydrolas...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Aestuariimicrobium - nitrite-reductase (n...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
+Thermincola - glutamine--fructose-...,0,0,Nitrogen metabolism; ; Nitrogen cycle,nitrogen
