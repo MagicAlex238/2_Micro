@@ -40,40 +40,21 @@ We have also added a [Makefile](Makefile) which has the recipe called 'setup' wh
 2_For Linux
 #
 sudo apt update
-sudo apt install python3.12-venv
-python3 -m venv .venv_general
+sudo apt install python3.11-venv
+python3.11 -m venv .venv_general
 source ./.venv_general/bin/activate
-python -m ipykernel install --user --name general_venv --display-name "general_env (Python 3.11)"
 pip install --upgrade pip
 pip install -r general_requirements.txt
+python -m ipykernel install --user --name python11_general --display-name "python11_general (Python 3.11)"
 ```
 3_ For powershell in Windows
 
 ```
 python -m venv .venv_general
 .\.venv_general\Scripts\Activate.ps1.
-python -m ipykernel install --user --name general_venv --display-name "general_env (Python 3.11)"
 pip install --upgrade pip
 pip install -r general_requirements.txt
-```
-## Instructions to install environments per notebook 4
-4 .venv_notebook4/ 
-For Linux
-#
-pyenv local 3.9.0
-python -m venv .venv_notebook4
-source ./.venv_notebook4/bin/activate.
-python -m ipykernel install --user --name notebook4_env --display-name "notebook4_env (Python 3.9)"
-pip install --upgrade pip
-pip install -r notebook4_requirements.txt
-```
-5_ For powershell in Windows
-
-python -m venv .venv_notebook4
-.\.venv_notebook4\Scripts\Activate.ps1
-python -m ipykernel install --user --name .venv_notebook4 --display-name ".venv_notebook4 (Python 3.9)"
-pip install --upgrade pip
-pip install -r notebook4_requirements.txt
+python -m ipykernel install --user --name python11_general --display-name "python11_general (Python 3.11)"
 ```
 ##  Instructions to install environments per .venv_qiime. Notebook 5_Sequences_qiime.ipynb`
 qimme can only be used with linux installation, therefore the whole code has to be done under wsl2 linux for windows subsystem. It is necesary to install it first
