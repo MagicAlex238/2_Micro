@@ -57,7 +57,7 @@ def score_keyword_matches(text, keyword_list):
             score += 1.0
     
     return score, matches
-
+#============================================================================================================
 def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
     """
     Identifies and extracts corrosion mechanism terms from the given text
@@ -77,6 +77,76 @@ def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
             found_mechanisms.add(category)
 
     return list(found_mechanisms)
+
+def infer_mechanisms_from_pathway_category(pathway_category: str) -> list[str]:
+    """
+    Maps pathway categories to likely corrosion mechanisms.
+    This creates the bridge between pathways and mechanisms.
+    """
+    pathway_to_mechanism_map = {'oxygen_metabolism': ['O2_consumption'], 
+        'nitrogen_metabolism':  ['nitrogen_metabolism'],
+        'iron_sulfur_redox': ['iron_metabolism', 'sulfur_metabolism', 'ocre_formation'],
+        'manganese_processes': ['manganese_metabolism'],
+        'sulfur_metabolism':['sulfur_metabolism'],
+        'hydrogen_metabolism': ['h2_consumption'],
+        'organic_acid_metabolism': ['acid_production'],
+        'metal_organic_interaction': ['metal_chelation', 'microbe_metal_synergy'],
+        'biofilm_formation': ['biofilm_formation'],
+        'carbon_metabolism': ['carbon_metabolism'],
+        'halogen_related': ['clorine_attack'],
+        'methanogenesis': ['methanogenesis']  
+    }
+    
+    return pathway_to_mechanism_map.get(pathway_category, [])
+
+def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
+    """
+    Extracts corrosion mechanisms from pathway text using both pathway and mechanism processors.
+    This function looks for direct mechanism terms AND infers mechanisms from pathway names.
+    """
+    found_mechanisms = set()
+    
+    if not pathway_text:
+        return []
+    
+    # Tokenize the pathway text
+    terms_to_process = re.findall(r'\b\w+\b', pathway_text.lower())
+    
+    # Method 1: Direct mechanism detection
+    for term in terms_to_process:
+        mechanism = _mechanism_term_processor.find_first_category(term)
+        if mechanism:
+            found_mechanisms.add(mechanism)
+    
+    # Method 2: Pathway-to-mechanism inference using pathway processor
+    for term in terms_to_process:
+        pathway_category = _pathway_processor.find_first_category(term)
+        if pathway_category:
+            # Map pathway categories to mechanisms (you'll need to define this mapping)
+            inferred_mechanisms = infer_mechanisms_from_pathway_category(pathway_category)
+            found_mechanisms.update(inferred_mechanisms)
+    
+    # Method 3: Pattern-based inference for common pathway types
+    pathway_lower = pathway_text.lower()
+    
+    # Sulfur-related pathways
+    if any(term in pathway_lower for term in ['sulfur', 'sulfate', 'thiosulfate', 'sulfide']):
+        found_mechanisms.add('sulfur_metabolism')
+    
+    # Iron-related pathways
+    if any(term in pathway_lower for term in ['iron', 'ferric', 'ferrous', 'heme']):
+        found_mechanisms.add('iron_metabolism')
+    
+    # Organic acid pathways
+    if any(term in pathway_lower for term in ['acetate', 'lactate', 'citrate', 'organic acid']):
+        found_mechanisms.add('acid_production')
+    
+    # Biofilm-related pathways
+    if any(term in pathway_lower for term in ['biofilm', 'exopolysaccharide', 'quorum']):
+        found_mechanisms.add('biofilm_formation')
+    
+    return list(found_mechanisms)
+#==============================================================================================================
 
 def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
     """
@@ -100,7 +170,7 @@ def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
         if not found_mapping:
             # If no mapping is found after checking all keys, add the original
             consolidated.add(metal.strip())
-
+    return list(consolidated)
 def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     """Calculate all the overall scores for a given text.
     
@@ -122,8 +192,9 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     else:
         results['corrosion_mechanisms'] = [] # Default if no pathways
 
-    # Score metals
-    metal_score, detected_metals = score_keyword_matches(text, metal_terms) # metal_matches are from text
+    # Score metals with all terms
+    all_metal_keywords = [term for sublist in metal_terms.values() for terms in sublist]
+    metal_score, detected_metals = score_keyword_matches(text, all_metal_keywords)
     
     # Consolidate metals
     consolidated_metals = consolidate_metal_terms(brenda_metals, detected_metals)
