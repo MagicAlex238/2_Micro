@@ -9,6 +9,8 @@ __pycache__/
 .venv/
 .venv_general
 .venv_general/
+.venv_notebook4
+.venv_notebook4/
 .ipynb_checkpoints/
 .DS_Store
 *.sqlite3

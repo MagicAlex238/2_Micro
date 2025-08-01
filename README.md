@@ -32,15 +32,14 @@ my_mic_project/
 │   ├── qiime_environment.yml  # For Conda
 └── README.md
 Following are instructions for local installation for vscode, done once. For Kaggle and Colab all installations have to be done every time the notebook is running.
-## Instructions to install environments per notebook 1,2,3 and 6
+## Instructions to install environment per notebook 1,2,3 and 6
 1_ .venv_general/ 
-We have also added a [Makefile](Makefile) which has the recipe called 'setup' which will run all the commands for setting up the environment. Feel free to check and use if you are tired of copy pasting so many commands.
 
 ```BASH
 2_For Linux
 #
 sudo apt update
-sudo apt install python3.11-venv
+sudo apt install python3.11 python3.11-venv python3.11-distutils
 python3.11 -m venv .venv_general
 source ./.venv_general/bin/activate
 pip install --upgrade pip
@@ -56,6 +55,20 @@ pip install --upgrade pip
 pip install -r general_requirements.txt
 python -m ipykernel install --user --name python11_general --display-name "python11_general (Python 3.11)"
 ```
+## Instructions to install environment per notebook 4
+1_ .venv_notebook4/ 
+
+```BASH
+2_For Linux
+#
+sudo apt update
+sudo apt install python3.12 python3.12-venv python3.12-distutils
+python3.12 -m venv .venv_notebook4
+source .venv_notebook4/bin/activate
+pip install --upgrade pip
+pip install -r Notebook4_requirements.txt
+python -m ipykernel install --user --name python12_N4 --display-name "python12_N4(Python 3.12)"
+
 ##  Instructions to install environments per .venv_qiime. Notebook 5_Sequences_qiime.ipynb`
 qimme can only be used with linux installation, therefore the whole code has to be done under wsl2 linux for windows subsystem. It is necesary to install it first
 # 1 Install WSL2 using Powershell

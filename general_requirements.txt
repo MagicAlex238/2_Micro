@@ -41,15 +41,3 @@ nbformat
 requests
 python-Levenshtein
 fuzzywuzzy
-# Notebook 4 
-#pandas
-#numpy
-#matplotlib
-#Biopython
-#openpyxl
-requests==2.32.3
-urllib3==2.2.1
-beautifulsoup4
-scholarly==1.7.11
-crossref-restful==0.6.0
-#ipykernel

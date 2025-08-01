@@ -1,0 +1,24 @@
+wheel
+# Core data science libraries
+pandas
+numpy
+matplotlib
+# Bioinformatics
+biopython
+
+# File I/O # Scraping/parsing
+beautifulsoup4==4.13.4
+openpyxl==3.1.5
+pillow==11.3.0
+
+# HTTP/network library (upgraded to secure versions)
+requests==2.32.4
+urllib3==2.5.0
+
+# Scientific research libraries (updated )
+scholarly==1.7.11
+
+# crossrefapi isn’t maintained actively, crossref-restful==0.6.0 had been replaced  with habanero to resolve conflicts and improve security.
+habanero==2.3.0
+# IPython kernel
+ipykernel

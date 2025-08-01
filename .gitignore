@@ -3,10 +3,12 @@
 log
 .venv
 .venv_general
+.venv_general/
+.venv_notebook4
+.venv_notebook4/
 config.py
 Token.git.backup
 *.pkl
-*.csv
 *.npy
 *.h5
 __pycache__/
