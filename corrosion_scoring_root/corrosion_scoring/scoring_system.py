@@ -21,7 +21,6 @@ try:
 except ImportError:
     print("Critical error")
 
-
 # IInsnstantiaeteNormalising terms before scoring and mathching
 processor = TermProcessor(functional_categories)
 normalized_functional_categories = processor.normalized_taxonomy
@@ -93,7 +92,7 @@ def infer_mechanisms_from_pathway_category(pathway_category: str) -> list[str]:
         'metal_organic_interaction': ['metal_chelation', 'microbe_metal_synergy'],
         'biofilm_formation': ['biofilm_formation'],
         'carbon_metabolism': ['carbon_metabolism'],
-        'halogen_related': ['clorine_attack'],
+        'halogen_related': ['chloride_attack'],
         'methanogenesis': ['methanogenesis']  
     }
     
@@ -162,11 +161,11 @@ def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
         metal_norm = metal.strip().lower() #processor.matches_normalized(term, text_lower)
         found_mapping = False # Flag to check if a mapping was found
         # Check if the normalized term matches any key in the standard mapping
-        for key, symbol in cs.metal_mapping.items():
+        for key, symbol in metal_mapping.items():
             if key in metal_norm:
                 consolidated.add(symbol)
                 found_mapping = True
-            break # Found a mapping, move to the next metal
+                #break # Found a mapping, move to the next metal
         if not found_mapping:
             # If no mapping is found after checking all keys, add the original
             consolidated.add(metal.strip())
@@ -213,7 +212,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
                 category_hits += 1
         
         if category_hits > 0:
-            base_score = math.log(category_hits + 1)
+            base_score = math.log(category_hits + 1) #log prevents inflation, promotes balance
             weighted_score = base_score * details["score"]
             func_matches[cat] = weighted_score
             functional_score += weighted_score

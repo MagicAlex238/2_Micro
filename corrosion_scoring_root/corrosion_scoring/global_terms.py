@@ -20,14 +20,7 @@ metal_terms = {
 'lead': ['Pb2+', 'Pb4+', 'lead', 'plumbous', 'plumbic', 'lead oxide'], 	
 'arsenic': ['As3+', 'As5+', 'arsenic', 'arsenite', 'arsenate', 'arsenic oxidation'], 	
 'mercury': ['Hg2+', 'Hg+', 'mercury', 'mercuric', 'mercurous', 'mercury methylation'], 	
-'phosphate': ['HPO4-2', 'PO4-3', 'phosphate', 'phosphates'],	
-'nitrogen':['NO3-', 'nitrate', 'nitrates','NO2-', 'nitrite', 'nitrites'],	
-'chloride': ['Cl-', 'chloride', 'chlorine'],	
-'sulphate':['SO4-2', 'sulfate', 'sulfates', 'S', 'sulfide', 'sulfides', 'H2S', 'hydrogen sulfide', 'S2O3-2', 'thiosulfate'],		
-'oxygen': ['O2', 'oxygen', 'oxidase'],	
-'hydrogen': ['H2', 'hydrogen', 'hydrogenase', 'hydrogen uptake', 'hydrogen evolution'],	
-'organics': ['methane', 'CH4', 'methanogenic', 'methanogenesis', 'formate','formic acid', 'HCOO-', 'acetate', 'acetic acid', 'CH3COO-', 'propionate','propionate', 'propionic acid', 'butyrate', 'butyric acid','lactate', 'lactic acid', 'mercaptans', 'mercaptan', 'thiol', 'methanethiol', 'ethanethiol', 'H2S', 'h2s', 'alcohol', 'ethanol', 'methanol', 'propanol', 'alcohol']
-}		
+}
 # Corrosion-specific metal combinations 
 corrosion_synergies= {
 'Fe-S': ['iron_sulfur', 'Fe-S','iron sulfide','FeS', 'Fe-S cluster'],	
@@ -117,7 +110,7 @@ metal_mapping = {
 'h2': 'H',
 'h2o': 'H',
 'h2s': 'H',
-'phosfate': 'po4-3',
+'phosphate': 'po4-3',
 'nitrate': 'NO3-',
 'nitrite': 'NO2',
 'chloride': 'Cl-'

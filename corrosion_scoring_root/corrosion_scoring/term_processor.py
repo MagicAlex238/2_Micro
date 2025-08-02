@@ -4,7 +4,7 @@ from collections import OrderedDict
 class TermProcessor:
     """Normalizes and matches corrosion terms with priority handling"""
     
-    def __init__(self, taxonomy: dict):
+    def __init__(self, taxonomy: dict):# to garanty priority
         self.priority_order = ['iron_metabolism', 'sulfur_metabolism', 'organic_acid_metabolism',
         'biofilm_formation', 'o2_consumption', 'metal_binding_chelation',
         'nitrogen_metabolism', 'manganese_processes', 'h2_consumption',
@@ -14,7 +14,7 @@ class TermProcessor:
         self.normalized_taxonomy = self._create_priority_dict(taxonomy)
 
     def _normalize_term(self, term: str) -> str:
-        """Enhanced normalization with corrosion-specific substitutions"""
+        """Enhanced normalization with corrosion-specific substitutions to catch missmatches"""
         substitutions = {
             'reduc': 'reduction',
             'oxid': 'oxidation', 
