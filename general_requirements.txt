@@ -19,7 +19,7 @@ scikit-learn==1.4.2
 scipy==1.12.0
 umap-learn==0.5.7
 statsmodels==0.14.2
-kneed==0.8.0
+kneed==0.8.5 # 0.8 has versioning issues
 python-louvain==0.16
 joblib==1.4.2
 
@@ -38,6 +38,6 @@ pyarrow==19.0.1
 ipykernel
 imbalanced-learn
 nbformat
-requests
+# requests only if running uniprot retrieval
 python-Levenshtein
 fuzzywuzzy

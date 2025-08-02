@@ -36,7 +36,8 @@ Following are instructions for local installation for vscode, done once. For Kag
 1_ .venv_general/ 
 
 ```BASH
-2_For Linux
+
+#For Linux
 #
 sudo apt update
 sudo apt install python3.11 python3.11-venv python3.11-distutils
