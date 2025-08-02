@@ -152,7 +152,8 @@ pathway_categories = {
 } 
 
 #7 Environmental factors/ Operational Factors
-'halogen_related': {'terms': ['halogen', 'chloride', 'bromide', 'iodide', 'fluoride', 'halide', 'dehalogenation', 'haloperoxidase', 'haloacid', 'chlorination', 'bromination', 'organohalide', 'halomethane', 'haloalkane', 'organohalide', 'halotolerance', 'salt tolerance', 'halophilic', 'chloride transport', 'halide channel', 'chloride attack', 'chloride-induced corrosion', 'pitting initiation', 'chloride penetration', 'halide corrosion', 'perchlorate reduction', 'halorespiration', 'organohalide'],
+Environmental_factors = {
+'halogen_related': ['halogen', 'chloride', 'bromide', 'iodide', 'fluoride', 'halide', 'dehalogenation', 'haloperoxidase', 'haloacid', 'chlorination', 'bromination', 'organohalide', 'halomethane', 'haloalkane', 'organohalide', 'halotolerance', 'salt tolerance', 'halophilic', 'chloride transport', 'halide channel', 'chloride attack', 'chloride-induced corrosion', 'pitting initiation', 'chloride penetration', 'halide corrosion', 'perchlorate reduction', 'halorespiration', 'organohalide'],
 'microaerobic_conditions': ['microaerophilic', 'oxygen-limited', 'hypoxic', 'microaerobic'],
 'ph_modulation': ['acid tolerance', 'alkaline tolerance', 'proton pump', 'pH homeostasis', 'pH stress', 'pH regulation', 'acid resistance', 'pH buffering', 'pH gradient', 'acidophile', 'alkaliphile'], 
 'direct_eet': ['electron transfer', 'extracellular electron transfer', 'direct electron transfer',  'solid-state respiration', 'interfacial electron transfer', 'electrode respiration', 'bioelectricity', 'electron shuttle', 'electron bridge','electron conduit', 'oxidoreductase', 'reductase', 'oxidase', 'redox',  'cytochrome', 'c-type cytochrome', 'multi-heme cytochrome', 'cytochrome c oxidase',  'quinol oxidase', 'NADH:quinone oxidoreductase', 'succinate dehydrogenase',  'fumarate reductase', 'mtrABC', 'omc', 'omcS', 'nanowire', 'microbial nanowires',  'conductive pili', 'type IV pili', 'conductive biofilms', 'flavin',  'riboflavin shuttle', 'flavin secretion', 'histidine kinase', 'PROTEIN-KINASE-RXN',  'L-arginine biosynthesis II', 'chorismate biosynthesis I',  'superpathway of branched amino acid biosynthesis',  'superpathway of aromatic amino acid biosynthesis',  'L-lysine biosynthesis I', 'L-ornithine biosynthesis', 'oxidoreductase activity'],
@@ -167,5 +168,5 @@ pathway_categories = {
 'passivity_breakdown': ['passivation breakdown', 'passive film disruption', 'oxide layer dissolution', 'passive layer damage', 'depassivation'],
 'concentration_cells': ['concentration cell', 'differential concentration', 'ion concentration gradient', 'oxygen concentration cell', 'metal ion gradient'],
 'syntrophic_interactions': ['syntrophic', 'cross-feeding', 'metabolic coupling', 'interspecies', 'consortia', 'metabolic cooperation']
-}
+} 
   
