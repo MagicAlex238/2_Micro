@@ -8,6 +8,7 @@ Updated to use unified functional_categories scoring approach.
 import math
 import sys
 import os
+import re
 from .term_processor import TermProcessor 
 
 try:
