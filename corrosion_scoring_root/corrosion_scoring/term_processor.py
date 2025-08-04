@@ -4,7 +4,7 @@ from collections import OrderedDict
 class TermProcessor:
     """Normalizes and matches corrosion terms with priority handling"""
     
-    def __init__(self, taxonomy: dict):# to garanty priority
+    def __init__(self, taxonomy: dict):# to garanty priority found as subcategories on fc.global terms
         self.priority_order = ['iron_metabolism', 'sulfur_metabolism', 'organic_acid_metabolism',
         'biofilm_formation', 'o2_consumption', 'metal_binding_chelation',
         'nitrogen_metabolism', 'manganese_processes', 'h2_consumption',

@@ -19,7 +19,7 @@ try:
         metal_mapping, pathway_categories, corrosion_mechanisms # Not for scoring
     )
 except ImportError:
-    print("Critical error")
+    print("Critical error")#
 
 # Instantiate Normalising terms before scoring and mathching
 processor = TermProcessor(functional_categories)
@@ -192,7 +192,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
         results['corrosion_mechanisms'] = [] # Default if no pathways
 
     # Score metals with all terms
-    all_metal_keywords = [term for sublist in metal_terms.values() for terms in sublist]
+    all_metal_keywords = [term for sublist in metal_terms.values() for term in sublist]
     metal_score, detected_metals = score_keyword_matches(text, all_metal_keywords)
     
     # Consolidate metals

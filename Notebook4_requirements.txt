@@ -1,4 +1,5 @@
 wheel
+setuptools
 # Core data science libraries
 pandas
 numpy

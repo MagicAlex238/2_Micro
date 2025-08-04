@@ -45,7 +45,7 @@ python3.11 -m venv .venv_general
 source ./.venv_general/bin/activate
 pip install --upgrade pip
 pip install -r general_requirements.txt
-python -m ipykernel install --user --name python11_general --display-name "python11_general (Python 3.11)"
+python -m ipykernel install --user --name general_python11 --display-name "general_python11 (Python 3.11)"
 ```
 3_ For powershell in Windows
 
