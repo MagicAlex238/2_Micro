@@ -67,7 +67,7 @@ functional_categories =	{
             'PWY-5088',
             'PWY-6953',
             'PWY-7110',
-            'PWY-7373' ], 'score': 1.2, 'justification': 'Geesey, G.G., Bremer, P.J. (1990). Biofouling of engineered water systems. Biotechnol Bioeng, 36(10):1039-1046'},# VERY HIGH for HVAC - oxygen depletion creates aggressive conditions
+            'PWY-7373', 'aerobic respiration', 'oxygen consumtion', 'oxygen depletion', 'respiratory burst' ], 'score': 1.2, 'justification': 'Geesey, G.G., Bremer, P.J. (1990). Biofouling of engineered water systems. Biotechnol Bioeng, 36(10):1039-1046'},# VERY HIGH for HVAC - oxygen depletion creates aggressive conditions
 'nitrogen_metabolism':  {'terms': ['nitrate_reduction', 'nitrite_reduction', 'denitrification', 'nitrification', 'nitrate respiration', 'nitrite respiration', 'nitrous oxide reduction', 'ammonia oxidation', 'anammox', 'nitrogen fixation', 'ammonification', 'nitrogen metabolism',  'nitrate',  'nitrite','dissimilatory nitrate reduction',  'nitrite reductase', 'nitrate reductase', 'L-arginine biosynthesis II (acetyl cycle)', 'L-ornithine biosynthesis', 'L-histidine biosynthesis', 'L-methionine biosynthesis III', 'L-isoleucine biosynthesis I (from threonine)', 'L-isoleucine biosynthesis II', 'L-isoleucine biosynthesis III', 'L-isoleucine biosynthesis IV', 'L-lysine biosynthesis I', 'L-lysine biosynthesis III', 'L-lysine biosynthesis VI', 'L-valine biosynthesis', 'L-tryptophan biosynthesis', 'superpathway of L-isoleucine biosynthesis I', 'superpathway of L-phenylalanine biosynthesis', 'superpathway of L-tyrosine biosynthesis', 'superpathway of L-threonine biosynthesis', '2-amino-3-carboxymuconate semialdehyde degradation to 2-oxopentenoate',
             '2-nitrobenzoate degradation I',
             '4-aminobutanoate degradation V',
@@ -169,7 +169,7 @@ functional_categories =	{
             'PWY-7528',
             'PWY0-1338',
             'THREOCAT-PWY',
-            'VALDEG-PWY', 'PWY-5487', 'superpathway of 5-aminoimidazole ribonucleotide biosynthesis' ], 'score': 1.0,'justification': 'Flemming, H.C. (1996). Economically relevant microorganisms in technical systems. Materials and Corrosion, 47(7):391-398 and  Washizu, N., et al. (2004). MIC by nitrate-reducing bacteria in water injection systems. Corrosion, 60(4):336-342'}, # Moderate for HVAC - affects redox conditions	
+            'VALDEG-PWY', 'PWY-5487', 'superpathway of 5-aminoimidazole ribonucleotide biosynthesis', 'nitrate reduction', 'nitrite reduction' ], 'score': 1.0,'justification': 'Flemming, H.C. (1996). Economically relevant microorganisms in technical systems. Materials and Corrosion, 47(7):391-398 and  Washizu, N., et al. (2004). MIC by nitrate-reducing bacteria in water injection systems. Corrosion, 60(4):336-342'}, # Moderate for HVAC - affects redox conditions	
 'iron_metabolism': {'terms': ['corrosion', 'MIC', 'ferric reduc', 'SRB', 'ocre', 'iron_oxide', 'iron_deposit', 'metal oxide', 'ochre formation', 'iron oxide deposits', 'iron precipitation', 'rust formation', 'iron oxid', 'ferrous oxid', 'ferric', 'iron uptake', 'iron transport', 'iron storage',  'iron homeostasis', 'siderophore production', 'iron_sulfur_redox', 'ferredoxin',  'rubredoxin', 'ferritin', 'bacterioferritin',  'PWY-7221',  'PWY-7219', 'HEME-BIOSYNTHESIS-II',  'P125-PWY', 'iron mobilization', 'iron immobilization', 'ferrihydrite', 'goethite', 'magnetite', 'hematite', 'iron mineral', 'biogenic iron oxides', 'stalactite formation', 'ochre mats', 'superpathway of tetrahydrofolate biosynthesis and salvage',  'heme biosynthesis II (anaerobic)', 'tetrapyrrole biosynthesis I (from glutamate)', 'tetrapyrrole biosynthesis II (from glycine)','flavin biosynthesis I (bacteria and plants)','chorismate biosynthesis I', 'chorismate biosynthesis from 3-dehydroquinate', 'enzyme-mediated corrosion', 'AEROBACTINSYN-PWY',
             'enterobactin biosynthesis',
             'heme biosynthesis I (aerobic)',
@@ -177,7 +177,7 @@ functional_categories =	{
             'superpathway of heme biosynthesis from glycine',
             'superpathway of heme biosynthesis from uroporphyrinogen-III',
             'PWY-6516',
-            'PWY-7209'], 'score': 1.5, 'justification': 'Beech, I.B., Gaylarde, C.C. (1999). Recent advances in the study of biocorrosion. Rev Microbiol, 30(3):177-190. SRB critical in closed water systems AND Cornell, R.M., Schwertmann, U. (2003). The Iron Oxides. Green rust and iron-organic complexes indicate active corrosion processes'},# represents active Fe-organic complexation '},	# HIGHEST for HVAC - SRB major problem in closed loops
+            'PWY-7209', 'heme biosynthesis', 'ferric reducction', 'ferrous oxidation', 'iron oxidation', 'iron reducction', 'iron reduction'], 'score': 1.5, 'justification': 'Beech, I.B., Gaylarde, C.C. (1999). Recent advances in the study of biocorrosion. Rev Microbiol, 30(3):177-190. SRB critical in closed water systems AND Cornell, R.M., Schwertmann, U. (2003). The Iron Oxides. Green rust and iron-organic complexes indicate active corrosion processes'},# represents active Fe-organic complexation '},	# HIGHEST for HVAC - SRB major problem in closed loops
 'sulfur_metabolism': {'terms': ['sulphur_metabolism', 'sulfur_metabolism', 'sulfate reduc', 'sulfite', 'thiosulfate', 'sulfur oxidation', 'SRB', 'dsrAB', 'APS reductase', 'sulfide','quinone oxidoreductase', 'dissimilatory sulfate reduction', 'sulfur globules', 'elemental sulfur', 'polysulfide metabolism', 'sulfur granules', 'PWY-6932', 'SO4ASSIM-PWY', 'SULFATE-CYS-PWY', 'sulfide_production', 'sulfonate',  'sulfur_reduction', 'desulfovibrio', 'sulfur disproportionation', 'sulfate-reducing bacteria', 'sulfur respiration', 'sulfate reduction I (assimilatory)', 'superpathway of sulfate assimilation and cysteine biosynthesis', 'L-methionine biosynthesis I',
             'L-methionine salvage cycle III',
             'S-adenosyl-L-methionine cycle I',
@@ -193,7 +193,7 @@ functional_categories =	{
             'superpathway of taurine degradation',
             'PWY-5327',
             'PWY-5392',
-            'PWY-6937'], 'score': 1.5, 'justification': 'Sulfide causes direct corrosive attack on iron and steel surfaces'},# Direct corrosive attack but secondary to SRB iron-sulfur redox
+            'PWY-6937', 'polysulfide', 'sulfite reduction'], 'score': 1.5, 'justification': 'Sulfide causes direct corrosive attack on iron and steel surfaces'},# Direct corrosive attack but secondary to SRB iron-sulfur redox
 'h2_consumption': {'terms': ['h2_consumption', 'hydrogenase', 'hydrogen uptake', 'hydrogen consumption', 'h2', 'H2 oxidation', 'H2ase', 'hydrogen metabolism', 'hydrogen production',  'FeFe-hydrogenase',  'NiFe-hydrogenase',  'hydrogen evolution',  'hydrogen cycling',  'H2 sensing',  'proton reduction', 'methylerythritol phosphate pathway I', 'methylerythritol phosphate pathway II'], 'score': 0.7, 'justification': 'Javaherdashti, R. (2008). Microbiologically Influenced Corrosion: An Engineering Insight. Springer and Enning, D., Garrelfs, J. (2014). Corrosion of iron by sulfate-reducing bacteria: new views of an old problem. Appl Environ Microbiol, 80(4):1226-1236'},# H2 consumption by SRB accelerates corrosion through cathodic depolarization	
 'carbon_metabolism': {'terms': ['carbon_metabolism', 'carbon fixation', 'carbon utilization', 'carbohydrate metabolism', 'glycolysis', 'TCA cycle', 'carbon flux', 'carbon assimilation', 'pentose phosphate pathway', 'gluconeogenesis', 'Calvin cycle', 'reductive acetyl-CoA pathway', 'carbon monoxide dehydrogenase', 'hydrocarbon degradation', 'aromatic degradation', 'alcohol metabolism', 'organic matter degradation', 'VFA production', 'propionate', 'butyrate', 'valerate', 'caproate', 'ACETYL-COA-ACETYLTRANSFER-RXN','METHYLACETOACETYLCOYTHIOL-RXN','ACETOLACTSYN-RXN','ACETOOHBUTSYN-RXN','ACETYL-COA-CARBOXYLTRANSFER-RXN','ACYLCOASYN-RXN','N10-formyl-tetrahydrofolate biosynthesis', 'glycolysis III','Calvin-Benson-Bassham cycle', 'gluconeogenesis', 'glycolysis I (from glucose 6-phosphate)', 'glycolysis II (from fructose 6-phosphate)','glycolysis III (from glucose)','gluconeogenesis I','pentose phosphate pathway (non-oxidative branch)','Calvin-Benson-Bassham cycle','pyruvate fermentation to isobutanol (engineered)','superpathway of branched amino acid biosynthesis','superpathway of aromatic amino acid biosynthesis','superpathway of adenosine nucleotides de novo biosynthesis I','superpathway of adenosine nucleotides de novo biosynthesis II','superpathway of guanosine nucleotides de novo biosynthesis I','superpathway of guanosine nucleotides de novo biosynthesis II', '1,4-dihydroxy-2-naphthoate biosynthesis I',
             '1,4-dihydroxy-6-naphthoate biosynthesis I',
@@ -300,11 +300,7 @@ functional_categories =	{
             'vanillin and vanillate degradation I',
             'vanillin and vanillate degradation II',
             '4-HYDROXYMANDELATE-DEGRADATION-PWY',
-            'P241-PWY',
-            'PWY-1622',
-            'PWY-1882',
-            'PWY-2201',
-            'PWY-2221',
+            'P241-PWY','PWY-1622','PWY-1882','PWY-2201','PWY-2221',
             'PWY-2504',
             'PWY-3081',
             'PWY-3801',
@@ -416,7 +412,7 @@ functional_categories =	{
             'PWY-7596',
             'PWY-7626',
             'PWY-822',
-            'PWY0-1277' ], 'score': 0.5,'justification': 'Pope, D.H. (1986). A study of microbiologically influenced corrosion in nuclear power plants. Electric Power Research Institute'},
+            'PWY0-1277', 'carbon catabolite repression', 'carbonate precipitation', 'carbonation' ], 'score': 0.5,'justification': 'Pope, D.H. (1986). A study of microbiologically influenced corrosion in nuclear power plants. Electric Power Research Institute'},
 'organic_acid_metabolism': {'terms':  ['acetate', 'acetic acid', 'acetyl', 'acetate metabolism', 'acetate production', 'oxalate', 'oxalic acid', 'oxalate metabolism', 'oxalate production', 'organic acid', 'fatty acid', 'butyric acid', 'butyrate', 'propionate', 'propionic acid', 'carboxylic acid', 'lactate', 'lactic acid', 'formate', 'formic acid', 'citrate', 'citric acid', 'succinate', 'succinic acid', 'fumarate', 'fumaric acid', 'malate', 'malic acid', 'pyruvate', 'pyruvic acid', 'acidification', 'fermentation', 'CENTFERM-PWY', 'FERMENTATION-PWY', 'GLYCOLYSIS', 'PWY-5100', 'GALACTUROCAT-PWY', 'fatty acid β-oxidation I', 'fatty acid elongation','fatty acid salvage','stearate biosynthesis II (bacteria and plants)','palmitoleate biosynthesis I (from (5Z)-dodec-5-enoate)','cis-vaccenate biosynthesis','oleate biosynthesis IV (anaerobic)','gondoate biosynthesis (anaerobic)','mycolate biosynthesis', '3-phenylpropanoate degradation',
             '4-hydroxyphenylacetate degradation',
             'METHGLYUT-PWY',
@@ -437,7 +433,7 @@ functional_categories =	{
             'superpathway of (R,R)-butanediol biosynthesis',
             'superpathway of 2,3-butanediol biosynthesis',
             'PWY-5751',
-            'PWY-5757'], 'score': 1.4, 'justification': 'Videla, H.A., Herrera, L.K. (2005). Microbiologically influenced corrosion: looking to the future. Int Microbiol, 8(3):169-180'}, # VERY HIGH for HVAC - organic acids major issue	
+            'PWY-5757', 'acid', 'carbonic acid', 'gluconic acid', 'low pH', 'proton generation', 'formate production', 'lactate metabolism'], 'score': 1.4, 'justification': 'Videla, H.A., Herrera, L.K. (2005). Microbiologically influenced corrosion: looking to the future. Int Microbiol, 8(3):169-180'}, # VERY HIGH for HVAC - organic acids major issue	
 'metal_binding_chelation': {'terms': ['metal_chelation', 'metal_binding', 'siderophore', 'complexation', 'iron chelation', 'enzymatic_metal_oxid',   'chelator', 'metallophore', 'iron complex', 'metal transport', 'metal oxide', 'iron oxide deposits', 'metal deposition', 'metal solubilization', 'mineral dissolution', 'mineral precipitation', 'chelation', 'metal complexation', 'metal sequestration' , 'metal_organic_interaction', 'metal organic', 'metal homeostasis', 'organometallic',  'iron uptake', 'metal uptake', 'metalloprotein',  'iron-sulfur cluster', 'metal coordination', 'ferric reductase', 'ferrous oxidase', 'metal homeostasis', 'mineral dissolution', 'laccase', 'mineral precipitation', 'copper reduction', 'nickel oxidation', 'chromium reduction', 'crystal nucleation', 'metal immobilization', 'coenzyme A biosynthesis I','pantothenate and coenzyme A biosynthesis I','phosphopantothenate biosynthesis I','NAD biosynthesis I (from aspartate)','thiamin salvage II', 'metalloenzyme', 'enzyme-catalyzed oxidation', '6-hydroxymethyl-dihydropterin diphosphate biosynthesis I',
             '6-hydroxymethyl-dihydropterin diphosphate biosynthesis III (Chlamydia)',
             'adenosylcobalamin biosynthesis I (early cobalt insertion)',
@@ -458,7 +454,7 @@ functional_categories =	{
             'thiazole biosynthesis II (Bacillus)',
             'P181-PWY',
             'P341-PWY',
-            'PHOTOALL-PWY', '8-amino-7-oxononanoate biosynthesis I'], 'score': 1.2, 'justification': 'Herrera, L.K., Videla, H.A. (2009). Role of iron-reducing bacteria in corrosion and protection of carbon steel. Int Biodeterior Biodegradation, 63(7):891-895'},# Important in closed loops
+            'PHOTOALL-PWY', '8-amino-7-oxononanoate biosynthesis I', 'chelate formation', 'metal binding', 'metal ligand', 'biosorption', 'co-precipitation', 'metal mobilization'], 'score': 1.2, 'justification': 'Herrera, L.K., Videla, H.A. (2009). Role of iron-reducing bacteria in corrosion and protection of carbon steel. Int Biodeterior Biodegradation, 63(7):891-895'},# Important in closed loops
 'biofilm_formation': {'terms': ['biofilm_formation', 'metal_chelation', 'quorum_sensing', 'extracellular_matrix', 'exopolysaccharide', 'EPS production', 'EPS', 'surface_disruption', 'polysaccharide', 'adhesin', 'biofilm', 'EPS', 'extracellular polymeric substance', 'curli', 'exopolymer','extracellular matrix', 'adhesion', 'colonization', 'attachment', 'surface', 'adherence', 'biofilm maturation', 'biofilm regulation', 'biofilm dispersion', 'cell-cell adhesion', 'surface attachment', 'polysaccharide biosynthesis', 'cell aggregation', 'matrix production', 'pellicle', 'floc formation', 'COLANSYN-PWY', 'EXOPOLYSACC-PWY', 'GLUCOSE1PMETAB-PWY', 'alginate', 'cellulose', 'lipid metabolism', 'fatty acid synthesis', 'fatty acid degradation', 'biosurfactant', 'VFA', 'volatile fatty acid', 'propionate', 'butyrate', 'oleaginous', 'lipid accumulation', '3-oxoacyl', '3-oxoacyl-(acyl-carrier-protein)','3-oxocerotoyl-[acp] reductase','3-oxo-cis-Δ7-tetradecenoyl-[acp] reductase','3-oxo-cis-Δ9-hexadecenoyl-[acp] reductase','3-oxo-glutaryl-[acp] methyl ester reductase','3-oxo-pimeloyl-[acp] methyl ester reductase','3-oxo-docosapentaenoyl [acp][c]','(5Z)-3-oxo-tetradec-5-enoyl-[acyl-carrier-protein] reductase','(7Z)-3-oxo-hexadec-7-enoyl-[acp] reductase','(9Z)-3-oxo-octadec-9-enoyl-[acp] reductase','(11Z)-3-oxo-icos-11-enoyl-[acp] reductase','acetoacetyl-[acyl-carrier protein] reductase','3-hydroxyhexanoyl-[acyl-carrier protein] reductase','3-oxo-octanoyl-[acyl-carrier protein] reductase','3-oxo-decanoyl-[acyl-carrier protein] reductase','LINOLENOYL-RXN', 'coenzyme A biosynthesis I', 'peptidoglycan biosynthesis I (meso-diaminopimelate containing)','peptidoglycan biosynthesis III (mycobacteria)','UDP-N-acetylmuramoyl-pentapeptide biosynthesis I (meso-diaminopimelate containing)','UDP-N-acetylmuramoyl-pentapeptide biosynthesis II (lysine-containing)','dTDP-L-rhamnose biosynthesis I','O-antigen building blocks biosynthesis (E. coli)','phosphatidylglycerol biosynthesis I (plastidic)','phosphatidylglycerol biosynthesis II (non-plastidic)','CDP-diacylglycerol biosynthesis I','CDP-diacylglycerol biosynthesis II', '(5Z)-dodec-5-enoate biosynthesis',
             'ADP-L-glycero-&beta;-D-manno-heptose biosynthesis',
             'CMP-3-deoxy-D-manno-octulosonate biosynthesis I',
@@ -495,8 +491,8 @@ functional_categories =	{
             'superpathway of fatty acid biosynthesis initiation (E. coli)',
             'superpathway of mycolyl-arabinogalactan-peptidoglycan complex biosynthesis',
             'superpathway of phospholipid biosynthesis I (bacteria)',
-            'teichoic acid (poly-glycerol) biosynthesis', 'PWY-5198', 'PWY-5532'], 'score': 1.3, 'justification': 'Borenstein, S.W. (1994). Microbiologically Influenced Corrosion Handbook. Industrial Press. Biofilms critical in closed water systems'},#  biofilms major problem in closed systems	
-'manganese_processes': {'terms': ['manganese_reduction', 'mn_redox', 'manganese oxidation', 'manganese oxide',  'pyrolusite',  'birnessite',  'manganese cycling',  'manganese mineral',  'manganese transport', 'Mn-oxide formation', 'Mn-oxide reduction', 'Mn precipitation', 'Mn dissolution'],'score': 1.0,'justification': 'Tebo, B.M., et al. (2004). Biogenic manganese oxides: properties and mechanisms of formation. Annu Rev Earth Planet Sci, 32:287-328'}, 
+            'teichoic acid (poly-glycerol) biosynthesis', 'PWY-5198', 'PWY-5532', 'acyl homoserine lactone', 'alginate production', 'cellulose production', 'biofilm architecture', 'biofilm matrix', 'eDNA', 'extracellular DNA', 'matrix metalloprotease'], 'score': 1.3, 'justification': 'Borenstein, S.W. (1994). Microbiologically Influenced Corrosion Handbook. Industrial Press. Biofilms critical in closed water systems'},#  biofilms major problem in closed systems	
+'manganese_processes': {'terms': ['manganese_reduction', 'mn_redox', 'manganese oxidation', 'manganese oxide',  'pyrolusite',  'birnessite',  'manganese cycling',  'manganese mineral',  'manganese transport', 'Mn-oxide formation', 'Mn-oxide reduction', 'Mn precipitation', 'Mn dissolution', 'Mn cycling', 'Mn-oxide dissolution', 'manganese reduction', 'birnessite formation', 'pyrolusite formation'],'score': 1.0,'justification': 'Tebo, B.M., et al. (2004). Biogenic manganese oxides: properties and mechanisms of formation. Annu Rev Earth Planet Sci, 32:287-328'}, 
 'methanogenesis': {'terms': ['methanogenesis', 'methanobacterium', 'archaea', 'methane production', 'methyl-coenzyme M reductase', 'methanogenic', 'coenzyme F420',  'methyl-H4MPT', 'CO2 reduction', 'acetoclastic methanogenesis',  'METHANOGENESIS-PWY',
             'methanogenesis from acetate'],'score': 0.6,'justification': 'Mori, K., et al. (2010). Methanogens in microbiologically influenced corrosion: a review. Microorganisms, 8(7):995'},# REDUCED for HVAC - uncommon in aerobic systems	
 'fumarate_formation': {'terms': ['fumarate', 'propionibacterium'],  'score': 0.5},# Lower priority in HVAC. 
@@ -611,7 +607,18 @@ corrosion_mechanisms = {
         'toluene degradation II (aerobic) (via 4-methylcatechol)',
         'toluene degradation III (aerobic) (via p-cresol)',
         'toluene degradation IV (aerobic) (via catechol)',
-        'vanillin and vanillate degradation I'
+        'vanillin and vanillate degradation I', 'aerobic respiration',
+        'aerobic respiration I (cytochrome c)',
+        'aerobic respiration II (quinol)',
+        'aerobic respiration III (cytochrome bd)',
+        'aerobic respiration IV (cytochrome bo)',
+        'aerobic respiration V (cytochrome cbb3)',
+        'aerobic respiration VI (cytochrome aa3)',  
+        'oxygen scavenging',
+        'oxygen stress',
+        'oxidase',
+        'oxidative phosphorylation',
+        'respiratory burst'
     ],
     'nitrogen_metabolism': [
         '2-amino-3-carboxymuconate semialdehyde degradation to 2-oxopentenoate',
@@ -761,7 +768,14 @@ corrosion_mechanisms = {
         'hydrogen metabolism',
         'hydrogen uptake',
         'hydrogenase',
-        'methanogenesis from acetate'
+        'methanogenesis from acetate',
+        'methanogenesis from CO2',
+        'methanogenesis from formate',
+        'methanogenesis from methanol',
+        'methanogenesis from methylamines',
+        'methanogenesis from methyl-coenzyme M',
+        'methanogenesis from propionate',
+        'methanogenesis from pyruvate'
     ],
     'carbon_metabolism': [
         '1,4-dihydroxy-2-naphthoate biosynthesis I',
