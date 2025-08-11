@@ -169,7 +169,7 @@ functional_categories =	{
             'PWY-7528',
             'PWY0-1338',
             'THREOCAT-PWY',
-            'VALDEG-PWY' ], 'score': 1.0,'justification': 'Flemming, H.C. (1996). Economically relevant microorganisms in technical systems. Materials and Corrosion, 47(7):391-398 and  Washizu, N., et al. (2004). MIC by nitrate-reducing bacteria in water injection systems. Corrosion, 60(4):336-342'}, # Moderate for HVAC - affects redox conditions	
+            'VALDEG-PWY', 'PWY-5487', 'superpathway of 5-aminoimidazole ribonucleotide biosynthesis' ], 'score': 1.0,'justification': 'Flemming, H.C. (1996). Economically relevant microorganisms in technical systems. Materials and Corrosion, 47(7):391-398 and  Washizu, N., et al. (2004). MIC by nitrate-reducing bacteria in water injection systems. Corrosion, 60(4):336-342'}, # Moderate for HVAC - affects redox conditions	
 'iron_metabolism': {'terms': ['corrosion', 'MIC', 'ferric reduc', 'SRB', 'ocre', 'iron_oxide', 'iron_deposit', 'metal oxide', 'ochre formation', 'iron oxide deposits', 'iron precipitation', 'rust formation', 'iron oxid', 'ferrous oxid', 'ferric', 'iron uptake', 'iron transport', 'iron storage',  'iron homeostasis', 'siderophore production', 'iron_sulfur_redox', 'ferredoxin',  'rubredoxin', 'ferritin', 'bacterioferritin',  'PWY-7221',  'PWY-7219', 'HEME-BIOSYNTHESIS-II',  'P125-PWY', 'iron mobilization', 'iron immobilization', 'ferrihydrite', 'goethite', 'magnetite', 'hematite', 'iron mineral', 'biogenic iron oxides', 'stalactite formation', 'ochre mats', 'superpathway of tetrahydrofolate biosynthesis and salvage',  'heme biosynthesis II (anaerobic)', 'tetrapyrrole biosynthesis I (from glutamate)', 'tetrapyrrole biosynthesis II (from glycine)','flavin biosynthesis I (bacteria and plants)','chorismate biosynthesis I', 'chorismate biosynthesis from 3-dehydroquinate', 'enzyme-mediated corrosion', 'AEROBACTINSYN-PWY',
             'enterobactin biosynthesis',
             'heme biosynthesis I (aerobic)',
@@ -458,7 +458,7 @@ functional_categories =	{
             'thiazole biosynthesis II (Bacillus)',
             'P181-PWY',
             'P341-PWY',
-            'PHOTOALL-PWY'], 'score': 1.2, 'justification': 'Herrera, L.K., Videla, H.A. (2009). Role of iron-reducing bacteria in corrosion and protection of carbon steel. Int Biodeterior Biodegradation, 63(7):891-895'},# Important in closed loops
+            'PHOTOALL-PWY', '8-amino-7-oxononanoate biosynthesis I'], 'score': 1.2, 'justification': 'Herrera, L.K., Videla, H.A. (2009). Role of iron-reducing bacteria in corrosion and protection of carbon steel. Int Biodeterior Biodegradation, 63(7):891-895'},# Important in closed loops
 'biofilm_formation': {'terms': ['biofilm_formation', 'metal_chelation', 'quorum_sensing', 'extracellular_matrix', 'exopolysaccharide', 'EPS production', 'EPS', 'surface_disruption', 'polysaccharide', 'adhesin', 'biofilm', 'EPS', 'extracellular polymeric substance', 'curli', 'exopolymer','extracellular matrix', 'adhesion', 'colonization', 'attachment', 'surface', 'adherence', 'biofilm maturation', 'biofilm regulation', 'biofilm dispersion', 'cell-cell adhesion', 'surface attachment', 'polysaccharide biosynthesis', 'cell aggregation', 'matrix production', 'pellicle', 'floc formation', 'COLANSYN-PWY', 'EXOPOLYSACC-PWY', 'GLUCOSE1PMETAB-PWY', 'alginate', 'cellulose', 'lipid metabolism', 'fatty acid synthesis', 'fatty acid degradation', 'biosurfactant', 'VFA', 'volatile fatty acid', 'propionate', 'butyrate', 'oleaginous', 'lipid accumulation', '3-oxoacyl', '3-oxoacyl-(acyl-carrier-protein)','3-oxocerotoyl-[acp] reductase','3-oxo-cis-Δ7-tetradecenoyl-[acp] reductase','3-oxo-cis-Δ9-hexadecenoyl-[acp] reductase','3-oxo-glutaryl-[acp] methyl ester reductase','3-oxo-pimeloyl-[acp] methyl ester reductase','3-oxo-docosapentaenoyl [acp][c]','(5Z)-3-oxo-tetradec-5-enoyl-[acyl-carrier-protein] reductase','(7Z)-3-oxo-hexadec-7-enoyl-[acp] reductase','(9Z)-3-oxo-octadec-9-enoyl-[acp] reductase','(11Z)-3-oxo-icos-11-enoyl-[acp] reductase','acetoacetyl-[acyl-carrier protein] reductase','3-hydroxyhexanoyl-[acyl-carrier protein] reductase','3-oxo-octanoyl-[acyl-carrier protein] reductase','3-oxo-decanoyl-[acyl-carrier protein] reductase','LINOLENOYL-RXN', 'coenzyme A biosynthesis I', 'peptidoglycan biosynthesis I (meso-diaminopimelate containing)','peptidoglycan biosynthesis III (mycobacteria)','UDP-N-acetylmuramoyl-pentapeptide biosynthesis I (meso-diaminopimelate containing)','UDP-N-acetylmuramoyl-pentapeptide biosynthesis II (lysine-containing)','dTDP-L-rhamnose biosynthesis I','O-antigen building blocks biosynthesis (E. coli)','phosphatidylglycerol biosynthesis I (plastidic)','phosphatidylglycerol biosynthesis II (non-plastidic)','CDP-diacylglycerol biosynthesis I','CDP-diacylglycerol biosynthesis II', '(5Z)-dodec-5-enoate biosynthesis',
             'ADP-L-glycero-&beta;-D-manno-heptose biosynthesis',
             'CMP-3-deoxy-D-manno-octulosonate biosynthesis I',
@@ -495,7 +495,7 @@ functional_categories =	{
             'superpathway of fatty acid biosynthesis initiation (E. coli)',
             'superpathway of mycolyl-arabinogalactan-peptidoglycan complex biosynthesis',
             'superpathway of phospholipid biosynthesis I (bacteria)',
-            'teichoic acid (poly-glycerol) biosynthesis'], 'score': 1.3, 'justification': 'Borenstein, S.W. (1994). Microbiologically Influenced Corrosion Handbook. Industrial Press. Biofilms critical in closed water systems'},#  biofilms major problem in closed systems	
+            'teichoic acid (poly-glycerol) biosynthesis', 'PWY-5198', 'PWY-5532'], 'score': 1.3, 'justification': 'Borenstein, S.W. (1994). Microbiologically Influenced Corrosion Handbook. Industrial Press. Biofilms critical in closed water systems'},#  biofilms major problem in closed systems	
 'manganese_processes': {'terms': ['manganese_reduction', 'mn_redox', 'manganese oxidation', 'manganese oxide',  'pyrolusite',  'birnessite',  'manganese cycling',  'manganese mineral',  'manganese transport', 'Mn-oxide formation', 'Mn-oxide reduction', 'Mn precipitation', 'Mn dissolution'],'score': 1.0,'justification': 'Tebo, B.M., et al. (2004). Biogenic manganese oxides: properties and mechanisms of formation. Annu Rev Earth Planet Sci, 32:287-328'}, 
 'methanogenesis': {'terms': ['methanogenesis', 'methanobacterium', 'archaea', 'methane production', 'methyl-coenzyme M reductase', 'methanogenic', 'coenzyme F420',  'methyl-H4MPT', 'CO2 reduction', 'acetoclastic methanogenesis',  'METHANOGENESIS-PWY',
             'methanogenesis from acetate'],'score': 0.6,'justification': 'Mori, K., et al. (2010). Methanogens in microbiologically influenced corrosion: a review. Microorganisms, 8(7):995'},# REDUCED for HVAC - uncommon in aerobic systems	
@@ -1342,7 +1342,7 @@ pathway_categories = {
         'tRNA processing',
         'UMP biosynthesis',
         'urea cycle',
-        "urate biosynthesis/inosine 5'-phosphate degradation"
+        "urate biosynthesis/inosine 5'-phosphate degradation", 'PWY-5487', 'superpathway of 5-aminoimidazole ribonucleotide biosynthesis'
     ],
     'iron_sulfur_redox': [
         'AEROBACTINSYN-PWY',
@@ -1587,7 +1587,7 @@ pathway_categories = {
         'superpathway of tetrahydrofolate biosynthesis',
         'superpathway of tetrahydrofolate biosynthesis and salvage',
         'thiazole biosynthesis I (E. coli)',
-        'thiazole biosynthesis II (Bacillus)'
+        'thiazole biosynthesis II (Bacillus)','8-amino-7-oxononanoate biosynthesis I'
     ],
     'biofilm_formation': [
         'CDP-diacylglycerol biosynthesis I',
@@ -1650,7 +1650,7 @@ pathway_categories = {
         'superpathway of mycolyl-arabinogalactan-peptidoglycan complex biosynthesis',
         'superpathway of phospholipid biosynthesis I (bacteria)',
         'surface attachment',
-        'teichoic acid (poly-glycerol) biosynthesis'
+        'teichoic acid (poly-glycerol) biosynthesis', 'PWY-5198', 'PWY-5532'
     ],
     'carbon_metabolism': [
         '1,4-dihydroxy-2-naphthoate biosynthesis I',
