@@ -9,6 +9,8 @@ import math
 import sys
 import os
 import re
+import math
+from collections import defaultdict
 from .term_processor import TermProcessor 
 
 try:
@@ -122,7 +124,7 @@ def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
     for term in terms_to_process:
         pathway_category = _pathway_processor.find_first_category(term)
         if pathway_category:
-            # Map pathway categories to mechanisms (you'll need to define this mapping)
+            # Map pathway categories to mechanisms 
             inferred_mechanisms = infer_mechanisms_from_pathway_category(pathway_category)
             found_mechanisms.update(inferred_mechanisms)
     
@@ -422,7 +424,39 @@ def calculate_corrosion_relevance_score(
         corrosion_relevance = "low"
 
     return corrosion_relevance_score, corrosion_relevance
-
+#=================================================================================
+# function for fc in brenda
+# This new function uses the processor but mimics the old function's output
+def calculate_scores_with_processor(text, processor, original_fc_dict):
+    """
+    Calculates granular corrosion scores using the pre-compiled TermProcessor
+    but returns the same data structure as the original calculate_overall_scores.
+    """
+    # 1. Use the processor to find all matching terms and their categories in one fast pass
+    categorized_matches = processor.find_all_matches(text)
+    
+    # 2. Now, replicate the original scoring logic using these matches
+    functional_score = 0.0
+    func_matches_output = [] # This will be the list of dicts for the output
+    
+    for category, found_terms in categorized_matches.items():
+        # Count the number of unique terms found for this category
+        num_hits = len(found_terms)
+        
+        # Get the base score for this category from the original dictionary
+        base_score = original_fc_dict[category]['score']
+        
+        # Apply the same log scaling as original function
+        weighted_score = math.log(num_hits + 1) * base_score
+        
+        functional_score += weighted_score
+        func_matches_output.append({"category": category, "score": weighted_score})
+        
+    # 3. Return the results in the EXACT same format as before
+    return {
+        "functional_categories": func_matches_output,
+        "overall_functional_score": float(functional_score)
+    }
 
 #=================================================================================
 def enhance_pathway_extraction(record, ec_pathway_mapping, ipath_mapping, ko_ec):
@@ -432,7 +466,7 @@ def enhance_pathway_extraction(record, ec_pathway_mapping, ipath_mapping, ko_ec)
     ec_number = record['ec_number']
     
     # Start with existing pathways
-    all_pathways = set(record.get('pathways', []))
+    all_pathways = set(record.get('pathway_ko', []))
     
     # 1. Add pathways from EC-pathway mapping with better processing
     if ec_number in ec_pathway_mapping:
@@ -449,13 +483,13 @@ def enhance_pathway_extraction(record, ec_pathway_mapping, ipath_mapping, ko_ec)
                 normalized_pathway = _pathway_processor._normalize_term(pathway_name)
                 all_pathways.add(pathway_name)  # Keep original for display
     
-    # 2. Add ipath data (ground truth) - this have priority
-    if ec_number in ipath_mapping:
-        for ipath_pathway in ipath_mapping[ec_number]:
+    # 2. Add ipath data (ground truth) - this have priority I have change the name ipath to pathways with plural but previoulsy the pathways was for the now pathways_ko from ec_pathway_mapping
+    if ec_number in pathwaysath_mapping:
+        for pathways_pathway in pathways_mapping[ec_number]:
             # Normalize ipath terms using pathway processor
-            if isinstance(ipath_pathway, str):
-                normalized_ipath = _pathway_processor._normalize_term(ipath_pathway)
-                all_pathways.add(ipath_pathway)
+            if isinstance(pathways_pathway, str):
+                normalized_pathways = _pathway_processor._normalize_term(pathways_pathway)
+                all_pathways.add(pathways_pathway)
     
     # 3. Add pathways from KO data with normalization
     if ec_number in ko_ec:
@@ -464,23 +498,23 @@ def enhance_pathway_extraction(record, ec_pathway_mapping, ipath_mapping, ko_ec)
             for path in ko_data:
                 if isinstance(path, str):
                     all_pathways.add(path)
-        elif isinstance(ko_data, dict) and 'pathway' in ko_data:
-            path = ko_data['pathway']
+        elif isinstance(ko_data, dict) and 'pathway_ko' in ko_data:
+            path = ko_data['pathway_ko']
             if isinstance(path, str):
                 all_pathways.add(path)
     
-    # 4. Extract mechanisms from all collected pathways
+    # 4. Extract mechanisms from all collected ppathway_ko
     pathway_text = ' '.join(all_pathways)
     extracted_mechanisms = assign_mechanism_from_pathway(pathway_text)
     
     # Update record
-    record['pathways'] = list(all_pathways)
+    record['pathway_ko'] = list(all_pathways)
     existing_mechanisms = record.get('corrosion_mechanisms', [])
     record['corrosion_mechanisms'] = list(set(existing_mechanisms + extracted_mechanisms))
     
     return record
 
-def validate_against_ipath(record, ipath_data):
+def validate_against_pathways(record, pathways_data):
     """
     Validates detected pathways, mechanisms, and functional categories against ipath ground truth.
     Returns validation metrics and suggestions.
@@ -493,22 +527,22 @@ def validate_against_ipath(record, ipath_data):
         'overall_confidence': 0.0
     }
     
-    if ec_number not in ipath_data:
+    if ec_number not in pathways_data:
         validation_results['overall_confidence'] = 0.5  # No ground truth available
         return validation_results
     
-    ipath_pathways = ipath_data[ec_number]
-    detected_pathways = record.get('pathways', [])
+    pathways = pathways_data[ec_number]
+    detected_pathways = record.get('pathway_ko', [])
     detected_mechanisms = record.get('corrosion_mechanisms', [])
     detected_fc = [fc['category'] for fc in record.get('functional_categories', [])]
     
     # Pathway validation
-    if ipath_pathways and detected_pathways:
+    if pathways and detected_pathway_ko:
         # Normalize both for comparison
-        norm_ipath = {_pathway_processor._normalize_term(p) for p in ipath_pathways}
+        norm_ipath = {_pathway_processor._normalize_term(p) for p in pathways}
         norm_detected = {_pathway_processor._normalize_term(p) for p in detected_pathways}
         
-        overlap = norm_ipath.intersection(norm_detected)
+        overlap = norm_pathways.intersection(norm_detected)
         pathway_precision = len(overlap) / len(norm_detected) if norm_detected else 0
         pathway_recall = len(overlap) / len(norm_ipath) if norm_ipath else 0
         
@@ -520,9 +554,9 @@ def validate_against_ipath(record, ipath_data):
         }
     
     # Mechanism validation (infer expected mechanisms from ipath)
-    if ipath_pathways:
+    if pathways:
         expected_mechanisms = set()
-        for pathway in ipath_pathways:
+        for pathway in pathways:
             expected_mechanisms.update(assign_mechanism_from_pathway(pathway))
         
         if expected_mechanisms and detected_mechanisms:
