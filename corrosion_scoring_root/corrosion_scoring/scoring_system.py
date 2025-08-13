@@ -60,6 +60,8 @@ def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
     using the module's _mechanism_term_processor instance.
     This function is for POPULATION, NOT SCORING.
     """
+    mechanism_processor = TermProcessor(corrosion_mechanisms)
+    # Use the processor to find all matching terms and their categories in one fast pass
     found_mechanisms = set() # Use a set to ensure unique mechanisms
 
     # Tokenize the input text into individual words/phrases to process
@@ -68,7 +70,7 @@ def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
 
     for term in terms_to_process:
         # Use the _mechanism_term_processor to find the highest priority category match
-        category = _mechanism_term_processor.find_first_category(term)
+        category = _mechanism_processor.find_first_category(term)
         if category:
             found_mechanisms.add(category)
 
@@ -100,6 +102,8 @@ def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
     Extracts corrosion mechanisms from pathway text using both pathway and mechanism processors.
     This function looks for direct mechanism terms AND infers mechanisms from pathway names.
     """
+    mechanism_processor = TermProcessor(corrosion_mechanisms)
+    pathway_processor = TermProcessor(pathway_categories)
     found_mechanisms = set()
     
     if not pathway_text:
@@ -110,7 +114,7 @@ def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
     
     # Method 1: Direct mechanism detection
     for term in terms_to_process:
-        mechanism = _mechanism_term_processor.find_first_category(term)
+        mechanism = _mechanism_processor.find_first_category(term)
         if mechanism:
             found_mechanisms.add(mechanism)
     
