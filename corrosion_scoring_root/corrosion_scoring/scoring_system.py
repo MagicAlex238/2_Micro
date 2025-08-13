@@ -24,12 +24,6 @@ try:
 except ImportError:
     print("Critical error")#
 
-# Instantiate Normalising terms before scoring and mathching
-processor = TermProcessor(functional_categories)
-normalized_functional_categories = processor.normalized_taxonomy
-_mechanism_term_processor = TermProcessor(corrosion_mechanisms)
-_pathway_processor = TermProcessor(pathway_categories)
-
 # Scoring weights - 
 METAL_SCORE_WEIGHT = 0.5
 FUNCTIONAL_SCORE_WEIGHT = 1.5
