@@ -1,5 +1,6 @@
 import re
 from collections import OrderedDict
+from collections import defaultdict
 
 class TermProcessor:
     """Normalizes and matches corrosion terms with priority handling"""
