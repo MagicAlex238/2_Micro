@@ -517,6 +517,8 @@ def validate_against_pathways(record, pathways_data):
     Validates detected pathways, mechanisms, and functional categories against ipath ground truth.
     Returns validation metrics and suggestions.
     """
+    mechanism_processor = TermProcessor(corrosion_mechanisms)
+    pathway_processor = TermProcessor(pathway_categories)
     ec_number = record['ec_number']
     validation_results = {
         'pathway_validation': {},
