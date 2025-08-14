@@ -70,7 +70,7 @@ def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
 
     for term in terms_to_process:
         # Use the _mechanism_term_processor to find the highest priority category match
-        category = _mechanism_processor.find_first_category(term)
+        category = mechanism_processor.find_first_category(term)
         if category:
             found_mechanisms.add(category)
 
@@ -114,7 +114,7 @@ def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
     
     # Method 1: Direct mechanism detection
     for term in terms_to_process:
-        mechanism = _mechanism_processor.find_first_category(term)
+        mechanism = mechanism_processor.find_first_category(term)
         if mechanism:
             found_mechanisms.add(mechanism)
     
