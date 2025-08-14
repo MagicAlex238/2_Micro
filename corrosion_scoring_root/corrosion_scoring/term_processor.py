@@ -109,7 +109,12 @@ class TermProcessor:
     def find_first_category(self, term: str) -> str:
         """Returns first matching category based on priority"""
         norm_term = self._normalize_term(term)
-        for category, terms in self.normalized_taxonomy.items():
-            if norm_term in terms:
-                return category
-        return None
+        for category in self.priority_order:
+            if norm_term in [self._normalize_term(t) for t in self.keyword_to_category_map.get(category, {}).get('terms', [])]:
+            return category
+
+    # Fallback for non-priority categories
+    for keyword, category in self.keyword_to_category_map.items():
+        if norm_term == keyword:
+            return category
+    return None

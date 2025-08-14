@@ -33,7 +33,7 @@ SYNERGY_SCORE_WEIGHT = 2.0
 HIGH_RELEVANCE_THRESHOLD = 5.0
 MEDIUM_RELEVANCE_THRESHOLD = 2.0
 
-def score_keyword_matches(text, keyword_list):
+def score_keyword_matches(text, keyword_list, processor):
     """Score keyword matches in text.
     
     Args:
@@ -171,7 +171,7 @@ def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
             # If no mapping is found after checking all keys, add the original
             consolidated.add(metal.strip())
     return list(consolidated)
-def calculate_overall_scores(text, brenda_metals=None, pathways=None):
+def calculate_overall_scores(text, processor, brenda_metals=None, pathways=None):
     """Calculate all the overall scores for a given text.
     
     Args: text: Text to analyze (combined enzyme names, class, pathways, reactions)
@@ -194,7 +194,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
 
     # Score metals with all terms
     all_metal_keywords = [term for sublist in metal_terms.values() for term in sublist]
-    metal_score, detected_metals = score_keyword_matches(text, all_metal_keywords)
+    metal_score, detected_metals = score_keyword_matches(text, all_metal_keywords, processor)
     
     # Consolidate metals
     consolidated_metals = consolidate_metal_terms(brenda_metals, detected_metals)
@@ -232,7 +232,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
     "methanogenesis","fumarate_formation","halogen_related","phosphorus_metabolism"
     ]
 
-    def detect_functional_category_synergies(text_lower, functional_categories, subcategories_fc):
+    def detect_functional_category_synergies(text_lower, functional_categories, subcategories_fc, processor):
         """ Detect synergies based on co-occurrence of terms from different functional categories.
         Args:text_lower: Lowercase text to analyze
             functional_categories: Dictionary of functional categories and their terms
@@ -350,7 +350,7 @@ def calculate_overall_scores(text, brenda_metals=None, pathways=None):
 
     #=================
     synergy_results = detect_functional_category_synergies(
-    text_lower, functional_categories, subcategories_fc
+    text_lower, functional_categories, subcategories_fc, processor
     )
     
     # Legacy keyword synergy detection (as fallback)
