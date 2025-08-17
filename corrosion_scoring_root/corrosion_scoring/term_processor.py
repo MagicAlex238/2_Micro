@@ -113,8 +113,8 @@ class TermProcessor:
             if norm_term in [self._normalize_term(t) for t in self.keyword_to_category_map.get(category, {}).get('terms', [])]:
                 return category
 
-    # Fallback for non-priority categories
-    for keyword, category in self.keyword_to_category_map.items():
-        if norm_term == keyword:
-            return category
-    return None
+        # Fallback for non-priority categories
+        for keyword, category in self.keyword_to_category_map.items():
+            if norm_term == keyword:
+                return category
+        return None
