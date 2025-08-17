@@ -111,7 +111,7 @@ class TermProcessor:
         norm_term = self._normalize_term(term)
         for category in self.priority_order:
             if norm_term in [self._normalize_term(t) for t in self.keyword_to_category_map.get(category, {}).get('terms', [])]:
-            return category
+                return category
 
     # Fallback for non-priority categories
     for keyword, category in self.keyword_to_category_map.items():
