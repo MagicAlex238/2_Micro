@@ -57,7 +57,7 @@ def score_keyword_matches(text, keyword_list, processor):
 def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
     """
     Identifies and extracts corrosion mechanism terms from the given text
-    using the module's _mechanism_term_processor instance.
+    using the module's _mechanism_processor instance.
     This function is for POPULATION, NOT SCORING.
     """
     mechanism_processor = TermProcessor(corrosion_mechanisms)
@@ -69,7 +69,7 @@ def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
     terms_to_process = re.findall(r'\b\w+\b', text_to_analyze.lower())
 
     for term in terms_to_process:
-        # Use the _mechanism_term_processor to find the highest priority category match
+        # Use the mechanism_processor to find the highest priority category match
         category = mechanism_processor.find_first_category(term)
         if category:
             found_mechanisms.add(category)
@@ -120,7 +120,7 @@ def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
     
     # Method 2: Pathway-to-mechanism inference using pathway processor
     for term in terms_to_process:
-        pathway_category = _pathway_processor.find_first_category(term)
+        pathway_category = pathway_processor.find_first_category(term)
         if pathway_category:
             # Map pathway categories to mechanisms 
             inferred_mechanisms = infer_mechanisms_from_pathway_category(pathway_category)
@@ -456,62 +456,7 @@ def calculate_scores_with_processor(text, processor, original_fc_dict):
         "overall_functional_score": float(functional_score)
     }
 
-#=================================================================================
-def enhance_pathway_extraction(record, ec_pathway_mapping, ipath_mapping, ko_ec):
-    """
-    Enhanced pathway extraction that better integrates all sources and normalizes terms.
-    """
-    ec_number = record['ec_number']
-    
-    # Start with existing pathways
-    all_pathways = set(record.get('pathway_ko', []))
-    
-    # 1. Add pathways from EC-pathway mapping with better processing
-    if ec_number in ec_pathway_mapping:
-        for pathway_id in ec_pathway_mapping[ec_number]:
-            # Standardize pathway ID
-            std_id = pathway_id
-            if pathway_id.startswith('ec'):
-                std_id = 'map' + pathway_id[2:]
-            
-            # Look up pathway name and normalize
-            if std_id in pathway_data:
-                pathway_name = pathway_data[std_id]
-                # Use pathway processor to normalize
-                normalized_pathway = _pathway_processor._normalize_term(pathway_name)
-                all_pathways.add(pathway_name)  # Keep original for display
-    
-    # 2. Add ipath data (ground truth) - this have priority I have change the name ipath to pathways with plural but previoulsy the pathways was for the now pathways_ko from ec_pathway_mapping
-    if ec_number in pathwaysath_mapping:
-        for pathways_pathway in pathways_mapping[ec_number]:
-            # Normalize ipath terms using pathway processor
-            if isinstance(pathways_pathway, str):
-                normalized_pathways = _pathway_processor._normalize_term(pathways_pathway)
-                all_pathways.add(pathways_pathway)
-    
-    # 3. Add pathways from KO data with normalization
-    if ec_number in ko_ec:
-        ko_data = ko_ec[ec_number]
-        if isinstance(ko_data, list):
-            for path in ko_data:
-                if isinstance(path, str):
-                    all_pathways.add(path)
-        elif isinstance(ko_data, dict) and 'pathway_ko' in ko_data:
-            path = ko_data['pathway_ko']
-            if isinstance(path, str):
-                all_pathways.add(path)
-    
-    # 4. Extract mechanisms from all collected ppathway_ko
-    pathway_text = ' '.join(all_pathways)
-    extracted_mechanisms = assign_mechanism_from_pathway(pathway_text)
-    
-    # Update record
-    record['pathway_ko'] = list(all_pathways)
-    existing_mechanisms = record.get('corrosion_mechanisms', [])
-    record['corrosion_mechanisms'] = list(set(existing_mechanisms + extracted_mechanisms))
-    
-    return record
-
+#=====================================================================================================================0
 def validate_against_pathways(record, pathways_data):
     """
     Validates detected pathways, mechanisms, and functional categories against ipath ground truth.
@@ -537,14 +482,14 @@ def validate_against_pathways(record, pathways_data):
     detected_fc = [fc['category'] for fc in record.get('functional_categories', [])]
     
     # Pathway validation
-    if pathways and detected_pathway_ko:
+    if pathways and detected_pathways:
         # Normalize both for comparison
-        norm_ipath = {_pathway_processor._normalize_term(p) for p in pathways}
-        norm_detected = {_pathway_processor._normalize_term(p) for p in detected_pathways}
+        norm_pathways = {pathway_processor._normalize_term(p) for p in pathways}
+        norm_detected = {pathway_processor._normalize_term(p) for p in detected_pathways}
         
         overlap = norm_pathways.intersection(norm_detected)
         pathway_precision = len(overlap) / len(norm_detected) if norm_detected else 0
-        pathway_recall = len(overlap) / len(norm_ipath) if norm_ipath else 0
+        pathway_recall = len(overlap) / len(norm_pathways) if norm_pathways else 0
         
         validation_results['pathway_validation'] = {
             'precision': pathway_precision,
@@ -560,8 +505,8 @@ def validate_against_pathways(record, pathways_data):
             expected_mechanisms.update(assign_mechanism_from_pathway(pathway))
         
         if expected_mechanisms and detected_mechanisms:
-            norm_expected = {_mechanism_term_processor._normalize_term(m) for m in expected_mechanisms}
-            norm_detected = {_mechanism_term_processor._normalize_term(m) for m in detected_mechanisms}
+            norm_expected = {mechanism_processor._normalize_term(m) for m in expected_mechanisms}
+            norm_detected = {mechanism_processor._normalize_term(m) for m in detected_mechanisms}
             
             overlap = norm_expected.intersection(norm_detected)
             mech_precision = len(overlap) / len(norm_detected) if norm_detected else 0
