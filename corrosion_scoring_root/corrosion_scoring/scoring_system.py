@@ -52,25 +52,7 @@ def score_keyword_matches(text, keyword_list, processor = None):
         score += 1.0
 
     return score, matches
-    
-'''    for keyword in keyword_list:        
-        # use all processors to check for matches
-        if fc_processor and fc_processor.matches_normalized(keyword, text_lower):
-            matches.append(keyword)
-            score += 1.0
-        if metal_processor and metal_processor.matches_normalized(keyword, text_lower):
-            matches.append(keyword)
-            score += 1.0            
-        if synergy_processor and synergy_processor.matches_normalized(keyword, text_lower):
-            matches.append(keyword)
-            score += 1.0
-        # If no specific processors, just check normalized match
-        elif not (fc_processor or metal_processor or synergy_processor):
 
-            # This allows for flexible matching without requiring specific processors
-            if not hasattr(TermProcessor, 'matches_normalized'):
-                raise ValueError("TermProcessor must have a matches_normalized method.")    
-    return score, matches'''
 #============================================================================================================
 def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
     """

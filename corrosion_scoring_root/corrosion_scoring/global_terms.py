@@ -1,41 +1,142 @@
-# 1. Complete metal_terms 
-metal_terms = {	
-'iron': ['Fe2+', 'Fe3+', 'iron', 'ferrous', 'ferric', 'heme', 'iron-sulfur', 'rust', 'ochre', 'iron oxide', 'siderophore', 'ferritin'],	
-'manganese': ['Mn2+',  'manganese', 'mn', 'manganous', 'manganic', 'manganese oxidation', 'manganese oxide', 'MnO2'],	
-'copper': ['Cu+', 'Cu2+', 'copper', 'cupric', 'cuprous', 'copper oxide', 'copper corrosion'],	
-'nickel': ['Ni2+', 'nickel', 'nickelous', 'nickel oxidation', 'nickel reduction'],	
-'cobalt': ['Co2+',  'cobalt', 'cobaltous', 'cobalamin', 'vitamin B12'],	
-'magnesium': ['Mg2+', 'magnesium', 'magnesium oxide'],	
-'calcium': ['Ca2+', 'calcium', 'calcium carbonate', 'calcite', 'calcium precipitation'],	
-'Mo': ['Mo',  'molybdenum', 'molybdopterin', 'molybdenum cofactor'],	
-'V5+': ['V5+', 'vanadium', 'vanadate', 'vanadyl'],	
-'Al3+': ['Al3+', 'aluminum', 'aluminate', 'aluminum oxide'],	
-'Cr3+': ['Cr3+', 'Cr6+', 'chromium', 'chromate', 'dichromate', 'chromium oxide'],	
-'zinc': ['Zn2+', 'zinc', 'zinc finger', 'zinc oxide'],	
-'sodium': ['Na+', 'sodium', 'NaCl', 'sodium transport', 'sodium gradient'],	
-'potassium': ['K+', 'potassium', 'KCl', 'potassium transport', 'potassium channel'],	
-'selenium': ['selenium', 'Se', 'selenocysteine', 'selenoprotein', 'selenite'],	
-'barium': ['Ba2+', 'barium', 'barium sulfate', 'barite'],	
-'strontium': ['Sr2+', 'strontium', 'strontium carbonate', 'strontium sulfate'], 	
-'lead': ['Pb2+', 'Pb4+', 'lead', 'plumbous', 'plumbic', 'lead oxide'], 	
-'arsenic': ['As3+', 'As5+', 'arsenic', 'arsenite', 'arsenate', 'arsenic oxidation'], 	
-'mercury': ['Hg2+', 'Hg+', 'mercury', 'mercuric', 'mercurous', 'mercury methylation'], 	
+# 1. COMPLETE metal_terms 
+metal_terms = {
+    'iron': {
+        'terms': ['Fe2+', 'Fe3+', 'iron', 'ferrous', 'ferric', 'heme', 'iron-sulfur', 'rust', 'ochre', 'iron oxide', 'siderophore', 'ferritin'],
+        'score': 1.0
+    },
+    'manganese': {
+        'terms': ['Mn2+', 'manganese', 'mn', 'manganous', 'manganic', 'manganese oxidation', 'manganese oxide', 'MnO2'],
+        'score': 1.0
+    },
+    'copper': {
+        'terms': ['Cu+', 'Cu2+', 'copper', 'cupric', 'cuprous', 'copper oxide', 'copper corrosion'],
+        'score': 1.0
+    },
+    'nickel': {
+        'terms': ['Ni2+', 'nickel', 'nickelous', 'nickel oxidation', 'nickel reduction'],
+        'score': 1.0
+    },
+    'cobalt': {
+        'terms': ['Co2+', 'cobalt', 'cobaltous', 'cobalamin', 'vitamin B12'],
+        'score': 1.0
+    },
+    'magnesium': {
+        'terms': ['Mg2+', 'magnesium', 'magnesium oxide'],
+        'score': 1.0
+    },
+    'calcium': {
+        'terms': ['Ca2+', 'calcium', 'calcium carbonate', 'calcite', 'calcium precipitation'],
+        'score': 1.0
+    },
+    'molybdenum': {
+        'terms': ['Mo', 'molybdenum', 'molybdopterin', 'molybdenum cofactor'],
+        'score': 1.0
+    },
+    'vanadium': {
+        'terms': ['V5+', 'vanadium', 'vanadate', 'vanadyl'],
+        'score': 1.0
+    },
+    'aluminum': {
+        'terms': ['Al3+', 'aluminum', 'aluminate', 'aluminum oxide'],
+        'score': 1.0
+    },
+    'chromium': {
+        'terms': ['Cr3+', 'Cr6+', 'chromium', 'chromate', 'dichromate', 'chromium oxide'],
+        'score': 1.0
+    },
+    'zinc': {
+        'terms': ['Zn2+', 'zinc', 'zinc finger', 'zinc oxide'],
+        'score': 1.0
+    },
+    'sodium': {
+        'terms': ['Na+', 'sodium', 'NaCl', 'sodium transport', 'sodium gradient'],
+        'score': 1.0
+    },
+    'potassium': {
+        'terms': ['K+', 'potassium', 'KCl', 'potassium transport', 'potassium channel'],
+        'score': 1.0
+    },
+    'selenium': {
+        'terms': ['selenium', 'Se', 'selenocysteine', 'selenoprotein', 'selenite'],
+        'score': 1.0
+    },
+    'barium': {
+        'terms': ['Ba2+', 'barium', 'barium sulfate', 'barite'],
+        'score': 1.0
+    },
+    'strontium': {
+        'terms': ['Sr2+', 'strontium', 'strontium carbonate', 'strontium sulfate'],
+        'score': 1.0
+    },
+    'lead': {
+        'terms': ['Pb2+', 'Pb4+', 'lead', 'plumbous', 'plumbic', 'lead oxide'],
+        'score': 1.0
+    },
+    'arsenic': {
+        'terms': ['As3+', 'As5+', 'arsenic', 'arsenite', 'arsenate', 'arsenic oxidation'],
+        'score': 1.0
+    },
+    'mercury': {
+        'terms': ['Hg2+', 'Hg+', 'mercury', 'mercuric', 'mercurous', 'mercury methylation'],
+        'score': 1.0
+    }
 }
-# Corrosion-specific metal combinations 
-corrosion_synergies= {
-'Fe-S': ['iron_sulfur', 'Fe-S','iron sulfide','FeS', 'Fe-S cluster'],	
-'Fe-Cl': ['iron chloride', 'FeCl', 'iron halide', 'ferric chloride'],	
-'Fe-C': ['iron carbon', 'FeC', 'iron carbonate', 'siderite'],	
-'Cu-Fe': ['copper iron', 'Cu-Fe', 'bimetallic', 'galvanic couple'],	
-'Mn-Fe': ['manganese iron', 'Mn-Fe', 'iron manganese oxide'],
-'Ni-Fe': ['Ni-Fe'],  	
-'Cr-Fe': ['chromium iron', 'Cr-Fe', 'stainless steel', 'chromium passivation'], 	
-'Al-Cu': ['aluminum copper', 'Al-Cu', 'aluminum brass', 'galvanic corrosion'], 	
-'Zn-Fe': ['zinc iron', 'Zn-Fe', 'galvanized steel', 'sacrificial anode'],	
-'Fe-CO3': ['iron carbonate', 'siderite', 'bicarbonate corrosion', 'carbonate scaling'],	
-'Fe-SO4': ['iron sulfate', 'sulfate corrosion', 'gypsum formation'],	
-'Fe-Ox': ['iron oxalate', 'oxalate corrosion', 'organic acid', 'oxidation corrosion'],	
-'Fe-Ac': ['iron acetate', 'acetate corrosion', 'organic acid', 'oxidation corrosion']}	
+
+# 2. COMPLETE corrosion_synergies 
+corrosion_synergies = {
+    'Fe-S': {
+        'terms': ['iron_sulfur', 'Fe-S', 'iron sulfide', 'FeS', 'Fe-S cluster'],
+        'score': 1.0
+    },
+    'Fe-Cl': {
+        'terms': ['iron chloride', 'FeCl', 'iron halide', 'ferric chloride'],
+        'score': 1.0
+    },
+    'Fe-C': {
+        'terms': ['iron carbon', 'FeC', 'iron carbonate', 'siderite'],
+        'score': 1.0
+    },
+    'Cu-Fe': {
+        'terms': ['copper iron', 'Cu-Fe', 'bimetallic', 'galvanic couple'],
+        'score': 1.0
+    },
+    'Mn-Fe': {
+        'terms': ['manganese iron', 'Mn-Fe', 'iron manganese oxide'],
+        'score': 1.0
+    },
+    'Ni-Fe': {
+        'terms': ['Ni-Fe'],
+        'score': 1.0
+    },
+    'Cr-Fe': {
+        'terms': ['chromium iron', 'Cr-Fe', 'stainless steel', 'chromium passivation'],
+        'score': 1.0
+    },
+    'Al-Cu': {
+        'terms': ['aluminum copper', 'Al-Cu', 'aluminum brass', 'galvanic corrosion'],
+        'score': 1.0
+    },
+    'Zn-Fe': {
+        'terms': ['zinc iron', 'Zn-Fe', 'galvanized steel', 'sacrificial anode'],
+        'score': 1.0
+    },
+    'Fe-CO3': {
+        'terms': ['iron carbonate', 'siderite', 'bicarbonate corrosion', 'carbonate scaling'],
+        'score': 1.0
+    },
+    'Fe-SO4': {
+        'terms': ['iron sulfate', 'sulfate corrosion', 'gypsum formation'],
+        'score': 1.0
+    },
+    'Fe-Ox': {
+        'terms': ['iron oxalate', 'oxalate corrosion', 'organic acid', 'oxidation corrosion'],
+        'score': 1.0
+    },
+    'Fe-Ac': {
+        'terms': ['iron acetate', 'acetate corrosion', 'organic acid', 'oxidation corrosion'],
+        'score': 1.0
+    }
+}
 
 # 3. COMPLETE functional_categories with HVAC-corrected scoring and justification
 functional_categories =	{
