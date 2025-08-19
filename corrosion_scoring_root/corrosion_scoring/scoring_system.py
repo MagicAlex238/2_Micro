@@ -32,26 +32,7 @@ SYNERGY_SCORE_WEIGHT = 2.0
 # Classification thresholds
 HIGH_RELEVANCE_THRESHOLD = 5.0
 MEDIUM_RELEVANCE_THRESHOLD = 2.0
-
-'''def score_keyword_matches(text, keyword_list, processor = None):
-    """Score keyword matches in text.
-    
-    Args:
-        text: Text to analyze
-        keyword_list: List of keywords to search for
-        
-    Returns:
-        Tuple of (score, matched_terms)
-    """
-    text_lower = text.lower()
-    score = 0.0
-    matches = []
-    for keyword in keyword_list:
-        if processor.matches_normalized(keyword, text_lower):
-            matches.append(keyword)
-            score += 1.0
-
-    return score, matches'''
+#============================================================================================================
 def score_keyword_matches(text, processor):
     """Score keyword matches using TermProcessor.
     Args: text: Text to analyze
@@ -165,29 +146,6 @@ def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
     return list(found_mechanisms)
 #==============================================================================================================
 
-'''def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
-    """
-    Consolidates metal names from BRENDA and text mining into standardized symbols.
-    Parameters:  brenda_metals (list of str): Metals obtained from BRENDA data.
-        text_detected_metals (list of str): Metals detected from text mining.
-    Returns: list: Consolidated list of unique, standardized metal symbols.
-    """   
-    consolidated = set()
-    all_metals = (brenda_metals or []) + (text_detected_metals or [])
-    
-    for metal in all_metals:
-        metal_norm = metal.strip().lower() #processor.matches_normalized(term, text_lower)
-        found_mapping = False # Flag to check if a mapping was found
-        # Check if the normalized term matches any key in the standard mapping
-        for key, symbol in metal_mapping.items():
-            if key in metal_norm:
-                consolidated.add(symbol)
-                found_mapping = True
-                #break # Found a mapping, move to the next metal
-        if not found_mapping:
-            # If no mapping is found after checking all keys, add the original
-            consolidated.add(metal.strip())
-    return list(consolidated)'''
 def consolidate_metal_terms(brenda_metals, detected_metal_categories=None):
     """
     Consolidates metal names from BRENDA and detected categories into standardized symbols.
@@ -257,7 +215,7 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     functional_score = 0.0
     func_matches = {} #dict storages weighted score
     detected_fc_names = set()  # to take into account for coocurrence
-    for cat, details in functional_categories.items():
+    for cat, details in cs.functional_categories.items():
         category_hits = 0
         for term in details["terms"]:
             if fc_processor.matches_normalized(term, text_lower):
@@ -283,7 +241,7 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     "methanogenesis","fumarate_formation","halogen_related","phosphorus_metabolism"
     ]
     
-    def detect_functional_category_synergies(text_lower, functional_categories, subcategories_fc, fc_processor):
+    def detect_functional_category_synergies(text_lower, cs.functional_categories, subcategories_fc, fc_processor):
         """ Detect synergies based on co-occurrence of terms from different functional categories.
         Args:text_lower: Lowercase text to analyze
             functional_categories: Dictionary of functional categories and their terms
@@ -295,8 +253,8 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
         all_found_terms = set()
         
         for category in subcategories_fc:
-            if category in functional_categories:
-                terms = functional_categories[category]['terms']
+            if category in cs.functional_categories:
+                terms = cs.functional_categories[category]['terms']
                 found_terms = [term for term in terms if fc_processor.matches_normalized(term, text_lower)]
                 
                 if found_terms:
@@ -401,14 +359,14 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
 
     #=================
     synergy_results = detect_functional_category_synergies(
-    text_lower, functional_categories, subcategories_fc, fc_processor
+    text_lower, cs.functional_categories, subcategories_fc, fc_processor
     )
     
     # Legacy keyword synergy detection (as fallback)
     keyword_synergy_score = 0.0
     keyword_synergy_groups_found = set()
     
-    for synergy_group, terms in corrosion_synergies.items():
+    for synergy_group, terms in cs.corrosion_synergies.items():
         group_hits = 0
         for term in terms:
             if synergy_processor.matches_normalized(term, text_lower):
