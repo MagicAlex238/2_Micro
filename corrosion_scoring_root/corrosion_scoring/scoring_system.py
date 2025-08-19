@@ -33,7 +33,7 @@ SYNERGY_SCORE_WEIGHT = 2.0
 HIGH_RELEVANCE_THRESHOLD = 5.0
 MEDIUM_RELEVANCE_THRESHOLD = 2.0
 
-def score_keyword_matches(text, keyword_list, processor = None):
+'''def score_keyword_matches(text, keyword_list, processor = None):
     """Score keyword matches in text.
     
     Args:
@@ -51,7 +51,25 @@ def score_keyword_matches(text, keyword_list, processor = None):
             matches.append(keyword)
             score += 1.0
 
-    return score, matches
+    return score, matches'''
+def score_keyword_matches(text, processor):
+    """Score keyword matches using TermProcessor.
+    Args: text: Text to analyze
+    processor: TermProcessor instance
+    Returns: Tuple of (score, matched_categories)
+    """
+    text_lower = text.lower()
+    categorized_matches = processor.find_all_matches(text_lower)
+    
+    total_score = 0.0
+    matched_categories = []
+    
+    for category, found_terms in categorized_matches.items():
+        if found_terms:  # If any terms were found for this category
+            total_score += len(found_terms)  # Score based on number of terms found
+            matched_categories.append(category)
+    
+    return total_score, matched_categories
 
 #============================================================================================================
 def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
@@ -148,7 +166,7 @@ def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
     return list(found_mechanisms)
 #==============================================================================================================
 
-def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
+'''def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
     """
     Consolidates metal names from BRENDA and text mining into standardized symbols.
     Parameters:  brenda_metals (list of str): Metals obtained from BRENDA data.
@@ -170,8 +188,42 @@ def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
         if not found_mapping:
             # If no mapping is found after checking all keys, add the original
             consolidated.add(metal.strip())
+    return list(consolidated)'''
+def consolidate_metal_terms(brenda_metals, detected_metal_categories=None):
+    """
+    Consolidates metal names from BRENDA and detected categories into standardized symbols.
+    
+    Args:
+        brenda_metals: Raw metal terms from BRENDA data
+        detected_metal_categories: Metal category names detected by TermProcessor
+        
+    Returns:
+        list: Consolidated list of unique, standardized metal symbols.
+    """   
+    consolidated = set()
+    
+    # Process BRENDA metals (raw terms)
+    for metal in (brenda_metals or []):
+        metal_norm = metal.strip().lower()
+        found_mapping = False
+        for key, symbol in metal_mapping.items():
+            if key in metal_norm:
+                consolidated.add(symbol)
+                found_mapping = True
+                break
+        if not found_mapping:
+            consolidated.add(metal.strip())
+    
+    # Process detected categories (category names like 'iron', 'copper')
+    for category in (detected_metal_categories or []):
+        # Map category names directly to symbols
+        if category in metal_mapping:
+            consolidated.add(metal_mapping[category])
+        else:
+            consolidated.add(category)  # Fallback to category name
+    
     return list(consolidated)
-
+#======================================================================================================================
 def calculate_overall_scores(text, fc_processor, metal_processor, synergy_processor, brenda_metals=None, pathways=None):
     """Calculate all the overall scores for a given text.
     
@@ -193,9 +245,8 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     else:
         results['corrosion_mechanisms'] = [] # Default if no pathways
 
-    # Score metals with all terms
-    all_metal_keywords = [term for sublist in metal_terms.values() for term in sublist]
-    metal_score, detected_metals = score_keyword_matches(text, all_metal_keywords, metal_processor)
+    # Score metals using processor
+    metal_score, detected_metals = score_keyword_matches(text, metal_processor)
     
     # Consolidate metals
     consolidated_metals = consolidate_metal_terms(brenda_metals, detected_metals)
@@ -351,7 +402,7 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
 
     #=================
     synergy_results = detect_functional_category_synergies(
-    text_lower, functional_categories, subcategories_fc, synergy_processor
+    text_lower, functional_categories, subcategories_fc, fc_processor
     )
     
     # Legacy keyword synergy detection (as fallback)
@@ -424,7 +475,7 @@ def calculate_corrosion_relevance_score(
 
     return corrosion_relevance_score, corrosion_relevance
 #=================================================================================
-# function for fc in brenda
+'''# function for fc in brenda
 # This new function uses the processor but mimics the old function's output
 def calculate_scores_with_processor(text, fc_processor, original_fc_dict):
     """
@@ -456,7 +507,7 @@ def calculate_scores_with_processor(text, fc_processor, original_fc_dict):
         "functional_categories": func_matches_output,
         "overall_functional_score": float(functional_score)
     }
-
+'''
 #=====================================================================================================================0
 def validate_against_pathways(record, pathways_data):
     """
