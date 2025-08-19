@@ -47,9 +47,9 @@ def score_keyword_matches(text, keyword_list, processor = None):
     score = 0.0
     matches = []
     for keyword in keyword_list:
-    if processor.matches_normalized(keyword, text_lower):
-        matches.append(keyword)
-        score += 1.0
+        if processor.matches_normalized(keyword, text_lower):
+            matches.append(keyword)
+            score += 1.0
 
     return score, matches
 
