@@ -39,16 +39,19 @@ def score_keyword_matches(text, processor):
     processor: TermProcessor instance
     Returns: Tuple of (score, matched_categories)
     """
-    categorized_matches = processor.find_all_matches(text)
-    
+    if processor is None:
+        raise ValueError("processor is None in score_keyword_matches"
+
+    categorized_matches = processor.find_all_matches(text) or {}
     total_score = 0.0
     matched_categories = []
-    
+
     for category, found_terms in categorized_matches.items():
-        if found_terms:  # If any terms were found for this category
-            total_score += len(found_terms)  # Score based on number of terms found
-            matched_categories.append(category)
-    
+        if found_terms:
+            total_score += len(found_terms)
+        # Always record the category if it appears
+        matched_categories.append(category)
+
     return total_score, matched_categories
 
 #============================================================================================================
@@ -203,7 +206,7 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
         results['corrosion_mechanisms'] = [] # Default if no pathways
 
     # Score metals using processor
-    metal_score, detected_metals = score_keyword_matches(text, metal_processor)
+    metal_score, detected_metals = score_keyword_matches(text, processor= metal_processor)
     
     # Consolidate metals
     consolidated_metals = consolidate_metal_terms(brenda_metals, detected_metals)
