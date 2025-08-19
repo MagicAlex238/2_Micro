@@ -58,8 +58,7 @@ def score_keyword_matches(text, processor):
     processor: TermProcessor instance
     Returns: Tuple of (score, matched_categories)
     """
-    text_lower = text.lower()
-    categorized_matches = processor.find_all_matches(text_lower)
+    categorized_matches = processor.find_all_matches(text)
     
     total_score = 0.0
     matched_categories = []
@@ -475,39 +474,6 @@ def calculate_corrosion_relevance_score(
 
     return corrosion_relevance_score, corrosion_relevance
 #=================================================================================
-'''# function for fc in brenda
-# This new function uses the processor but mimics the old function's output
-def calculate_scores_with_processor(text, fc_processor, original_fc_dict):
-    """
-    Calculates granular corrosion scores using the pre-compiled TermProcessor
-    but returns the same data structure as the original calculate_overall_scores.
-    """
-    # 1. Use the processor to find all matching terms and their categories in one fast pass
-    categorized_matches = fc_processor.find_all_matches(text)
-    
-    # 2. Now, replicate the original scoring logic using these matches
-    functional_score = 0.0
-    func_matches_output = [] # This will be the list of dicts for the output
-    
-    for category, found_terms in categorized_matches.items():
-        # Count the number of unique terms found for this category
-        num_hits = len(found_terms)
-        
-        # Get the base score for this category from the original dictionary
-        base_score = original_fc_dict[category]['score']
-        
-        # Apply the same log scaling as original function
-        weighted_score = math.log(num_hits + 1) * base_score
-        
-        functional_score += weighted_score
-        func_matches_output.append({"category": category, "score": weighted_score})
-        
-    # 3. Return the results in the EXACT same format as before
-    return {
-        "functional_categories": func_matches_output,
-        "overall_functional_score": float(functional_score)
-    }
-'''
 #=====================================================================================================================0
 def validate_against_pathways(record, pathways_data):
     """
