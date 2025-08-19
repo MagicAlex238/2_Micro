@@ -33,7 +33,7 @@ SYNERGY_SCORE_WEIGHT = 2.0
 HIGH_RELEVANCE_THRESHOLD = 5.0
 MEDIUM_RELEVANCE_THRESHOLD = 2.0
 
-def score_keyword_matches(text, keyword_list, processor):
+def score_keyword_matches(text, keyword_list, processor = None):
     """Score keyword matches in text.
     
     Args:
@@ -46,13 +46,31 @@ def score_keyword_matches(text, keyword_list, processor):
     text_lower = text.lower()
     score = 0.0
     matches = []
-    
     for keyword in keyword_list:
-        if processor.matches_normalized(keyword, text_lower):
+    if processor.matches_normalized(keyword, text_lower):
+        matches.append(keyword)
+        score += 1.0
+
+    return score, matches
+    
+'''    for keyword in keyword_list:        
+        # use all processors to check for matches
+        if fc_processor and fc_processor.matches_normalized(keyword, text_lower):
             matches.append(keyword)
             score += 1.0
-    
-    return score, matches
+        if metal_processor and metal_processor.matches_normalized(keyword, text_lower):
+            matches.append(keyword)
+            score += 1.0            
+        if synergy_processor and synergy_processor.matches_normalized(keyword, text_lower):
+            matches.append(keyword)
+            score += 1.0
+        # If no specific processors, just check normalized match
+        elif not (fc_processor or metal_processor or synergy_processor):
+
+            # This allows for flexible matching without requiring specific processors
+            if not hasattr(TermProcessor, 'matches_normalized'):
+                raise ValueError("TermProcessor must have a matches_normalized method.")    
+    return score, matches'''
 #============================================================================================================
 def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
     """
@@ -171,7 +189,8 @@ def consolidate_metal_terms(brenda_metals, text_detected_metals= None):
             # If no mapping is found after checking all keys, add the original
             consolidated.add(metal.strip())
     return list(consolidated)
-def calculate_overall_scores(text, processor, brenda_metals=None, pathways=None):
+
+def calculate_overall_scores(text, fc_processor, metal_processor, synergy_processor, brenda_metals=None, pathways=None):
     """Calculate all the overall scores for a given text.
     
     Args: text: Text to analyze (combined enzyme names, class, pathways, reactions)
@@ -194,7 +213,7 @@ def calculate_overall_scores(text, processor, brenda_metals=None, pathways=None)
 
     # Score metals with all terms
     all_metal_keywords = [term for sublist in metal_terms.values() for term in sublist]
-    metal_score, detected_metals = score_keyword_matches(text, all_metal_keywords, processor)
+    metal_score, detected_metals = score_keyword_matches(text, all_metal_keywords, metal_processor)
     
     # Consolidate metals
     consolidated_metals = consolidate_metal_terms(brenda_metals, detected_metals)
@@ -209,7 +228,7 @@ def calculate_overall_scores(text, processor, brenda_metals=None, pathways=None)
     for cat, details in functional_categories.items():
         category_hits = 0
         for term in details["terms"]:
-            if processor.matches_normalized(term, text_lower):
+            if fc_processor.matches_normalized(term, text_lower):
                 category_hits += 1
         
         if category_hits > 0:
@@ -231,8 +250,8 @@ def calculate_overall_scores(text, processor, brenda_metals=None, pathways=None)
     "carbon_metabolism","indirect_eet","organic_acid_metabolism","metal_binding_chelation","biofilm_formation","manganese_processes",
     "methanogenesis","fumarate_formation","halogen_related","phosphorus_metabolism"
     ]
-
-    def detect_functional_category_synergies(text_lower, functional_categories, subcategories_fc, processor):
+    
+    def detect_functional_category_synergies(text_lower, functional_categories, subcategories_fc, fc_processor):
         """ Detect synergies based on co-occurrence of terms from different functional categories.
         Args:text_lower: Lowercase text to analyze
             functional_categories: Dictionary of functional categories and their terms
@@ -246,7 +265,7 @@ def calculate_overall_scores(text, processor, brenda_metals=None, pathways=None)
         for category in subcategories_fc:
             if category in functional_categories:
                 terms = functional_categories[category]['terms']
-                found_terms = [term for term in terms if processor.matches_normalized(term, text_lower)]
+                found_terms = [term for term in terms if fc_processor.matches_normalized(term, text_lower)]
                 
                 if found_terms:
                     detected_categories[category] = found_terms
@@ -350,7 +369,7 @@ def calculate_overall_scores(text, processor, brenda_metals=None, pathways=None)
 
     #=================
     synergy_results = detect_functional_category_synergies(
-    text_lower, functional_categories, subcategories_fc, processor
+    text_lower, functional_categories, subcategories_fc, synergy_processor
     )
     
     # Legacy keyword synergy detection (as fallback)
@@ -360,7 +379,7 @@ def calculate_overall_scores(text, processor, brenda_metals=None, pathways=None)
     for synergy_group, terms in corrosion_synergies.items():
         group_hits = 0
         for term in terms:
-            if processor.matches_normalized(term, text_lower):
+            if synergy_processor.matches_normalized(term, text_lower):
                 group_hits += 1
         if group_hits > 0:
             keyword_synergy_score += math.log(group_hits + 1)
@@ -425,13 +444,13 @@ def calculate_corrosion_relevance_score(
 #=================================================================================
 # function for fc in brenda
 # This new function uses the processor but mimics the old function's output
-def calculate_scores_with_processor(text, processor, original_fc_dict):
+def calculate_scores_with_processor(text, fc_processor, original_fc_dict):
     """
     Calculates granular corrosion scores using the pre-compiled TermProcessor
     but returns the same data structure as the original calculate_overall_scores.
     """
     # 1. Use the processor to find all matching terms and their categories in one fast pass
-    categorized_matches = processor.find_all_matches(text)
+    categorized_matches = fc_processor.find_all_matches(text)
     
     # 2. Now, replicate the original scoring logic using these matches
     functional_score = 0.0
