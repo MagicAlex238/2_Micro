@@ -399,6 +399,11 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
         results["synergy_score"] = 0.0
         results["synergy_type"] = "none"
         results["synergy_description"] = "No synergies detected"
+
+    # save raw scores 
+    results["metal_score"] = float(metal_score)
+    results["functional_score"] = float(functional_score)
+    results["synergy_score"] = float(results["synergy_score"])    
    
     # calculate overall scores
     results["overall_metal_score"] = float(metal_score * METAL_SCORE_WEIGHT)
@@ -419,16 +424,16 @@ def calculate_corrosion_relevance_score(overall_metal_score, overall_synergy_sco
     Returns:  Corrosion relevance score and category
     """
     corrosion_relevance_score = float(overall_metal_score + overall_synergy_score + overall_functional_score)
-        
-        # categorical bools
-        if corrosion_relevance_score >= HIGH_RELEVANCE_THRESHOLD:
-            corrosion_relevance = "high"
-        elif corrosion_relevance_score >= MEDIUM_RELEVANCE_THRESHOLD:
-            corrosion_relevance = "medium"
-        else:
-            corrosion_relevance = "low"
-        
-        return corrosion_relevance_score, corrosion_relevance
+    
+    # categorical bools
+    if corrosion_relevance_score >= HIGH_RELEVANCE_THRESHOLD:
+        corrosion_relevance = "high"
+    elif corrosion_relevance_score >= MEDIUM_RELEVANCE_THRESHOLD:
+        corrosion_relevance = "medium"
+    else:
+        corrosion_relevance = "low"
+    
+    return corrosion_relevance_score, corrosion_relevance
 
 #=====================================================================================================================0
 def validate_against_pathways(record, pathways_data):
