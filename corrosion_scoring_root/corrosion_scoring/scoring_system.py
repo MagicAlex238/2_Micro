@@ -40,7 +40,7 @@ def score_keyword_matches(text, processor):
     Returns: Tuple of (score, matched_categories)
     """
     if processor is None:
-        raise ValueError("processor is None in score_keyword_matches"
+        raise ValueError("processor is None in score_keyword_matches")
 
     categorized_matches = processor.find_all_matches(text) or {}
     total_score = 0.0
