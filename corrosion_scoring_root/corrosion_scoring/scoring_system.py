@@ -244,7 +244,7 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     "methanogenesis","fumarate_formation","halogen_related","phosphorus_metabolism"
     ]
     
-    def detect_functional_category_synergies(text_lower, cs.functional_categories, subcategories_fc, fc_processor):
+    def detect_functional_category_synergies(text_lower, functional_categories, subcategories_fc, fc_processor):
         """ Detect synergies based on co-occurrence of terms from different functional categories.
         Args:text_lower: Lowercase text to analyze
             functional_categories: Dictionary of functional categories and their terms
@@ -256,8 +256,8 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
         all_found_terms = set()
         
         for category in subcategories_fc:
-            if category in cs.functional_categories:
-                terms = cs.functional_categories[category]['terms']
+            if category in functional_categories:
+                terms = functional_categories[category]['terms']
                 found_terms = [term for term in terms if fc_processor.matches_normalized(term, text_lower)]
                 
                 if found_terms:
@@ -362,14 +362,14 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
 
     #=================
     synergy_results = detect_functional_category_synergies(
-    text_lower, cs.functional_categories, subcategories_fc, fc_processor
+    text_lower, functional_categories, subcategories_fc, fc_processor
     )
     
     # Legacy keyword synergy detection (as fallback)
     keyword_synergy_score = 0.0
     keyword_synergy_groups_found = set()
     
-    for synergy_group, terms in cs.corrosion_synergies.items():
+    for synergy_group, terms in corrosion_synergies.items():
         group_hits = 0
         for term in terms:
             if synergy_processor.matches_normalized(term, text_lower):
