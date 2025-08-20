@@ -97,6 +97,7 @@ def infer_mechanisms_from_pathway_category(pathway_category: str) -> list[str]:
     }
     
     return pathway_to_mechanism_map.get(pathway_category, [])
+#=================================================================================
 
 def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
     """
@@ -235,7 +236,8 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
         {"category": cat, "score": score}
         for cat, score in func_matches.items()
     ]
-    results["overall_functional_score"] = float(functional_score)
+    results["functional_score"] = float(functional_score)
+
     #=====================================================================
 
     # The functional categories to check for co-occurrence 
@@ -359,8 +361,7 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
             })
         
         return synergy_results
-
-    #=================
+    
     synergy_results = detect_functional_category_synergies(
     text_lower, functional_categories, subcategories_fc, fc_processor
     )
@@ -382,30 +383,34 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     if synergy_results['fc_cooccurrence_synergy_hit']:
         # Use functional category synergy
         results["corrosion_synergies"] = synergy_results['synergy_child_terms_found']
-        results["overall_synergy_score"] = float(synergy_results['synergy_score'])
+        results["synergy_score"] = float(synergy_results['synergy_score'])
         results["synergy_type"] = "functional_category_cooccurrence"
         results["synergy_description"] = synergy_results['synergy_description']
         results["synergy_categories"] = synergy_results['synergy_categories_involved']
     elif keyword_synergy_score > 0:
         # Fall back to keyword synergy
         results["corrosion_synergies"] = sorted(list(keyword_synergy_groups_found))
-        results["overall_synergy_score"] = float(keyword_synergy_score)
+        results["synergy_score"] = float(keyword_synergy_score)
         results["synergy_type"] = "keyword_based"
         results["synergy_description"] = "Keyword-based synergy detection"
     else:
         # No synergy detected
         results["corrosion_synergies"] = []
-        results["overall_synergy_score"] = 0.0
+        results["synergy_score"] = 0.0
         results["synergy_type"] = "none"
         results["synergy_description"] = "No synergies detected"
    
+    # calculate overall scores
+    results["overall_metal_score"] = float(metal_score * METAL_SCORE_WEIGHT)
+    results["overall_functional_score"] = float(functional_score * FUNCTIONAL_SCORE_WEIGHT)
+    results["overall_synergy_score"] = float(results["synergy_score"] * SYNERGY_SCORE_WEIGHT)
+
     return results
 
-def calculate_corrosion_relevance_score(
-    metal_score,
-    synergy_score=0,
-    functional_score=0,
-    ):
+#======================================================================================================
+
+def calculate_corrosion_relevance_score(overall_metal_score, overall_synergy_score, overall_functional_score):
+    
     """Calculate final corrosion relevance score and category.
     UPDATED: functional_score now carries more weight as primary scoring method
     Args:functional_score: Functional category score (PRIMARY)
@@ -413,28 +418,18 @@ def calculate_corrosion_relevance_score(
         synergy_score: Synergy score  
     Returns:  Corrosion relevance score and category
     """
-    # Apply weights - functional_score is now primary
-    weighted_metal_score = metal_score * METAL_SCORE_WEIGHT
-    weighted_synergy_score = synergy_score * SYNERGY_SCORE_WEIGHT
-    weighted_functional_score = functional_score * FUNCTIONAL_SCORE_WEIGHT
+    corrosion_relevance_score = float(overall_metal_score + overall_synergy_score + overall_functional_score)
+        
+        # categorical bools
+        if corrosion_relevance_score >= HIGH_RELEVANCE_THRESHOLD:
+            corrosion_relevance = "high"
+        elif corrosion_relevance_score >= MEDIUM_RELEVANCE_THRESHOLD:
+            corrosion_relevance = "medium"
+        else:
+            corrosion_relevance = "low"
+        
+        return corrosion_relevance_score, corrosion_relevance
 
-    # Calculate final score
-    corrosion_relevance_score = float(
-        weighted_metal_score
-        + weighted_synergy_score
-        + weighted_functional_score
-    )
-
-    # Determine category
-    if corrosion_relevance_score >= HIGH_RELEVANCE_THRESHOLD:
-        corrosion_relevance = "high"
-    elif corrosion_relevance_score >= MEDIUM_RELEVANCE_THRESHOLD:
-        corrosion_relevance = "medium"
-    else:
-        corrosion_relevance = "low"
-
-    return corrosion_relevance_score, corrosion_relevance
-#=================================================================================
 #=====================================================================================================================0
 def validate_against_pathways(record, pathways_data):
     """
