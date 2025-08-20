@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "corrosion-scoring"
-version = "0.3.0"
+version = "0.3.01"
 description = "Corrosion relevance scoring system for microbial analysis"
 authors = [{name = "MagicAlex238", email = "MagicAlex238@users.noreply.github.com"}]
 license = {text = "MIT"}

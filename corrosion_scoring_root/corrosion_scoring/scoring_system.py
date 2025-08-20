@@ -218,7 +218,7 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     functional_score = 0.0
     func_matches = {} #dict storages weighted score
     detected_fc_names = set()  # to take into account for coocurrence
-    for cat, details in cs.functional_categories.items():
+    for cat, details in functional_categories.items():
         category_hits = 0
         for term in details["terms"]:
             if fc_processor.matches_normalized(term, text_lower):
