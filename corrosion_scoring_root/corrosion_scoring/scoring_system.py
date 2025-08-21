@@ -114,19 +114,27 @@ def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
     # Tokenize the pathway text
     terms_to_process = re.findall(r'\b\w+\b', pathway_text.lower())
     
-    # Method 1: Direct mechanism detection
+    '''# Method 1: Direct mechanism detection
     for term in terms_to_process:
         mechanism = mechanism_processor.find_first_category(term)
         if mechanism:
-            found_mechanisms.add(mechanism)
+            found_mechanisms.add(mechanism)'''
+    # Method 1: Direct mechanism detection (full-text)
+    mech_matches = mechanism_processor.find_all_matches(pathway_text)
+    found_mechanisms.update(mech_matches.keys())
     
-    # Method 2: Pathway-to-mechanism inference using pathway processor
+    '''# Method 2: Pathway-to-mechanism inference using pathway processor
     for term in terms_to_process:
         pathway_category = pathway_processor.find_first_category(term)
         if pathway_category:
             # Map pathway categories to mechanisms 
             inferred_mechanisms = infer_mechanisms_from_pathway_category(pathway_category)
-            found_mechanisms.update(inferred_mechanisms)
+            found_mechanisms.update(inferred_mechanisms)'''
+    # Method 2: Pathway-to-mechanism inference (full-text)
+    path_matches = pathway_processor.find_all_matches(pathway_text)
+    for pathway_category in path_matches.keys():
+        inferred = infer_mechanisms_from_pathway_category(pathway_category)
+        found_mechanisms.update(inferred)
     
     # Method 3: Pattern-based inference for common pathway types
     pathway_lower = pathway_text.lower()
