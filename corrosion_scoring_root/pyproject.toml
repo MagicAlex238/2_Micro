@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "corrosion-scoring"
-version = "0.3.01"
+version = "0.3.02"
 description = "Corrosion relevance scoring system for microbial analysis"
 authors = [{name = "MagicAlex238", email = "MagicAlex238@users.noreply.github.com"}]
 license = {text = "MIT"}
 keywords = ["corrosion", "microbiology", "HVAC", "biofilm"]
-requires-python = ">=3.10"
+requires-python = ">=3.11" 
 dependencies = [
     "pandas",
     "numpy",
