@@ -422,15 +422,15 @@ def calculate_corrosion_relevance_score(overall_metal_score, overall_synergy_sco
     """
     corrosion_relevance_score =   float(overall_metal_score + overall_synergy_score + overall_functional_score)
     
-    # categorical bools
+    '''# categorical bools
     if corrosion_relevance_score >= HIGH_RELEVANCE_THRESHOLD:
         corrosion_relevance = "high"
     elif corrosion_relevance_score >= MEDIUM_RELEVANCE_THRESHOLD:
         corrosion_relevance = "medium"
     else:
         corrosion_relevance = "low"
-    
-    return corrosion_relevance_score, corrosion_relevance
+    '''
+    return corrosion_relevance_score #, corrosion_relevance
 
 #=====================================================================================================================0
 def validate_against_pathways(record, pathways_data):
