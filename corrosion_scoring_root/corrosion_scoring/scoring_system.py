@@ -417,13 +417,10 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
 def calculate_corrosion_relevance_score(overall_metal_score, overall_synergy_score, overall_functional_score):
     
     """Calculate final corrosion relevance score and category.
-    UPDATED: functional_score now carries more weight as primary scoring method
-    Args:functional_score: Functional category score (PRIMARY)
-        metal_score: Metal involvement score
-        synergy_score: Synergy score  
+   
     Returns:  Corrosion relevance score and category
     """
-    corrosion_relevance_score = float(overall_metal_score + overall_synergy_score + overall_functional_score)
+    corrosion_relevance_score =   float(overall_metal_score + overall_synergy_score + overall_functional_score)
     
     # categorical bools
     if corrosion_relevance_score >= HIGH_RELEVANCE_THRESHOLD:
