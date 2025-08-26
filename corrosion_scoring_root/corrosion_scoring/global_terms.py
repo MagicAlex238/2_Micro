@@ -2051,7 +2051,7 @@ pathway_categories = {
 }
 
 #7 Environmental factors/ Operational Factors
-Environmental_factors = {
+operational_environmental_factors = {
 'halogen_related': ['halogen', 'chloride', 'bromide', 'iodide', 'fluoride', 'halide', 'dehalogenation', 'haloperoxidase', 'haloacid', 'chlorination', 'bromination', 'organohalide', 'halomethane', 'haloalkane', 'organohalide', 'halotolerance', 'salt tolerance', 'halophilic', 'chloride transport', 'halide channel', 'chloride attack', 'chloride-induced corrosion', 'pitting initiation', 'chloride penetration', 'halide corrosion', 'perchlorate reduction', 'halorespiration', 'organohalide'],
 'microaerobic_conditions': ['microaerophilic', 'oxygen-limited', 'hypoxic', 'microaerobic'],
 'ph_modulation': ['acid tolerance', 'alkaline tolerance', 'proton pump', 'pH homeostasis', 'pH stress', 'pH regulation', 'acid resistance', 'pH buffering', 'pH gradient', 'acidophile', 'alkaliphile'], 
