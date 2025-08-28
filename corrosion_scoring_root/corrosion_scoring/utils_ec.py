@@ -1,5 +1,6 @@
 import re
 from typing import Optional
+#====================== Normalizing EC =====================
 
 # Accept "EC 1.1.1.1", "1.1.1.1", and hyphens "1.1.1.-"
 _EC_RE = re.compile(r'(?:^EC\s*)?([0-9\-]+\.[0-9\-]+\.[0-9\-]+\.[0-9\-]+)\b')

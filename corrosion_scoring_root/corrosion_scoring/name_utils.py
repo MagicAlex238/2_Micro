@@ -120,6 +120,8 @@ custom_dict = {
 
 def clean_protein_name(name: str) -> str:
     """Simplify the names of the protein without losing the biological meaning as literature recommends."""
+    if not isinstance(name, str):
+        name = '' if name is None else str(name)
     # normalise name
     name = name.strip()
     name_lower = name.lower()
