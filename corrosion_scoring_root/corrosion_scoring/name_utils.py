@@ -3,6 +3,11 @@ import unicodedata
 
 from .utils_ec import normalize_ec_id, strip_all_ec_tokens
 
+GARBAGE_PREFIXES = (
+    'transferred to', 'transferred to and', 'deleted', 'obsolete',
+    'reclassified as', 'renamed to', 'see '
+)
+
 def enhanced_clean_protein_name(name: str) -> str:
     """Canonicalize DE/protein names for grouping/aggregation."""
     if name is None:
@@ -125,9 +130,12 @@ def clean_protein_name(name: str) -> str:
     # normalise name
     name = name.strip()
     name_lower = name.lower()
-
+    #drop garbage prefixes early
+    if any(name_lower.startswith(p) for p in GARBAGE_PREFIXES):
+        return ""
     # Step 2: Remove uncertainty terms at the beginning
-    uncertainty_terms = ['probable', 'putative', 'possible', 'uncharacterized', 'hypothetical']
+    uncertainty_terms = ['probable', 'putative', 'possible', 'uncharacterized', 'hypothetical',  'transferred to', 'transferred to and', 'deleted', 'obsolete',
+    'reclassified as', 'renamed to', 'see ']
     pattern_uncertainty = r'^(?:' + '|'.join(uncertainty_terms) + r')\s+'
     name = re.sub(pattern_uncertainty, '', name, flags=re.IGNORECASE)
 
