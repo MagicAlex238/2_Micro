@@ -173,16 +173,22 @@ def consolidate_metal_terms(brenda_metals, detected_metal_categories=None):
     
     # Process BRENDA metals (raw terms)
     for metal in (brenda_metals or []):
-        metal_norm = metal.strip().lower()
-        found_mapping = False
+        metal_raw =str(metal)
+        metal_norm = metal_raw.strip().lower()
+        # strip brackets aand the word ion
+        metal_norm = re.sub(r'[\[\]\(\)]', '', metal_norm).replace(' ion', '').strip()
+        # collapse charges/oxidation state: fe3+, fe2+, mg2+, etc. -> fe, mg
+        metal_norm = re.sub(r'^(fe|cu|zn|ni|co|mn|cr|al|mg|ca|ba|sr|pb|as|hg)\d+\+?$', r'\1', metal_norm)
+        
         for key, symbol in metal_mapping.items():
             if key in metal_norm:
                 consolidated.add(symbol)
                 found_mapping = True
                 break
         if not found_mapping:
-            consolidated.add(metal.strip())
-    
+            # skip instead
+            continue           
+
     # Process detected categories (category names like 'iron', 'copper')
     for category in (detected_metal_categories or []):
         # Map category names directly to symbols
@@ -335,7 +341,7 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
                 combined_terms = set(detected_categories[cat1] + detected_categories[cat2])
                 
                 # Require at least 3 terms total for high-confidence synergy
-                if len(combined_terms) >= 3:
+                if len(combined_terms) >= 2:
                     current_score = synergy_info['score']
                     if current_score > max_synergy_score:
                         max_synergy_score = current_score
@@ -345,7 +351,7 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
         # Step 4: If no priority synergy found, check for general multi-category synergy
         if max_synergy_score == 0.0 and len(detected_categories) >= 2:
             # General synergy: any 2+ categories with sufficient terms
-            if len(all_found_terms) >= 4:  # Require more terms for general synergy
+            if len(all_found_terms) >= 3:  # Require more terms for general synergy
                 max_synergy_score = 1.5  # Lower score for general synergy
                 involved_categories = list(detected_categories.keys())
                 best_synergy = {
@@ -390,7 +396,10 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     # Choose best synergy result
     if synergy_results['fc_cooccurrence_synergy_hit']:
         # Use functional category synergy
-        results["corrosion_synergies"] = synergy_results['synergy_child_terms_found']
+        # in calculate_overall_scores(), functional-category synergy branch
+        results["corrosion_synergies"] = synergy_results['synergy_categories_involved']   # e.g., ['organic_acid_metabolism','metal_binding_chelation']
+        results["synergy_terms"] = sorted(synergy_results['synergy_child_terms_found'])   # keep children separately
+
         results["synergy_score"] = float(synergy_results['synergy_score'])
         results["synergy_type"] = "functional_category_cooccurrence"
         results["synergy_description"] = synergy_results['synergy_description']
