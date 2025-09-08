@@ -19,6 +19,25 @@ corrosion_scoring_root/
 │   ├── test_scoring_system.py  # Test functions for scoring  
 │   └── test_global_terms.py    # Test functions for term lists  
 │
-├── pyproject.toml              # Project settings and version control  
+[text](.)├── pyproject.toml              # Project settings and version control  
 ├── README.md                   # This file  
 └── .gitignore                  # Files/folders to ignore in version control  
+
+```BASH
+
+cd /home/beatriz/MIC/2_Micro/corrosion_scoring_root/corrosion_scoring
+{
+    echo "# ========== __init__.py =========="
+    cat __init__.py
+    #echo -e "\n\n# ========== global_terms.py ==========" # it is too large
+    #cat global_terms.py
+    echo -e "\n\n# ========== name_utils.py =========="
+    cat name_utils.py
+    echo -e "\n\n# ========== scoring_system.py =========="
+    cat scoring_system.py
+    echo -e "\n\n# ========== term_processor.py =========="
+    cat term_processor.py
+    echo -e "\n\n# ========== utils_ec.py =========="
+    cat utils_ec.py
+} > /home/beatriz/MIC/2_Micro/corrosion_scoring_root/corrosion_scoring_combined.py
+´´´

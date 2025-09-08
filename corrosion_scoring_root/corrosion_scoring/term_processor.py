@@ -5,6 +5,13 @@ class TermProcessor:
     """Normalizes and matches corrosion terms with priority handling."""
 
     def __init__(self, taxonomy: dict):
+        self.synonyms = {
+            "oxidoreductase": ["oxid reduction enzyme"],
+            "iron sulfur": ["fe s", "fe s cluster", "iron-sulfur", "fe-s"],
+            "sulfide": ["sulphide"],
+        # add domain-needed pairs only
+            "sulfite": ["sulphite"],
+            "sulfur": ["sulphur"],}
         # Priority includes all categories you referenced elsewhere (synergy and FC lists)
         self.priority_order: List[str] = [
             'iron_metabolism', 'sulfur_metabolism', 'organic_acid_metabolism',
@@ -31,7 +38,13 @@ class TermProcessor:
         for cat in self.priority_order:
             if cat in taxonomy:
                 terms = taxonomy[cat]['terms'] if isinstance(taxonomy[cat], dict) and 'terms' in taxonomy[cat] else taxonomy[cat]
-                cat_to_terms[cat] = {self._normalize_term(t) for t in terms}
+                expanded = []
+                for t in terms:
+                    expanded.append(t)
+                    base = self._normalize_term(t)
+                    for syn in self.synonyms.get(base, []):
+                        expanded.append(syn)
+                cat_to_terms[cat] = {self._normalize_term(t) for t in expanded}
 
         # Add remaining categories not in priority list
         for cat, data in taxonomy.items():
@@ -64,33 +77,28 @@ class TermProcessor:
         return re.compile(pattern, re.IGNORECASE)
 
     def _normalize_term(self, term: str) -> str:
-        """Normalization that keeps token boundaries, aiding regex word-boundary matching."""
+        """Core normalizer used internally by the processor."""
         if not isinstance(term, str):
             return ""
 
-        # Lowercase
         t = term.lower()
 
-        # Corrosion-specific substitutions (apply anywhere, not only at start)
-        substitutions = {
-            'reduc': 'reduction',
-            'oxid': 'oxidation',
-            'ferri': 'iron',
-            'ferro': 'iron',
-            'sulph': 'sulf',
-            'metallo': 'metal',
-            'corrosi': 'corrosion',
-        }
-        for pattern, replacement in substitutions.items():
-            t = re.sub(pattern, replacement, t)
+        # Conservative substitutions (avoid corrupting 'oxidase', 'reductase', etc.)
+        t = re.sub(r'\bsulph', 'sulf', t)       # UK → US spelling at word start
+        t = re.sub(r'metallo', 'metal', t)      # metalloenzyme → metal enzyme (optional)
+        t = re.sub(r'corrosi', 'corrosion', t)  # normalize partials only for 'corrosion'
 
-        # Replace non-word/underscore runs with a single space to preserve boundaries
+        # Replace non-word/underscore runs with a single space (keeps alnum boundaries)
         t = re.sub(r'[\W_]+', ' ', t)
 
-        # Collapse multiple spaces and strip
+        # Collapse multiple spaces and trim
         t = re.sub(r'\s+', ' ', t).strip()
 
         return t
+
+    def normalize_text(self, text: str) -> str:
+        """Public wrapper for external callers; do not call the private method outside."""
+        return self._normalize_term(text)
 
     def find_all_matches(self, text: str) -> dict:
         """
