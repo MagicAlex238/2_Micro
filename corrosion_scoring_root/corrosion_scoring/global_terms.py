@@ -1,5 +1,5 @@
 # 1. COMPLETE metal_terms 
-metal_terms = {
+metal_terms_dict = {
     'iron': {
         'terms': ['Fe2+', 'Fe3+', 'iron', 'ferrous', 'ferric', 'heme', 'iron-sulfur', 'rust', 'ochre', 'iron oxide', 'siderophore', 'ferritin'],
         'score': 1.0
@@ -83,7 +83,7 @@ metal_terms = {
 }
 
 # 2. COMPLETE corrosion_synergies 
-corrosion_synergies = {
+corrosion_synergies_dict = {
     'Fe-S': {
         'terms': ['iron_sulfur', 'Fe-S', 'iron sulfide', 'FeS', 'Fe-S cluster'],
         'score': 1.0
@@ -139,7 +139,7 @@ corrosion_synergies = {
 }
 
 # 3. COMPLETE functional_categories with HVAC-corrected scoring and justification
-functional_categories =	{
+functional_categories_dict =	{
 'o2_consumption': {'terms': ['o2_consumption', 'aerobic_respiration', 'oxygen reduction', 'oxygen consumption', 'cytochrome oxidase', 'oxidase', 'terminal oxidase',  'oxygen reductase',  'superoxide dismutase',  'catalase',  'oxidative stress', 'oxygen sensor',  'oxygen tolerance', 'oxygen consum', 'oxygen scavenging', 'oxygen stress', 'peroxidase', 'oxidative phosphorylation', 'NADH dehydrogenase', 'CYTOCHROME-C-OXIDASE','ATPSYN-RXN', 'TCA cycle IV (2-oxoglutarate decarboxylase)','TCA cycle V (2-oxoglutarate:ferredoxin oxidoreductase)',  'TCA cycle VI (obligate autotrophs)', 'TCA cycle VIII (helicobacter)', 'superpathway of glyoxylate bypass and TCA','2-aminophenol degradation',
             'aerobic respiration I (cytochrome c)',
             'catechol degradation I (meta-cleavage pathway)',
@@ -666,7 +666,7 @@ metal_mapping = {
 # 5. Complete corrosion_mechanisms, no to be use on scoring system
 # bridging thegap betwen the metabolic potential (pathways) and the actual physical or chemical effects on a surface.
 
-corrosion_mechanisms = {
+mechanisms_dict = {
     'o2_consumption': [
         '2-aminophenol degradation',
         'PWY-5088',
@@ -1252,7 +1252,7 @@ corrosion_mechanisms = {
 #===============================================
 # 6. Complete updated pathway_categories dictionary , no to be use on scoring system
 
-pathway_categories = {
+pathway_dict = {
     'oxygen_metabolism': [
         '2-aminophenol degradation',
         '4-hydroxyphenylacetate degradation',
@@ -2050,8 +2050,8 @@ pathway_categories = {
     ]
 }
 
-#7 Environmental factors/ Operational Factors
-operational_environmental_factors = {
+#7. Environmental factors/ Operational Factors
+operational_environmental_factors_dict = {
 'halogen_related': ['halogen', 'chloride', 'bromide', 'iodide', 'fluoride', 'halide', 'dehalogenation', 'haloperoxidase', 'haloacid', 'chlorination', 'bromination', 'organohalide', 'halomethane', 'haloalkane', 'organohalide', 'halotolerance', 'salt tolerance', 'halophilic', 'chloride transport', 'halide channel', 'chloride attack', 'chloride-induced corrosion', 'pitting initiation', 'chloride penetration', 'halide corrosion', 'perchlorate reduction', 'halorespiration', 'organohalide'],
 'microaerobic_conditions': ['microaerophilic', 'oxygen-limited', 'hypoxic', 'microaerobic'],
 'ph_modulation': ['acid tolerance', 'alkaline tolerance', 'proton pump', 'pH homeostasis', 'pH stress', 'pH regulation', 'acid resistance', 'pH buffering', 'pH gradient', 'acidophile', 'alkaliphile'], 

@@ -16,13 +16,11 @@ from .name_utils import enhanced_clean_protein_name, clean_protein_name
 
 # Re-export global dictionaries so they are available as `cs.metal_mapping`, etc.
 from .global_terms import (
-    functional_categories,
-    metal_terms,
-    corrosion_synergies,
-    metal_mapping,
-    pathway_categories,
-    corrosion_mechanisms,
-)
+        metal_terms_dict,
+        corrosion_synergies_dict,
+        functional_categories_dict,
+        metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict # Not for scoring
+    )
 
 __all__ = [
     "TermProcessor",
@@ -38,10 +36,8 @@ __all__ = [
     "enhanced_clean_protein_name",
     "clean_protein_name",
     # globals
-    "functional_categories",
-    "metal_terms",
-    "corrosion_synergies",
-    "metal_mapping",
-    "pathway_categories",
-    "corrosion_mechanisms",
+   metal_terms_dict,
+        corrosion_synergies_dict,
+        functional_categories_dict,
+        metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict
 ]

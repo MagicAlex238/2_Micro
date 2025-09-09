@@ -17,13 +17,11 @@ from .name_utils import enhanced_clean_protein_name, clean_protein_name
 
 # Re-export global dictionaries so they are available as `cs.metal_mapping`, etc.
 from .global_terms import (
-    functional_categories,
-    metal_terms,
-    corrosion_synergies,
-    metal_mapping,
-    pathway_categories,
-    corrosion_mechanisms,
-)
+        metal_terms_dict,
+        corrosion_synergies_dict,
+        functional_categories_dict,
+        metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict # Not for scoring
+    )
 
 __all__ = [
     "TermProcessor",
@@ -39,12 +37,10 @@ __all__ = [
     "enhanced_clean_protein_name",
     "clean_protein_name",
     # globals
-    "functional_categories",
-    "metal_terms",
-    "corrosion_synergies",
-    "metal_mapping",
-    "pathway_categories",
-    "corrosion_mechanisms",
+   metal_terms_dict,
+        corrosion_synergies_dict,
+        functional_categories_dict,
+        metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict
 ]
 
 # ========== name_utils.py ==========
@@ -120,49 +116,7 @@ def enhanced_clean_protein_name(name: str) -> str:
     if not name:
         name = "uncharacterized protein"
     return name
-'''
-### Symplifying Protein_name values
-
-The full pipeline was displayed with too many repeated names on the protein_name side, that is the reason why it was decided to simplify the protein_name keeping the biological meaning without removing too much. We remove words such as "probable", "putative", "possible", "uncharacterized", "hypothetical", etc.
-→ These terms indicate annotation uncertainty but are not part of the function name. Additionaly EC was remove which are already available on a different column, if required. And since the original protein_name values contain multiple names that are suppose to be synonim and annotated according to the enviroment, it was necesary to take a decision to be able to leverage this information without overhelming the plot because of the long name. The selected name out of the whole variety is the first as widerly accepted or cannonical name. The spaces extra were cleaned whitespace at start/end and between words and it was lowercased. Several runs to the whole pipeline including the notebook 7 were necesary to really detect the names and the removals necesary. The first core name up to the first parenthesis or bracket only if what follows is clearly additional information (e.g., enzyme classification, isoforms) and keep all text if the parentheses are truly part of the main name.
-Lastly the depest names were remove as redundant. These are selected examples 2,3 of the protein_name before
-|idx| protein_name|
-|--|--|
-|2|   alcohol-dehydrogenase; aldehyde-reductase; adh; alcohol-dehydrogenase (nad); aliphatic alcohol-dehydrogenase; ethanol-dehydrogenase; nad-dependent alcohol-dehydrogenase; nad-specific aromatic alcohol-dehydrogenase; nadh-alcohol-dehydrogenase; nadh-aldehyde-dehydrogenase; primary alcohol-dehydrogenase; yeast alcohol-dehydrogenase|
-|3 |  alcohol-dehydrogenase; aldehyde-reductase; adh; alcohol-dehydrogenase (nad); aliphatic alcohol-dehydrogenase; ethanol-dehydrogenase; nad-dependent alcohol-dehydrogenase; nad-specific aromatic alcohol-dehydrogenase; nadh-alcohol-dehydrogenase; nadh-aldehyde-dehydrogenase; primary alcohol-dehydrogenase; yeast alcohol-dehydrogenase|
-|1491283|   cobaltochelatase; hydrogenobyrinic acid a,c-diamide cobaltochelatase; cobnst; cobncobst; hydrogenobyrinic-acid-a,c-diamide:cobalt cobalt-ligase (adp-forming)|
-|1491285 |    cobaltochelatase; hydrogenobyrinic acid a,c-diamide cobaltochelatase; cobnst; cobncobst; hydrogenobyrinic-acid-a,c-diamide:cobalt cobalt-ligase dp-forming)|
-
-Name: protein_name, Length: 1491288, dtype: object
-
-And these are the simplified versions with which we continue:
-| idx | protein_name|
-|--|--|
-|2  |alcohol-dehydrogenase|
-|3    |alcohol-dehydrogenase|
-|1491283|  cobaltochelatase|
-|1491285| cobaltochelatase|
-
-protein_name simplification as 
-UniProt, NCBI RefSeq standards (The UniProt Consortium, 2021)
-Text cleaning standard in biomedical data preparation 
-(Müller et al., 2016, Introduction to Biomedical Text Mining).
-Logical matching best practice in name cleaning (APA: UniProt Consortium, 2021).
-
-References : 
-
-Müller, H. M., Kenny, E. E., & Sternberg, P. W. (2016). Textpresso: An ontology-based information retrieval and extraction system for biological literature. PLoS Biology, 2(11), e309. https://doi.org/10.1371/journal.pbio.0020309
-
-Source (for regex best practices):
-Friedl, J. E. F. (2006). Mastering Regular Expressions (3rd ed.). O'Reilly Media.
-
-McKinney, W. (2012). Python for Data Analysis. O'Reilly Media. (p.77-78)
-
-Pruitt, K. D., Tatusova, T., & Maglott, D. R. (2007). NCBI reference sequences (RefSeq): a curated non-redundant sequence database of genomes, transcripts and proteins. Nucleic Acids Research, 35(Database issue), D61–D65. https://doi.org/10.1093/nar/gkl842
-
-The UniProt Consortium. (2021). UniProt: the universal protein knowledgebase in 2021. Nucleic Acids Research, 49(D1), D480–D489. https://doi.org/10.1093/nar/gkaa1100
-
-'''
+#===================================
 
 custom_dict = {
     "bifunctional glutamine-synthetase adenylyltransferase-adenylyl-removing enzyme": "bifunctional glutamine-synthetase adenylyltransferase",
@@ -184,21 +138,25 @@ def clean_protein_name(name: str) -> str:
     if any(name_lower.startswith(p) for p in GARBAGE_PREFIXES):
         return ""
     # Step 2: Remove uncertainty terms at the beginning
-    uncertainty_terms = ['probable', 'putative', 'possible', 'uncharacterized', 'hypothetical',  'transferred to', 'transferred to and', 'deleted', 'obsolete',
-    'reclassified as', 'renamed to', 'see ']
+    uncertainty_terms = list(GARBAGE_PREFIXES) + ['probable','putative','possible','uncharacterized','hypothetical']
     pattern_uncertainty = r'^(?:' + '|'.join(uncertainty_terms) + r')\s+'
     name = re.sub(pattern_uncertainty, '', name, flags=re.IGNORECASE)
 
     # Step 3: Apply custom dictionary based on prefix match
     for original_start, short_name in custom_dict.items():
         if name_lower.startswith(original_start.lower()):
-            return short_name.lower()
+            name = short_name
+            name_lower = name.lower()
+            break
 
     # step 5 cut at ~50 chars but finish the current word
     if len(name) > 50:
         tail = name[50:]
         m = re.search(r'[\s\.\-\[\]\(\)]', tail)
-        end = 50 + (m.start() if m else len(name))
+        if m:
+            end = 50 + (m.start()) 
+        else:               
+            end = min(50, len(name))  # hard cut at 60 if no separator found
         name = name[:end].strip()
 
     return name
@@ -223,23 +181,20 @@ from .term_processor import TermProcessor
 try:
     # Try relative import (for package installation)
     from .global_terms import (
-        metal_terms,
-        corrosion_synergies,
-        functional_categories,
-        metal_mapping, pathway_categories, corrosion_mechanisms # Not for scoring
+        metal_terms_dict,
+        corrosion_synergies_dict,
+        functional_categories_dict,
+        metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict# Not for scoring
     )
 except ImportError as e:
-    raise ImportError("Failed to import .") from e
-    print("Critical error")#
+    print("Critical error: Failed to import global_terms")
+    raise ImportError("Failed to import global_terms") from e
 
 # Scoring weights - 
 METAL_SCORE_WEIGHT = 0.5
 FUNCTIONAL_SCORE_WEIGHT = 1.5
 SYNERGY_SCORE_WEIGHT = 2.0
 
-# Classification thresholds
-HIGH_RELEVANCE_THRESHOLD = 5.0
-MEDIUM_RELEVANCE_THRESHOLD = 2.0
 #============================================================================================================
 def score_keyword_matches(text, processor):
     """Score keyword matches using TermProcessor.
@@ -252,13 +207,14 @@ def score_keyword_matches(text, processor):
 
     categorized_matches = processor.find_all_matches(text) or {}
     total_score = 0.0
-    matched_categories = []
+    matched_categories: list[str] = []
 
     for category, found_terms in categorized_matches.items():
         if found_terms:
             total_score += len(found_terms)
             # Always record the category if it appears
-            matched_categories.append(category)
+            if category not in matched_categories:
+                matched_categories.append(category)
 
     return total_score, matched_categories
 
@@ -309,7 +265,9 @@ def infer_mechanisms_from_pathway_category(pathway_category: str) -> list[str]:
         'methanogenesis': ['methanogenesis']  
     }
     
-    return pathway_to_mechanism_map.get(pathway_category, [])
+    inferred = pathway_to_mechanism_map.get(pathway_dict, [])
+    valid_mech_keys = set(TermProcessor(mechanisms_dict).category_to_terms.keys())
+    return [m for m in inferred if m in valid_mech_keys]
 #=================================================================================
 
 def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
@@ -317,56 +275,26 @@ def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
     Extracts corrosion mechanisms from pathway text using both pathway and mechanism processors.
     This function looks for direct mechanism terms AND infers mechanisms from pathway names.
     """
-    mechanism_processor = TermProcessor(corrosion_mechanisms)
-    pathway_processor = TermProcessor(pathway_categories)
-    found_mechanisms = set()
-    
-    if not pathway_text:
-        return []
+    mechanism_processor = TermProcessor(mechanisms_dict)
+    pathway_processor = TermProcessor(pathway_dict)
+      
+    found_mechanisms: set[str] = set()
+    if not isinstance(pathway_text, str) or not pathway_text.strip():
+         return []
     
     # Tokenize the pathway text
     terms_to_process = re.findall(r'\b\w+\b', pathway_text.lower())
-    
-    '''# Method 1: Direct mechanism detection
-    for term in terms_to_process:
-        mechanism = mechanism_processor.find_first_category(term)
-        if mechanism:
-            found_mechanisms.add(mechanism)'''
+   
     # Method 1: Direct mechanism detection (full-text)
     mech_matches = mechanism_processor.find_all_matches(pathway_text)
     found_mechanisms.update(mech_matches.keys())
-    
-    '''# Method 2: Pathway-to-mechanism inference using pathway processor
-    for term in terms_to_process:
-        pathway_category = pathway_processor.find_first_category(term)
-        if pathway_category:
-            # Map pathway categories to mechanisms 
-            inferred_mechanisms = infer_mechanisms_from_pathway_category(pathway_category)
-            found_mechanisms.update(inferred_mechanisms)'''
+
     # Method 2: Pathway-to-mechanism inference (full-text)
-    path_matches = pathway_processor.find_all_matches(pathway_text)
-    for pathway_category in path_matches.keys():
-        inferred = infer_mechanisms_from_pathway_category(pathway_category)
-        found_mechanisms.update(inferred)
-    
-    # Method 3: Pattern-based inference for common pathway types
-    pathway_lower = pathway_text.lower()
-    
-    # Sulfur-related pathways
-    if any(term in pathway_lower for term in ['sulfur', 'sulfate', 'thiosulfate', 'sulfide']):
-        found_mechanisms.add('sulfur_metabolism')
-    
-    # Iron-related pathways
-    if any(term in pathway_lower for term in ['iron', 'ferric', 'ferrous', 'heme']):
-        found_mechanisms.add('iron_metabolism')
-    
-    # Organic acid pathways
-    if any(term in pathway_lower for term in ['acetate', 'lactate', 'citrate', 'organic acid']):
-        found_mechanisms.add('acid_production')
-    
-    # Biofilm-related pathways
-    if any(term in pathway_lower for term in ['biofilm', 'exopolysaccharide', 'quorum']):
-        found_mechanisms.add('biofilm_formation')
+    if not found_mechanisms:
+        path_matches = pathway_processor.find_all_matches(pathway_text)
+        for pathway_category in path_matches.keys():
+            inferred = infer_mechanisms_from_pathway_category(pathway_category)
+            found_mechanisms.update(inferred)
     
     return list(found_mechanisms)
 #==============================================================================================================
@@ -374,13 +302,9 @@ def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
 def consolidate_metal_terms(brenda_metals, detected_metal_categories=None):
     """
     Consolidates metal names from BRENDA and detected categories into standardized symbols.
-    
-    Args:
-        brenda_metals: Raw metal terms from BRENDA data
+        Args:    brenda_metals: Raw metal terms from BRENDA data
         detected_metal_categories: Metal category names detected by TermProcessor
-        
-    Returns:
-        list: Consolidated list of unique, standardized metal symbols.
+    Returns:  list: Consolidated list of unique, standardized metal symbols.
     """   
     consolidated = set()
     
@@ -389,21 +313,19 @@ def consolidate_metal_terms(brenda_metals, detected_metal_categories=None):
         metal_raw =str(metal)
         metal_norm = metal_raw.strip().lower()
         # strip brackets aand the word ion
-        metal_norm = re.sub(r'[\[\]\(\)]', '', metal_norm).replace(' ion', '').strip()
-        # collapse charges/oxidation state: fe3+, fe2+, mg2+, etc. -> fe, mg
-        metal_norm = re.sub(r'^(fe|cu|zn|ni|co|mn|cr|al|mg|ca|ba|sr|pb|as|hg)\d+\+?$', r'\1', metal_norm)
-        # Map to standardized symbol if possible
-        found_mapping = False
-        tokens = set(re.findall(r'[a-z0-9\+\-]+', metal_norm))
+        metal_norm = re.sub(r'[\[\]\(\)]', '', metal_norm)
+        metal_norm = re.sub(r'\bions?\b', '', metal_norm).strip()
+        raw_tokens = re.findall(r'[a-z0-9\+\-]+', metal_norm)
+        tokens = set(re.sub(r'^(fe|cu|zn|ni|co|mn|cr|al|mg|ca|ba|sr|pb|as|hg)\d+\+?$', r'\1', t)
+                      for t in raw_tokens)
+        # Map all matched tokens (no early break)
+        matched = False
         for key, symbol in metal_mapping.items():
-            k = key.lower()
-            if k in tokens:
+            if key.lower() in tokens:
                 consolidated.add(symbol)
-                found_mapping = True
-                break
-        if not found_mapping:
-            # skip instead
-            continue           
+                matched = True
+        if not matched:
+            continue
 
     # Process detected categories (category names like 'iron', 'copper')
     for category in (detected_metal_categories or []):
@@ -414,20 +336,48 @@ def consolidate_metal_terms(brenda_metals, detected_metal_categories=None):
             consolidated.add(category)  # Fallback to category name
     
     return list(consolidated)
+#========================================================
+def sanitize_input_text(text: str, max_length: int = 10000) -> str:
+    """Sanitize input text to prevent regex attacks and excessive processing."""
+    if not isinstance(text, str):
+        return ""
+    
+    # Limit length to prevent DoS
+    if len(text) > max_length:
+        text = text[:max_length]
+    
+    # Remove potentially problematic characters for regex
+    text = re.sub(r'[\\^$.*+?{}[\]|()\x00-\x1f]', ' ', text)
+    
+    # Collapse whitespace
+    text = re.sub(r'\s+', ' ', text).strip()
+    
+    return text
+
 #======================================================================================================================
 def calculate_overall_scores(text, fc_processor, metal_processor, synergy_processor, brenda_metals=None, pathways=None):
     """Calculate all the overall scores for a given text.
-    
     Args: text: Text to analyze (combined enzyme names, class, pathways, reactions)
         brenda_metals: Metals from BRENDA database
         pathways: Pathway information for additional mechanism detection
     Returns: Dictionary containing all overall scores and matched categories
     """
+    if not isinstance(text, str):
+            raise ValueError("text must be a string")
+    text = sanitize_input_text(text)
+    if not text.strip():
+        raise ValueError("text cannot be empty")
+    if fc_processor is None or metal_processor is None or synergy_processor is None:
+        raise ValueError("All processors must be provided")
+    
     if brenda_metals is None:
         brenda_metals = []
+    if any(p is None for p in (fc_processor, metal_processor, synergy_processor)):
+        raise ValueError("fc_processor, metal_processor, and synergy_processor must be provided")
+    text = '' if text is None else (text if isinstance(text, str) else str(text))
 
     results = {}
-    text_lower = text.lower()
+ 
     # Convert pathways to a single string if it's a list for assign_mechanism_from_pathway
     if pathways:
         pathways_for_mechanism = ' '.join(pathways) if isinstance(pathways, list) else (pathways or "")
@@ -442,18 +392,21 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     # Consolidate metals
     consolidated_metals = consolidate_metal_terms(brenda_metals, detected_metals)
     results["consolidated_metals"] = consolidated_metals
-    results["raw_metal_score"] = float(metal_score)
+    results["metal_score"] = float(metal_score) if metal_score is not None else 0.0
 
     #========================================================================
     # Score functional categories - PRIMARY scoring method
     functional_score = 0.0
     func_matches = {} #dict storages weighted score
+    func_found_terms = {} # actual terms found per category
     detected_fc_names = set()  # to take into account for coocurrence
-    for cat, details in functional_categories.items():
+    for cat, details in functional_categories_dict.items():
         category_hits = 0
+        found_terms_for_cat = []
         for term in details["terms"]:
-            if fc_processor.matches_normalized(term, text_lower):
+            if fc_processor.matches_normalized(term, text):
                 category_hits += 1
+                found_terms_for_cat.append(term)
         
         if category_hits > 0:
             base_score = math.log(category_hits + 1) #log prevents inflation, promotes balance
@@ -461,12 +414,13 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
             func_matches[cat] = weighted_score
             functional_score += weighted_score
             detected_fc_names.add(cat)
+            func_found_terms[cat] = found_terms_for_cat
 
     results["functional_categories"] = [
         {"category": cat, "score": score}
         for cat, score in func_matches.items()
     ]
-    results["functional_score"] = float(functional_score)
+    results["functional_score"] = float(functional_score) if functional_score is not None else 0.0
 
     #=====================================================================
 
@@ -476,47 +430,44 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     "methanogenesis","fumarate_formation","halogen_related","phosphorus_metabolism"
     ]
     
-    def detect_functional_category_synergies(text_lower, functional_categories, subcategories_fc, fc_processor):
+    def detect_functional_category_synergies(text, functional_categories, subcategories_fc, fc_processor):
         """ Detect synergies based on co-occurrence of terms from different functional categories.
-        Args:text_lower: Lowercase text to analyze
+        Args:text: Lowercase text to analyze
             functional_categories: Dictionary of functional categories and their terms
             subcategories_fc: List of functional category names to check
         Returns: Dict containing synergy detection results"""
         
         # Step 1: Detect which functional categories have hits and collect their terms
-        detected_categories = {}
-        all_found_terms = set()
+        detected_categories = {} # coming from functional categories only dict of category -> list of terms
+        all_found_terms = set() # coming from functional categories only set of all terms found
         
         for category in subcategories_fc:
-            if category in functional_categories:
-                terms = functional_categories[category]['terms']
-                found_terms = [term for term in terms if fc_processor.matches_normalized(term, text_lower)]
-                
-                if found_terms:
-                    detected_categories[category] = found_terms
-                    all_found_terms.update(found_terms)
-        
-        # Step 2: Check for meaningful synergies
+             if category in func_found_terms and func_found_terms[category]:
+                detected_categories[category] = list(func_found_terms[category])
+                all_found_terms.update(func_found_terms[category])
+
+        # Step 2: Check for meaningful synergies based on detected categories
         synergy_results = {
             'fc_cooccurrence_synergy_hit': False,
             'synergy_score': 0.0,
-            'synergy_child_terms_found': [],
-            'synergy_categories_involved': [],
-            'synergy_description': ''
+            'synergy_child_terms_found': [], # list of terms contributing to synergy found inside fc
+            'synergy_categories_involved': [], # list of terms in the upper category of the child term
+            'synergy_description': '' # description of the synergy detected
         }
         
         # Require at least 2 different functional categories
         if len(detected_categories) < 2:
             return synergy_results
-        
-        # Define high-priority synergy combinations with their scores
-        priority_synergies = {
+        #Synergy scores based on corrosion failure analysis literature:
+        # Organic acid + metal chelation: highest damage potential (score: 3.0) # For reference and justification please see main manuscript
+        # Defining high-priority synergy combinations with their scores based on functional categories
+        priority_synergies = { # Based on failure analysis of cooling and heating operational water systems
             ('organic_acid_metabolism', 'metal_binding_chelation'): {
-                'score': 3.0,
+                'score': 3.0, 
                 'description': 'TOC-chelation Synergy (TOC-chelate)'
             },
             ('iron_metabolism', 'organic_acid_metabolism'): {
-                'score': 2.8,
+                'score': 2.8, 
                 'description': 'Iron-Organic Acid Synergy (acid-enhanced Fe corrosion)'
             },
             ('biofilm_formation', 'metal_binding_chelation'): {
@@ -545,7 +496,7 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
             }
         }
         
-        # Step 3: Check for priority synergies first
+        # Step 3: Check for priority synergies first and select the highest scoring one
         max_synergy_score = 0.0
         best_synergy = None
         involved_categories = []
@@ -593,19 +544,18 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
         return synergy_results
     
     synergy_results = detect_functional_category_synergies(
-    text_lower, functional_categories, subcategories_fc, fc_processor
-    )
+        func_found_terms, subcategories_fc)
     
-    # Legacy keyword synergy detection (as fallback)
+    # Legacy keyword synergy detection (as fallback) corresponds to the global_terms dictionary corrosion_synergies
     keyword_synergy_score = 0.0
     keyword_synergy_groups_found = set()
     
-    for synergy_group, obj in corrosion_synergies.items():
+    for synergy_group, obj in corrosion_synergies_dict.items():
         term_list = obj.get('terms', []) if isinstance(obj, dict) else obj
         group_hits = 0
         terms = obj.get('terms', [])
         for term in terms:
-            if synergy_processor.matches_normalized(term, text_lower):
+            if synergy_processor.matches_normalized(term, text):
                 group_hits += 1
         if group_hits > 0:
             keyword_synergy_score += math.log(group_hits + 1)
@@ -625,20 +575,24 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     elif keyword_synergy_score > 0:
         # Fall back to keyword synergy
         results["corrosion_synergies"] = sorted(list(keyword_synergy_groups_found))
+        results["synergy_terms"] = []
         results["synergy_score"] = float(keyword_synergy_score)
         results["synergy_type"] = "keyword_based"
         results["synergy_description"] = "Keyword-based synergy detection"
+        results["synergy_categories"] = sorted(list(keyword_synergy_groups_found))
     else:
         # No synergy detected
         results["corrosion_synergies"] = []
+        results["synergy_terms"] = [] 
         results["synergy_score"] = 0.0
         results["synergy_type"] = "none"
         results["synergy_description"] = "No synergies detected"
+        results["synergy_categories"] = []
 
     # save raw scores 
-    results["metal_score"] = float(metal_score)
-    results["functional_score"] = float(functional_score)
-    results["synergy_score"] = float(results["synergy_score"])    
+    results["metal_score"] = float(metal_score) if metal_score is not None else 0.0
+    results["functional_score"] = float(functional_score) if functional_score is not None else 0.0
+    results["synergy_score"] = float(results.get["synergy_score", 0.0])  
    
     # calculate overall scores
     results["overall_metal_score"] = float(metal_score * METAL_SCORE_WEIGHT)
@@ -665,8 +619,8 @@ def validate_against_pathways(record, pathways_data):
     Validates detected pathways, mechanisms, and functional categories against ipath ground truth.
     Returns validation metrics and suggestions.
     """
-    mechanism_processor = TermProcessor(corrosion_mechanisms)
-    pathway_processor = TermProcessor(pathway_categories)
+    mechanism_processor = TermProcessor(mechanisms_dict)
+    pathway_processor = TermProcessor(pathway_dict)
     ec_number = record['ec_number']
     validation_results = {
         'pathway_validation': {},
@@ -681,6 +635,8 @@ def validate_against_pathways(record, pathways_data):
     
     pathways = pathways_data[ec_number]
     detected_pathways = record.get('pathway_ko', [])
+    if isinstance(detected_pathways, str):
+        detected_pathways = [detected_pathways]
     detected_mechanisms = record.get('corrosion_mechanisms', [])
     #detected_fc = [fc['category'] for fc in record.get('functional_categories', [])]
     
@@ -737,14 +693,14 @@ from typing import Dict, List, Set, Optional
 class TermProcessor:
     """Normalizes and matches corrosion terms with priority handling."""
 
-    def __init__(self, taxonomy: dict):
-        self.synonyms = {
+    def __init__(self, taxonomy: dict, synonyms: dict = None):
+        self.synonyms = synonyms or {
             "oxidoreductase": ["oxid reduction enzyme"],
             "iron sulfur": ["fe s", "fe s cluster", "iron-sulfur", "fe-s"],
             "sulfide": ["sulphide"],
-        # add domain-needed pairs only
             "sulfite": ["sulphite"],
-            "sulfur": ["sulphur"],}
+            "sulfur": ["sulphur"],
+        }
         # Priority includes all categories you referenced elsewhere (synergy and FC lists)
         self.priority_order: List[str] = [
             'iron_metabolism', 'sulfur_metabolism', 'organic_acid_metabolism',
@@ -777,13 +733,13 @@ class TermProcessor:
                     base = self._normalize_term(t)
                     for syn in self.synonyms.get(base, []):
                         expanded.append(syn)
-                cat_to_terms[cat] = {self._normalize_term(t) for t in expanded}
+                cat_to_terms[cat] = {nt for t in expanded if (nt := self._normalize_term(t))}
 
         # Add remaining categories not in priority list
         for cat, data in taxonomy.items():
             if cat not in cat_to_terms:
                 terms = data['terms'] if isinstance(data, dict) and 'terms' in data else data
-                cat_to_terms[cat] = {self._normalize_term(t) for t in terms}
+                cat_to_terms[cat] = {nt for t in terms if (nt := self._normalize_term(t))}
 
         return cat_to_terms
 
@@ -803,9 +759,10 @@ class TermProcessor:
 
         # Sort by length desc to reduce premature short-term matches
         kws = sorted(self.keyword_to_category_map.keys(), key=len, reverse=True)
-
-        # NOTE: Text is normalized to lowercase with spaces; keywords are too.
-        # We can safely use word boundaries.
+        # limit pattern size to avoid backtracking
+        if len(kws) >1000:
+            kws = kws[:1000]
+        # NOTE: Text is normalized to lowercase with spaces; keywords are too. safely use word boundaries.
         pattern = r'\b(' + '|'.join(re.escape(k) for k in kws) + r')\b'
         return re.compile(pattern, re.IGNORECASE)
 
@@ -817,9 +774,11 @@ class TermProcessor:
         t = term.lower()
 
         # Conservative substitutions (avoid corrupting 'oxidase', 'reductase', etc.)
-        t = re.sub(r'\bsulph', 'sulf', t)       # UK → US spelling at word start
-        t = re.sub(r'metallo', 'metal', t)      # metalloenzyme → metal enzyme (optional)
-        t = re.sub(r'corrosi', 'corrosion', t)  # normalize partials only for 'corrosion'
+        t = re.sub(r'\bsulphur\b', 'sulfur', t)     # Complete word only
+        t = re.sub(r'\bsulphate\b', 'sulfate', t)   # Complete word only  
+        t = re.sub(r'\bsulphide\b', 'sulfide', t)   # Complete word only
+        t = re.sub(r'\bmetallo(?=enzyme|protein)\b', 'metal', t)  # Only before enzyme/protein
+        t = re.sub(r'\bcorrosion\w*\b', 'corrosion', t)  # Normalize corrosion variants
 
         # Replace non-word/underscore runs with a single space (keeps alnum boundaries)
         t = re.sub(r'[\W_]+', ' ', t)
@@ -897,7 +856,7 @@ from typing import Optional
 #====================== Normalizing EC =====================
 
 # Accept "EC 1.1.1.1", "1.1.1.1", and hyphens "1.1.1.-"
-_EC_RE = re.compile(r'(?:^EC\s*)?([0-9\-]+\.[0-9\-]+\.[0-9\-]+\.[0-9\-]+)\b')
+_EC_RE = re.compile(r'\b(?:EC\s*)?((?:\d+|-)\.(?:\d+|-)\.(?:\d+|-)\.(?:\d+|-))\b', re.IGNORECASE)
 
 def normalize_ec_id(s: str) -> Optional[str]:
     """Return normalized EC id 'x.x.x.x' (digits or '-') or None if not found."""

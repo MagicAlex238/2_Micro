@@ -4,14 +4,14 @@ from typing import Dict, List, Set, Optional
 class TermProcessor:
     """Normalizes and matches corrosion terms with priority handling."""
 
-    def __init__(self, taxonomy: dict):
-        self.synonyms = {
+    def __init__(self, taxonomy: dict, synonyms: dict = None):
+        self.synonyms = synonyms or {
             "oxidoreductase": ["oxid reduction enzyme"],
             "iron sulfur": ["fe s", "fe s cluster", "iron-sulfur", "fe-s"],
             "sulfide": ["sulphide"],
-        # add domain-needed pairs only
             "sulfite": ["sulphite"],
-            "sulfur": ["sulphur"],}
+            "sulfur": ["sulphur"],
+        }
         # Priority includes all categories you referenced elsewhere (synergy and FC lists)
         self.priority_order: List[str] = [
             'iron_metabolism', 'sulfur_metabolism', 'organic_acid_metabolism',
@@ -44,13 +44,13 @@ class TermProcessor:
                     base = self._normalize_term(t)
                     for syn in self.synonyms.get(base, []):
                         expanded.append(syn)
-                cat_to_terms[cat] = {self._normalize_term(t) for t in expanded}
+                cat_to_terms[cat] = {nt for t in expanded if (nt := self._normalize_term(t))}
 
         # Add remaining categories not in priority list
         for cat, data in taxonomy.items():
             if cat not in cat_to_terms:
                 terms = data['terms'] if isinstance(data, dict) and 'terms' in data else data
-                cat_to_terms[cat] = {self._normalize_term(t) for t in terms}
+                cat_to_terms[cat] = {nt for t in terms if (nt := self._normalize_term(t))}
 
         return cat_to_terms
 
@@ -70,9 +70,10 @@ class TermProcessor:
 
         # Sort by length desc to reduce premature short-term matches
         kws = sorted(self.keyword_to_category_map.keys(), key=len, reverse=True)
-
-        # NOTE: Text is normalized to lowercase with spaces; keywords are too.
-        # We can safely use word boundaries.
+        # limit pattern size to avoid backtracking
+        if len(kws) >1000:
+            kws = kws[:1000]
+        # NOTE: Text is normalized to lowercase with spaces; keywords are too. safely use word boundaries.
         pattern = r'\b(' + '|'.join(re.escape(k) for k in kws) + r')\b'
         return re.compile(pattern, re.IGNORECASE)
 
@@ -84,9 +85,11 @@ class TermProcessor:
         t = term.lower()
 
         # Conservative substitutions (avoid corrupting 'oxidase', 'reductase', etc.)
-        t = re.sub(r'\bsulph', 'sulf', t)       # UK → US spelling at word start
-        t = re.sub(r'metallo', 'metal', t)      # metalloenzyme → metal enzyme (optional)
-        t = re.sub(r'corrosi', 'corrosion', t)  # normalize partials only for 'corrosion'
+        t = re.sub(r'\bsulphur\b', 'sulfur', t)     # Complete word only
+        t = re.sub(r'\bsulphate\b', 'sulfate', t)   # Complete word only  
+        t = re.sub(r'\bsulphide\b', 'sulfide', t)   # Complete word only
+        t = re.sub(r'\bmetallo(?=enzyme|protein)\b', 'metal', t)  # Only before enzyme/protein
+        t = re.sub(r'\bcorrosion\w*\b', 'corrosion', t)  # Normalize corrosion variants
 
         # Replace non-word/underscore runs with a single space (keeps alnum boundaries)
         t = re.sub(r'[\W_]+', ' ', t)
