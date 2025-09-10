@@ -41,8 +41,10 @@ cd /home/beatriz/MIC/2_Micro/corrosion_scoring_root/corrosion_scoring
     cat utils_ec.py
 } > /home/beatriz/MIC/2_Micro/corrosion_scoring_root/corrosion_scoring_combined.py
 ´´´
-
+# Convert to Python script
+jupyter nbconvert --to python your_notebook.ipynb
 ####_________________-
+MD
 '''
 ### Symplifying Protein_name values
 

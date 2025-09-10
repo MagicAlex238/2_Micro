@@ -36,11 +36,14 @@ __all__ = [
     "strip_all_ec_tokens",
     "enhanced_clean_protein_name",
     "clean_protein_name",
-    # globals
-   metal_terms_dict,
-        corrosion_synergies_dict,
-        functional_categories_dict,
-        metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict
+    # re-exported globals as names
+    "metal_terms_dict",
+    "corrosion_synergies_dict",
+    "functional_categories_dict",
+    "metal_mapping",
+    "pathway_dict",
+    "mechanisms_dict",
+    "operational_environmental_factors_dict",
 ]
 
 # ========== name_utils.py ==========
@@ -166,9 +169,13 @@ def clean_protein_name(name: str) -> str:
 #!/usr/bin/env python
 # coding: utf-8
 ###=========================================================
+#10.09.2025
+###_________________________
 """
 Corrosion Relevance Scoring System: functions for corrosion relevance evaluation.
-Updated to use unified functional_categories scoring approach.
+Updated to use unified functional_categories as major scoring category, corrosion_synergies and metal_terms
+all the other categories (mechanisms, pathways, operational_ are just to poppulate and make plots), this was done so not to 
+inflate the results and therefore functional_categories is a mixture of all the other entities.
 """
 import math
 import sys
@@ -219,14 +226,14 @@ def score_keyword_matches(text, processor):
     return total_score, matched_categories
 
 #============================================================================================================
-def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
+def assign_corrosion_mechanisms(text_to_analyze: str, mechanisms_processor) -> list[str]:
     """
     Identifies and extracts corrosion mechanism terms from the given text
     using the module's _mechanism_processor instance.
     This function is for POPULATION, NOT SCORING.
     """
-    mechanism_processor = TermProcessor(corrosion_mechanisms)
-    # Use the processor to find all matching terms and their categories in one fast pass
+    mechanisms_processor = TermProcessor(mechanisms_dict)
+   # Use the processor to find all matching terms and their categories in one fast pass
     '''    found_mechanisms = set() # Use a set to ensure unique mechanisms
 
     # Tokenize the input text into individual words/phrases to process
@@ -243,7 +250,7 @@ def assign_corrosion_mechanisms(text_to_analyze: str) -> list[str]:
     if not isinstance(text_to_analyze, str) or not text_to_analyze.strip():
         return []
     # Full‑text matching so multi-word phrases are detected
-    mech_matches = mechanism_processor.find_all_matches(text_to_analyze)
+    mech_matches = mechanisms_processor.find_all_matches(text_to_analyze)
     return list(mech_matches.keys())
 
 def infer_mechanisms_from_pathway_category(pathway_category: str) -> list[str]:
@@ -270,36 +277,23 @@ def infer_mechanisms_from_pathway_category(pathway_category: str) -> list[str]:
     return [m for m in inferred if m in valid_mech_keys]
 #=================================================================================
 
-def assign_mechanism_from_pathway(pathway_text: str) -> list[str]:
+def assign_mechanism_from_pathway(text_to_analyse: str) -> list[str]:
     """
     Extracts corrosion mechanisms from pathway text using both pathway and mechanism processors.
     This function looks for direct mechanism terms AND infers mechanisms from pathway names.
     """
-    mechanism_processor = TermProcessor(mechanisms_dict)
-    pathway_processor = TermProcessor(pathway_dict)
-      
-    found_mechanisms: set[str] = set()
-    if not isinstance(pathway_text, str) or not pathway_text.strip():
-         return []
-    
-    # Tokenize the pathway text
-    terms_to_process = re.findall(r'\b\w+\b', pathway_text.lower())
    
+    if not isinstance(text_to_analyse, str) or not text_to_analyse.strip():
+        return []
+    mechanisms_processor = TermProcessor(mechanisms_dict)
     # Method 1: Direct mechanism detection (full-text)
-    mech_matches = mechanism_processor.find_all_matches(pathway_text)
-    found_mechanisms.update(mech_matches.keys())
-
-    # Method 2: Pathway-to-mechanism inference (full-text)
-    if not found_mechanisms:
-        path_matches = pathway_processor.find_all_matches(pathway_text)
-        for pathway_category in path_matches.keys():
-            inferred = infer_mechanisms_from_pathway_category(pathway_category)
-            found_mechanisms.update(inferred)
+    mech_matches = mechanisms_processor.find_all_matches(text_to_analyse)
     
-    return list(found_mechanisms)
+    return list(mech_matches.keys())
+
 #==============================================================================================================
 
-def consolidate_metal_terms(brenda_metals, detected_metal_categories=None):
+def consolidate_metal_terms(metals, detected_metal_categories=None) -> list[str]:
     """
     Consolidates metal names from BRENDA and detected categories into standardized symbols.
         Args:    brenda_metals: Raw metal terms from BRENDA data
@@ -367,16 +361,15 @@ def sanitize_input_text(text: str, max_length: int = 10000) -> str:
     return text
 
 #======================================================================================================================
-def calculate_overall_scores(text, fc_processor, metal_processor, synergy_processor, brenda_metals=None, pathways=None, external_metals=None):
+def calculate_overall_scores(text, fc_processor, metal_processor, synergy_processor, brenda_metals=None):
     """Calculate all the overall scores for a given text.
     Args: text: Text to analyze (combined enzyme names, class, pathways, reactions)
         brenda_metals: Metals from BRENDA database
         pathways: Pathway information for additional mechanism detection
     Returns: Dictionary containing all overall scores and matched categories
     """
-
     if not isinstance(text, str):
-            raise ValueError("text must be a string")
+        raise ValueError("text must be a string")
     text = sanitize_input_text(text)
     if not text.strip():
         raise ValueError("text cannot be empty")
@@ -385,19 +378,14 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     
     if brenda_metals is None:
         brenda_metals = []
-    if any(p is None for p in (fc_processor, metal_processor, synergy_processor)):
-        raise ValueError("fc_processor, metal_processor, and synergy_processor must be provided")
-    text = '' if text is None else (text if isinstance(text, str) else str(text))
     results = {}
  
     # Score metals using processor
     metal_score, detected_metals = score_keyword_matches(text, processor= metal_processor)
     
-    # Consolidate metals
-    consolidated_metals = consolidate_metal_terms(brenda_metals, detected_metals)
-    results["consolidated_metals"] = consolidated_metals
-    results["metal_score"] = float(metal_score) if metal_score is not None else 0.0
-
+    # Consolidate metals # Score metals from text ONLY for scoring; do not mix into the returned metals list
+    metal_score, _detected_metal_cats = score_keyword_matches(text, processor=metal_processor)
+ 
     #========================================================================
     # Score functional categories - PRIMARY scoring method
     functional_score = 0.0
@@ -555,12 +543,8 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
     keyword_synergy_groups_found = set()
     
     for synergy_group, obj in corrosion_synergies_dict.items():
-        term_list = obj.get('terms', []) if isinstance(obj, dict) else obj
-        group_hits = 0
-        terms = obj.get('terms', [])
-        for term in terms:
-            if synergy_processor.matches_normalized(term, text):
-                group_hits += 1
+        terms = obj.get('terms', []) if isinstance(obj, dict) else obj
+        group_hits = sum(1 for term in terms if synergy_processor.matches_normalized(term, text))
         if group_hits > 0:
             keyword_synergy_score += math.log(group_hits + 1)
             keyword_synergy_groups_found.add(synergy_group)
@@ -594,7 +578,7 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
         results["synergy_categories"] = []
 
     # save raw scores 
-    results["metal_score"] = float(metal_score) if metal_score is not None else 0.0
+    results["metal_score"] = float(metal_score or 0.0)
     results["functional_score"] = float(functional_score) if functional_score is not None else 0.0
     results["synergy_score"] = float(results.get("synergy_score", 0.0))  
    
@@ -623,7 +607,7 @@ def validate_against_pathways(record, pathways_data):
     Validates detected pathways, mechanisms, and functional categories against ipath ground truth.
     Returns validation metrics and suggestions.
     """
-    mechanism_processor = TermProcessor(mechanisms_dict)
+    mechanisms_processor = TermProcessor(mechanisms_dict)
     pathway_processor = TermProcessor(pathway_dict)
     ec_number = record['ec_number']
     validation_results = {
@@ -668,8 +652,8 @@ def validate_against_pathways(record, pathways_data):
             expected_mechanisms.update(assign_mechanism_from_pathway(pathway))
         
         if expected_mechanisms and detected_mechanisms:
-            norm_expected = {mechanism_processor.normalize_text(m) for m in expected_mechanisms}
-            norm_detected = {mechanism_processor.normalize_text(m) for m in detected_mechanisms}
+            norm_expected = {mechanisms_processor.normalize_text(m) for m in expected_mechanisms}
+            norm_detected = {mechanisms_processor.normalize_text(m) for m in detected_mechanisms}
             
             overlap = norm_expected.intersection(norm_detected)
             mech_precision = len(overlap) / len(norm_detected) if norm_detected else 0
@@ -826,7 +810,7 @@ class TermProcessor:
         if not norm_term:
             return False
         norm_text = self._normalize_term(text)
-        return norm_term in norm_text
+        return re.search(rf'\b{re.escape(norm_term)}\b', norm_text) is not None
 
     def find_first_category(self, term: str) -> Optional[str]:
         """Return the category for a single token/term, honoring priority where ambiguous."""

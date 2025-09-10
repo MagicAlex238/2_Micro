@@ -129,7 +129,7 @@ else:
 
 # ## 2.2. Importing Libraries,  Making Directories and Loading Data
 
-# In[1]:
+# In[ ]:
 
 
 import os
@@ -164,16 +164,19 @@ import corrosion_scoring as cs
 from corrosion_scoring.term_processor import TermProcessor
 from corrosion_scoring.name_utils import enhanced_clean_protein_name, clean_protein_name
 from corrosion_scoring.utils_ec import normalize_ec_id, strip_all_ec_tokens
-from corrosion_scoring.global_terms import functional_categories, metal_terms, corrosion_synergies
+from corrosion_scoring.global_terms import functional_categories_dict, metal_terms_dict, corrosion_synergies_dict, metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict
 #Create an instance of the processor for the functional categories
-fc_processor = TermProcessor(cs.functional_categories)
-metal_processor = TermProcessor(cs.metal_terms)  
-synergy_processor = TermProcessor(cs.corrosion_synergies)
-metal_terms = cs.global_terms.metal_terms
-functional_categories = cs.global_terms.functional_categories
-corrosion_synergies = cs.global_terms.corrosion_synergies
+fc_processor = TermProcessor(cs.functional_categories_dict)
+metal_processor = TermProcessor(cs.metal_terms_dict)  
+synergy_processor = TermProcessor(cs.corrosion_synergies_dict)
+mechanisms_processor = TermProcessor(mechanisms_dict)
+pathway_processor = TermProcessor(pathway_dict)
+ope_processor = TermProcessor(operational_environmental_factors_dict)
+metal_terms = cs.global_terms.metal_terms_dict
+functional_categories = cs.global_terms.functional_categories_dict
+corrosion_synergies = cs.global_terms.corrosion_synergies_dict
 
-# In[1]:
+# In[49]:
 
 
 import sys, pkgutil, importlib
@@ -193,23 +196,21 @@ import corrosion_scoring as cs
 print("Loaded:", cs.__file__)
 
 # 3) Proceed with original code
-from corrosion_scoring.global_terms import functional_categories, metal_terms, corrosion_synergies
 from corrosion_scoring.term_processor import TermProcessor
 from corrosion_scoring.name_utils import enhanced_clean_protein_name, clean_protein_name
 from corrosion_scoring.utils_ec import normalize_ec_id, strip_all_ec_tokens
-'''from corrosion_scoring.scoring_system import (
-    calculate_overall_scores,
-    calculate_corrosion_relevance_score,
-    assign_mechanism_from_pathway,
-    assign_corrosion_mechanisms, infer_mechanisms_from_pathway_category, consolidate_metal_terms, validate_against_pathways
-)'''
+from corrosion_scoring.global_terms import functional_categories_dict, metal_terms_dict, corrosion_synergies_dict, metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict
 
-fc_processor = TermProcessor(functional_categories)
-metal_processor = TermProcessor(metal_terms)
-synergy_processor = TermProcessor(corrosion_synergies)
-metal_terms = cs.global_terms.metal_terms
-functional_categories = cs.global_terms.functional_categories
-corrosion_synergies = cs.global_terms.corrosion_synergies
+#Create an instance of the processor for the functional categories
+fc_processor = TermProcessor(cs.functional_categories_dict)
+metal_processor = TermProcessor(cs.metal_terms_dict)  
+synergy_processor = TermProcessor(cs.corrosion_synergies_dict)
+mechanisms_processor = TermProcessor(mechanisms_dict)
+pathway_processor = TermProcessor(pathway_dict)
+ope_processor = TermProcessor(operational_environmental_factors_dict)
+metal_terms = cs.global_terms.metal_terms_dict
+functional_categories = cs.global_terms.functional_categories_dict
+corrosion_synergies = cs.global_terms.corrosion_synergies_dict
 
 print("OK: processors built.")
 # verify
@@ -224,12 +225,12 @@ assert hasattr(cs, "metal_mapping") and isinstance(cs.metal_mapping, dict)
 from corrosion_scoring.name_utils import enhanced_clean_protein_name as ecpn
 print(ecpn("Alcohol dehydrogenase (NAD) [yeast] EC 1.1.1.1"))  # -> "alcohol-dehydrogenase"
 
-# In[ ]:
-
-
-print(clean_protein_name("alcohol-dehydrogenase")) print(clean_protein_name(" probable lactoylglutathione lyase "))
-
 # In[3]:
+
+
+print(clean_protein_name("alcohol-dehydrogenase")), print(clean_protein_name(" probable lactoylglutathione lyase "))
+
+# In[2]:
 
 
 # print the processors to see if they are being created properly to debug
@@ -3316,13 +3317,13 @@ gc.collect()
 
 # ## 8.9 Cleaning Protein Names on ECcontri_Uniprot
 
-# In[126]:
+# In[ ]:
 
 
 '''import re
 import unicodedata
 
-# If you want fuzzy matching later, prefer rapidfuzz over fuzzywuzzy
+# prefer rapidfuzz over fuzzywuzzy
 # from rapidfuzz import fuzz
 
 def enhanced_clean_protein_name(name: str) -> str:
@@ -3910,10 +3911,10 @@ gc.collect()
 
 # ## 9.1 Setting up Paths and Parsing the Dataframes
 
-# In[102]:
+# In[50]:
 
 
-def setup_paths():
+def setup_paths() -> Dict[str, Path]:
     """Set up paths for database access"""
 
     # Database paths
@@ -3953,8 +3954,7 @@ wget -O ec_pathway.list "https://rest.kegg.jp/link/pathway/ec",
 Pathways rsync -avz rsync://rest.kegg.jp/kegg/pathway/ 
 Reactions !wget -c "ftp://ftp.genome.jp/pub/kegg/reaction/reaction.tar.gz" # This I can not use because the id are no compatible
 Chemical compounds database.wget https://biocyc.org/download.shtml. wget https://www.brenda-enzymes.org/download.php
-MetalPDB in 2018: a database of metal sites in biological macromolecular structures.
-Putignano V., Rosato A., Banci L., Andreini C.
+MetalPDB in 2018: a database ofbL., Andreini C.
 Nucleic Acids Res. 2018 Jan;46(D1):D459-D464. [PMID: 29077942]
 MetalPDB: a database of metal sites in biological macromolecular structures. (n.d.). Retrieved from http://metalpdb.cerm.unifi.it (APA citation format)
 '''
@@ -3998,7 +3998,7 @@ MetalPDB: a database of metal sites in biological macromolecular structures. (n.
 # BRENDA, the ELIXIR core data resource in 2021: new developments and updates. (2021), Nucleic Acids Res., 49:D498-D508.
 # DOI: 10.1093/nar/gkaa1025 PubMed: 33211880
 
-# In[103]:
+# In[51]:
 
 
 logger = logging.getLogger(__name__)
@@ -4099,7 +4099,16 @@ def brenda_sanitize_text(text: str) -> str:
     t = CITATION_HASH_RE.sub('', text)       # "#1,2#"
     t = CITATION_ANGLE_RE.sub('', t)         # "<44>"
     t = re.sub(r'\{[^}]*\}', '', t)          # "{r}" blocks
-    t = re.sub(r'\([^)]*\)', '', t)          # "(...)" blocks
+   # Check for chemistry tags and handle parentheses accordingly
+    chemistry_tags = ['CF', 'ME', 'SP', 'NSP', 'RE']
+    has_chemistry_tags = any(tag in t for tag in chemistry_tags)
+
+    if has_chemistry_tags:
+        # For chemistry tags: replace parentheses with spaces
+        t = re.sub(r'[()]', ' ', t)
+    else:
+        # For non-chemistry tags: remove parentheses and their contents entirely
+        t = re.sub(r'\([^)]*\)', '', t)
     t = WS_RE.sub(' ', t).strip()
     t = re.sub(r'^\s*[,;]?\s*\d[\d,\s]*\s*', '', t)  # leading enumerations
 
@@ -4113,6 +4122,24 @@ def brenda_sanitize_text(text: str) -> str:
     t = re.sub(r'\s*[:;,\-–]\s*$', '', t)
     assert isinstance(t, str), f"sanitize produced non-str: {type(t)}"
     return t
+def is_valid_text(text):
+    if not text or len(text) < 10:
+        return False
+    if '...' in text or '?' in text:
+        return False
+    if text.lower() in ('unknown', 'n/a', 'none'):
+        return False
+    return True
+def is_valid_equation(eq: str) -> bool:
+    # Basic filter for chemical equations
+    if not eq or len(eq) < 10:
+        return False
+    if eq.startswith('+') or '...' in eq or eq.count('=') > 1:
+        return False
+    if not any(token in eq for token in ['+', '=', '→', '⇌']):
+        return False
+    return True
+
 
 def extract_indices_and_value(value: str) -> Tuple[Optional[List[str]], str]:
     """Extract leading #idx[,idx]#; return (indices, rest)."""
@@ -4144,6 +4171,18 @@ def mechanism_snippet(text: str) -> str:
         return ""
     m = MECH_RE.search(text)
     return text[m.start():].strip() if m else text.strip()
+def _is_gene_token(tok: str) -> bool:
+    if not tok:
+        return False
+    t = tok.strip().strip('.,;:()[]{}').replace('"','').replace("'",'')
+    # Reject obvious non-genes (add/remove terms as needed)
+    BAD = {'gene', 'locus', 'tag', 'orf', 'protein', 'domain', 'subunit', 'fragment', 'hypothetical', 'functional', 'cluster'}
+    if t.lower() in BAD:
+        return False
+    # Typical gene tokens: short alnum with optional mixed case, underscores or dashes
+    if not re.match(r'^[A-Za-z][A-Za-z0-9._-]{1,10}$', t):
+        return False
+    return True
 
 # Conservative gene capture patterns from CL (cloned) lines
 CL_GENE_PATTERNS = [
@@ -4168,7 +4207,7 @@ def parse_brenda_file() -> Dict[str, dict]:
       structural info (CR/LO/ST/SU), biochemical kinetics/properties (KM/SA/MW/PI),
       purification info (PU), expression (EXP)
     """
-    # Resolve paths from your project
+    # parse_1 Resolve paths 
     paths = setup_paths()  # must return {'enzyme_brenda': path}
     enzyme_brenda_path = paths['enzyme_brenda']
 
@@ -4180,17 +4219,24 @@ def parse_brenda_file() -> Dict[str, dict]:
     current_ec: Optional[str] = None
     in_entry = False
 
-    # Continuations
+    # parse_2 Continuations
     last_tag: Optional[str] = None
     last_ec_field_list_name: Optional[str] = None
     last_by_genus_targets: Optional[List[str]] = None
 
-    # GI buffering
+    # parse_3 GI buffering
     gi_buffer_text: Optional[str] = None
     gi_buffer_genera: Optional[List[str]] = None
 
     kept, skipped = 0, 0
     missing_headers = set()
+    # parse_4 Helper functions ensure_ec, append_ec_list, append_by_genus, indices_to_genera, flush_gi_buffer
+    ###############
+    DEFAULT_GENUS_FIELDS = ('substrates','inhibitors','metals','cofactors','activators',
+                            'corrosion_mechanisms','reaction_equation','operational_environmental_factors','gene_names')
+    def _make_genus_bucket():
+        '''Avoids repeating same dict construction'''
+        return {k: [] for k in DEFAULT_GENUS_FIELDS}
 
     def ensure_ec(ec: str):
         if ec not in ec_info:
@@ -4207,26 +4253,22 @@ def parse_brenda_file() -> Dict[str, dict]:
                 'compounds': [],
                 'activators': [],
                 'corrosion_mechanisms': [],
+                'reaction_equation': [],  # from RE lines only
                 'operational_environmental_factors': [],
+                'brenda_metals': [],
+                '_metal_text': [],
+                '_mech_text': [], 
 
                 # Gene aggregation
                 'gene_name': [],
-                #'protein_modifications': [],  # ensure key exists (fix for KeyError)
-
                 # Organisms and per-genus routing
                 'organisms': {},  # idx -> {'species','genus'}
-                'by_genus': defaultdict(lambda: {
-                    'substrates': [],
-                    'inhibitors': [],
-                    'metals': [],
-                    'cofactors': [],
-                    'activators': [],
-                    'corrosion_mechanisms': [],
-                    'operational_environmental_factors': [],
-                    'gene_names': [],
-                }),
+                'by_genus': defaultdict(_make_genus_bucket),
             }
-
+    _METAL_PATTERNS = [(re.compile(rf'(?<![A-Za-z0-9]){re.escape(k)}(?![A-Za-z0-9])'), v)
+                        for k, v in cs.metal_mapping.items()]
+    # parse_5 append_ec_list, append_by_genus, indices_to_genera, flush_gi_buffer
+    ###############
     def append_ec_list(ec: str, field: str, value: str):
         if not value:
             return
@@ -4239,7 +4281,7 @@ def parse_brenda_file() -> Dict[str, dict]:
         lst = ec_info[ec][field]
         if v not in lst:
             lst.append(v)
-
+    # parse_6 append by genus
     def append_by_genus(ec: str, genera: List[str], field: str, value: str):
         if not value or not genera:
             return
@@ -4252,17 +4294,19 @@ def parse_brenda_file() -> Dict[str, dict]:
                 gen_bucket[field] = []
             if v not in gen_bucket[field]:
                 gen_bucket[field].append(v)
-
+    # parse_7
     def indices_to_genera(ec: str, idxs: Optional[List[str]]) -> List[str]:
         if not idxs:
             return []
-        gens = []
+        gens, seen = [], set()
         for idx in idxs:
             org = ec_info[ec]['organisms'].get(idx)
-            if org and org['genus']:
-                gens.append(org['genus'])
+            g = org['genus'] if org else None
+            if g and g not in seen:
+                seen.add(g)
+                gens.append(g)
         return gens
-
+    # parse_8 for general information
     def flush_gi_buffer():
         nonlocal gi_buffer_text, gi_buffer_genera
         if not (current_ec and gi_buffer_text):
@@ -4270,17 +4314,13 @@ def parse_brenda_file() -> Dict[str, dict]:
             gi_buffer_genera = None
             return
         text = brenda_sanitize_text(gi_buffer_text)
-
-        # Only mechanisms (no physiological_functions)
-        if contains_mechanism(text):
-            snip = mechanism_snippet(text)
-            append_ec_list(current_ec, 'corrosion_mechanisms', snip)
-            if gi_buffer_genera:
-                append_by_genus(current_ec, gi_buffer_genera, 'corrosion_mechanisms', snip)
-
+        # parse_9
+        if text:
+            ec_info[current_ec]['_mech_text'].append(text)
         gi_buffer_text = None
         gi_buffer_genera = None
-
+    # parse_12 Main file loop
+    ###############
     try:
         with open(enzyme_brenda_path, 'r', encoding='utf-8', errors='ignore') as fh:
             for raw_line in fh:
@@ -4310,12 +4350,18 @@ def parse_brenda_file() -> Dict[str, dict]:
                     cont = brenda_sanitize_text(line.strip())
                     if not cont:
                         continue
-
+                    # parse_13 Continuation handling    
                     # Extend EC-wide list item
                     if last_ec_field_list_name:
                         lst = ec_info[current_ec][last_ec_field_list_name]
                         if lst:
-                            lst[-1] = brenda_sanitize_text(f"{lst[-1]} {cont}")
+                            # only allow continuation if the continuation line is short (e.g., < 100 chars) and the last line isn’t already long.
+                            if len(cont) < 100 and len(lst[-1]) < 200:
+                                lst[-1] = brenda_sanitize_text(f"{lst[-1]} {cont}")
+                            else:   
+                                lst.append(cont)
+                        else:
+                            lst.append(cont)
 
                     # Extend per-genus list item
                     if last_by_genus_targets and last_ec_field_list_name:
@@ -4325,14 +4371,23 @@ def parse_brenda_file() -> Dict[str, dict]:
                                 gen_bucket[last_ec_field_list_name] = []
                             lst = gen_bucket[last_ec_field_list_name]
                             if lst:
-                                lst[-1] = brenda_sanitize_text(f"{lst[-1]} {cont}")
+                                if len(cont) < 100 and len(lst[-1]) < 200:
+                                    lst[-1] = brenda_sanitize_text(f"{lst[-1]} {cont}")
+                                else:
+                                    lst.append(cont)
+                            else:
+                                lst.append(cont)
 
                     # Extend GI buffer
                     if last_tag == "GI":
                         gi_buffer_text = f"{gi_buffer_text or ''} {cont}".strip()
+                    # Also collect continuation text for metal text-mining (exclude CF)
+                    if last_tag in ("RN","SN","SP","NSP","IN","AC","RE","GI") and current_ec:
+                        ec_info[current_ec]['_metal_text'].append(cont)
+                        ec_info[current_ec]['_mech_text'].append(cont)
                     continue
 
-                # New tagged line → flush GI if we were buffering
+                # parse_14 New tagged line handling → flush GI if we were buffering
                 if last_tag == "GI":
                     flush_gi_buffer()
 
@@ -4359,7 +4414,7 @@ def parse_brenda_file() -> Dict[str, dict]:
                     last_by_genus_targets = None
                     continue
 
-                # Start of a new EC entry
+                # parse_15 Start of a new EC entry
                 if tag == "ID":
                     norm = normalize_ec_id(val)
                     if not norm:
@@ -4386,13 +4441,16 @@ def parse_brenda_file() -> Dict[str, dict]:
                 last_ec_field_list_name = None
                 last_by_genus_targets = None
 
-                # Parse indices and value
+                # Parse_17 indices and value
                 idxs, val_wo_idx = extract_indices_and_value(val)
                 clean_val = brenda_sanitize_text(val_wo_idx)
                 genera = indices_to_genera(current_ec, idxs) if idxs else []
+                # collect text for metal text-mining (exclude CF)
+                if clean_val and tag in ("RN","SN","SP","NSP","IN","AC","RE","GI"):
+                    ec_info[current_ec]['_metal_text'].append(clean_val)
+                    ec_info[current_ec]['_mech_text'].append(clean_val)
 
-                # Tag handlers (trimmed to requested set)
-
+                # parse_18 Tag handlers (trimmed to requested set)
                 if tag == "PR":
                     if not idxs:
                         continue
@@ -4408,9 +4466,13 @@ def parse_brenda_file() -> Dict[str, dict]:
                 elif tag == "SN":
                     if clean_val and not ec_info[current_ec]['protein_name']:
                         ec_info[current_ec]['protein_name'] = enhanced_clean_protein_name(clean_val)
-
+                elif tag =="RE":
+                        # Extract detailed reaction information
+                    if '=' in clean_val and is_valid_text(clean_val):
+                        append_ec_list(current_ec, 'reaction_equation', clean_val)
+            
                 elif tag in ("SP", "NSP"):
-                    if clean_val:
+                    if is_valid_text(clean_val):
                         append_ec_list(current_ec, 'substrates', clean_val)
                         append_ec_list(current_ec, 'compounds', clean_val)
                         if genera:
@@ -4419,7 +4481,7 @@ def parse_brenda_file() -> Dict[str, dict]:
                     last_by_genus_targets = genera
 
                 elif tag == "IN":
-                    if clean_val:
+                    if is_valid_text(clean_val):
                         append_ec_list(current_ec, 'inhibitors', clean_val)
                         append_ec_list(current_ec, 'compounds', clean_val)
                         if genera:
@@ -4428,23 +4490,31 @@ def parse_brenda_file() -> Dict[str, dict]:
                     last_by_genus_targets = genera
 
                 elif tag == "ME":
-                    if clean_val:
-                        append_ec_list(current_ec, 'metals', clean_val)
-                        if genera:
-                            append_by_genus(current_ec, genera, 'metals', clean_val)
+                    if is_valid_text(clean_val):
+                        lc = clean_val.lower()
+                        metals_found = set()
+                        # match mapping keys with safe boundaries to avoid 'fe' in 'female', 'na' in 'nadh'
+                        for pat, sym in _METAL_PATTERNS:
+                            # word-ish boundary: not alnum on either side of the key
+                            if pat.search(lc):
+                                metals_found.add(sym)
+                        for sym in metals_found:
+                            append_ec_list(current_ec, 'metals', sym)
+                            if genera:
+                                append_by_genus(current_ec, genera, 'metals', sym)
                     last_ec_field_list_name = 'metals'
                     last_by_genus_targets = genera
 
                 elif tag == "CF":
-                    if clean_val:
+                    if is_valid_text(clean_val):
                         # remove inline citations, angle refs, (...) blocks, concentrations
                         t = CITATION_HASH_RE.sub('', clean_val)
                         t = CITATION_ANGLE_RE.sub('', t)
                         t = re.sub(r'\([^)]*\)', '', t)
                         t = re.sub(r'\b\d[\d.\s]*\s*(?:mM|µM|uM|nM|pM|M)\b', '', t, flags=re.IGNORECASE)
                         t = re.sub(r'\s{2,}', ' ', t).strip()
-
                         up = t.upper()
+
                         tok = next((k for k in _COFACTOR_LEXICON if k in up), None)
                         if not tok:
                             tok = t.split(';',1)[0].split(',',1)[0].split(' ',1)[0]
@@ -4453,12 +4523,20 @@ def parse_brenda_file() -> Dict[str, dict]:
                         append_ec_list(current_ec, 'compounds', clean_val)
                         if genera:
                             append_by_genus(current_ec, genera, 'cofactors', clean_val)
+                        tokens = set(re.split(r'[\s,;()]+', up))
+                        hits = [c for c in _COFACTOR_LEXICON if c in tokens]
+                        for cof in hits:
+                            append_ec_list(current_ec, 'cofactors', cof)
+                            # keep compounds comment out if too noisy
+                            #append_ec_list(current_ec, 'compounds', clean_val)
+                            if genera:
+                                append_by_genus(current_ec, genera, 'cofactors', cof)    
 
                     last_ec_field_list_name = 'cofactors'
                     last_by_genus_targets = genera
 
                 elif tag == "AC":
-                    if clean_val:
+                    if is_valid_text(clean_val):
                         append_ec_list(current_ec, 'activators', clean_val)
                         append_ec_list(current_ec, 'compounds', clean_val)
                         if genera:
@@ -4467,26 +4545,35 @@ def parse_brenda_file() -> Dict[str, dict]:
                     last_by_genus_targets = genera
 
                 elif tag == "SY":
-                    # Only capture when explicitly annotated "(gene name ...)"
-                    if clean_val and 'gene name' in clean_val.lower() and genera:
-                        m_gene = re.search(r'([A-Za-z0-9_\-\.]+)\s*\(.*?gene name', clean_val, flags=re.IGNORECASE)
+                    # Capture only explicit "(gene name ...)" annotations.
+                    if is_valid_text(val_wo_idx):
+                        # Use a lighter clean to preserve parentheses content needed for the pattern
+                        sy_raw = CITATION_HASH_RE.sub('', val_wo_idx)
+                        sy_raw = CITATION_ANGLE_RE.sub('', sy_raw).strip()
+                        m_gene = re.search(r'\(gene name[:\s]*([A-Za-z0-9._-]{2,20})\)', sy_raw, flags=re.IGNORECASE)
                         gene = m_gene.group(1) if m_gene else None
-                        if gene:
-                            for g in genera:
-                                gb = ec_info[current_ec]['by_genus'][g]
-                                if 'gene_names' not in gb:
-                                    gb['gene_names'] = []
-                                if gene not in gb['gene_names']:
-                                    gb['gene_names'].append(gene)
 
+                        if gene:
+                            if genera:
+                                for g in genera:
+                                    gb = ec_info[current_ec]['by_genus'][g]
+                                    if 'gene_names' not in gb:
+                                        gb['gene_names'] = []
+                                    if gene not in gb['gene_names']:
+                                        gb['gene_names'].append(gene)
+                            else:
+                                # fall back to top-level if no indices
+                                if gene not in ec_info[current_ec]['gene_name']:
+                                    ec_info[current_ec]['gene_name'].append(gene)
+            
                 elif tag == "CL":
                     # Enrich gene_name from CL text without keeping cloning_info
-                    if clean_val and genera:
+                    if is_valid_text(clean_val) and genera:
                         found = set()
                         for pat in CL_GENE_PATTERNS:
                             for m in pat.finditer(clean_val):
                                 token = m.group(1).strip()
-                                if token:
+                                if _is_gene_token(token):
                                     found.add(token)
                         if found:
                             for g in genera:
@@ -4503,7 +4590,7 @@ def parse_brenda_file() -> Dict[str, dict]:
                     gi_buffer_genera = genera
 
                 elif tag in ENV_TAGS:
-                    if clean_val:
+                    if is_valid_text(clean_val):
                         labeled = f"{tag}: {clean_val}"
                         append_ec_list(current_ec, 'operational_environmental_factors', labeled)
                         if genera:
@@ -4520,11 +4607,19 @@ def parse_brenda_file() -> Dict[str, dict]:
                     # Unknown/unused tag
                     last_ec_field_list_name = None
                     last_by_genus_targets = None
-
-        # Final flush at EOF
+        # parse_19 Final flush at EOF
         flush_gi_buffer()
+        
+        # # parse_20 deduplicate reactions dict fromkeys and sort by lenght prioritize equation with = sign                  
+        for ec, info in ec_info.items():                    
+            reactions = info.get('reaction_equation', [])
+            # Sort reactions: those containing '=' first, keep top 10 by length reaction[:10]
+            sorted_reactions = sorted(reactions, key=lambda s: (('=' not in s), -len(s)))
+            # Deduplicate while preserving order
+            deduped_reactions = list(dict.fromkeys(sorted_reactions))[:10]
+            info['reaction_equation'] = deduped_reactions
 
-        # Finalize: dedupe lists and aggregate gene names to top-level
+        # parse_21 Finalize: dedupe lists and aggregate gene names to top-level
         for ec, info in ec_info.items():
             # Build top-level gene_name from per-genus gene_names
             agg_gene = set(info.get('gene_name', []))
@@ -4540,6 +4635,35 @@ def parse_brenda_file() -> Dict[str, dict]:
             info['by_genus'] = by_genus_clean
             info['gene_name'] = sorted(agg_gene)
 
+            # parse_21b: Mechanism classification from buffered text
+            mech_corpus = ' '.join(info.get('_mech_text', []))
+            mech_hits = mechanisms_processor.find_all_matches(mech_corpus) if 'mechanisms_processor' in globals() and mechanisms_processor else {}
+            # Keep ONLY canonical mechanism keys (short labels)
+            classified_mechs = sorted(mech_hits.keys())
+            # Union with any previously set list (should be empty now, but safe)
+            info['corrosion_mechanisms'] = sorted(set(info.get('corrosion_mechanisms', [])) | set(classified_mechs))
+            info.pop('_mech_text', None)   # drop buffer
+
+            # parse 22 Finalize: metal text-mining#brenda_metals = ME ∪ mined-text (exclude CF)
+            corpus = ' '.join(info.get('_metal_text', []))
+            mined_syms = []
+            if corpus:
+                lc = corpus.lower()
+                seen = set()
+                for pat, sym in _METAL_PATTERNS: # constructed from cs.metal_mapping
+                    if pat.search(lc) and sym not in seen:
+                        seen.add(sym)
+                        mined_syms.append(sym)
+
+            # Start with explicit ME (keeps ME order), then append mined (no dups)
+            me_list = info.get('metals', []) or []
+            merged = list(dict.fromkeys(me_list + [s for s in mined_syms if s not in me_list]))
+
+            # parse 23 merging of all the metals from brenda
+            info['brenda_metals'] = merged # corresponds to all the metals that are found in brenda
+            info.pop('_metal_text', None)
+            info.pop('metals', None)
+
             # Deduplicate EC-wide lists
             for fld, val in list(info.items()):
                 if fld == 'by_genus':
@@ -4547,20 +4671,20 @@ def parse_brenda_file() -> Dict[str, dict]:
                 if isinstance(val, list):
                     info[fld] = list(dict.fromkeys(val))
 
-        # Stats
+        # parse_24 Stats   
         ec_with_org = sum(1 for v in ec_info.values() if v['organisms'])
         ec_with_name = sum(1 for v in ec_info.values() if v['protein_name'])
-        ec_with_metals = sum(1 for v in ec_info.values() if v['metals'])
+        ec_with_metals = sum(1 for v in ec_info.values() if v['brenda_metals'])
         ec_with_mech = sum(1 for v in ec_info.values() if v['corrosion_mechanisms'])
+        ec_with_compounds = sum(1 for v in ec_info.values() if v['compounds'])
+        ec_with_reaction = sum(1 for v in ec_info.values() if v['reaction_equation'])
         ec_with_env = sum(1 for v in ec_info.values() if v['operational_environmental_factors'])
         ec_with_cofactors = sum(1 for v in ec_info.values() if v['cofactors'])
         ec_with_activators = sum(1 for v in ec_info.values() if v['activators'])
         ec_with_gene = sum(1 for v in ec_info.values() if v['gene_name'])
 
-        logger.info(
-            "BRENDA parsing (trimmed): kept=%d, skipped=%d | organisms=%d, names=%d, metals=%d, mechanisms=%d, env=%d, cofactors=%d, activators=%d, gene=%d",
-            kept, skipped, ec_with_org, ec_with_name, ec_with_metals, ec_with_mech, ec_with_env, ec_with_cofactors, ec_with_activators, ec_with_gene
-        )
+        total = max(kept, 1)
+        logger.info("BRENDA parsing (trimmed): kept=%d, skipped=%d | organisms=%d (%.1f%%), names=%d (%.1f%%), brenda_metals=%d (%.1f%%), mechanisms=%d (%.1f%%), env=%d (%.1f%%), cofactors=%d (%.1f%%), activators=%d (%.1f%%), gene=%d (%.1f%%), reactions=%d (%.1f%%)", kept, skipped, ec_with_org, 100*ec_with_org/total, ec_with_name, 100*ec_with_name/total, ec_with_metals, 100*ec_with_metals/total, ec_with_mech, 100*ec_with_mech/total, ec_with_env, 100*ec_with_env/total, ec_with_cofactors, 100*ec_with_cofactors/total, ec_with_activators, 100*ec_with_activators/total, ec_with_gene, 100*ec_with_gene/total, ec_with_reaction, 100*ec_with_reaction/total) # ec_with_pathway, 100*ec_with_pathway/total,
 
         if missing_headers:
             logger.debug("Unmapped section headers encountered (ignored): %s", sorted(missing_headers))
@@ -4569,15 +4693,38 @@ def parse_brenda_file() -> Dict[str, dict]:
 
     except Exception as e:
         logger.exception("Error parsing BRENDA file: %s", e)
-        return {}
+    return {}
 
-# In[104]:
+# In[52]:
 
 
 # Call the function # 14min at 11 GB
 brenda_data = parse_brenda_file() # Only file of the dictionary that has to be call before the main function'
 
-# In[105]:
+# 2025-09-10 10:23:46,859 - INFO - BRENDA parsing (trimmed): kept=7874, skipped=1 | organisms=6708 (85.2%), names=7874 (100.0%), brenda_metals=4563 (58.0%), mechanisms=309 (3.9%), env=5434 (69.0%), cofactors=3016 (38.3%), activators=2927 (37.2%), gene=2451 (31.1%), reactions=5646 (71.7%)
+
+# In[66]:
+
+
+brenda_data_df = pd.DataFrame.from_dict(brenda_data, orient='index')
+print(brenda_data_df.head(2))
+
+# In[55]:
+
+
+brenda_data_df[ 'operational_environmental_factors'].explode().unique()
+
+# In[56]:
+
+
+brenda_data_df['reaction_equation']#.explode().unique()
+
+# In[57]:
+
+
+brenda_data_df[ 'corrosion_mechanisms'].explode().unique()
+
+# In[58]:
 
 
 # brenda_data sample
@@ -4592,9 +4739,59 @@ brenda_data = parse_brenda_file() # Only file of the dictionary that has to be c
    '-dehydro-3-deoxy-D-gluconate + NADH + H+ = -deoxy-L-erythro-5-hexoseulose + NAD+ {r}',
 '''
 
+# ### Cleaning pathways function
+#  The following function applies the correct pandas series logic Series.apply behavior and regular expression design (Pandas documentation, 2024).
+# For regex practice
+# Friedl, J. E. F. (2006). Mastering Regular Expressions (3rd ed.). O'Reilly Media.
+
+# In[59]:
+
+
+def clean_pathway_strings(pathway_series: pd.Series) -> pd.Series:
+    """
+    Clean pathway strings by removing common headers and database references that don't represent specific pathways.
+    Parameters:pathway_series : pandas.Series containing pathway strings with pathways separated by semicolons
+    Returns:  pandas.Series with cleaned pathway strings
+    """
+    # Terms to remove - add or remove based on specific needs
+    terms_to_remove = [
+        'Enzymes with EC numbers', # anotations mistake
+        'proteins [BR:ko00194]', # anotations mistake
+        'Metabolic pathways', # to broad term
+        'Other Metabolic Processes',
+        'Biosynthesis of secondary metabolites', # to broad term
+        'Microbial metabolism in diverse environments','Microbial metabolism in diverse environments', 'Metabolic pathways', # to broad term
+        'Exosome \[BR:ko04147\]', # mostly eucariotic
+        'photosynthesis', 'Photosynthesis', 'Photosynthesis  proteins [BR:ko00194]', # mostly plants
+        'Photosynthesis proteins', # mostly plants
+    ]
+    
+    # Compile regex pattern
+    pattern = re.compile(
+        '|'.join([re.escape(term) for term in terms_to_remove]),
+        flags=re.IGNORECASE
+    )
+    
+    def clean_single_entry(entry: str) -> str:
+        if pd.isna(entry) or not isinstance(entry, str) or entry.strip() == '[]':
+            return ''
+        
+        # Remove matched unwanted terms
+        cleaned = pattern.sub('', entry)
+        
+        # Clean up formatting issues
+        cleaned = pattern.sub('', entry)
+        cleaned = re.sub(r';\s*;', ';', cleaned)
+        cleaned = re.sub(r'[;\s]+$', '', cleaned)
+        cleaned = re.sub(r'^[;\s]+', '', cleaned)
+        
+        return cleaned
+    
+    return pathway_series.apply(clean_single_entry)
+
 # ### Brenda Proccesor
 
-# In[106]:
+# In[60]:
 
 
 # Lightweight cofactor cleaner
@@ -4603,7 +4800,7 @@ _PARENS_RE = re.compile(r'\([^)]*\)')
 _HASHIDX_RE = re.compile(r'#\s*\d[\d,\s]*#?')  # "#1 30,34#" or "#1#" variants
 
 _COFACTOR_LEXICON = ('NADPH', 'NADP+', 'NADP', 'NADH', 'NAD+', 'NAD','FAD', 'FMN', 'HEME', 'BIOTIN', 'SAM', 'TPP', 'PLP', 'THF', 'COA')
-
+# brenda_1 clean_cofactor_token
 def _clean_cofactor_token(s: str) -> str:
     if not s:
         return ""
@@ -4613,16 +4810,23 @@ def _clean_cofactor_token(s: str) -> str:
     t = _PARENS_RE.sub('', t)
     t = _CONC_RE.sub('', t)
     t = re.sub(r'\s{2,}', ' ', t).strip()
-    up = t.upper()
+    up = t.upper().strip(', ;-)(')
+    # hard filter common junk tokens seen in CF lines
+    if up.startswith('MORE') or up in {'DEPENDENT', 'INACTIVE', 'SPECIFIC', 'NO'}:
+        return ""
+
     for key in _COFACTOR_LEXICON:
-        if key in up:
+        if key in up.split():
             return key
+    # fallback: take first meaningful fragment
     for sep in (';', ',', ' ', '('):
         pos = t.find(sep)
         if pos > 0:
-            return t[:pos].strip()
-    return t
+            frag = t[:pos].strip(', ;()-')
+            return frag if frag else ""
+    return t.strip(', ;()-')
 
+# brenda_2 dedup
 def _dedup(lst):
     seen, out = set(), []
     for x in lst or []:
@@ -4630,7 +4834,7 @@ def _dedup(lst):
             seen.add(x)
             out.append(x)
     return out
-
+# brenda_3 process_brenda_data main function
 def process_brenda_data(brenda_data, fc_processor=None, metal_processor=None, synergy_processor=None):
     """
     Compact processor aligned to the trimmed parser and your notebook:
@@ -4641,12 +4845,34 @@ def process_brenda_data(brenda_data, fc_processor=None, metal_processor=None, sy
     - Genes kept (parser already enriches via CL).
     """
     processed_data = {}
+      
+    def _clean_reaction(eq: str) -> str:
+        if not isinstance(eq, str):
+            return ""
+        s = eq.strip()
+        # basic normalization
+        s = re.sub(r'\s+', ' ', s)
+        # keep only plausible equations
+        if not is_valid_equation(s):
+            return ""
+        return s
+
+    def _split_semicolons_to_list(s: str) -> List[str]:
+        if not s:
+            return []
+        parts = [p.strip() for p in s.split(';') if p.strip()]
+        # de-dup while preserving order
+        seen = set(); out = []
+        for p in parts:
+            if p not in seen:
+                seen.add(p); out.append(p)
+        return out
 
     for ec_number, data in (brenda_data or {}).items():
         if not isinstance(data, dict):
             continue
 
-        # Inputs from parser
+        # # brenda_4 Inputs from parser
         parsed_mechanisms = data.get('corrosion_mechanisms', []) or data.get('mechanisms', [])
         parsed_cofactors_raw = data.get('cofactors', []) or []
         
@@ -4659,13 +4885,17 @@ def process_brenda_data(brenda_data, fc_processor=None, metal_processor=None, sy
             'protein_name': data.get('protein_name', ''),
             'enzyme_class': data.get('enzyme_class', ''),
             'enzyme_names': [data.get('protein_name', '')] if data.get('protein_name') else [],
-            'cofactors': data.get('cleaned_cofactors', ''),
+            'cofactors': [],  # to be filled below
+            'gene_name': data.get('gene_name', []),
+            'organisms': organisms,
+            'by_genus': by_genus,
+            # Core lists
             'substrates': data.get('substrates', []),
             'inhibitors': data.get('inhibitors', []),
-            'metals': [],
             'operational_environmental_factors': data.get('operational_environmental_factors', []),
             'compounds': data.get('compounds', []),
             'corrosion_mechanisms': [],
+            'reaction_equation': data.get('reaction_equation', []),
 
             # Removed from this notebook: physiological_functions (omit), pathways, env
             'mechanisms': parsed_mechanisms,
@@ -4677,7 +4907,7 @@ def process_brenda_data(brenda_data, fc_processor=None, metal_processor=None, sy
             'overall_synergy_score': 0.0,
             'corrosion_relevance_score': 0.0,
         }
-
+        # brenda_5 regex cleaner for lists
         def _tok(x):
             if not x:
                 return ''
@@ -4690,15 +4920,16 @@ def process_brenda_data(brenda_data, fc_processor=None, metal_processor=None, sy
             s = re.sub(r'\s{2,}', ' ', s).strip(' ;,.- ')
             return s
 
-        # clean lists minimally before building text
+        # brenda_6 clean lists minimally before building text
         cleaned_substrates  = [_tok(x) for x in data.get('substrates', []) if _tok(x)]
         cleaned_inhibitors  = [_tok(x) for x in data.get('inhibitors', []) if _tok(x)]
         cleaned_cofactors   = _dedup([_clean_cofactor_token(c) for c in (data.get('cofactors', []) or [])])
         cleaned_compounds   = [_tok(x) for x in data.get('compounds', []) if _tok(x)]
         cleaned_compounds = list(dict.fromkeys(cleaned_compounds))  # de-dupe preserve order
         cleaned_compounds = cleaned_compounds[:30]  # cap storage to 30
+        rec['cofactors'] = cleaned_cofactors
         #===================
-        # ope factors
+        # brenda_7 ope factors
         #==================
         cleaned_env = []
         for s in data.get('operational_environmental_factors', []):
@@ -4707,8 +4938,7 @@ def process_brenda_data(brenda_data, fc_processor=None, metal_processor=None, sy
                 continue
             m = re.match(r'^([A-Z]{2,3})[:\s]\s*(.*)$', s2)
             if m:
-                tag, payload = m.group(1), m.group(2)
-                payload = re.sub(r'(?<!\d)\.(\d)', r'0.\1', payload)  # ".7"->"0.7                
+                tag, payload = m.group(1), m.group(2)              
                 # normalize decimals and ranges
                 payload = re.sub(r'(?<!\d)\.(\d)', r'0.\1', payload)  # ".7"->"0.7"
                 payload = payload.replace('-', '–').strip(' :;,.-')
@@ -4735,85 +4965,115 @@ def process_brenda_data(brenda_data, fc_processor=None, metal_processor=None, sy
         seen_env = set(); cleaned_env = [x for x in cleaned_env if not (x in seen_env or seen_env.add(x))]
         # store cleaned list in rec
         rec['operational_environmental_factors'] = cleaned_env
-
-        # --- build analysis text richer than before ---
+        
+        #======
+        # brenda_9 reaction cleaning
+        raw_react_list = data.get('reaction_equation', []) or []
+        cleaned_react = [r for r in (_clean_reaction(x) for x in raw_react_list) if r]
+        # de-dup preserve order, cap at 30
+        seen_rxn = set(); cleaned_react = [x for x in cleaned_react if not (x in seen_rxn or seen_rxn.add(x))]
+        cleaned_react = cleaned_react[:30]
+        rec['reaction_equation'] = cleaned_react
+      
+        # brenda 10--- build analysis text 
         text_parts = [
             ' '.join(cleaned_substrates),
             ' '.join(cleaned_cofactors),
             ' '.join(cleaned_inhibitors),
             ' '.join(cleaned_compounds),
             ' '.join(cleaned_env),
+            ' '.join(cleaned_react),
             str(data.get('protein_name', '')),
             ' '.join(parsed_mechanisms),
         ]
         text = ' '.join([t for t in text_parts if t]).lower()
+           
         #================================
-        #Metals
+        # brenda_11 Metals
         #================================
-        # Clean metal names
-        raw_metals = data.get('metals', []) # from parse
-        clean_metals = []
-        for entry in raw_metals:
-            entry_lower = str(entry).lower()
-            for metal_symbol, aliases in metal_terms.items():
-                if any(alias.lower() in entry_lower for alias in aliases):
-                    if metal_symbol not in clean_metals:
-                        clean_metals.append(metal_symbol)
+        rec['brenda_metals'] = list(dict.fromkeys(data.get('brenda_metals', []) or []))
 
-        consolidated = cs.consolidate_metal_terms(
-            brenda_metals=clean_metals,         # already standardized
-            detected_metal_categories=None      # no text detector here
+        # brenda_12 Use scoring module; only the 3 processors
+        fc_matches = fc_processor.find_all_matches(text) if fc_processor else {}
+        rec['functional_categories'] = sorted(fc_matches.keys())  # <-- text-mined strings (do NOT overwrite later)
+        rec['functional_category_terms'] = {k: sorted(v) for k, v in fc_matches.items()}
+        try:
+            score_results = cs.calculate_overall_scores(
+                text,
+                fc_processor, metal_processor, synergy_processor, 
+                brenda_metals=rec['brenda_metals']
+            )
+        except TypeError:
+            score_results = cs.calculate_overall_scores(
+                text,
+                fc_processor, metal_processor, synergy_processor,
+                brenda_metals=rec['brenda_metals'])
+        
+        for k in ('synergy_type', 'synergy_description', 'metal_score', 'functional_score', 'synergy_score'):
+            if k in score_results:
+                rec[k] = score_results[k]
+      
+        # Prefer synergy evidence returned by scoring; else fallback to processor
+        rec['corrosion_synergies'] = list(score_results.get('corrosion_synergies', []))
+        if 'synergy_terms' in score_results:
+            rec['synergy_terms'] = list(score_results['synergy_terms'])
+        else:
+            syn_matches = synergy_processor.find_all_matches(text)
+            rec['synergy_terms'] = sorted({t for ts in syn_matches.values() for t in ts})
+
+        # brenda_13 Consolidate mechanisms (parser-provided + classifier)
+        mech_matches = mechanisms_processor.find_all_matches(text) if mechanisms_processor else {}
+        parsed = set(parsed_mechanisms or [])
+        rec['corrosion_mechanisms'] = sorted(
+            parsed | set(rec.get('corrosion_mechanisms', [])) | set(mech_matches.keys())
         )
-        rec['consolidated_metals'] = list(dict.fromkeys(consolidated))  # canonical
-
-        # Use scoring module; only the 3 processors
-        score_results = cs.calculate_overall_scores(
-            text,
-            fc_processor,
-            metal_processor,
-            synergy_processor,
-            brenda_metals=rec['consolidated_metals']
-        )
-
-        # Consolidate mechanisms (parser-provided + classifier)
-        mech_proc = cs.TermProcessor(cs.corrosion_mechanisms)
-        mech_matches = mech_proc.find_all_matches(text)  # full-text, multi-gram aware
-        all_mech = set(mech_matches.keys())
-        for m in parsed_mechanisms:
-            all_mech.add(str(m))
-        rec['corrosion_mechanisms'] = list(all_mech)
-
-        for m in parsed_mechanisms:
-            all_mech.add(str(m))
-  
+        # brenda_14 functional_category_keys (from functional_categories)
+        rec['functional_category_keys'] = list(rec.get('functional_categories', []))
+    
         # Pull scores and categories
-        rec['corrosion_synergies'] = score_results.get('corrosion_synergies', [])
-        rec['functional_categories'] = score_results.get('functional_categories', [])
+        rec['functional_categories_scored'] = score_results.get('functional_categories', [])  # list of {"category","score"}
+        rec['corrosion_synergies_scored'] = score_results.get('corrosion_synergies', [])
+        rec['synergy_terms_scored'] = list(score_results.get('synergy_terms', []))
+
         rec['overall_metal_score'] = score_results.get('overall_metal_score', 0.0)
         rec['overall_functional_score'] = score_results.get('overall_functional_score', 0.0)
         rec['overall_synergy_score'] = score_results.get('overall_synergy_score', 0.0)
 
         # Final relevance score
         rec['corrosion_relevance_score'] = cs.calculate_corrosion_relevance_score(
-            rec['overall_metal_score'],
-            rec['overall_synergy_score'],
-            rec['overall_functional_score']
+            rec.get('overall_metal_score', 0.0),
+            rec.get('overall_synergy_score', 0.0),
+            rec.get('overall_functional_score', 0.0)
         )
 
+        # no sure I wont need this on main function
+        #for k in ('cofactors','activators', 'gene_name','organisms','by_genus','substrates','inhibitors','compounds'):
+           # rec.pop(k, None)
         processed_data[ec_number] = rec
-
+    import winsound  
+    winsound.Beep(1000, 500)  # frequency, duration in ms
+    
     return processed_data
 
-# In[107]:
+# In[61]:
 
 
-# Call the function # 240 min
-#brenda_en = process_brenda_data(brenda_data, fc_processor, metal_processor, synergy_processor)
+sample_ec, sample = next(iter(brenda_en.items()))
 
-# In[108]:
+assert isinstance(sample['functional_categories'], list) and all(isinstance(x, str) for x in sample['functional_categories'])
+
+assert isinstance(sample.get('functional_categories_scored', []), list)  # list of dicts from scorer
+
+assert isinstance(sample.get('functional_category_terms', {}), dict)
+
+assert isinstance(sample.get('brenda_metals', []), list)
+
+assert isinstance(sample.get('corrosion_synergies', []), list)
+
+# In[62]:
 
 
-'''# Temporal brenda sample creation for testing purposes # 20 min at 11 GB and 3 cores 
+# Temporal brenda sample creation for testing purposes # 20 min at 11 GB and 3 cores 
 import random
 def create_brenda_sample(brenda_data, sample_size=1000):
     """Create a small sample of BRENDA data for testing"""
@@ -4824,37 +5084,87 @@ def create_brenda_sample(brenda_data, sample_size=1000):
     sample_keys = list(brenda_data.keys())[:sample_size]
     return {k: brenda_data[k] for k in sample_keys}
 # Create a sample of BRENDA data 6 min
-brenda_data = create_brenda_sample(brenda_data, sample_size=1500)'''
+brenda_data = create_brenda_sample(brenda_data, sample_size=1500)
 
-# In[109]:
+# In[63]:
 
 
-'''print(brenda_en_df.filter(items=[
-    'ec_number','protein_name','consolidated_metals',
-    'functional_categories','corrosion_synergies',
-    'operational_environmental_factors'
-]).head(3).to_string())
+# Call the function # 15min (1500)-240 min
+brenda_en = process_brenda_data(brenda_data, fc_processor, metal_processor, synergy_processor)
 
-# check that env is clean and pH-valid
-print(brenda_en_df['operational_environmental_factors'].head().tolist())
-'''
+# In[ ]:
 
-# In[110]:
+
+brenda_en
+
+# {'1.1.1.1': {'ec_number': '1.1.1.1',
+#   'protein_name': 'alcohol-dehydrogenase',
+#   'enzyme_class': 'oxidoreductases',
+#   'enzyme_names': ['alcohol-dehydrogenase'],
+#   'cofactors': ['NAD+',
+#    'preferred substrate',
+#    'NADP+',
+#    'NADH',
+#    'Pyrococcus furiosus. The resultant chimera',
+#    'activity. The addition of calcium to beta-AdhD preferentially inhibits NAD+-dependent activity in comparison to NADP+-dependent activity. Calcium is a competitive inhibitor of AdhD',
+#    'NADP',
+#    'Bordetella pertussis into a loop near the catalytic active site of the thermostable alcohol dehydrogenase D from Pyrococcus furiosus. The resultant chimera',
+#    'beta-roll',
+#    'NADPH',
+#    'to be dependent on cofactor concentration',
+#    'benzoylpyridine-adenine',
+#    'oxidation',
+#    'AcycloNAD+ converts horse liver ADH from a broad spectrum alcohol dehydrogenase',
+#    'glutathione'],
+#   'gene_name': ['ADH1',
+#    'ADH3',
+#    'GmAdh2',
+#    'YIM1',
+#    'adh3',
+#    'adhE',
+# ...
+#   'functional_category_keys': [],
+#   'functional_categories_scored': [],
+#   'corrosion_synergies_scored': [],
+#   'synergy_terms_scored': []},
+#  ...}
+
+# In[ ]:
+
+
+#brenda_en_df = pd.DataFrame.from_dict(brenda_en, orient='index')
+#brenda_en_df.columns
+
+# In[ ]:
+
+
+brenda_en
+
+# In[ ]:
 
 
 '''brenda_en
 {'1.1.1.1': {'ec_number': '1.1.1.1',
   'protein_name': 'alcohol-dehydrogenase',
-  'cofactors': [')'],
-  'substrates': ['acetaldehyde + NADH + H+ = ethanol + NAD+ ( cells with an extra copy of ADH1 display chronological life-span extension. Antioxidant enzymes are induced in 2xADH1 cells. Strains carrying an extra ADH1 copy show extended replicative life span and increased Sir2p activity ) {r}',
-   'acetaldehyde + NADH + H+ = ethanol + NAD+ ( cells with an extra copy of ADH1 display chronological life-span extension. Antioxidant enzymes are induced in 2xADH1 cells. Strains carrying an extra ADH1 copy show extended replicative life span and increased Sir2p activity )',
-   'acetaldehyde + NADH + H+ = ethanol + NAD+ ( cells with an extra copy of ADH1 display chronological life-span extension. Antioxidant enzymes are induced in 2xADH1 cells. Strains carrying an extra ADH1 copy show extended replicative life span and increased Sir2p activity ) {ir}',
-   'methylglyoxal + NADH + H+ = acetol + NAD+ {r}',
-   '-dehydro-3-deoxy-D-gluconate + NADH + H+ = -deoxy-L-erythro-5-hexoseulose + NAD+ {r}',
-   '-deoxy-L-erythro-5-hexoseulose + NAD+ = -dehydro-3-deoxy-D-gluconate + NADH + H+ ( preferred reaction ) {r}',
-   'phenylethanol + NAD+ = phenylacetaldehyde + NADH + H+',
-   'phenylethanol + NAD+ = phenylacetaldehyde + NADH + H+ {r}',
-   'cinnamaldehyde + NADH + H+ = cinnamyl alcohol + NAD+ {r}','''
+  'enzyme_class': 'oxidoreductases',
+  'enzyme_names': ['alcohol-dehydrogenase'],
+  'cofactors': ['NAD+',
+   'preferred substrate',
+   'NADP+',
+   'NADH',
+   'Pyrococcus furiosus. The resultant chimera',
+   'activity. The addition of calcium to beta-AdhD preferentially inhibits NAD+-dependent activity in comparison to NADP+-dependent activity. Calcium is a competitive inhibitor of AdhD',
+   'NADP',
+   'Bordetella pertussis into a loop near the catalytic active site of the thermostable alcohol dehydrogenase D from Pyrococcus furiosus. The resultant chimera',
+   'beta-roll',
+   'NADPH',
+   'to be dependent on cofactor concentration',
+   'benzoylpyridine-adenine',
+   'oxidation',
+   'AcycloNAD+ converts horse liver ADH from a broad spectrum alcohol dehydrogenase',
+   'glutathione'],
+  'gene_name': ['ADH1',
+   'ADH3','''
 
 # ___________________
 # ### Enzyme names
@@ -4863,7 +5173,7 @@ print(brenda_en_df['operational_environmental_factors'].head().tolist())
 # 
 # wget https://www.enzyme-database.org/downloads/enzyme-database.sql.gz
 
-# In[111]:
+# In[ ]:
 
 
 def read_enzyme_names(unique_ecs_to_filter=None):
@@ -4894,8 +5204,10 @@ def read_enzyme_names(unique_ecs_to_filter=None):
                 continue
             if ec_filter_norm is not None and ec_norm not in ec_filter_norm:
                 continue
+            if raw_names.lower().startswith("transferred to"):
+                continue
             # Robust split on semicolons with optional spaces
-            names = [n.strip() for n in re.split(r';\s*', raw_names) if n.strip()]
+            names = [n.strip() for n in raw_names.split(';') if n.strip()]
             cleaned = [enhanced_clean_protein_name(n) for n in names]
             ec_to_names[ec_norm] = cleaned
 
@@ -4916,21 +5228,26 @@ def read_enzyme_names(unique_ecs_to_filter=None):
   'primary alcohol-dehydrogenase',
   'yeast alcohol-dehydrogenase'],'''
 
+# In[ ]:
+
+
+#sum(1 for k in ec_to_names if re.fullmatch(r'\d+(?:\.\d+){3}', k))
+
 # ___________
 # ### Enzyme Class
 # ________________
 # The enzyme classification system (text-based hierarchy).
 
-# In[112]:
+# In[ ]:
 
 
-def read_enzyme_class():
+'''def read_enzyme_class():
     paths = setup_paths()
     ec_file_path = paths['enzyme_class']
 
     enzyme_class = {}
 
-    with open(ec_file_path, 'r') as f:
+    with open(ec_file_path, 'r', encoding='utf-8',) as f:
         for line in f:
             # Format is like "1. 1. 1.-    With NAD(+) or NADP(+) as acceptor."
             if line.strip() and any(line.startswith(str(i)) for i in range(1, 7)):
@@ -4941,7 +5258,7 @@ def read_enzyme_class():
                     enzyme_class[ec_id] = desc
     return enzyme_class
 enzyme_class =read_enzyme_class()
-'''
+
 enzyme_class sample
 {'1.-.-.-': 'Oxidoreductases.',
  '1.1.-.-': 'Acting on the CH-OH group of donors.',
@@ -4955,7 +5272,37 @@ enzyme_class sample
  '1.1.98.-': '',
  '1.1.99.-': '',
  '1.2.-.-': 'Acting on the aldehyde or oxo group of donors.',
- '1.2.1.-': '','''
+ '1.2.1.-': '''
+
+# In[ ]:
+
+
+def read_enzyme_class():
+    """Parse enzclass.txt exactly as provided (handles spaces inside the code)."""
+    paths = setup_paths()
+    ec_file_path = paths['enzyme_class']
+    enzyme_class = {}
+    with open(ec_file_path, 'r', encoding='utf-8', errors='ignore') as f:
+        for line in f:
+            s = line.strip()
+            if not s or not s[0].isdigit():
+                continue
+            # split on 2+ spaces → [code-part, description]
+            parts = re.split(r'\s{2,}', s, maxsplit=1)
+            if len(parts) != 2:
+                continue
+            code_raw, desc = parts[0], parts[1].strip()
+            ec_id = code_raw.replace(' ', '')  # "1. 1. 1.-" → "1.1.1.-", "1. -. -.-" → "1.-.-.-"
+            if ec_id:
+                enzyme_class[ec_id] = desc
+    return enzyme_class
+#enzyme_class =read_enzyme_class()
+#enzyme_class
+
+# In[ ]:
+
+
+#sum(1 for k in enzyme_class if re.fullmatch(r'\d+(?:\.\d+){3}', k))
 
 # 
 
@@ -4965,7 +5312,7 @@ enzyme_class sample
 # 
 # wget -O ec_pathway.list "https://rest.kegg.jp/link/pathway/ec"
 
-# In[113]:
+# In[ ]:
 
 
 def read_ec_pathway_mapping():
@@ -4986,6 +5333,8 @@ def read_ec_pathway_mapping():
                     
                     pathway_id = parts[1].replace('path:', '')
 
+                    if not normalized_ec:
+                        continue
                     if normalized_ec not in ec_to_pathway:
                         ec_to_pathway[normalized_ec] = []
                     ec_to_pathway[normalized_ec].append(pathway_id)
@@ -5014,7 +5363,7 @@ ec_pathway_mapping
 #  A new variable mapping  KO numbers to EC numbers from KEGG KO file.
 # rsync -avz rsync://rest.kegg.jp/kegg/ko/ . 
 
-# In[114]:
+# In[ ]:
 
 
 def read_ko_data() -> dict:
@@ -5033,7 +5382,7 @@ def read_ko_data() -> dict:
                 raw_definition = parts[1] if len(parts) > 1 else ''
                 # keep raw for EC extraction
                 definition_raw = raw_definition
-                # also keep a cleaned version without EC tokens (if you need it elsewhere)
+                # also keep a cleaned version without EC tokens 
                 definition = strip_all_ec_tokens(raw_definition)
 
                 # extract ALL EC numbers from raw definition
@@ -5045,11 +5394,11 @@ def read_ko_data() -> dict:
                         ec_norm = normalize_ec_id(token)
                         if ec_norm:
                             ec_numbers.append(ec_norm)
-
+                path_ids = re.findall(r'\bmap\d{5}\b', definition_raw)  # also find any inline mapXXXXX
                 ko_info[ko_id] = {
                     'definition_raw': definition_raw,
                     'definition': definition,
-                    'pathway': parts[2] if len(parts) > 2 else '',
+                    'pathway': sorted(set(path_ids)),
                     'ec_numbers': sorted(set(ec_numbers)),
                 }
 
@@ -5099,7 +5448,7 @@ ko_ec sample
 # |Infectious disease (bacterial & parasitic)|	Possible indicators of bacterial species present
 # 
 
-# In[115]:
+# In[ ]:
 
 
 def read_ko_hierarchy():
@@ -5184,7 +5533,7 @@ hierarchy_all =  read_ko_hierarchy()
 
 # I decided against getting all the KEGG ortogonal classification because it was too much and it was necesary just the broad picture, so the Brite database was instead retrieved. The brite database had also more EC and protein_names retrievable from the eccontri.
 
-# In[116]:
+# In[ ]:
 
 
 paths = setup_paths()
@@ -5215,13 +5564,12 @@ def parse_ko_brite_filtered(brite_path: str, allowed_b_names: Iterable[str]):
                 parts = line.strip().split()
                 b_id = parts[1] if len(parts) > 2 else None
                 hierarchy = ' '.join(parts[2:]) if len(parts) > 2 else ""
-                #if hierarchy in allowed_b_names:
-                current_category = hierarchy
-                #else:
-                  #  current_category = None
-
+                current_category = hierarchy if hierarchy in allowed_b_names else None
+ 
             elif line.startswith('C'):
-                current_pathway = line.strip()
+                payload = line[1:].strip()  # drop leading "C"
+                payload = re.sub(r'\[PATH:[^\]]+\]', '', payload).strip()
+                current_pathway = re.sub(r'^\d+\s+', '', payload)
 
             elif line.startswith('D'):
                 m = pattern.match(line)
@@ -5242,7 +5590,8 @@ def parse_ko_brite_filtered(brite_path: str, allowed_b_names: Iterable[str]):
     hierarchy_brite["protein_name"] = hierarchy_brite["protein_name"].apply(enhanced_clean_protein_name)
     return hierarchy_brite
 
-#hierarchy_brite = parse_ko_brite_filtered(brite_path, allowed_categories)
+hierarchy_brite = parse_ko_brite_filtered(brite_path, allowed_categories)
+
 '''    ko protein_name       ec                hierarchy  \
 0  K00844           hk  2.7.1.1  Carbohydrate metabolism   
 1  K00844   hexokinase  2.7.1.1  Carbohydrate metabolism   
@@ -5254,10 +5603,10 @@ def parse_ko_brite_filtered(brite_path: str, allowed_b_names: Iterable[str]):
 # 
 # !wget -c "ftp://ftp.genome.jp/pub/kegg/reaction/reaction.tar.gz" # This reaction data wont be used in the creation of the db
 
-# In[117]:
+# In[ ]:
 
 
-'''def read_reaction_data():
+def read_reaction_data():
     paths = setup_paths()
     reaction_file_path = paths['reaction']
 
@@ -5286,6 +5635,7 @@ def parse_ko_brite_filtered(brite_path: str, allowed_b_names: Iterable[str]):
                 }
 
     return reaction_info
+'''
 {'R00001': {'name': 'polyphosphate polyphosphohydrolase',
   'equation': 'Polyphosphate + n H2O <=> (n+1) Oligophosphate'},
  'R00002': {'name': 'reduced ferredoxin:dinitrogen oxidoreductase (ATP-hydrolysing)',
@@ -5293,30 +5643,72 @@ def parse_ko_brite_filtered(brite_path: str, allowed_b_names: Iterable[str]):
  'R00004': {'name': 'diphosphate phosphohydrolase'}'''
 
 
+# ### Create reaction mapping
+
+# In[ ]:
+
+
+def create_ec_to_reaction_mapping():  
+    ec_to_names = read_enzyme_names()
+    reaction_info = read_reaction_data()
+    # join the reaction_brenda on ec numbers
+    reaction_brenda = pd.DataFrame(list(reaction_info.values()), index=reaction_info.keys())
+    
+    # Build keyword-to-ECs reverse index
+    keyword_to_ecs = {}
+    for ec, names in ec_to_names.items():
+        words = set()
+        for name in names:
+            for word in str(name).lower().split():
+                if len(word) > 4:
+                    words.add(word)
+        for keyword in words:
+            if keyword not in keyword_to_ecs:
+                keyword_to_ecs[keyword] = set()
+            keyword_to_ecs[keyword].add(ec)
+    
+    # Preprocess reaction names
+    rxn_name_lower = {rxn_id: info['name'].lower() for rxn_id, info in reaction_info.items()}
+        
+    # Match reactions to ECs
+    ec_to_reaction = {}
+    for rxn_id, rxn_name in rxn_name_lower.items():
+        matched_ecs = set()
+        for keyword in keyword_to_ecs:
+            if keyword in rxn_name: 
+                matched_ecs.update(keyword_to_ecs[keyword])
+        for ec in matched_ecs:
+            if ec not in ec_to_reaction:
+                ec_to_reaction[ec] = set()
+            ec_to_reaction[ec].add(rxn_id)
+    
+    return {ec: list(rxns) for ec, rxns in ec_to_reaction.items()}  
+    
+
 # ______________________
 # ### Pathway Database
 # ________________
 # Chemical compounds database.wget https://biocyc.org/download.shtml. wget https://www.brenda-enzymes.org/download.php
 # 
 
-# In[118]:
+# In[ ]:
 
 
 def read_pathway_data():
     paths = setup_paths()
     pathway_path = paths['pathway']
 
-    pathway_info = {}
+    pathway_data = {}
     with open(pathway_path, 'r') as f:
           for line in f:
               parts = line.strip().split('\t')
               if len(parts) >= 2:
                   pathway_id = parts[0]
                   pathway_name = parts[1]
-                  pathway_info[pathway_id] = pathway_name
-    return pathway_info
-'''pathway_info =read_pathway_data()
-pathway_info
+                  pathway_data[pathway_id] = pathway_name
+    return pathway_data
+'''pathway_data =read_pathway_data()
+pathway_data
 {'map01100': 'Metabolic pathways',
  'map01110': 'Biosynthesis of secondary metabolites',
  'map01120': 'Microbial metabolism in diverse environments',
@@ -5328,7 +5720,7 @@ pathway_info
 # ### Mapping ko to ec
 # ______________________
 
-# In[119]:
+# In[ ]:
 
 
 def build_ec_to_ko_map(ko_ec:dict) -> dict:
@@ -5342,7 +5734,7 @@ def build_ec_to_ko_map(ko_ec:dict) -> dict:
     # make lists unique and consistent
     return {k: sorted(set(v)) for k, v in ec_to_ko.items()}
 
-ko_ec = read_ko_data()
+#ko_ec = read_ko_data() # previous function called that feed this one
 #ec_to_ko = build_ec_to_ko_map(ko_ec)
 #ec_to_ko_sample = {k: ec_to_ko[k] for k in list(ec_to_ko.keys())[:10]}
 ''' {'1.1.1.1': ['K00001',
@@ -5355,20 +5747,26 @@ ko_ec = read_ko_data()
   'K18857'],
  '1.1.1.2': ['K00002', 'K13979'],'''
 
-# In[120]:
-
-
-ko_ec
-
 # _________________
 # ### Pathway Curated   
 # 
-# This master assembler takes the outputs from various parsers (BRENDA, pathway_info, pathway_mapping) and combines them.
+# This master assembler takes the outputs from various parsers (BRENDA, pathway_info/data, pathway_mapping) and combines them.
 
-# In[121]:
+# In[ ]:
 
 
-def build_pathways_db_curated(record, brenda_en, ec_pathway_mapping, pathway_info, ko_ec, ec_to_ko):
+def _std_map_id(pid: str) -> str:
+    """Standardize pathway ID format - FAIL if invalid."""
+    if not isinstance(pid, str):
+        raise TypeError(f"Expected string, got {type(pid)}")
+    
+    m = re.match(r'^(map|ec)(\d{5})$', pid.strip(), flags=re.IGNORECASE)
+    if not m:
+        raise ValueError(f"Invalid pathway ID format: {pid}")
+    
+    return f"map{m.group(2)}"
+
+def build_pathways_db_curated(record, ec_pathway_mapping, pathway_data, ko_ec, ec_to_ko):
     """
     Builds the 'pathways_db' list using a prioritized hierarchy of data sources.
     Hierarchy: 1. BRENDA -> 2. KEGG DB -> 3. KEGG KO
@@ -5377,7 +5775,7 @@ def build_pathways_db_curated(record, brenda_en, ec_pathway_mapping, pathway_inf
         record (dict): The enzyme record being built.
         brenda_en (dict): processed data from BRENDA.
         ec_pathway_mapping (dict): map from {ec: [map_id_list]}.
-        pathway_info (dict):  map from {map_id: description}.
+        pathway_data (dict):  map from {map_id: description}.
         ko_ec (dict):  map from {ko_id: data}, used for KO lookups.
     """
 
@@ -5388,23 +5786,13 @@ def build_pathways_db_curated(record, brenda_en, ec_pathway_mapping, pathway_inf
     # create the compendium set
     found_pathways = set()
 
-    # --- Priority 1: Try BRENDA first ---
-    if normalized_ec in brenda_en:
-        pathway_list = brenda_en[normalized_ec].get('pathway_associations_from_brenda', [])
-        if pathway_list:
-            # Filter out generic terms if present
-            specific_pathways = {p for p in pathway_list if 'metabolic pathways' not in p.lower()}
-            if specific_pathways:
-                found_pathways.update(specific_pathways)
-
-    # --- Priority 2: If BRENDA gave nothing, use the structured KEGG DB mapping ---
+    # --- Priority 2:, use the structured KEGG DB mapping (NO generic-name filtering) ---
     if not found_pathways and normalized_ec in ec_pathway_mapping:
         for path_id in ec_pathway_mapping[normalized_ec]:
             std_id = path_id.replace('ec', 'map')
-            descriptive_name = pathway_info.get(std_id)
-            # Filter out very general pathway names
-            if descriptive_name and descriptive_name not in ['Metabolic pathways', 'Biosynthesis of secondary metabolites']:
-                found_pathways.add(descriptive_name)
+            name = pathway_data.get(std_id)
+            if name:
+                found_pathways.add(name)
     
     # --- Priority 3: If still nothing, use KEGG KO as a final fallback ---
     if not found_pathways:
@@ -5412,23 +5800,26 @@ def build_pathways_db_curated(record, brenda_en, ec_pathway_mapping, pathway_inf
         ko_ids = ec_to_ko.get(normalized_ec, [])
         for ko_id in ko_ids:
             ko_rec = ko_ec.get(ko_id, {}) or {}
-            ko_paths = ko_rec.get('pathway', [])
-            if isinstance(ko_paths, list):
-                    for path in ko_paths:
-                        if isinstance(path, str) and path.strip():
-                            found_pathways.add(ko_paths.strip())
-            elif isinstance(ko_paths, str) and ko_paths.strip():
-                found_pathways.add(ko_paths.strip())
-            # Also check the definition field for pathway hints
-            definition = ko_rec.get('definition', '')
-            if 'path:' in definition:
-                path_parts = definition.split('path:')
-                for part in path_parts[1:]:
-                    path_id = part.split()[0].strip('[];,')
-                    if path_id:
-                        descriptive_name = pathway_info.get(path_id)
-                        if descriptive_name and descriptive_name not in ['Metabolic pathways', 'Biosynthesis of secondary metabolites']:
-                            found_pathways.add(descriptive_name)
+        #3.a direct 'pathway' field from KO record
+        ko_paths = ko_rec.get('pathway', [])
+        # normalize to iterable
+        if isinstance(ko_paths, str):
+            iter_paths = [ko_paths] if ko_paths.strip() else []
+        elif isinstance(ko_paths, list):
+            iter_paths = ko_paths
+        else:
+            iter_paths = []
+        # add from KO-record paths
+        for path in iter_paths:
+            p = str(path).strip()
+            if not p:
+                continue
+            pid = p.replace('ec', 'map')  # standardize id form
+            found_pathways.add(pathway_data.get(pid, pid))
+        # 3.b Also derive from definition_raw: [PATH:mapxxxxx]
+        def_raw = ko_rec.get('definition_raw', '')
+        for pid in re.findall(r'\[PATH:(map\d{5})\]', def_raw):
+            found_pathways.add(pathway_data.get(pid, pid))
     # Convert to sorted list for consistency    
     # Assign the final, sorted list to the 'pathways_db' key
     record['pathways_db'] = sorted(list(found_pathways))
@@ -5439,7 +5830,7 @@ def build_pathways_db_curated(record, brenda_en, ec_pathway_mapping, pathway_inf
 # ### Module Database
 # _________________
 
-# In[122]:
+# In[ ]:
 
 
 def read_module_data():
@@ -5465,7 +5856,7 @@ def read_module_data():
 # ### Compound Database
 # _____________________
 
-# In[123]:
+# In[ ]:
 
 
 def read_compound_data():
@@ -5505,10 +5896,10 @@ def read_compound_data():
 # Nucleic Acids Res. 2018 Jan;46(D1):D459-D464. [PMID: 29077942]
 # 
 
-# In[124]:
+# In[ ]:
 
 
-def parse_metalpdb_xml():
+'''def parse_metalpdb_xml():
     """Parse MetalPDB XML file to extract metal-binding information"""
     paths = setup_paths()
     metalpdb_path = paths['metalpdb']
@@ -5604,7 +5995,7 @@ def parse_metalpdb_xml():
     return metal_binding_data
 #metal_binding_data = parse_metalpdb_xml()
 # 16 min at 16 GB first rows
-'''{'101d_101d_1_Mg': {'pdb_code': '101d',
+{'101d_101d_1_Mg': {'pdb_code': '101d',
   'site_name': '101d_1',
   'site_nuclearity': 'Mononuclear',
   'metal': {'symbol': 'Mg',
@@ -5622,14 +6013,101 @@ def parse_metalpdb_xml():
    {'residue_name': 'HOH',
     'residue_number': '60','''
 
+# In[ ]:
+
+
+from lxml import etree
+
+def parse_metalpdb_xml():
+    """Parse MetalPDB XML and return per-metal entries with metal, coordination_number, and residues only."""
+    paths = setup_paths()
+    metalpdb_path = paths['metalpdb']
+
+    out = {}
+    try:
+        # Stream sites to keep memory bounded
+        context = etree.iterparse(metalpdb_path, events=('end',), tag='site', recover=True)
+        for _event, site in context:
+            try:
+                site_name = (site.findtext('site_name') or '').strip()
+                pdb_code  = (site.findtext('pdb_code')  or '').strip()
+                # site_nuclearity not required for your target output
+
+                # Enumerate metals to avoid key collisions
+                metals = list(site.findall('.//metal'))
+                for m_idx, metal in enumerate(metals, start=1):
+                    sym_raw = (metal.findtext('periodic_symbol') or '').strip()
+                    # Canonicalize symbol: first letter upper, rest lower (e.g., Fe, Zn)
+                    metal_symbol = sym_raw[:1].upper() + sym_raw[1:].lower() if sym_raw else ''
+
+                    cn_txt = (metal.findtext('coordination_number') or '').strip()
+                    try:
+                        coordination_number = int(cn_txt)
+                    except Exception:
+                        coordination_number = None  # keep None if missing/non-integer
+
+                    geometry = (metal.findtext('geometry') or '').strip() or None
+
+                    # Prefer tightly-scoped ligands first; fallback to descendant search if schema varies
+                    lig_elems = metal.findall('ligands/ligand')
+                    if not lig_elems:
+                        lig_elems = metal.findall('.//ligand')
+
+                    # Collect residues; de-dup within this metal by (name, number, chain, binding_type)
+                    residues = []
+                    seen_res = set()
+                    for lig in lig_elems:
+                        rname = (lig.findtext('residue_name') or '').strip()
+                        rnum  = (lig.findtext('residue_pdb_number') or '').strip()
+                        chain = (lig.findtext('chain_letter') or '').strip()
+                        btype = (lig.findtext('endo_exo') or '').strip() or None
+                        key = (rname.upper(), rnum, chain, btype)
+                        if key in seen_res:
+                            continue
+                        seen_res.add(key)
+                        residues.append({
+                            'residue_name': rname.upper(),     # normalize to 3-letter uppercase (HOH/HIS/ASP/…)
+                            'residue_number': rnum,
+                            'chain': chain,
+                            'binding_type': btype
+                        })
+
+                    # Unique per-metal key (no overwrite)
+                    metal_key = f"{pdb_code}_{site_name}_{metal_symbol}_{m_idx:02d}"
+                    out[metal_key] = {
+                        'pdb_code': pdb_code,
+                        'site_name': site_name,
+                        'metal': {
+                            'symbol': metal_symbol,
+                            'coordination_number': coordination_number,
+                            'geometry': geometry
+                        },
+                        'residues': residues
+                    }
+            finally:
+                # Free memory for this <site>
+                site.clear()
+                # Also clear siblings to keep memory flat
+                while site.getprevious() is not None:
+                    del site.getparent()[0]
+
+        del context
+
+    except Exception as e:
+        logging.error("Error parsing MetalPDB XML: %s", e)
+        return {}
+
+    return out
+
+
 # ______________________
 # ### Extracting metal binding patterns from metal binding data
 # ______________________
 
-# In[125]:
+# In[ ]:
 
 
-def extract_metal_coordination_patterns(metal_binding_data):
+'''def extract_metal_coordination_patterns(metal_binding_data):
     """Extract metal coordination patterns from MetalPDB data"""
 
     # Track metal coordination patterns
@@ -5677,9 +6155,66 @@ def extract_metal_coordination_patterns(metal_binding_data):
         'residue_binding': metal_residue_binding
     }
 #metal_coordination, metal_residue_binding = extract_metal_coordination_patterns(metal_binding_data)
-#print(metal_coordination,  metal_residue_binding)
+#print(metal_coordination,  metal_residue_binding)'''
 
-# In[126]:
+# In[ ]:
+
+
+def extract_metal_coordination_patterns(metal_binding_data):
+    """Summarize coordination counts and residue-binding frequencies per metal symbol."""
+    metal_coordination = {}       # e.g., {'Fe_6_oct': 123}
+    metal_residue_binding = {}    # e.g., {'Fe': {'HIS': 456, 'CYS': 300, ...}}
+    processed_sites = 0
+
+    for site_key, site_data in (metal_binding_data or {}).items():
+        try:
+            meta = site_data.get('metal', {}) or {}
+            sym  = (meta.get('symbol') or '').strip()
+            if not sym:
+                continue
+
+            cn   = meta.get('coordination_number')
+            geom = (meta.get('geometry') or '').strip() or 'n/a'
+            cn_label = str(cn) if cn is not None else 'NA'
+            coord_key = f"{sym}_{cn_label}_{geom}"
+            metal_coordination[coord_key] = metal_coordination.get(coord_key, 0) + 1
+
+            # Residue binding tallies per metal
+            if sym not in metal_residue_binding:
+                metal_residue_binding[sym] = {}
+
+            # De-dup residues per metal entry to avoid double counting the same residue multiple times
+            seen_res = set()
+            for res in site_data.get('residues', []):
+                rname = (res.get('residue_name') or '').upper()
+                rnum  = (res.get('residue_number') or '').strip()
+                chain = (res.get('chain') or '').strip()
+                key = (rname, rnum, chain)
+                if not rname:
+                    continue
+                if key in seen_res:
+                    continue
+                seen_res.add(key)
+                metal_residue_binding[sym][rname] = metal_residue_binding[sym].get(rname, 0) + 1
+
+            processed_sites += 1
+
+        except Exception as e:
+            logging.warning("Error processing site %s: %s", site_key, e)
+
+    if not metal_coordination:
+        logging.warning("No coordination patterns were extracted.")
+    if not metal_residue_binding:
+        logging.warning("No residue binding patterns were extracted.")
+
+    logging.info("Processed %d entries out of %d", processed_sites, len(metal_binding_data or {}))
+
+    return {
+        'coordination': metal_coordination,
+        'residue_binding': metal_residue_binding
+    }
+
+# In[ ]:
 
 
 '''{'101d_101d_1_Mg': {'pdb_code': '101d',
@@ -5704,7 +6239,7 @@ def extract_metal_coordination_patterns(metal_binding_data):
 # ### Integrating pathways to the ECcontri_Uniprot Data 
 # __________________________
 
-# In[127]:
+# In[ ]:
 
 
 # Reading loading 10 min
@@ -5724,7 +6259,7 @@ ECcontri_pathway["Genus"] = ECcontri_pathway["Genus"].astype("category")
 ECcontri_pathway["pathway"] = ECcontri_pathway["pathway"].astype("category")
 ECcontri_pathway["ipath"] = ECcontri_pathway["ipath"].astype("category")
 
-# In[128]:
+# In[ ]:
 
 
 # Read the df ECcontri_Uniprot
@@ -5734,12 +6269,12 @@ print(f"DataFrame loaded from {ECcontri_Uniprot_path} with shape {ECcontri_Unipr
 print(f"Memory usage after loading: {ECcontri_Uniprot.memory_usage(deep=True).sum() / 1024**2:.2f} MB") 
 #32.97
 
-# In[129]:
+# In[ ]:
 
 
 ECcontri_Uniprot = pd.merge(ECcontri_Uniprot, ECcontri_pathway, on=['Sites', 'Genus', 'ec'], how='left')
 
-# In[130]:
+# In[ ]:
 
 
 # Making sure the nans are Nans
@@ -5750,12 +6285,12 @@ ECcontri_Uniprot['pathway'] = ECcontri_Uniprot['pathway'].replace('nan', np.nan)
 ECcontri_Uniprot['protein_name'] = ECcontri_Uniprot['protein_name'].replace('nan', np.nan)
 ECcontri_Uniprot['ipath'] = ECcontri_Uniprot['ipath'].replace('nan', np.nan)
 
-# In[131]:
+# In[ ]:
 
 
 ECcontri_Uniprot["pathway"].isna().sum()
 
-# In[132]:
+# In[ ]:
 
 
 del ECcontri_pathway
@@ -5766,7 +6301,7 @@ gc.collect()  # Run garbage collection to free up memory
 # _________
 # In order to use the pathway to retrieve data from the db, the programatic ipath is no suitable since the db do no contain data wiht pwy id so the best option is to find them with the descriptive pathways obtained from pathway column. However when there are nans the programatic column would be used to fill the gaps when ever posible.
 
-# In[133]:
+# In[ ]:
 
 
 # It takes the value from 'pathway'. If that value is null, it fills it with the value from 'ipath' from the exact same row.
@@ -5778,25 +6313,25 @@ ECcontri_Uniprot = ECcontri_Uniprot.rename(columns={"pathways": "pathway_primary
 # probe that the number of nans has decresed
 ECcontri_Uniprot["pathway_primary"].isna().sum()
 
-# In[134]:
+# In[ ]:
 
 
 ECcontri_Uniprot['pathway_primary']= ECcontri_Uniprot['pathway_primary'].astype('category')
 ECcontri_Uniprot['protein_name'] = ECcontri_Uniprot['protein_name'].astype('category')
 
-# In[135]:
+# In[ ]:
 
 
 # saving the df
 ECcontri_Uniprot_path = output_large / 'ECcontri_Uniprot_pathway.parquet'
 ECcontri_Uniprot.to_parquet(ECcontri_Uniprot_path)
 
-# In[136]:
+# In[ ]:
 
 
 ECcontri_Uniprot.head()
 
-# In[137]:
+# In[ ]:
 
 
 # I decided that taking KO information was too memory intensive and it would take a year to process on my computer or pay an external platform to do it.
@@ -5836,7 +6371,7 @@ ECcontri_Uniprot = ECcontri_Uniprot.rename(columns={"KOs": "iKO"})'''
 # System used: 4.1 GB
 # System available: 3.3 GB
 
-# In[138]:
+# In[ ]:
 
 
 def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, synergy_processor):
@@ -5859,33 +6394,32 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
         
         print("Loading data sources...")
         ec_to_names = read_enzyme_names() or {}
-        print(f"[{time.ctime()}] Loading ec_to_names...")
+        print(f"[{time.ctime()}] Loading ec_to_names...names={len(ec_to_names)}")
         enzyme_class = read_enzyme_class() or {}
-        print(f"[{time.ctime()}] Loading enzyme_class...")
+        print(f"[{time.ctime()}] Loading enzyme_class...classes={len(enzyme_class)}")
         ko_ec = read_ko_data() or {}
-        print(f"[{time.ctime()}] Loading ko_data...")
+        print(f"[{time.ctime()}] Loading ko_data...KO={len(ko_ec)}")
         ec_to_ko = build_ec_to_ko_map(ko_ec)
-        print(f"[{time.ctime()}] Building ec_to_ko map...")
+        print(f"[{time.ctime()}] Building ec_to_ko map...ec_to_ko ={len(ec_to_ko)}")
         hierarchy_brite = parse_ko_brite_filtered(brite_path, allowed_categories) 
         if hierarchy_brite is None or (hasattr(hierarchy_brite, 'empty') and hierarchy_brite.empty):
             hierarchy_brite =pd.DataFrame()
-        print(f"[{time.ctime()}] Loading hierarchy_brite ...")
+        print(f"[{time.ctime()}] Loading hierarchy_brite ...hierarchy_brite = {len(hierarchy_brite)}")
         pathway_data = read_pathway_data() or {}
-        print(f"[{time.ctime()}] Loading pathway_data...")
+        print(f"[{time.ctime()}] Loading pathway_data...pathways={len(pathway_data)}")
         module_info = read_module_data() or {}
         print(f"[{time.ctime()}] Loading module_info...")
         compound_info = read_compound_data() or {}
         print(f"[{time.ctime()}] Loading compound_info...")       
         brenda_en = process_brenda_data(brenda_data, fc_processor, metal_processor, synergy_processor)  or {}
-        print(f"[{time.ctime()}] Loading brenda_en...")
+        print(f"[{time.ctime()}] Loading brenda_en...brenda={len(brenda_en)}")
         metal_binding_data = parse_metalpdb_xml() or {}
         print(f"[{time.ctime()}] Loading metal_binding_data...")
         metal_patterns = extract_metal_coordination_patterns(metal_binding_data)
-        print(f"[{time.ctime()}] Extrac ting metal coordination patterns...")
+        print(f"[{time.ctime()}] Extrac ting metal coordination patterns...metal_binding_data={len(metal_binding_data)}")
         ec_pathway_mapping = read_ec_pathway_mapping() or {}
-        print(f"[{time.ctime()}] Extracting ec_pathway_mapping...")
-        print(f"Loaded: {len(ec_to_names)} enzymes, {len(pathway_data)} pathways, {len(brenda_en)} BRENDA entries")
-
+        print(f"[{time.ctime()}] Extracting ec_pathway_mapping...ec→path={len(ec_pathway_mapping)}")
+      
         # 2. The EC that will serve to retrieve the data are selected
         unique_ecs = set()
         for ec in ECcontri_Uniprot['ec'].unique():
@@ -6020,13 +6554,15 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
                 'pathways_db': [],
                 'hierarchy': [],
                 'ko': [],
+                'reaction': [],                       
+                'consolidated_metals': [],                 
                 'corrosion_mechanisms': [],
                 'operational_environmental_factors': [],
                 'coordination_patterns': metal_patterns.get('coordination', {}),
-                'residue_binding': metal_patterns.get('residue_binding', {})
-                }
+                'residue_binding': metal_patterns.get('residue_binding', {}),
+            }
             # 21. Add pathways_db the curated pathway resulting from the consolidation of the db info
-            record = build_pathways_db_curated(record, brenda_en, ec_pathway_mapping, pathway_data, ko_ec, ec_to_ko)
+            record = build_pathways_db_curated(record, ec_pathway_mapping, pathway_data, ko_ec, ec_to_ko)
             if record['pathways_db']:
                 stats['with_pathways_db'] += 1
       
@@ -6034,15 +6570,20 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
             record['ko'] = ec_to_ko.get(normalized_ec, [])
             if record['ko']:
                 stats['with_ko'] += 1
-
+            
             # 23. Add module information
             #for module_id, module_desc in module_info.items():
             #   if f"[EC:{normalized_ec}]" in module_desc:
             #      record['modules'].append({'id': module_id, 'description': module_desc})
            
+            # 24. Add reaction information from brenda and from reaction_info dataframe that we joined back on reaction mapping
+            if brenda_en and normalized_ec in brenda_en:
+                record['reaction'] = brenda_en[normalized_ec].get('reaction_equation', [])
+            record['reaction_db'] = reaction_info.get(normalized_ec, [])
+                       
             # 25. Add BRENDA metal information
             if brenda_en and normalized_ec in brenda_en:
-                record['consolidated_metals'] = list(brenda_en[normalized_ec].get('consolidated_metals', []))
+                record['consolidated_metals'] = list(dict.fromkeys(brenda_en[normalized_ec].get('brenda_metals', [])))
                 
                 # 26 Directly extend the record with the mechanisms already processed in `process_brenda_data`.
                 precalculated_mechanisms = brenda_en[normalized_ec].get('corrosion_mechanisms', [])
@@ -6075,10 +6616,12 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
                     if protein_name_norm in protein_lookup:
                         db_rec_match = protein_lookup[protein_name_norm] # Assign matched record to a variable
                         ## 30 Process BRENDA data, copy brenda metals if present
-                        if 'brenda_en' in db_rec_match: # Use db_rec_match
+                        if 'brenda_en' in db_rec_match:
                             brenda_en_rec = db_rec_match['brenda_en']
-                            if 'consolidated_metals' in brenda_en_rec and 'consolidated_metals' not in rec_item: # Use rec_item
-                                rec_item['consolidated_metals'] = brenda_en_rec['consolidated_metals']
+                            seed = brenda_en_rec.get('brenda_metals', [])
+                            if seed:
+                                rec_item.setdefault('consolidated_metals', [])
+                                rec_item['consolidated_metals'].extend(seed)
                         # 31 Process MetalPDB data, copy metalpdb info if present        
                         if 'metal_binding' in db_rec_match: 
                             if 'metal_binding_info' not in rec_item: # Use rec_item
@@ -6086,10 +6629,32 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
                                 metal = db_rec_match['metal_binding'].get('symbol')
                                 if metal:
                                     rec_item['metal_binding_info'][metal] = db_rec_match['metal_binding']
-                    else: # Fuzzy match on the same normalized keys
+
+                    else:  # Fuzzy match on the same normalized keys
+                        for db_name_key, db_rec_val in protein_lookup.items():
+                            if db_name_key in protein_name_norm or protein_name_norm in db_name_key:
+                                # copy BRENDA metals if present
+                                if 'brenda_en' in db_rec_val:
+                                    seed = db_rec_val['brenda_en'].get('brenda_metals', [])
+                                    if seed:
+                                        rec_item.setdefault('consolidated_metals', [])
+                                        rec_item['consolidated_metals'].extend(seed)
+
+                                # copy MetalPDB info if present
+                                if 'metal_binding' in db_rec_val:
+                                    rec_item.setdefault('metal_binding_info', {})
+                                    m = db_rec_val['metal_binding'].get('symbol')
+                                    if m:
+                                        rec_item['metal_binding_info'][m] = db_rec_val['metal_binding']
+                                        rec_item.setdefault('consolidated_metals', [])
+                                        rec_item['consolidated_metals'].append(m)
+                                        break
                         for db_name_key, db_rec_val in protein_lookup.items(): 
-                             if db_name_key in protein_name_norm or protein_name_norm in db_name_key:
+                            if db_name_key in protein_name_norm or protein_name_norm in db_name_key:
                                 break
+                for rec_item in batch:
+                    if rec_item.get('consolidated_metals'):
+                        rec_item['consolidated_metals'] = list(dict.fromkeys(rec_item['consolidated_metals']))
 
             except Exception as e:
                 print(f"Error processing protein name {rec_item.get('protein_name')}: {e}") # Use rec_item
@@ -6100,11 +6665,14 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
             try:
                 enzyme_names = rec.get('enzyme_names', []) or []
                 class_text = rec.get('enzyme_class', '') or ''
+                pathway_text = rec.get('pathway_db', '' )or ''
+                rxn_text = rec.get('reaction_db', '')or ''
                 
                 # 33. Combined text for all scoring
-                subs = inhib = cofac = env = []
-                if brenda_en and normalized_ec in brenda_en:
-                    be = brenda_en[normalized_ec]
+                subs = []; inhib = []; cofac = []; env = []
+                ec_local = rec.get('ec_number')
+                if brenda_en and ec_local in brenda_en:
+                    be = brenda_en[ec_local]
                     subs  = be.get('substrates', []) or []
                     inhib = be.get('inhibitors', []) or []
                     cofac = be.get('cofactors', []) or []
@@ -6112,17 +6680,18 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
 
                 text_parts = [
                     ' '.join(enzyme_names),
-                    class_text,
+                    class_text, pathway_text, rxn_text,
                     rec.get('protein_name', '') or '',
                     ' '.join(rec.get('pathways_db', []) or []),
                     ' '.join(subs),
                     ' '.join(inhib),
                     ' '.join(cofac),
                     ' '.join(env),
+                    rxn_text,
                 ]
                 text = ' '.join([t for t in text_parts if t]).lower()
                 
-                # 34. Use the scoring system module if available
+                # 34. Use the scoring system module
                 score_results = cs.calculate_overall_scores(text, fc_processor, metal_processor, synergy_processor,
                                             brenda_metals=rec.get('consolidated_metals', []))#brenda_metals=data.get('metals', [])
                     
@@ -6140,15 +6709,15 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
     # 40. Process metal binding in a separate pass
     print("Processing metal binding information...")
     try:
-        # short aliases to the two pattern tables you already built
+        # short aliases to the two pattern tables already built
         rb = metal_patterns.get('residue_binding', {})   # e.g. {'Fe': {'HIS': 123, 'CYS': 88, ...}, ...}
         coord = metal_patterns.get('coordination', {})   # e.g. {'Fe_6_oct': 512, 'Fe_4_tetra': 140, ...}
 
         for rec in ec_records:
-            rec['metal_binding_info'] = {}
+            existing = rec.get('metal_binding_info', {}) or {} 
+            mb_out = {**existing}
             # use consolidated_metals symbols directly (e.g. 'Fe','Zn','Mn', ...)
-            symbols = [m for m in rec.get('consolidated_metals', []) 
-                    if (m in rb) or any(k.startswith(f"{m}_") for k in coord)]
+            symbols = list(dict.fromkeys(rec.get('consolidated_metals', [])))
 
             for sym in symbols:
                 # top 3 residue names for this metal symbol
@@ -6162,14 +6731,22 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
                 for key, cnt in coord.items():
                     if key.startswith(f"{sym}_"):
                         # key like "Fe_6_oct" -> geometry after the second underscore
-                        geom = key.split('_', 2)[2]
-                        geom_counts[geom] = geom_counts.get(geom, 0) + cnt
+                        parts = key.split('_', 2)
+                        geom = parts[2] if len(parts) >= 3 else None
+                        if geom:
+                            geom_counts[geom] = geom_counts.get(geom, 0) + cnt
                 top_geom = max(geom_counts, key=geom_counts.get) if geom_counts else None
 
-                rec['metal_binding_info'][sym] = {
-                    'geometry': top_geom,      # one representative geometry or None
-                    'residues': top_res        # up to 3 residue names
-                }
+            # Merge with any existing per-metal entry (prefer existing explicit info)
+            prev = mb_out.get(sym, {})
+            merged = {
+                'geometry': prev.get('geometry') or top_geom,
+                'residues': prev.get('residues') or top_res
+            }
+            mb_out[sym] = merged
+
+        rec['metal_binding_info'] = mb_out
+
     except Exception as e:
         print(f"Error processing metal binding data: {e}")
 
@@ -6181,7 +6758,12 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
     for rec in ec_records:
         ec = rec.get('ec_number')
         # Find all hierarchy entries for that ec in hierarchy_brite
-        hierarchies = hierarchy_brite.loc[hierarchy_brite['ec_number'] == ec, 'hierarchy'].unique()
+        hierarchies = []
+        if not hierarchy_brite.empty:
+            mask = hierarchy_brite['ec_number'].astype(str).str.contains(
+                rf'(^|[;\s]){re.escape(ec)}($|[;\s])'
+            )
+            hierarchies = hierarchy_brite.loc[mask, 'hierarchy'].unique()
         # Ensure 'hierarchy' field is present and a list
         rec.setdefault('hierarchy', [])
         # Add each unique hierarchy if not already present
@@ -6290,28 +6872,38 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
 
     return ec_records
 
-# In[139]:
+# In[ ]:
 
 
 ECcontri_Uniprot= ECcontri_Uniprot.sort_values("idx", ascending=True)
-ECcontri_Uniprot_sample = ECcontri_Uniprot.sample(n=150)
+ECcontri_Uniprot_sample = ECcontri_Uniprot.sample(n=15)
 ECcontri_Uniprot_sample= ECcontri_Uniprot_sample.sort_values("idx", ascending=True)
 
 # ## dict
 
-# In[140]:
+# In[ ]:
 
 
 # Takes 30 - 240 min
 ec_records = create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, synergy_processor)
 
-# In[141]:
+# In[ ]:
 
 
 ec_records_df = pd.DataFrame(ec_records)
 ec_records_df.head()
 
-# In[142]:
+# ec_records_df.head() sabado
+# 
+# ec_number	enzyme_names	protein_name	enzyme_class	pathways_db	hierarchy	ko	corrosion_mechanisms	operational_environmental_factors	coordination_patterns	...	synergy_terms	synergy_score	synergy_type	synergy_description	synergy_categories	metal_score	overall_functional_score	overall_synergy_score	metal_binding_info	corrosion_relevance_score
+# 0	3.6.1.66	[xtp-ditp diphosphatase, hypoxanthine-xanthine...	xtp-ditp diphosphatase	Acting on acid anhydrides.	[Drug metabolism - other enzymes, Purine metab...	[Nucleotide metabolism, Xenobiotics biodegrada...	[K01519]	[]	[PO: .5, PO: .6 TEMPERATURE_RANGE, TR: -90, TR...	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	[MIC, acetate, acetic acid, acid, butyrate, bu...	2.8	functional_category_cooccurrence	Iron-Organic Acid Synergy (acid-enhanced Fe co...	[iron_metabolism, organic_acid_metabolism]	15.0	14.066874	5.6	{'Ni': {'geometry': 'octahedron (regular)', 'r...	27.166874
+# 1	3.5.4.16	[gtp cyclohydrolase i, gtp cyclohydrolase, gua...	gtp cyclohydrolase i	Acting on carbon-nitrogen bonds, other than pe...	[Folate biosynthesis]	[Metabolism of cofactors and vitamins]	[K01495, K09007, K22391]	[]	[PO: -8.4, PO: .6, PO: .5, PO: .5-8.5, PO: .3,...	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	[MIC, acetate, acetic acid, acid, butyrate, bu...	2.8	functional_category_cooccurrence	Iron-Organic Acid Synergy (acid-enhanced Fe co...	[iron_metabolism, organic_acid_metabolism]	15.0	14.066874	5.6	{'Ni': {'geometry': 'octahedron (regular)', 'r...	27.166874
+# 2	4.1.3.38	[aminodeoxychorismate lyase, enzyme x, 4-amino...	aminodeoxychorismate lyase	Carbon-carbon lyases.	[Folate biosynthesis]	[Metabolism of cofactors and vitamins]	[K02619, K03342, K18482]	[]	[PO: .5 COFACTOR]	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	[MIC, acetate, acetic acid, acid, butyrate, bu...	2.8	functional_category_cooccurrence	Iron-Organic Acid Synergy (acid-enhanced Fe co...	[iron_metabolism, organic_acid_metabolism]	15.0	14.234964	5.6	{'Ni': {'geometry': 'octahedron (regular)', 'r...	27.334964
+# 3	3.1.3.5	[5'-nucleotidase, uridine 5'-nucleotidase, 5'-...	5'-nucleotidase	Acting on ester bonds.	[Nicotinate and nicotinamide metabolism, Purin...	[Nucleotide metabolism, Metabolism of cofactor...	[K01081, K02566, K03787, K08693, K11751, K1928...	[acid_production]	[PO: .5, PO: .3-6.5, PO: -6.5, PO: .7-9, PO: ....	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	[MIC, acetate, acetic acid, acid, butyrate, bu...	2.8	functional_category_cooccurrence	Iron-Organic Acid Synergy (acid-enhanced Fe co...	[iron_metabolism, organic_acid_metabolism]	15.0	14.066874	5.6	{'Ni': {'geometry': 'octahedron (regular)', 'r...	27.166874
+# 4	2.7.6.3	[2-amino-4-hydroxy-6-hydroxymethyldihydropteri...	2-amino-4-hydroxy-6-hydroxymethyldihydropterid...	Transferring phosphorus-containing groups.	[Folate biosynthesis]	[Metabolism of cofactors and vitamins]	[K00950, K07142, K13939, K13940, K13941]	[acid_production]	[PO: .5-9, PO: .7, PO: .3, PO: .5, PHR: .5-10....	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	[MIC, acetate, acetic acid, acid, butyrate, bu...	2.8	functional_category_cooccurrence	Iron-Organic Acid Synergy (acid-enhanced Fe co...	[iron_metabolism, organic_acid_metabolism]	15.0	14.066874	5.6	{'Ni': {'geometry': 'octahedron (regular)', 'r...	27.166874
+# 5 rows × 26 columns
+
+# In[ ]:
 
 
 import pandas as pd
@@ -6348,7 +6940,31 @@ print("Protein Names - Top 5 Occurrences:\n", protein_counts.head())
 enzyme_listset_unique = enz_series.apply(lambda x: tuple(sorted(set(x)))).nunique()
 print("\nEnzyme Names - Distinct list sets (row-level):", enzyme_listset_unique)
 
-# In[143]:
+# sabado implementation
+# Enzyme Names - Unique Values: 9601
+# Enzyme Names - Top 5 Occurrences:
+#  enzyme_names
+#                               79
+# 23s rrna-methyltransferase    15
+# trna-methyltransferase        13
+# 16s rrna-methyltransferase    11
+# malate-dehydrogenase           8
+# Name: count, dtype: int64
+# 
+# Protein Names - Unique Values: 1616
+# Protein Names - Top 5 Occurrences:
+#  protein_name
+# 23s rrna-methyltransferase    15
+# 16s rrna-methyltransferase    11
+# trna-methyltransferase         9
+# malate-dehydrogenase           4
+# alcohol-dehydrogenase          4
+# Name: count, dtype: int64
+# 
+# Enzyme Names - Distinct list sets (row-level): 1711
+# 
+
+# In[ ]:
 
 
 '''# Save to JSON with timing, Notice that due to capacity this code was run on a separate script and is loaded here as input
@@ -6370,7 +6986,7 @@ except Exception as e:
 
 # Load dictionary done using ec_record_kaggle.py due to capacity of the local machine and this notebook
 
-# In[144]:
+# In[ ]:
 
 
 '''# environment check
@@ -6386,7 +7002,7 @@ with open(json_path, 'r') as f:
 
 # ## 9.4 Flattening Database List of Dictionaries
 
-# In[145]:
+# In[ ]:
 
 
 import re, json
@@ -6558,7 +7174,7 @@ def targeted_flatten_ec_records(ec_records):
 
     return fixed_records
 
-# In[146]:
+# In[ ]:
 
 
 ec_records_flat =targeted_flatten_ec_records(ec_records)
@@ -6566,12 +7182,28 @@ ec_records_flat =targeted_flatten_ec_records(ec_records)
 ec_meta_flat = pd.DataFrame(ec_records_flat)
 ec_meta_flat
 
-# In[147]:
+# sabado meta flat ec_meta_flat
+# 
+# ec_number	enzyme_names	protein_name	enzyme_class	pathways_db	hierarchy	ko	corrosion_mechanisms	operational_environmental_factors	coordination_patterns	...	func_nitrogen_metabolism_score	func_metal_binding_chelation_score	metal_co_residues	metal_co_geometries	func_o2_consumption_score	func_phosphorus_metabolism_score	metal_mo_residues	metal_mo_geometries	func_methanogenesis_score	func_fumarate_formation_score
+# 0	3.6.1.66	[xtp-ditp diphosphatase, hypoxanthine-xanthine...	xtp-ditp diphosphatase	Acting on acid anhydrides.	[Drug metabolism - other enzymes, Purine metab...	[Nucleotide metabolism, Xenobiotics biodegrada...	[K01519]	[]	[PO: .5, PO: .6 TEMPERATURE_RANGE, TR: -90, TR...	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+# 1	3.5.4.16	[gtp cyclohydrolase i, gtp cyclohydrolase, gua...	gtp cyclohydrolase i	Acting on carbon-nitrogen bonds, other than pe...	[Folate biosynthesis]	[Metabolism of cofactors and vitamins]	[K01495, K09007, K22391]	[]	[PO: -8.4, PO: .6, PO: .5, PO: .5-8.5, PO: .3,...	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+# 2	4.1.3.38	[aminodeoxychorismate lyase, enzyme x, 4-amino...	aminodeoxychorismate lyase	Carbon-carbon lyases.	[Folate biosynthesis]	[Metabolism of cofactors and vitamins]	[K02619, K03342, K18482]	[]	[PO: .5 COFACTOR]	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+# 3	3.1.3.5	[5'-nucleotidase, uridine 5'-nucleotidase, 5'-...	5'-nucleotidase	Acting on ester bonds.	[Nicotinate and nicotinamide metabolism, Purin...	[Nucleotide metabolism, Metabolism of cofactor...	[K01081, K02566, K03787, K08693, K11751, K1928...	[acid_production]	[PO: .5, PO: .3-6.5, PO: -6.5, PO: .7-9, PO: ....	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+# 4	2.7.6.3	[2-amino-4-hydroxy-6-hydroxymethyldihydropteri...	2-amino-4-hydroxy-6-hydroxymethyldihydropterid...	Transferring phosphorus-containing groups.	[Folate biosynthesis]	[Metabolism of cofactors and vitamins]	[K00950, K07142, K13939, K13940, K13941]	[acid_production]	[PO: .5-9, PO: .7, PO: .3, PO: .5, PHR: .5-10....	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+# ...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...
+# 1788	1.1.1.132	[gdp-mannose 6-dehydrogenase, guanosine diphos...	gdp-mannose 6-dehydrogenase	Acting on the CH-OH group of donors.	[Amino sugar and nucleotide sugar metabolism, ...	[Carbohydrate metabolism, Glycan biosynthesis ...	[K00066]	[acid_production, biofilm_formation]	[PO: .7, PO: .2, PO: .3, PO: .75, PHR: .75-9 C...	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+# 1789	4.1.1.45	[aminocarboxymuconate-semialdehyde decarboxyla...	aminocarboxymuconate-semialdehyde decarboxylase	Carbon-carbon lyases.	[Tryptophan metabolism]	[Amino acid metabolism]	[K03392]	[acid_production]	[PO: .5-8, PO: .5, PO: -7, PO: -9.5, PO: .5-6....	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+# 1790	2.3.1.111	[mycocerosate-synthase, mas, mycocerosic acid-...	mycocerosate-synthase	Acyltransferases.	[]	[Protein families: metabolism]	[K11628]	[]	[PO: .5 ORGANIC_SOLVENT_STABILITY]	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+# 1791	6.5.1.4	[rna 3'-terminal-phosphate cyclase, rtca, rna ...	rna 3'-terminal-phosphate cyclase	Forming phosphoric ester bonds.	[]	[Unclassified: metabolism]	[K01974]	[]	[PO: .5, PO: -8.5, PO: .5-6, PO: .4, PO: -9, P...	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+# 1792	3.1.1.74	[cutinase]	cutinase	Acting on ester bonds.	[]	[Unclassified: metabolism]	[K08095, K27357]	[acid_production, biofilm_formation]	[PO: .5, PO: .5-8 recombinant glycosylated enz...	{'Mg_3_irregular (n/a)': 7298, 'Fe_6_octahedro...	...	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN	NaN
+# 1793 rows × 89 columns
+
+# In[ ]:
 
 
 enzyme_counts = ec_meta_flat['enzyme_names'].value_counts()
 
-# In[148]:
+# In[ ]:
 
 
 # Count occurrences of each value in both columns
@@ -6588,7 +7220,28 @@ print("Enzyme Names - Top 5 Occurrences:\n", enzyme_counts.head())
 print("\nProtein Names - Unique Values:", protein_unique_count)
 print("Protein Names - Top 5 Occurrences:\n", protein_counts.head())
 
-# In[149]:
+# sabado
+# Enzyme Names - Unique Values: 9601
+# Enzyme Names - Top 5 Occurrences:
+#  enzyme_names
+# []                                                                                                               79
+# [l-rhamnose 1-dehydrogenase]                                                                                      3
+# [diacetyl-reductase, acetoin-dehydrogenase]                                                                       2
+# [cyanophycin-synthase, cpha, cpha1, cpha2, cyanophycin-synthetase, multi-l-arginyl-poly-l-aspartate-synthase]     2
+# [cytosine deaminase, isocytosine deaminase]                                                                       1
+# Name: count, dtype: int64
+# 
+# Protein Names - Unique Values: 1617
+# Protein Names - Top 5 Occurrences:
+#  protein_name
+#                               79
+# 23s rrna-methyltransferase    15
+# 16s rrna-methyltransferase    11
+# trna-methyltransferase         9
+# alcohol-dehydrogenase          4
+# Name: count, dtype: int64
+
+# In[ ]:
 
 
 ''''def targeted_flatten_ec_records(ec_records):
@@ -7450,95 +8103,21 @@ print("Protein Names - Top 5 Occurrences:\n", protein_counts.head(20))
 
 # __________________
 # ## 9.8 Cleaning the pathways for further processing
-# note that in protein_name the rows are compose of the same protein name writen in different ways or with explanations, in the contrary pathways column has diffent pathways that are separated by a semicolon, hence the logic is different. The following function applies the correct pandas series logic Series.apply behavior and regular expression design (Pandas documentation, 2024).
-# For regex practice
-# Friedl, J. E. F. (2006). Mastering Regular Expressions (3rd ed.). O'Reilly Media.
+# note that in protein_name the rows are compose of the same protein name writen in different ways or with explanations, in the contrary pathways column has diffent pathways that are separated by a semicolon, hence the logic is different.
 
 # In[ ]:
 
 
-def clean_pathway_strings(pathway_series: pd.Series) -> pd.Series:
-    """
-    Clean pathway strings by removing common headers and database references that don't represent specific pathways.
-    Parameters:pathway_series : pandas.Series containing pathway strings with pathways separated by semicolons
-    Returns:  pandas.Series with cleaned pathway strings
-    """
-    # Terms to remove - add or remove based on specific needs
-    terms_to_remove = [
-        'Enzymes with EC numbers', # anotations mistake
-        'proteins [BR:ko00194]', # anotations mistake
-        'Metabolic pathways', # to broad term
-        'Other Metabolic Processes',
-        'Biosynthesis of secondary metabolites', # to broad term
-        'Microbial metabolism in diverse environments','Microbial metabolism in diverse environments', 'Metabolic pathways', # to broad term
-        'Exosome \[BR:ko04147\]', # mostly eucariotic
-        'photosynthesis', 'Photosynthesis', 'Photosynthesis  proteins [BR:ko00194]', # mostly plants
-        'Photosynthesis proteins', # mostly plants
-    ]
-    
-    # Compile regex pattern
-    pattern = re.compile(
-        '|'.join([re.escape(term) for term in terms_to_remove]),
-        flags=re.IGNORECASE
-    )
-    
-    def clean_single_entry(entry):
-        if pd.isna(entry) or not isinstance(entry, str) or entry == '[]':
-            return ''
-        
-        # Remove matched unwanted terms
-        cleaned = pattern.sub('', entry)
-        
-        # Clean up formatting issues
-        cleaned = re.sub(r';\s*;', ';', cleaned)
-        cleaned = re.sub(r'^[;\s]+|[;\s]+$', '', cleaned)
-        
-        return cleaned
-    
-    return pathway_series.apply(clean_single_entry)
+
 
 # In[ ]:
 
 
-# Clean the pathways
-ECcontri_Uniprot_enriched["pathways"] = clean_pathway_strings(ECcontri_Uniprot_enriched["pathways"])
+
 
 # In[ ]:
 
 
-# List of terms to verify are not present
-terms_to_check = [
-    'Enzymes with EC numbers',
-    'proteins [BR:ko00194]', 
-    'Metabolic pathways',
-    'Other Metabolic Processes',
-    'Biosynthesis of secondary metabolites',
-    'Microbial metabolism in diverse environments',
-    'Exosome [BR:ko04147]',
-    'photosynthesis',
-    'Photosynthesis',
-    'Photosynthesis proteins',
-]
-
-# Function to search for any term in the cleaned pathways
-def find_unwanted_terms(series, terms):
-    found_terms = {}
-    for term in terms:
-        mask = series.str.contains(term, case=False, na=False)
-        if mask.any():
-            found_terms[term] = series[mask]
-    return found_terms
-
-# Run the verification
-found = find_unwanted_terms(ECcontri_Uniprot_enriched["pathways"],  terms_to_check)
-
-# Print the result
-if found:
-    for term, entries in found.items():
-        print(f"Term still present: '{term}'")
-        print(entries)
-else:
-    print("✅ No unwanted terms found.")
 
 
 # In[ ]:
