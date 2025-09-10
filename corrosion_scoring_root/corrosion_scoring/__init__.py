@@ -35,9 +35,12 @@ __all__ = [
     "strip_all_ec_tokens",
     "enhanced_clean_protein_name",
     "clean_protein_name",
-    # globals
-   metal_terms_dict,
-        corrosion_synergies_dict,
-        functional_categories_dict,
-        metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict
+    # re-exported globals as names
+    "metal_terms_dict",
+    "corrosion_synergies_dict",
+    "functional_categories_dict",
+    "metal_mapping",
+    "pathway_dict",
+    "mechanisms_dict",
+    "operational_environmental_factors_dict",
 ]

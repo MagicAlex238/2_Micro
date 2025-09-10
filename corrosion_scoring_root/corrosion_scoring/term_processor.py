@@ -133,7 +133,7 @@ class TermProcessor:
         if not norm_term:
             return False
         norm_text = self._normalize_term(text)
-        return norm_term in norm_text
+        return re.search(rf'\b{re.escape(norm_term)}\b', norm_text) is not None
 
     def find_first_category(self, term: str) -> Optional[str]:
         """Return the category for a single token/term, honoring priority where ambiguous."""
