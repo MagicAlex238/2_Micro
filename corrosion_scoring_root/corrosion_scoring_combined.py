@@ -7,9 +7,9 @@ from .scoring_system import (
     calculate_corrosion_relevance_score,
     assign_mechanism_from_pathway,
     assign_corrosion_mechanisms,
-    infer_mechanisms_from_pathway_category,
+    infer_mechanisms_from_pathway_label,
     consolidate_metal_terms,
-    validate_against_pathways,
+    validate_against_pathways
 )
 
 from .utils_ec import normalize_ec_id, strip_all_ec_tokens
@@ -17,10 +17,11 @@ from .name_utils import enhanced_clean_protein_name, clean_protein_name
 
 # Re-export global dictionaries so they are available as `cs.metal_mapping`, etc.
 from .global_terms import (
-        metal_terms_dict,
-        corrosion_synergies_dict,
-        functional_categories_dict,
-        metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict # Not for scoring
+        metal_terms_dict, # For retrieval and scoring
+        corrosion_synergies_dict, # For retrieval and scoring
+        functional_categories_dict, # For retrieval and scoring
+        pathway_dict, mechanisms_dict, operational_environmental_factors_dict, # for retrieval but Not for scoring just for poppulating
+        metal_mapping # no for retrieval
     )
 
 __all__ = [
@@ -29,7 +30,7 @@ __all__ = [
     "calculate_corrosion_relevance_score",
     "assign_mechanism_from_pathway",
     "assign_corrosion_mechanisms",
-    "infer_mechanisms_from_pathway_category",
+    "infer_mechanisms_from_pathway_label", 
     "consolidate_metal_terms",
     "validate_against_pathways",
     "normalize_ec_id",
@@ -90,13 +91,12 @@ def enhanced_clean_protein_name(name: str) -> str:
         (r'\bglutathione\s+dehydrogenase\b', 'glutathione-dehydrogenase'),
         (r'\b(?:l-)?threonine\s+dehydrogenase\b', 'threonine-dehydrogenase'),
         (r'\b3\-oxoacyl\-acp\s+reductase\b', '3-oxoacyl-acp-reductase'),
-        (r'\b(\w+)\s+dehydrogenase\b', r'\1-dehydrogenase'),
-        (r'\b(\w+)\s+reductase\b', r'\1-reductase'),
-        (r'\b(\w+)\s+synthase\b', r'\1-synthase'),
-        (r'\b(\w+)\s+synthetase\b', r'\1-synthetase'),
     ]
     for pat, repl in replacements:
         name = re.sub(pat, repl, name)
+        
+    name = re.compile(r'\b([a-z]{3,})\s+(dehydrogenase|reductase|synthase|synthetase)\b', re.IGNORECASE) \
+         .sub(lambda m: m.group(0) if '-' in m.group(1) else f"{m.group(1)}-{m.group(2)}", name)
 
     # Light suffix cleanup
     name = re.sub(r'\s+(domain|fragment|precursor)$', '', name)
@@ -125,7 +125,7 @@ custom_dict = {
     "bifunctional glutamine-synthetase adenylyltransferase-adenylyl-removing enzyme": "bifunctional glutamine-synthetase adenylyltransferase",
     "glutamine--fructose-6-phosphate aminotransferase": "glutamine--fructose-6-phosphate aminotransferase",
     "udp-3-o-acyl-n-acetylglucosamine deacetylase": "udp-3-o-acyl-n-acetylglucosamine deacetylase",
-    "multifunctional oxoglutarate decarboxylase": "decarboxylase-oxoglutarate-dehydrogenase thiamine pyrophosphate",
+    "multifunctional oxoglutarate decarboxylase": "oxoglutarate decarboxylase",
     "aldo-keto-reductase 2 family": "aldo-keto-reductase", 
     "coenzyme a biosynthesis bifunctional protein coabc (dna-pantothenate metabolism flavoprotein) (phosphopantothenoylcysteine-synthetase-decarboxy": "coenzyme a biosynthesis protein ppcs-ppcdc"
 }
@@ -159,7 +159,7 @@ def clean_protein_name(name: str) -> str:
         if m:
             end = 50 + (m.start()) 
         else:               
-            end = min(50, len(name))  # hard cut at 60 if no separator found
+            end = min(50, len(name))  # hard cut at 50 if no separator found
         name = name[:end].strip()
 
     return name
@@ -181,7 +181,6 @@ import math
 import sys
 import os
 import re
-import math
 from collections import defaultdict
 from .term_processor import TermProcessor 
 
@@ -194,7 +193,6 @@ try:
         metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict# Not for scoring
     )
 except ImportError as e:
-    print("Critical error: Failed to import global_terms")
     raise ImportError("Failed to import global_terms") from e
 
 # Scoring weights - 
@@ -253,11 +251,17 @@ def assign_corrosion_mechanisms(text_to_analyze: str, mechanisms_processor) -> l
     mech_matches = mechanisms_processor.find_all_matches(text_to_analyze)
     return list(mech_matches.keys())
 
-def infer_mechanisms_from_pathway_category(pathway_category: str) -> list[str]:
+def infer_mechanisms_from_pathway_label(label: str) -> list[str]:
     """
     Maps pathway categories to likely corrosion mechanisms.
     This creates the bridge between pathways and mechanisms.
     """
+    if not isinstance(label, str):
+        raise TypeError("label must be a string pathway label")
+    label = label.strip()
+    if not label:
+        raise ValueError("label must be non-empty")
+
     pathway_to_mechanism_map = {'oxygen_metabolism': ['o2_consumption'], 
         'nitrogen_metabolism':  ['nitrogen_metabolism'],
         'iron_sulfur_redox': ['iron_metabolism', 'sulfur_metabolism', 'ochre_formation'],
@@ -271,25 +275,40 @@ def infer_mechanisms_from_pathway_category(pathway_category: str) -> list[str]:
         'halogen_related': ['chloride_attack'],
         'methanogenesis': ['methanogenesis']  
     }
-    
-    inferred = pathway_to_mechanism_map.get(pathway_dict, [])
-    valid_mech_keys = set(TermProcessor(mechanisms_dict).category_to_terms.keys())
-    return [m for m in inferred if m in valid_mech_keys]
+    if label not in pathway_to_mechanism_map:
+            raise KeyError(f"unknown pathway label: {label}")
+
+    inferred = pathway_to_mechanism_map[label]
+    valid = set(TermProcessor(cs.mechanisms_dict).category_to_terms.keys())
+    return [m for m in inferred if m in valid]
 #=================================================================================
 
-def assign_mechanism_from_pathway(text_to_analyse: str) -> list[str]:
+def assign_mechanism_from_pathway(text_to_analyze: str, mechanisms_processor) -> list[str]:
     """
     Extracts corrosion mechanisms from pathway text using both pathway and mechanism processors.
     This function looks for direct mechanism terms AND infers mechanisms from pathway names.
     """
-   
     if not isinstance(text_to_analyse, str) or not text_to_analyse.strip():
         return []
-    mechanisms_processor = TermProcessor(mechanisms_dict)
-    # Method 1: Direct mechanism detection (full-text)
-    mech_matches = mechanisms_processor.find_all_matches(text_to_analyse)
+  
+    mech_matches = mechanisms_processor.find_all_matches(text_to_analyse)# {'cat': ['child1', ...]}
     
-    return list(mech_matches.keys())
+    return sorted({t for terms in mech_matches.values() for t in terms})  # child terms only
+#==============================================================================================================
+
+def score_by_processor(text: str, processor: TermProcessor, weight_of) -> tuple[dict, dict]:
+    if not isinstance(text, str) or not text.strip():
+        raise ValueError("text must be a non-empty string")
+    if processor is None:
+        raise ValueError("processor is required")
+    matched = processor.find_all_matches(text)  # {'cat': [child_terms]}
+    cat_scores = {}
+    for cat, terms in matched.items():
+        if not isinstance(terms, list):
+            raise TypeError(f"terms for category '{cat}' must be a list")
+        hits = len(set(terms))
+        cat_scores[cat] = math.log(hits + 1) * float(weight_of(cat))
+    return cat_scores, {k: sorted(set(v)) for k, v in matched.items()}
 
 #==============================================================================================================
 
@@ -303,7 +322,7 @@ def consolidate_metal_terms(metals, detected_metal_categories=None) -> list[str]
     consolidated = set()
     
     # Process BRENDA metals (raw terms)
-    for metal in (brenda_metals or []):
+    for metal in (metals or []):
         metal_raw =str(metal)
         metal_norm = metal_raw.strip().lower()
         if 'not detected' in metal_norm or 'none' in metal_norm or not metal_norm:
@@ -361,6 +380,17 @@ def sanitize_input_text(text: str, max_length: int = 10000) -> str:
     return text
 
 #======================================================================================================================
+# --- RATIONALE (FC matching single-pass) ---------------------------------------
+# Functional-category matches is done ONCE via fc_processor.find_all_matches(text),
+# then score per category from that result. This enforces SINGLE OWNERSHIP of each
+# child term (TermProcessor already resolves collisions via priority), preventing
+# double-counting the same normalized token across different categories when
+# synonyms overlap. Then:
+#   1) unique() the child terms per category,
+#   2) score with log(hits + 1) * category_weight,
+#   3) record the actual CHILD TERMS per category for auditability.
+# Looping over every category’s term list and calling matches_normalized()
+# could credit the same token to multiple categories. 
 def calculate_overall_scores(text, fc_processor, metal_processor, synergy_processor, brenda_metals=None):
     """Calculate all the overall scores for a given text.
     Args: text: Text to analyze (combined enzyme names, class, pathways, reactions)
@@ -382,37 +412,37 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
  
     # Score metals using processor
     metal_score, detected_metals = score_keyword_matches(text, processor= metal_processor)
-    
-    # Consolidate metals # Score metals from text ONLY for scoring; do not mix into the returned metals list
-    metal_score, _detected_metal_cats = score_keyword_matches(text, processor=metal_processor)
  
     #========================================================================
     # Score functional categories - PRIMARY scoring method
+    # Precompute deduplicated matches once
+    fc_matched = fc_processor.find_all_matches(text) 
     functional_score = 0.0
     func_matches = {} #dict storages weighted score
     func_found_terms = {} # actual terms found per category
     detected_fc_names = set()  # to take into account for coocurrence
-    for cat, details in functional_categories_dict.items():
-        category_hits = 0
-        found_terms_for_cat = []
-        for term in details["terms"]:
-            if fc_processor.matches_normalized(term, text):
-                category_hits += 1
-                found_terms_for_cat.append(term)
-        
-        if category_hits > 0:
-            base_score = math.log(category_hits + 1) #log prevents inflation, promotes balance
-            weighted_score = base_score * details["score"]
-            func_matches[cat] = weighted_score
-            functional_score += weighted_score
-            detected_fc_names.add(cat)
-            func_found_terms[cat] = found_terms_for_cat
+    for cat, terms in fc_matched.items():
+        if not terms:
+            continue
 
+        # category_hits = unique child-terms owned by this category
+        category_hits = len(set(terms))
+        base_score = math.log(category_hits + 1)
+        weight = functional_categories_dict.get(cat, {}).get("score", 1.0)
+        weighted_score = base_score * weight
+
+        func_matches[cat] = weighted_score
+        func_found_terms[cat] = sorted(set(terms))
+        detected_fc_names.add(cat)
+        functional_score += weighted_score
+        
     results["functional_categories"] = [
-        {"category": cat, "score": score}
-        for cat, score in func_matches.items()
+        {"category": cat, "score": score, "terms": func_found_terms.get(cat, [])}
+    for cat, score in func_matches.items()
     ]
     results["functional_score"] = float(functional_score) if functional_score is not None else 0.0
+    # flatten list
+    results["functional_child_terms"] = sorted({t for terms in func_found_terms.values() for t in terms})
 
     #=====================================================================
 
