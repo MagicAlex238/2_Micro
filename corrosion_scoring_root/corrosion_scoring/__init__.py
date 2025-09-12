@@ -1,47 +1,57 @@
-# corrosion_scoring/__init__.py
+"""
+Refactored Corrosion Scoring System v2.0
 
-from .term_processor import TermProcessor
-from .scoring_system import (
-    calculate_overall_scores,
-    calculate_corrosion_relevance_score,
-    assign_mechanism_from_pathway,
-    assign_corrosion_mechanisms,
-    infer_mechanisms_from_pathway_label,
-    consolidate_metal_terms,
-    validate_against_pathways
-)
+This module provides a clean separation between text mining, scoring, and synergy detection
+with improved error handling and maintainable architecture.
+"""
 
-from .utils_ec import normalize_ec_id, strip_all_ec_tokens
-from .name_utils import enhanced_clean_protein_name, clean_protein_name
+from .text_miner import TextMiner
+from .score_calculator import ScoreCalculator
+from .synergy_detector import SynergyDetector
+from .config import ScoringConfig
+from .exceptions import ScoringError, TextMiningError, SynergyDetectionError
 
-# Re-export global dictionaries so they are available as `cs.metal_mapping`, etc.
-from .global_terms import (
-        metal_terms_dict, # For retrieval and scoring
-        corrosion_synergies_dict, # For retrieval and scoring
-        functional_categories_dict, # For retrieval and scoring
-        pathway_dict, mechanisms_dict, operational_environmental_factors_dict, # for retrieval but Not for scoring just for poppulating
-        metal_mapping # no for retrieval
-    )
+# Convenience function for backward compatibility
+def calculate_overall_scores(text: str, processors: dict, config: ScoringConfig = None, brenda_metals: list = None):
+    """
+    Backward-compatible wrapper for the new scoring system.
+    
+    Args:
+        text: Text to analyze
+        processors: Dictionary containing processors
+        config: Scoring configuration
+        brenda_metals: List of metals from BRENDA
+        
+    Returns:
+        Dictionary containing all scores and analysis results
+    """
+    if config is None:
+        config = ScoringConfig()
+    
+    # Initialize components
+    text_miner = TextMiner(processors)
+    score_calculator = ScoreCalculator(config)
+    synergy_detector = SynergyDetector(config)
+    
+    # Extract features
+    features = text_miner.extract_all_features(text, brenda_metals)
+    
+    # Calculate scores
+    scores = score_calculator.calculate_scores(features)
+    
+    # Detect synergies
+    synergies = synergy_detector.detect_synergies(features)
+    
+    # Combine results
+    return {**features, **scores, **synergies}
 
 __all__ = [
-    "TermProcessor",
-    "calculate_overall_scores",
-    "calculate_corrosion_relevance_score",
-    "assign_mechanism_from_pathway",
-    "assign_corrosion_mechanisms",
-    "infer_mechanisms_from_pathway_label", 
-    "consolidate_metal_terms",
-    "validate_against_pathways",
-    "normalize_ec_id",
-    "strip_all_ec_tokens",
-    "enhanced_clean_protein_name",
-    "clean_protein_name",
-    # re-exported globals as names
-    "metal_terms_dict",
-    "corrosion_synergies_dict",
-    "functional_categories_dict",
-    "metal_mapping",
-    "pathway_dict",
-    "mechanisms_dict",
-    "operational_environmental_factors_dict",
+    'TextMiner',
+    'ScoreCalculator', 
+    'SynergyDetector',
+    'ScoringConfig',
+    'ScoringError',
+    'TextMiningError',
+    'SynergyDetectionError',
+    'calculate_overall_scores'
 ]
