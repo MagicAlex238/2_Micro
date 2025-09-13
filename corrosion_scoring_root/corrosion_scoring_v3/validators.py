@@ -107,3 +107,4 @@ def validate_metals_list(metals: Any) -> List[str]:
                 cleaned_metals.append(metal_str)
     
     return cleaned_metals
+

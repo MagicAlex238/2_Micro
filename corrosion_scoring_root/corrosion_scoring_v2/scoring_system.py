@@ -1,175 +1,9 @@
-# ========== __init__.py ==========
-# corrosion_scoring/__init__.py
-
-from .term_processor import TermProcessor
-from .scoring_system import (
-    calculate_overall_scores,
-    calculate_corrosion_relevance_score,
-    assign_mechanism_from_pathway,
-    assign_corrosion_mechanisms,
-    infer_mechanisms_from_pathway_category,
-    consolidate_metal_terms,
-    validate_against_pathways,
-)
-
-from .utils_ec import normalize_ec_id, strip_all_ec_tokens
-from .name_utils import enhanced_clean_protein_name, clean_protein_name
-
-# Re-export global dictionaries so they are available as `cs.metal_mapping`, etc.
-from .global_terms import (
-        metal_terms_dict,
-        corrosion_synergies_dict,
-        functional_categories_dict,
-        metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict # Not for scoring
-    )
-
-__all__ = [
-    "TermProcessor",
-    "calculate_overall_scores",
-    "calculate_corrosion_relevance_score",
-    "assign_mechanism_from_pathway",
-    "assign_corrosion_mechanisms",
-    "infer_mechanisms_from_pathway_category",
-    "consolidate_metal_terms",
-    "validate_against_pathways",
-    "normalize_ec_id",
-    "strip_all_ec_tokens",
-    "enhanced_clean_protein_name",
-    "clean_protein_name",
-    # re-exported globals as names
-    "metal_terms_dict",
-    "corrosion_synergies_dict",
-    "functional_categories_dict",
-    "metal_mapping",
-    "pathway_dict",
-    "mechanisms_dict",
-    "operational_environmental_factors_dict",
-]
-
-# ========== name_utils.py ==========
-import re
-import unicodedata
-
-from .utils_ec import normalize_ec_id, strip_all_ec_tokens
-
-GARBAGE_PREFIXES = (
-    'transferred to', 'transferred to and', 'deleted', 'obsolete',
-    'reclassified as', 'renamed to', 'see '
-)
-
-def enhanced_clean_protein_name(name: str) -> str:
-    """Canonicalize DE/protein names for grouping/aggregation."""
-    if name is None:
-        return "uncharacterized protein"
-    if not isinstance(name, str):
-        name = str(name)
-
-    # Unicode normalize (e.g., fancy dashes)
-    name = unicodedata.normalize("NFKD", name)
-
-    # Remove EC tokens (keep one in case we need a fallback)
-    ec_token = normalize_ec_id(name)
-    name = strip_all_ec_tokens(name)
-
-    # Remove bracketed qualifiers
-    name = re.sub(r'\([^)]*\)', '', name)
-    name = re.sub(r'\[[^\]]*\]', '', name)
-
-    # Normalize separators and punctuation
-    name = re.sub(r'\s*[-/]\s*', '-', name)
-    name = re.sub(r'[,:;|]+', ' ', name)
-    name = re.sub(r'\s+', ' ', name).strip()
-
-    # Lowercase
-    name = name.lower()
-
-    # Standardize common patterns
-    replacements = [
-        (r'\bacyl carrier protein\b', 'acp'),
-        (r'\balcohol\s+dehydrogenase\b', 'alcohol-dehydrogenase'),
-        (r'\bglutathione\s+dehydrogenase\b', 'glutathione-dehydrogenase'),
-        (r'\b(?:l-)?threonine\s+dehydrogenase\b', 'threonine-dehydrogenase'),
-        (r'\b3\-oxoacyl\-acp\s+reductase\b', '3-oxoacyl-acp-reductase'),
-        (r'\b(\w+)\s+dehydrogenase\b', r'\1-dehydrogenase'),
-        (r'\b(\w+)\s+reductase\b', r'\1-reductase'),
-        (r'\b(\w+)\s+synthase\b', r'\1-synthase'),
-        (r'\b(\w+)\s+synthetase\b', r'\1-synthetase'),
-    ]
-    for pat, repl in replacements:
-        name = re.sub(pat, repl, name)
-
-    # Light suffix cleanup
-    name = re.sub(r'\s+(domain|fragment|precursor)$', '', name)
-
-    # Remove immediate duplicate tokens only
-    tokens = name.split()
-    dedup = []
-    prev = None
-    for t in tokens:
-        if t != prev:
-            dedup.append(t)
-        prev = t
-    name = ' '.join(dedup)
-
-    # Final cleanup
-    name = re.sub(r'-{2,}', '-', name).strip(' -')
-
-    if not name and ec_token:
-        name = f"ec {ec_token}"
-    if not name:
-        name = "uncharacterized protein"
-    return name
-#===================================
-
-custom_dict = {
-    "bifunctional glutamine-synthetase adenylyltransferase-adenylyl-removing enzyme": "bifunctional glutamine-synthetase adenylyltransferase",
-    "glutamine--fructose-6-phosphate aminotransferase": "glutamine--fructose-6-phosphate aminotransferase",
-    "udp-3-o-acyl-n-acetylglucosamine deacetylase": "udp-3-o-acyl-n-acetylglucosamine deacetylase",
-    "multifunctional oxoglutarate decarboxylase": "decarboxylase-oxoglutarate-dehydrogenase thiamine pyrophosphate",
-    "aldo-keto-reductase 2 family": "aldo-keto-reductase", 
-    "coenzyme a biosynthesis bifunctional protein coabc (dna-pantothenate metabolism flavoprotein) (phosphopantothenoylcysteine-synthetase-decarboxy": "coenzyme a biosynthesis protein ppcs-ppcdc"
-}
-
-def clean_protein_name(name: str) -> str:
-    """Simplify the names of the protein without losing the biological meaning as literature recommends."""
-    if not isinstance(name, str):
-        name = '' if name is None else str(name)
-    # normalise name
-    name = name.strip()
-    name_lower = name.lower()
-    #drop garbage prefixes early
-    if any(name_lower.startswith(p) for p in GARBAGE_PREFIXES):
-        return ""
-    # Step 2: Remove uncertainty terms at the beginning
-    uncertainty_terms = list(GARBAGE_PREFIXES) + ['probable','putative','possible','uncharacterized','hypothetical']
-    pattern_uncertainty = r'^(?:' + '|'.join(uncertainty_terms) + r')\s+'
-    name = re.sub(pattern_uncertainty, '', name, flags=re.IGNORECASE)
-
-    # Step 3: Apply custom dictionary based on prefix match
-    for original_start, short_name in custom_dict.items():
-        if name_lower.startswith(original_start.lower()):
-            name = short_name
-            name_lower = name.lower()
-            break
-
-    # step 5 cut at ~50 chars but finish the current word
-    if len(name) > 50:
-        tail = name[50:]
-        m = re.search(r'[\s\.\-\[\]\(\)]', tail)
-        if m:
-            end = 50 + (m.start()) 
-        else:               
-            end = min(50, len(name))  # hard cut at 60 if no separator found
-        name = name[:end].strip()
-
-    return name
-
-
-# ========== scoring_system.py ==========
 #!/usr/bin/env python
 # coding: utf-8
 ###=========================================================
-#10.09.2025
+#  corrosion_scoring_v2/scoring_system.py
+# 2024-06-10
+# 2024-06-20 Updated to use unified functional_categories as major scoring category,
 ###_________________________
 """
 Corrosion Relevance Scoring System: functions for corrosion relevance evaluation.
@@ -181,7 +15,6 @@ import math
 import sys
 import os
 import re
-import math
 from collections import defaultdict
 from .term_processor import TermProcessor 
 
@@ -194,7 +27,6 @@ try:
         metal_mapping, pathway_dict, mechanisms_dict, operational_environmental_factors_dict# Not for scoring
     )
 except ImportError as e:
-    print("Critical error: Failed to import global_terms")
     raise ImportError("Failed to import global_terms") from e
 
 # Scoring weights - 
@@ -253,11 +85,17 @@ def assign_corrosion_mechanisms(text_to_analyze: str, mechanisms_processor) -> l
     mech_matches = mechanisms_processor.find_all_matches(text_to_analyze)
     return list(mech_matches.keys())
 
-def infer_mechanisms_from_pathway_category(pathway_category: str) -> list[str]:
+def infer_mechanisms_from_pathway_label(label: str) -> list[str]:
     """
     Maps pathway categories to likely corrosion mechanisms.
     This creates the bridge between pathways and mechanisms.
     """
+    if not isinstance(label, str):
+        raise TypeError("label must be a string pathway label")
+    label = label.strip()
+    if not label:
+        raise ValueError("label must be non-empty")
+
     pathway_to_mechanism_map = {'oxygen_metabolism': ['o2_consumption'], 
         'nitrogen_metabolism':  ['nitrogen_metabolism'],
         'iron_sulfur_redox': ['iron_metabolism', 'sulfur_metabolism', 'ochre_formation'],
@@ -271,25 +109,40 @@ def infer_mechanisms_from_pathway_category(pathway_category: str) -> list[str]:
         'halogen_related': ['chloride_attack'],
         'methanogenesis': ['methanogenesis']  
     }
-    
-    inferred = pathway_to_mechanism_map.get(pathway_dict, [])
-    valid_mech_keys = set(TermProcessor(mechanisms_dict).category_to_terms.keys())
-    return [m for m in inferred if m in valid_mech_keys]
+    if label not in pathway_to_mechanism_map:
+            raise KeyError(f"unknown pathway label: {label}")
+
+    inferred = pathway_to_mechanism_map[label]
+    valid = set(TermProcessor(cs.mechanisms_dict).category_to_terms.keys())
+    return [m for m in inferred if m in valid]
 #=================================================================================
 
-def assign_mechanism_from_pathway(text_to_analyse: str) -> list[str]:
+def assign_mechanism_from_pathway(text_to_analyze: str, mechanisms_processor) -> list[str]:
     """
     Extracts corrosion mechanisms from pathway text using both pathway and mechanism processors.
     This function looks for direct mechanism terms AND infers mechanisms from pathway names.
     """
-   
     if not isinstance(text_to_analyse, str) or not text_to_analyse.strip():
         return []
-    mechanisms_processor = TermProcessor(mechanisms_dict)
-    # Method 1: Direct mechanism detection (full-text)
-    mech_matches = mechanisms_processor.find_all_matches(text_to_analyse)
+  
+    mech_matches = mechanisms_processor.find_all_matches(text_to_analyse)# {'cat': ['child1', ...]}
     
-    return list(mech_matches.keys())
+    return sorted({t for terms in mech_matches.values() for t in terms})  # child terms only
+#==============================================================================================================
+
+def score_by_processor(text: str, processor: TermProcessor, weight_of) -> tuple[dict, dict]:
+    if not isinstance(text, str) or not text.strip():
+        raise ValueError("text must be a non-empty string")
+    if processor is None:
+        raise ValueError("processor is required")
+    matched = processor.find_all_matches(text)  # {'cat': [child_terms]}
+    cat_scores = {}
+    for cat, terms in matched.items():
+        if not isinstance(terms, list):
+            raise TypeError(f"terms for category '{cat}' must be a list")
+        hits = len(set(terms))
+        cat_scores[cat] = math.log(hits + 1) * float(weight_of(cat))
+    return cat_scores, {k: sorted(set(v)) for k, v in matched.items()}
 
 #==============================================================================================================
 
@@ -303,7 +156,7 @@ def consolidate_metal_terms(metals, detected_metal_categories=None) -> list[str]
     consolidated = set()
     
     # Process BRENDA metals (raw terms)
-    for metal in (brenda_metals or []):
+    for metal in (metals or []):
         metal_raw =str(metal)
         metal_norm = metal_raw.strip().lower()
         if 'not detected' in metal_norm or 'none' in metal_norm or not metal_norm:
@@ -361,6 +214,17 @@ def sanitize_input_text(text: str, max_length: int = 10000) -> str:
     return text
 
 #======================================================================================================================
+# --- RATIONALE (FC matching single-pass) ---------------------------------------
+# Functional-category matches is done ONCE via fc_processor.find_all_matches(text),
+# then score per category from that result. This enforces SINGLE OWNERSHIP of each
+# child term (TermProcessor already resolves collisions via priority), preventing
+# double-counting the same normalized token across different categories when
+# synonyms overlap. Then:
+#   1) unique() the child terms per category,
+#   2) score with log(hits + 1) * category_weight,
+#   3) record the actual CHILD TERMS per category for auditability.
+# Looping over every category’s term list and calling matches_normalized()
+# could credit the same token to multiple categories. 
 def calculate_overall_scores(text, fc_processor, metal_processor, synergy_processor, brenda_metals=None):
     """Calculate all the overall scores for a given text.
     Args: text: Text to analyze (combined enzyme names, class, pathways, reactions)
@@ -382,37 +246,37 @@ def calculate_overall_scores(text, fc_processor, metal_processor, synergy_proces
  
     # Score metals using processor
     metal_score, detected_metals = score_keyword_matches(text, processor= metal_processor)
-    
-    # Consolidate metals # Score metals from text ONLY for scoring; do not mix into the returned metals list
-    metal_score, _detected_metal_cats = score_keyword_matches(text, processor=metal_processor)
  
     #========================================================================
     # Score functional categories - PRIMARY scoring method
+    # Precompute deduplicated matches once
+    fc_matched = fc_processor.find_all_matches(text) 
     functional_score = 0.0
     func_matches = {} #dict storages weighted score
     func_found_terms = {} # actual terms found per category
     detected_fc_names = set()  # to take into account for coocurrence
-    for cat, details in functional_categories_dict.items():
-        category_hits = 0
-        found_terms_for_cat = []
-        for term in details["terms"]:
-            if fc_processor.matches_normalized(term, text):
-                category_hits += 1
-                found_terms_for_cat.append(term)
-        
-        if category_hits > 0:
-            base_score = math.log(category_hits + 1) #log prevents inflation, promotes balance
-            weighted_score = base_score * details["score"]
-            func_matches[cat] = weighted_score
-            functional_score += weighted_score
-            detected_fc_names.add(cat)
-            func_found_terms[cat] = found_terms_for_cat
+    for cat, terms in fc_matched.items():
+        if not terms:
+            continue
 
+        # category_hits = unique child-terms owned by this category
+        category_hits = len(set(terms))
+        base_score = math.log(category_hits + 1)
+        weight = functional_categories_dict.get(cat, {}).get("score", 1.0)
+        weighted_score = base_score * weight
+
+        func_matches[cat] = weighted_score
+        func_found_terms[cat] = sorted(set(terms))
+        detected_fc_names.add(cat)
+        functional_score += weighted_score
+        
     results["functional_categories"] = [
-        {"category": cat, "score": score}
-        for cat, score in func_matches.items()
+        {"category": cat, "score": score, "terms": func_found_terms.get(cat, [])}
+    for cat, score in func_matches.items()
     ]
     results["functional_score"] = float(functional_score) if functional_score is not None else 0.0
+    # flatten list
+    results["functional_child_terms"] = sorted({t for terms in func_found_terms.values() for t in terms})
 
     #=====================================================================
 
@@ -673,188 +537,3 @@ def validate_against_pathways(record, pathways_data):
     validation_results['overall_confidence'] = (pathway_f1 + mechanism_f1) / 2
     
     return validation_results
-
-# ========== term_processor.py ==========
-import re
-from collections import OrderedDict, defaultdict
-from typing import Dict, List, Set, Optional
-class TermProcessor:
-    """Normalizes and matches corrosion terms with priority handling."""
-
-    def __init__(self, taxonomy: dict, synonyms: dict = None):
-        self.synonyms = synonyms or {
-            "oxidoreductase": ["oxid reduction enzyme"],
-            "iron sulfur": ["fe s", "fe s cluster", "iron-sulfur", "fe-s"],
-            "sulfide": ["sulphide"],
-            "sulfite": ["sulphite"],
-            "sulfur": ["sulphur"],
-        }
-        # Priority includes all categories you referenced elsewhere (synergy and FC lists)
-        self.priority_order: List[str] = [
-            'iron_metabolism', 'sulfur_metabolism', 'organic_acid_metabolism',
-            'biofilm_formation', 'o2_consumption', 'metal_binding_chelation',
-            'nitrogen_metabolism', 'manganese_processes', 'h2_consumption',
-            'methanogenesis', 'carbon_metabolism', 'fumarate_formation',
-            'phosphorus_metabolism', 'direct_eet', 'indirect_eet', 'halogen_related'
-        ]
-
-        # Build category -> set(normalized terms) preserving priority
-        self.category_to_terms: Dict[str, Set[str]] = self._build_category_to_terms(taxonomy)
-
-        # Build keyword (normalized term) -> category, preferring priority categories
-        self.keyword_to_category_map: Dict[str, str] = self._build_keyword_map_with_priority()
-
-        # Precompile a regex over normalized keywords; longest first to prefer longer phrases
-        self.master_regex = self._compile_master_pattern()
-
-    def _build_category_to_terms(self, taxonomy: dict) -> Dict[str, Set[str]]:
-        """Create category -> set of normalized terms, honoring priority_order."""
-        cat_to_terms: "OrderedDict[str, Set[str]]" = OrderedDict()
-
-        # Start with priority categories in order
-        for cat in self.priority_order:
-            if cat in taxonomy:
-                terms = taxonomy[cat]['terms'] if isinstance(taxonomy[cat], dict) and 'terms' in taxonomy[cat] else taxonomy[cat]
-                expanded = []
-                for t in terms:
-                    expanded.append(t)
-                    base = self._normalize_term(t)
-                    for syn in self.synonyms.get(base, []):
-                        expanded.append(syn)
-                cat_to_terms[cat] = {nt for t in expanded if (nt := self._normalize_term(t))}
-
-        # Add remaining categories not in priority list
-        for cat, data in taxonomy.items():
-            if cat not in cat_to_terms:
-                terms = data['terms'] if isinstance(data, dict) and 'terms' in data else data
-                cat_to_terms[cat] = {nt for t in terms if (nt := self._normalize_term(t))}
-
-        return cat_to_terms
-
-    def _build_keyword_map_with_priority(self) -> Dict[str, str]:
-        """Reverse map terms -> category, giving precedence to earlier (priority) categories."""
-        kw_to_cat: Dict[str, str] = {}
-        for cat, terms in self.category_to_terms.items():
-            for term in terms:
-                # First category wins; this respects priority ordering already applied
-                kw_to_cat.setdefault(term, cat)
-        return kw_to_cat
-
-    def _compile_master_pattern(self) -> Optional[re.Pattern]:
-        """Compile a single, case-insensitive regex for all normalized keywords."""
-        if not self.keyword_to_category_map:
-            return None
-
-        # Sort by length desc to reduce premature short-term matches
-        kws = sorted(self.keyword_to_category_map.keys(), key=len, reverse=True)
-        # limit pattern size to avoid backtracking
-        if len(kws) >1000:
-            kws = kws[:1000]
-        # NOTE: Text is normalized to lowercase with spaces; keywords are too. safely use word boundaries.
-        pattern = r'\b(' + '|'.join(re.escape(k) for k in kws) + r')\b'
-        return re.compile(pattern, re.IGNORECASE)
-
-    def _normalize_term(self, term: str) -> str:
-        """Core normalizer used internally by the processor."""
-        if not isinstance(term, str):
-            return ""
-
-        t = term.lower()
-
-        # Conservative substitutions (avoid corrupting 'oxidase', 'reductase', etc.)
-        t = re.sub(r'\bsulphur\b', 'sulfur', t)     # Complete word only
-        t = re.sub(r'\bsulphate\b', 'sulfate', t)   # Complete word only  
-        t = re.sub(r'\bsulphide\b', 'sulfide', t)   # Complete word only
-        t = re.sub(r'\bmetallo(?=enzyme|protein)\b', 'metal', t)  # Only before enzyme/protein
-        t = re.sub(r'\bcorrosion\w*\b', 'corrosion', t)  # Normalize corrosion variants
-
-        # Replace non-word/underscore runs with a single space (keeps alnum boundaries)
-        t = re.sub(r'[\W_]+', ' ', t)
-
-        # Collapse multiple spaces and trim
-        t = re.sub(r'\s+', ' ', t).strip()
-
-        return t
-
-    def normalize_text(self, text: str) -> str:
-        """Public wrapper for external callers; do not call the private method outside."""
-        return self._normalize_term(text)
-
-    def find_all_matches(self, text: str) -> dict:
-        """
-        Finds all keywords in a text and groups them by their functional category.
-        Returns: {'iron_metabolism': ['iron'], 'sulfur_metabolism': ['sulfide'], ...}
-        """
-        if self.master_regex is None or not isinstance(text, str):
-            return {}
-
-        normalized_text = self._normalize_term(text)
-        if not normalized_text:
-            return {}
-
-        found_keywords = set(self.master_regex.findall(normalized_text))  # already normalized words/phrases
-
-        categorized_matches = defaultdict(list)
-        for keyword in found_keywords:
-            # Normalize match to be safe, though it should already be normalized casing-wise
-            k = self._normalize_term(keyword)
-            cat = self.keyword_to_category_map.get(k)
-            if cat:
-                categorized_matches[cat].append(k)
-
-        return dict(categorized_matches)
-
-    def matches_normalized(self, term: str, text: str) -> bool:
-        """Check if the normalized term substring appears in the normalized text."""
-        norm_term = self._normalize_term(term)
-        if not norm_term:
-            return False
-        norm_text = self._normalize_term(text)
-        return re.search(rf'\b{re.escape(norm_term)}\b', norm_text) is not None
-
-    def find_first_category(self, term: str) -> Optional[str]:
-        """Return the category for a single token/term, honoring priority where ambiguous."""
-        norm_term = self._normalize_term(term)
-        if not norm_term:
-            return None
-
-        # Direct lookup (fast path)
-        cat = self.keyword_to_category_map.get(norm_term)
-        if cat:
-            return cat
-
-        # Fallback: check membership across categories in priority order
-        for category in self.priority_order:
-            if norm_term in self.category_to_terms.get(category, set()):
-                return category
-
-        # Last resort: scan remaining categories
-        for category, terms in self.category_to_terms.items():
-            if category in self.priority_order:
-                continue
-            if norm_term in terms:
-                return category
-
-        return None
-    #===================================================================
-
-# ========== utils_ec.py ==========
-import re
-from typing import Optional
-#====================== Normalizing EC =====================
-
-# Accept "EC 1.1.1.1", "1.1.1.1", and hyphens "1.1.1.-"
-_EC_RE = re.compile(r'\b(?:EC\s*)?((?:\d+|-)\.(?:\d+|-)\.(?:\d+|-)\.(?:\d+|-))\b', re.IGNORECASE)
-
-def normalize_ec_id(s: str) -> Optional[str]:
-    """Return normalized EC id 'x.x.x.x' (digits or '-') or None if not found."""
-    if not isinstance(s, str):
-        return None
-    m = _EC_RE.search(s.strip())
-    return m.group(1) if m else None
-
-def strip_all_ec_tokens(text: str) -> str:
-    """Remove all EC tokens from text."""
-    if not isinstance(text, str):
-        return ""
-    return _EC_RE.sub("", text).strip()

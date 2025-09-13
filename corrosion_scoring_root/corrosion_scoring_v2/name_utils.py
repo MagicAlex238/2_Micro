@@ -41,12 +41,13 @@ def enhanced_clean_protein_name(name: str) -> str:
         (r'\bglutathione\s+dehydrogenase\b', 'glutathione-dehydrogenase'),
         (r'\b(?:l-)?threonine\s+dehydrogenase\b', 'threonine-dehydrogenase'),
         (r'\b3\-oxoacyl\-acp\s+reductase\b', '3-oxoacyl-acp-reductase'),
+        (r'\b(\w+)\s+dehydrogenase\b', r'\1-dehydrogenase'),
+        (r'\b(\w+)\s+reductase\b', r'\1-reductase'),
+        (r'\b(\w+)\s+synthase\b', r'\1-synthase'),
+        (r'\b(\w+)\s+synthetase\b', r'\1-synthetase'),
     ]
     for pat, repl in replacements:
         name = re.sub(pat, repl, name)
-        
-    name = re.compile(r'\b([a-z]{3,})\s+(dehydrogenase|reductase|synthase|synthetase)\b', re.IGNORECASE) \
-         .sub(lambda m: m.group(0) if '-' in m.group(1) else f"{m.group(1)}-{m.group(2)}", name)
 
     # Light suffix cleanup
     name = re.sub(r'\s+(domain|fragment|precursor)$', '', name)
@@ -75,7 +76,7 @@ custom_dict = {
     "bifunctional glutamine-synthetase adenylyltransferase-adenylyl-removing enzyme": "bifunctional glutamine-synthetase adenylyltransferase",
     "glutamine--fructose-6-phosphate aminotransferase": "glutamine--fructose-6-phosphate aminotransferase",
     "udp-3-o-acyl-n-acetylglucosamine deacetylase": "udp-3-o-acyl-n-acetylglucosamine deacetylase",
-    "multifunctional oxoglutarate decarboxylase": "oxoglutarate decarboxylase",
+    "multifunctional oxoglutarate decarboxylase": "decarboxylase-oxoglutarate-dehydrogenase thiamine pyrophosphate",
     "aldo-keto-reductase 2 family": "aldo-keto-reductase", 
     "coenzyme a biosynthesis bifunctional protein coabc (dna-pantothenate metabolism flavoprotein) (phosphopantothenoylcysteine-synthetase-decarboxy": "coenzyme a biosynthesis protein ppcs-ppcdc"
 }
@@ -109,7 +110,8 @@ def clean_protein_name(name: str) -> str:
         if m:
             end = 50 + (m.start()) 
         else:               
-            end = min(50, len(name))  # hard cut at 50 if no separator found
+            end = min(50, len(name))  # hard cut at 60 if no separator found
         name = name[:end].strip()
 
     return name
+

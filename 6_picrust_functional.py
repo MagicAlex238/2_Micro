@@ -172,11 +172,11 @@ synergy_processor = TermProcessor(cs.corrosion_synergies_dict)
 mechanisms_processor = TermProcessor(mechanisms_dict)
 pathway_processor = TermProcessor(pathway_dict)
 ope_processor = TermProcessor(operational_environmental_factors_dict)
-metal_terms = cs.global_terms.metal_terms_dict
+'''metal_terms = cs.global_terms.metal_terms_dict
 functional_categories = cs.global_terms.functional_categories_dict
-corrosion_synergies = cs.global_terms.corrosion_synergies_dict
+corrosion_synergies = cs.global_terms.corrosion_synergies_dict'''
 
-# In[49]:
+# In[1]:
 
 
 import sys, pkgutil, importlib
@@ -205,19 +205,19 @@ from corrosion_scoring.global_terms import functional_categories_dict, metal_ter
 fc_processor = TermProcessor(cs.functional_categories_dict)
 metal_processor = TermProcessor(cs.metal_terms_dict)  
 synergy_processor = TermProcessor(cs.corrosion_synergies_dict)
-mechanisms_processor = TermProcessor(mechanisms_dict)
-pathway_processor = TermProcessor(pathway_dict)
+mechanisms_processor = TermProcessor(cs.mechanisms_dict)
+pathway_processor = TermProcessor(cs.pathway_dict)
 ope_processor = TermProcessor(operational_environmental_factors_dict)
-metal_terms = cs.global_terms.metal_terms_dict
+'''metal_terms = cs.global_terms.metal_terms_dict
 functional_categories = cs.global_terms.functional_categories_dict
-corrosion_synergies = cs.global_terms.corrosion_synergies_dict
+corrosion_synergies = cs.global_terms.corrosion_synergies_dict'''
 
 print("OK: processors built.")
 # verify
 print(cs.__file__)
-print(metal_terms.keys(), functional_categories.keys(), corrosion_synergies.keys())
+#print(metal_terms.keys(), functional_categories.keys(), corrosion_synergies.keys())
 
-# In[2]:
+# In[ ]:
 
 
 import corrosion_scoring as cs
@@ -225,12 +225,12 @@ assert hasattr(cs, "metal_mapping") and isinstance(cs.metal_mapping, dict)
 from corrosion_scoring.name_utils import enhanced_clean_protein_name as ecpn
 print(ecpn("Alcohol dehydrogenase (NAD) [yeast] EC 1.1.1.1"))  # -> "alcohol-dehydrogenase"
 
-# In[3]:
+# In[ ]:
 
 
 print(clean_protein_name("alcohol-dehydrogenase")), print(clean_protein_name(" probable lactoylglutathione lyase "))
 
-# In[2]:
+# In[3]:
 
 
 # print the processors to see if they are being created properly to debug
@@ -241,11 +241,11 @@ print(f"fc_processor type: {type(fc_processor)}")
 print(f"metal_processor type: {type(metal_processor)}")
 print(f"synergy_processor type: {type(synergy_processor)}")
 # are the dictionaries properly imported
-print(f"functional_categories keys: {functional_categories.keys() if functional_categories else 'None'}")
-print(f"metal_terms keys: {metal_terms.keys() if metal_terms else 'None'}") 
-print(f"corrosion_synergies keys: {corrosion_synergies.keys() if corrosion_synergies else 'None'}")
+print(f"functional_categories keys: {functional_categories_dict.keys() if functional_categories_dict else 'None'}")
+print(f"metal_terms keys: {metal_terms_dict.keys() if metal_terms_dict else 'None'}") 
+print(f"corrosion_synergies keys: {corrosion_synergies_dict.keys() if corrosion_synergies_dict else 'None'}")
 
-# In[3]:
+# In[4]:
 
 
 # Standard library imports
@@ -309,9 +309,6 @@ from Bio.SeqRecord import SeqRecord
 from biom import Table, load_table
 from biom.util import biom_open
 import xml.etree.ElementTree as ET
-# Retrieval and requesting 
-from lxml import etree
-#import requests
 
 # Utility libraries
 import gzip
@@ -336,7 +333,7 @@ os.environ['DISPLAY'] = ':0'
 import sys
 print(sys.executable)
 
-# In[4]:
+# In[5]:
 
 
 # Set up logging
@@ -365,7 +362,7 @@ SUBDIRS = [
     'other_picrust_files'
 ]
 
-# In[5]:
+# In[6]:
 
 
 # Initial environment detection and package installation
@@ -434,7 +431,7 @@ print(f"Using output_large: {output_large}")
 
 # The fasta file come from the Alternative Sequences finding from the Greenes Genes Database, from the taxonomy in this study made in section 7 in the 5_Sequences_qiime notebook: final_sequences_gg.fasta. Abundance dataframe come from the data from notebook 4 merged_to_sequence.xlsx sheet=core_check_usual_taxa which is a unified df between 3 different groups explained previously: cora_taxa (>20% 60 abundance features), usual_taxa (17 high literature ranking bacteria influencing corrosion) and checked_taxa (30 statistically significant to the corrosion risk label) in total 85 features.
 
-# In[6]:
+# In[7]:
 
 
 # Integrated taxa from origin genus as headers with levels 6 for the genera, 7 for the GID, muss be cleaned
@@ -1310,14 +1307,14 @@ success_opt = run_picrust2_pipeline(optimized_file, optimized_output)'''
 
 # Picrust_Result_SEPP and Picrust_Result_EPA contain the descriptions, pathways and abundance of the full pipeline of picrust.
 
-# In[6]:
+# In[ ]:
 
 
 # Original data with "descriptions" human readable and "pathways" programatic names, later on description: pathway and pathway: ipath
 MetaCyc_EPA_path = input_galaxy / "Galaxy19_PICRUSt2_Add_descriptions_on_data_8.tabular"
 Picrust_Result= pd.read_csv(MetaCyc_EPA_path, sep = "\t")
 
-# In[7]:
+# In[ ]:
 
 
 # In both Picrust_Result_EPA and Picrust_Result_SEPP, the original column pathways was exchanged for description to have human readable plots
@@ -1334,7 +1331,7 @@ Picrust_Result_SEPP.index.name = "pathway"
 # ## 7.1. Placement Algorithm EPA vs SEPP
 # nsti_SEPP and nsti_EPA Corresponds to a sample-wide measure of how closely related the microbial taxa in that sample are to known reference genomes with two different placement algoritms.
 
-# In[8]:
+# In[ ]:
 
 
 nsti_path_EPA = Path(input_galaxy  / "Galaxy13_EC_weighted_nsti.tabular")
@@ -1342,7 +1339,7 @@ nsti_EPA= pd.read_csv(nsti_path_EPA, sep = "\t")
 nsti_path_SEPP = Path(input_galaxy  / "Galaxy20_EC_weighted_nsti_SEPP.tabular")
 nsti_SEPP= pd.read_csv(nsti_path_SEPP, sep = "\t")
 
-# In[9]:
+# In[ ]:
 
 
 # Create the scatter plot
@@ -1374,7 +1371,7 @@ plt.show()
 
 # __Category Dict__
 
-# In[10]:
+# In[ ]:
 
 
 # Define category dict outside so that all charts can use same dict
@@ -1390,7 +1387,7 @@ categories_labels = {1: 'Normal Operation',
               2: 'Early Warning',
               3: 'System Failure'}
 
-# In[11]:
+# In[ ]:
 
 
 def explore_pathway_patterns(df):
@@ -1607,7 +1604,7 @@ def identify_key_patterns(df, results):
 
     return patterns
 
-# In[12]:
+# In[ ]:
 
 
 # Calling the function for the pipeline using EPA algoritm
@@ -1615,7 +1612,7 @@ results_SEPP, X_pca_SEPP = explore_pathway_patterns(Picrust_Result_SEPP)
 plot_exploration_results(Picrust_Result_SEPP, results_SEPP, category_dict, category_colors, categories_labels)
 patterns_SEPP = identify_key_patterns(Picrust_Result_SEPP, results_SEPP)
 
-# In[13]:
+# In[ ]:
 
 
 # Calling the function for the pipeline using EPA algoritm
@@ -1629,7 +1626,7 @@ patterns_EPA = identify_key_patterns(Picrust_Result_EPA, results_EPA)
 
 # ##  to ECrecords
 
-# In[14]:
+# In[ ]:
 
 
 pathway_Result = Picrust_Result.copy()
@@ -1646,7 +1643,7 @@ print(f"Memory usage pathway_long: {total_memory / 1024**2:.2f} MB")
 
 # Memory usage pathway_long: 5.77 MB for whole long pathway df. Unique pathways and ipath 366, abundances 21055, sites 70 and combinations, shape is (25620, 4).
 
-# In[15]:
+# In[ ]:
 
 
 # Get the top 100 most abundant pathways, this list will serve to use on the scoring system
@@ -1656,19 +1653,19 @@ top_pathway = abundances_top.index
 # filter the original top pathway to include only the top 100
 top_pathway_df= pathway_long[pathway_long['pathway'].isin(top_pathway)]
 
-# In[16]:
+# In[ ]:
 
 
 total_memory = top_pathway_df.memory_usage(deep=True).sum()
 print(f"Memory usage top_pathway_df: {total_memory / 1024**2:.2f} MB")
 
 
-# In[17]:
+# In[ ]:
 
 
 top_pathway_df = top_pathway_df.drop_duplicates(subset=["pathway", "ipath"])
 
-# In[18]:
+# In[ ]:
 
 
 # pathway list will be saved to check for terms on the validation notebook
@@ -1676,7 +1673,7 @@ top_pathway_df_path = output_base / "top_pathway_df.parquet"
 top_pathway_df.to_parquet(top_pathway_df_path)
 
 
-# In[19]:
+# In[ ]:
 
 
 top_pathway_df["ipath"].unique()
@@ -1684,7 +1681,7 @@ top_pathway_df["ipath"].unique()
 # ## 7.3. Distribution of pathway abundances and Heatmap Hierarchies
 # In the following script we map the column pathway on the dataframe Picrust_Result_raw to the actual names provided by the Galaxy website that corresponds to the MetaCyc pathways. We will end up with the original Picrust_Results df with disernible names.After the 20 most abundant pathways will be plotted and the heatmap with the hierarchichal pathways drawn.
 
-# In[20]:
+# In[ ]:
 
 
 # Define category dict outside so that all charts can use same dict
@@ -1700,7 +1697,7 @@ categories_labels = {1: 'Normal Operation',
               2: 'Early Warning',
               3: 'System Failure'}
 
-# In[21]:
+# In[ ]:
 
 
 def analyze_pathway_patterns(df, mean_abundances, category_dict, top_n=20):
@@ -1789,27 +1786,27 @@ corr_epa, top_data = analyze_pathway_patterns(Picrust_Result_EPA, mean_abundance
 
 # ## 7.4. Distribution of Reactions abundances and Heatmap Hierarchies
 
-# In[22]:
+# In[ ]:
 
 
 #parsing pathways (PWY) to the reactions (RXN), parce has a single column with 575 rows, that will mean that the patways can be more than once with different reactions
 parce_path = input_galaxy / "Galaxy17_parsed_mapfile.tabular"
 parce= pd.read_csv(parce_path, sep = "\t")
 
-# In[23]:
+# In[ ]:
 
 
 pd.set_option("display.max_colwidth", True)
 #pd.reset_option('display.max_colwidth')
 
-# In[24]:
+# In[ ]:
 
 
 print(parce)
 
 # However attemps to parse the parce df were no suscessful, therefore it was used elsewhere.
 
-# In[25]:
+# In[ ]:
 
 
 # reaction is a regroup file comprises the list of reactions in the index and the sites with abundances, similar to the pathways with abundances master file
@@ -1830,14 +1827,14 @@ def sort_sites_numerically(df):
     return df[sorted_cols]
 react_ori= sort_sites_numerically(react_ori)
 
-# In[26]:
+# In[ ]:
 
 
 react_ori.head()
 
 # The parce dataframe was used for parsing the names of the function on the df reaction but the results were no human readable, so an api call was done to the rea, kegg dbs to get the names, however none of them gave results, a manual retrieval of the top 20 was done through https://gem-aureme.genouest.org/.
 
-# In[27]:
+# In[ ]:
 
 
 rxn_dict = {'DNA-DIRECTED-DNA-POLYMERASE-RXN': 'DNA-directed DNA Polymerase',
@@ -1865,7 +1862,7 @@ clean_rxn_dict = {k.strip(): v for k, v in rxn_dict.items()}
 
 react= react_ori.rename(index =clean_rxn_dict)
 
-# In[28]:
+# In[ ]:
 
 
 # Convert numeric columns to the correct data type
@@ -1875,7 +1872,7 @@ for col in react.columns[:]:  # index only with str
     except ValueError:
         print(f"Could not convert column '{col}' to numeric. Check its contents.")
 
-# In[29]:
+# In[ ]:
 
 
 mean_abundances = react.mean(axis=1, numeric_only=True)
@@ -1884,12 +1881,12 @@ mean_abundances = react.mean(axis=1, numeric_only=True)
 top_functions = mean_abundances.nlargest(20)
 top_functions.index = top_functions.index.astype(str)
 
-# In[30]:
+# In[ ]:
 
 
 top_functions
 
-# In[31]:
+# In[ ]:
 
 
 def analyze_reaction_patterns(top_functions, mean_abundances, category_dict):
@@ -1956,14 +1953,14 @@ def analyze_reaction_patterns(top_functions, mean_abundances, category_dict):
 
     return corr, top_data
 
-# In[32]:
+# In[ ]:
 
 
 corr_react, top_data = analyze_reaction_patterns(top_functions, mean_abundances, category_dict)
 
 # Reactions chart confirm our label system, the clear progression of abundance across our system states (normal operation → early warning → system failure) is particularly compelling evidence that these reactions are directly involved in the corrosion process rather than just coincidental. Also the top reactions corresponds to core taxa that however are seem to be implicated on the corrosion failure. Additionally the fact that most of the reactions deal with oxo groups on an aromatic ring, further reinfor the study intuition that oxalic and acetic acid can be a good dummy compounds to represent organic matter on the TOC. These small organic acids are likely end products or intermediates of the metabolic pathways involving the 3-oxoacyl compounds so abundant in the data.
 
-# In[33]:
+# In[ ]:
 
 
 # Get the top 100 most abundant functions, I could no use the whole of the data because it uses up all my hard drive
@@ -1978,7 +1975,7 @@ top_reactions_df = top_react.rename(columns={"function":"reaction"})
 total_memory = top_reactions_df.memory_usage(deep=True).sum()
 print(f"Memory usage top_reactions_df: {total_memory / 1024**2:.2f} MB")
 
-# In[34]:
+# In[ ]:
 
 
 # Reaction list will be saved to check for terms on the validation notebook
@@ -1987,7 +1984,7 @@ top_reactions_df.to_parquet(top_reactions_df_path)
 
 # # 7.5 Relating pathways to reactions through parce dataframe
 
-# In[35]:
+# In[ ]:
 
 
 def parse_pathway_reactions(row):
@@ -2010,7 +2007,7 @@ for _, row in parce.iterrows():
 # convert sets to lists
 reaction_to_pathways = {k: list(v) for k,v in reaction_to_pathways.items()}
 
-# In[36]:
+# In[ ]:
 
 
 # getting reaction on a correct formate
@@ -2026,7 +2023,7 @@ def get_pathways(rxn_id):
 rxn_long['path_parce'] = rxn_long['rxn'].apply(get_pathways)
 
 
-# In[37]:
+# In[ ]:
 
 
 # Now it would be possible to join pathway_long with rxn_long on path_parce and ipath
@@ -2044,7 +2041,7 @@ merged_df = rxn_long_exploded.merge(
 )
 merged_df.shape
 
-# In[38]:
+# In[ ]:
 
 
 merged_df["ipath"] = merged_df["ipath"].astype("category")
@@ -2053,12 +2050,12 @@ merged_df["path_parce"] = merged_df["path_parce"].astype("category")
 merged_df["Sites"] = merged_df["Sites"].astype("category")
 merged_df["rxn"] = merged_df["rxn"].astype("category")
 
-# In[39]:
+# In[ ]:
 
 
 merged_df.dtypes
 
-# In[40]:
+# In[ ]:
 
 
 del reaction_to_pathways
@@ -2078,7 +2075,7 @@ gc.collect()
 # |366,72|366,72|366,72|574,1|574,1|574,1|1491288, 9|1491288, 9|1491288, 9|1491288, 9| (2955, 71)|(2955, 71)|
 # 
 
-# In[41]:
+# In[ ]:
 
 
 # ECcontri and KOcontri files contain sample, function (EC/KO number), taxon (genus/OTU ID), and abundance metrics.
@@ -2089,14 +2086,14 @@ ECcontri= pd.read_csv(ECcontri_path, sep = "\t")
 KOcontri_path = input_galaxy / "Galaxy30-KO_pred_metagenome_contrib.tabular"
 KOcontri= pd.read_csv(KOcontri_path, sep = "\t")
 
-# In[42]:
+# In[ ]:
 
 
 ECcontri = ECcontri.rename(columns= {"norm_taxon_function_contrib": "norm_taxon_EC_contrib", "function":"EC"})
 ECcontri["taxon_abun"] = ECcontri["taxon_abun"].astype('int')
 ec_functions_per_taxon = ECcontri.groupby(['sample', 'taxon', 'taxon_abun']).size()
 
-# In[43]:
+# In[ ]:
 
 
 KOcontri = KOcontri.rename(columns= {"norm_taxon_function_contrib": "norm_taxon_KO_contrib", "function":"KO"})
@@ -2118,13 +2115,13 @@ KOcontri = KOcontri.drop(columns= ["taxon_rel_abun","genome_function_count","tax
 # 2	site_1	EC:1.1.1.1	141042	62473	8.537191	1	62473.0	8.537191	0.044695  
 # 3	site_1	EC:1.1.1.1	156371	7109	0.971474	1	7109.0	0.971474	0.005086  
 
-# In[44]:
+# In[ ]:
 
 
 total_memory = ECcontri.memory_usage(deep=True).sum()
 print(f"Memory usage ECcontri: {total_memory / 1024**2:.2f} MB")
 
-# In[45]:
+# In[ ]:
 
 
 # See how many functions each taxon has
@@ -2137,7 +2134,7 @@ print("Explosion factor:", ec_functions_per_taxon.max() * ko_functions_per_taxon
 
 # As the explosion is very large, 17800854 it is decided a different strategy to keep the ko and being able to leverage its information on the making of the ec_records on section 9.
 
-# In[46]:
+# In[ ]:
 
 
 # Extract the number from 'site_X'
@@ -2153,7 +2150,7 @@ KOcontri = KOcontri.drop(columns=['sample_num'])
 
 # ## 8.1. Mapping Genera to Otu
 
-# In[47]:
+# In[ ]:
 
 
 output_base = large_dir / "2_Micro/data_picrust/output_base" # this is an input directory
@@ -2164,12 +2161,12 @@ otu_mapping = pd.read_csv(otu_path, sep="\t")
 
 # KO mapping to otu
 
-# In[48]:
+# In[ ]:
 
 
 KOcontri.head(2)
 
-# In[49]:
+# In[ ]:
 
 
  # Add genus information from otu_mapping
@@ -2190,13 +2187,13 @@ cols_order = ['Sites', 'Genus', 'OTU', 'KO', # Identification columns
 # Reorder columns, takes like 4 minutes on this slow laptop
 KOcontri_otu = KOcontri_otu[cols_order]
 
-# In[50]:
+# In[ ]:
 
 
 # This is a dictionary where the key is a tuple/string of (sample, taxon, taxon_abun) and the value is a list of KOs observed
 ko_per_gensite = KOcontri_otu.groupby(['Sites', 'Genus', 'taxon_abun'])['KO'].apply(list).to_dict()
 
-# In[51]:
+# In[ ]:
 
 
 ko_per_gensite_path = output_base / "ko_per_gensite_tabular.csv"
@@ -2214,7 +2211,7 @@ with open(ko_per_gensite_path, 'w', newline='') as csvfile:
 
 print(f"ko_per_gensite saved to {ko_per_gensite_path}")
 
-# In[52]:
+# In[ ]:
 
 
 del KOcontri
@@ -2254,7 +2251,7 @@ gc.collect()
 # The strategy is to build a high-quality mapping table that links EC to RXN, and then use that table to merge the enriched reaction dataframe with the ECcontri.
 # 
 
-# In[53]:
+# In[ ]:
 
 
 # load the new EC to reaction mapping file
@@ -2267,7 +2264,7 @@ pwy_to_rxn = pd.read_csv(pwy_to_rxn_path, sep="\t", names=["pwy", "rxn"])
 # 
 # Here is a challenge and it is to standarise identifiers for joining data from different sources. Various formates RXN-8262, 1.1.1.283-RXN, GLYOXI-RXN, EC:3.4.25.1, indicate that possible problem. As a solution a function that extracts all possible identifiers from the text and then uses a mapping or cross-reference database to standardize them is proposed here.
 
-# In[54]:
+# In[ ]:
 
 
 def get_raw_rxn_list(rxn_str):
@@ -2295,13 +2292,13 @@ pwy_to_rxn_exploded = pwy_to_rxn_exploded.drop(columns=['rxn_ori'])
 # Remove duplicates
 pwy_to_rxn_exploded = pwy_to_rxn_exploded.drop_duplicates()
 
-# In[55]:
+# In[ ]:
 
 
 del pwy_to_rxn
 gc.collect()
 
-# In[56]:
+# In[ ]:
 
 
 # load the new EC to reaction mapping file
@@ -2315,14 +2312,14 @@ ec_rxn_pwy_db['pwy'] = ec_rxn_pwy_db['pwy'].fillna('no_pwy')
 # Remove duplicates
 ec_rxn_pwy_db = ec_rxn_pwy_db.drop_duplicates()
 
-# In[57]:
+# In[ ]:
 
 
 del ec_to_rxn
 del pwy_to_rxn_exploded
 gc.collect()
 
-# In[58]:
+# In[ ]:
 
 
 '''# the reaction df was already reshaped and taken only the top 100 ocurrencies for disk capacity
@@ -2363,7 +2360,7 @@ print(f"Memory usage pathway_by_site: {total_memory / 1024**2:.2f} MB"
 
 #  The ECcontri is prepared 
 
-# In[59]:
+# In[ ]:
 
 
 # making sure the Sites are in the correct order
@@ -2376,7 +2373,7 @@ ECcontri = ECcontri.sort_values(by='sample_num')
 # Drop the temporary column
 ECcontri = ECcontri.drop(columns=['sample_num'])
 
-# In[60]:
+# In[ ]:
 
 
 # Removing the EC simbol in the EC numbers to merge later
@@ -2390,7 +2387,7 @@ ECcontri["ec"] = ECcontri["ec"].astype('category')
 #droping redundant column
 ECcontri = ECcontri.drop(columns=['EC'])
 
-# In[61]:
+# In[ ]:
 
 
 total_memory = ECcontri.memory_usage(deep=True).sum()
@@ -2398,19 +2395,19 @@ print(f"Memory usage ECcontri: {total_memory / 1024**2:.2f} MB")
 
 # The data from pathways and reactions is brought to be joined to ECContri
 
-# In[62]:
+# In[ ]:
 
 
 #rxn_long_exploded =rxn_long_exploded.
 
-# In[63]:
+# In[ ]:
 
 
 rxn_long_exploded["path_parce"] = rxn_long_exploded["path_parce"].astype("category")
 rxn_long_exploded["Sites"] = rxn_long_exploded["Sites"].astype("category")
 rxn_long_exploded["rxn"] = rxn_long_exploded["rxn"].astype("category")
 
-# In[64]:
+# In[ ]:
 
 
 # the path_parce column is much more rich than the ipath/pathways being 545 instead of 366, therefore that granularity is kept
@@ -2420,20 +2417,20 @@ rxn_long_enriched = rxn_long_exploded.merge(
     how="left"
 )
 
-# In[65]:
+# In[ ]:
 
 
 del merged_df
 gc.collect()
 
-# In[66]:
+# In[ ]:
 
 
 # Only keep ECs present in ECcontri
 ec_set = set(ECcontri['ec'].unique())
 ec_rxn_pwy_filtered = ec_rxn_pwy_db[ec_rxn_pwy_db['ec'].isin(ec_set)]
 
-# In[67]:
+# In[ ]:
 
 
 ec_rxn_pwy_filtered = ec_rxn_pwy_filtered.copy()
@@ -2441,14 +2438,14 @@ ec_rxn_pwy_filtered["ec"] = ec_rxn_pwy_filtered["ec"].astype("category")
 ec_rxn_pwy_filtered["pwy"] = ec_rxn_pwy_filtered["pwy"].astype("category")
 ec_rxn_pwy_filtered["rxn"] = ec_rxn_pwy_filtered["rxn"].astype("category")
 
-# In[68]:
+# In[ ]:
 
 
 # Merge ec_to_rxn with rxn_long_enriched on 'rxn'
 rxn_enriched_db = rxn_long_enriched.merge(ec_rxn_pwy_filtered, on='rxn', how='right')
 rxn_enriched_db = rxn_enriched_db.drop_duplicates() 
 
-# In[69]:
+# In[ ]:
 
 
 del rxn_long_enriched
@@ -2461,7 +2458,7 @@ gc.collect()
 # #### chose programatic pathway 
 # ipath (from PICRUSt2) is the most specific/accurate, but has many missing values (NaN), path_parce (from parsed mapping <parce>) is more granular, filling many gaps left by ipath and matches it when both are present.pwy (from the external database join) is much less granular—often the same value for same ec-site, and does not add meaningful specificity. Therefore ipath will fill it when no present it would be path_parce and pwy as a last resort.
 
-# In[70]:
+# In[ ]:
 
 
 def choose_programmatic_pathway(row):
@@ -2477,7 +2474,7 @@ def choose_programmatic_pathway(row):
 rxn_enriched_db['programmatic_pathway'] = rxn_enriched_db.apply(choose_programmatic_pathway, axis=1)
 rxn_enriched_db = rxn_enriched_db.drop_duplicates()
 
-# In[71]:
+# In[ ]:
 
 
 #rxn_enriched_db= rxn_enriched_db.copy()
@@ -2486,23 +2483,23 @@ rxn_enriched_db["path_parce"] = rxn_enriched_db["path_parce"].astype("category")
 rxn_enriched_db["programmatic_pathway"] = rxn_enriched_db["programmatic_pathway"].astype("category")
 rxn_enriched_db["rxn"] = rxn_enriched_db["rxn"].astype("category")
 
-# In[72]:
+# In[ ]:
 
 
 # Merge rxn_EC_rxn with ECcontri on 'ec' and 'Sites'
 ECcontri_rxn_pwy = ECcontri.merge(rxn_enriched_db , on=['ec', 'Sites'], how='left')
 
-# In[73]:
+# In[ ]:
 
 
 ECcontri_rxn_pwy = ECcontri_rxn_pwy.drop_duplicates()
 
-# In[74]:
+# In[ ]:
 
 
 ECcontri_rxn_pwy["ec"] = ECcontri_rxn_pwy["ec"].astype("category")
 
-# In[75]:
+# In[ ]:
 
 
 # losing the programatic pathway less populated 3 min
@@ -2510,7 +2507,7 @@ ECcontri_rxn_pwy = ECcontri_rxn_pwy.drop(columns=['ipath', 'rxn_abundance','path
 total_memory = ECcontri_rxn_pwy.memory_usage(deep=True).sum()
 print(f"Memory usage ECcontri_rxn_pwy: {total_memory / 1024**2:.2f} MB")
 
-# In[76]:
+# In[ ]:
 
 
 # remove nans in each column by renaming them with no_path, 
@@ -2518,12 +2515,12 @@ ECcontri_rxn_pwy['pathway'] = ECcontri_rxn_pwy['pathway'].astype('str')
 ECcontri_rxn_pwy['pathway'] = ECcontri_rxn_pwy['pathway'].replace('nan', np.nan)
 ECcontri_rxn_pwy['pathway'] = ECcontri_rxn_pwy['pathway'].astype('category')
 
-# In[77]:
+# In[ ]:
 
 
 ECcontri_rxn_pwy.nunique()
 
-# In[78]:
+# In[ ]:
 
 
 del rxn_enriched_db
@@ -2550,7 +2547,7 @@ gc.collect()
 # As seem the memory prohibites taking all the columns and some have to be dropped: 
 # rxn_abundance,path_parce and ipath
 
-# In[79]:
+# In[ ]:
 
 
 # in order to no change the names upstream pwy is renamed to ipath
@@ -2558,7 +2555,7 @@ ECcontri_rxn_pwy = ECcontri_rxn_pwy.rename(columns={'programmatic_pathway':'ipat
 
 # At this point care must be taken due to the size of the dfs and it is decided for size reason no to take KO and for the same reason no to take the reaction abundance and in anycase this data has to be aggregated by sample and does not corresponds to any of the abundances on the ECcontri, so there is no gain on keeping it anyway. Pathway and reaction columns were added to ECcontri creating  ECcontri_pathw_react, however no matter how was merged or mapped, the memory exploded using more than 35 GB which is no consistent with the ECcontri memory use of 157 GB. A vectorized mapping strategy was used.
 
-# In[80]:
+# In[ ]:
 
 
 '''# Create dictionary mappings and preaggregating the data to avoid explosion: For pathways and reactions
@@ -2571,44 +2568,44 @@ ECcontri['pathway']= ECcontri['Sites'].map(pathway_map)
 ECcontri['ipath']= ECcontri['Sites'].map(ipath_map)
 ECcontri['reaction'] = ECcontri['Sites'].map(reaction_map)'''
 
-# In[81]:
+# In[ ]:
 
 
 pd.set_option("display.max_colwidth", True)
 pd.reset_option('display.max_colwidth')
 
-# In[82]:
+# In[ ]:
 
 
  # Add genus information from otu_mapping
 ECcontri_rxn_pwy['taxon'] = ECcontri_rxn_pwy['taxon'].astype('category')
 otu_mapping['taxon'] = otu_mapping['taxon'].astype('category')
 
-# In[83]:
+# In[ ]:
 
 
 # Merge ECcontri_rxn_pwy with otu_mapping on 'taxon'
 ECcontri_otu= pd.merge(ECcontri_rxn_pwy, otu_mapping, on='taxon', how='left', validate='m:1')
 
-# In[84]:
+# In[ ]:
 
 
 ECcontri_otu.dtypes
 
-# In[85]:
+# In[ ]:
 
 
 del ECcontri_rxn_pwy
 del otu_mapping
 gc.collect()
 
-# In[86]:
+# In[ ]:
 
 
 ECcontri_otu['pathway'] = ECcontri_otu['pathway'].astype('category')
 ECcontri_otu['Genus'] = ECcontri_otu['Genus'].astype('category')
 
-# In[87]:
+# In[ ]:
 
 
 unmapped = ECcontri_otu['Genus'].isna().sum() #{"norm_taxon_function_contrib": "norm_taxon_EC_contrib", "function":"EC"})
@@ -2618,7 +2615,7 @@ if unmapped > 0:
 ECcontri_otu  = ECcontri_otu.rename(columns={"taxon": "OTU", "taxon_function_abun": "abund_contri", "taxon_rel_abun": "rel_abund_raw", "path_parce":"ipath",
                                        "taxon_rel_function_abun": "rel_abund_contri", "norm_taxon_EC_contrib" :"norm_abund_contri", "genome_function_count":"genome_EC_count"})
 
-# In[88]:
+# In[ ]:
 
 
 # Organize columns in logical groups
@@ -2632,18 +2629,18 @@ ECcontri_otu = ECcontri_otu[cols_order]
 ECcontri_otu = ECcontri_otu.drop_duplicates()
 ECcontri_otu = ECcontri_otu.drop(columns= ["OTU"], axis = 1)
 
-# In[89]:
+# In[ ]:
 
 
 total_memory = ECcontri_otu.memory_usage(deep=True).sum()
 print(f"Memory usage ECcontri_otu: {total_memory / 1024**2:.2f} MB")
 
-# In[90]:
+# In[ ]:
 
 
 ECcontri_otu.shape
 
-# In[91]:
+# In[ ]:
 
 
 #ECcontri_otu['ipath'].apply(tuple).nunique
@@ -2654,37 +2651,37 @@ for col in ECcontri_otu.columns:
 
 # For memory sake I will keep the reactions, pathways and ipath on a smaller dataframe to use later.
 
-# In[92]:
+# In[ ]:
 
 
 # Extract the number from 'site_X' 7m
 ECcontri_otu['sample_num'] = ECcontri_otu['Sites'].str.extract('site_(\d+)').astype(int)
 
-# In[93]:
+# In[ ]:
 
 
 # Sort by the numerical part
 ECcontri_otu = ECcontri_otu.sort_values(by='sample_num')
 
-# In[94]:
+# In[ ]:
 
 
 # Drop the temporary column
 ECcontri_otu = ECcontri_otu.drop(columns=['sample_num'])
 
-# In[95]:
+# In[ ]:
 
 
 total_memory =ECcontri_otu .memory_usage(deep=True).sum()
 print(f"Memory usage ECcontri_otu : {total_memory / 1024**2:.2f} MB")
 
-# In[96]:
+# In[ ]:
 
 
 ECcontri_react = ECcontri_otu[["ec", "Sites", "Genus", "rxn"]]
 ECcontri_react = ECcontri_react.drop_duplicates()
 
-# In[97]:
+# In[ ]:
 
 
 '''try:
@@ -2714,7 +2711,7 @@ except Exception as e:
     print(f"Error: {e}") # 30 min/ 100 top but it kills the kernel when reitegrating them, so I have to reduce it to top 50 and run it again here, took 17 min but the size is the same, so I decided to take the 100 reactions, kernel killed on the reading changing to parquet
     # Then the reaction was separated now from pathways'''
 
-# In[98]:
+# In[ ]:
 
 
 '''# Reading loading to check if went well
@@ -2729,13 +2726,13 @@ ECcontri_react= ECcontri_react.sort_values(by='sample_num')
 ECcontri_react= ECcontri_react.drop(columns=['sample_num'])
 ECcontri_react'''
 
-# In[99]:
+# In[ ]:
 
 
 del ECcontri_react
 gc.collect()
 
-# In[100]:
+# In[ ]:
 
 
 ECcontri_pathway = ECcontri_otu[["ec", "Sites", "Genus", "pathway", "ipath"]]
@@ -2746,14 +2743,14 @@ print(f"Memory usage ECcontri_pathway  : {total_memory / 1024**2:.2f} MB")
 
 # The nesting on the df is killing the kernel all the time, so I will remove them before saving, it increased to 8GB by removing the nested structure. Previously it was tried to save with csv, parquet, json, with chunks and it finally worked with chunks on json, however the problem was found that it used all the memory of the hard drive.  
 
-# In[101]:
+# In[ ]:
 
 
 # Limit process to 12GB
 !limit -v 12582912 
 
 
-# In[102]:
+# In[ ]:
 
 
 '''try:
@@ -2783,13 +2780,13 @@ print(f"Memory usage ECcontri_pathway  : {total_memory / 1024**2:.2f} MB")
 except Exception as e:
     print(f"Error: {e}") '''
 
-# In[103]:
+# In[ ]:
 
 
 del ECcontri_pathway
 gc.collect()
 
-# In[104]:
+# In[ ]:
 
 
 '''# Reading loading
@@ -2804,30 +2801,30 @@ ECcontri_pathway = ECcontri_pathway.sort_values(by='sample_num')
 ECcontri_pathway = ECcontri_pathway.drop(columns=['sample_num'])
 ECcontri_pathway '''
 
-# In[105]:
+# In[ ]:
 
 
 #del chunk_files
 #del ECcontri_pathway
 gc.collect()
 
-# In[106]:
+# In[ ]:
 
 
 ECcontri_otu = ECcontri_otu.drop(columns= ["ipath", "pathway", "rxn"], axis = 1)
 
-# In[107]:
+# In[ ]:
 
 
 ECcontri_otu = ECcontri_otu.drop_duplicates()
 
-# In[108]:
+# In[ ]:
 
 
 total_memory =ECcontri_otu.memory_usage(deep=True).sum()
 print(f"Memory usage ECcontri_otu : {total_memory / 1024**2:.2f} MB")
 
-# In[109]:
+# In[ ]:
 
 
 ECcontri_otu.shape
@@ -2837,7 +2834,7 @@ ECcontri_otu.shape
 # rel_abund_contri is the relative contribution (percentage)   
 # norm_abund_contri is the normalized contribution   
 
-# In[110]:
+# In[ ]:
 
 
 fig, axes = plt.subplots(1, 3, figsize=(18, 6))
@@ -2865,7 +2862,7 @@ plt.show()
 
 # From the three abundances it is seen that the absolute abundance is less granular as the relative and normalised abundances. The absolute abundance tends to lead to higher relative abundance with a strong positive correlation. Seems that it aggreegates some data and there are fewer values. The Normallise Abundance removes some of the direct correlation between absolute and relative abundance and highlights differences between individual bacteria or proteins. This alignes with ther biology that same EC is present in many bacteria with varying expression levels of proteins. Since normalisation removes sample size effects, it reveals true variations across bacteria, since protein expression is highly variable within ECs, the normalise abundance appears to be the most suitable for comparisons moving forward.
 
-# In[111]:
+# In[ ]:
 
 
 # Count unique proteins per EC
@@ -2882,7 +2879,7 @@ print(f"Unique proteins per EC", EC_counts.describe())  # Check expected range
 # 
 # ## 8.4. Statistical Analysis of the Genome Function Count
 
-# In[112]:
+# In[ ]:
 
 
 # Analyze genome_function_count
@@ -2973,7 +2970,7 @@ print("   Number of copies of each EC (enzyme) in organism's genome")
 # 
 # ## 8.5. Retrieval of protein names from Uniprot though Api call
 
-# In[113]:
+# In[ ]:
 
 
 class ColabEnzymeRetriever:
@@ -3185,7 +3182,7 @@ def continue_enzyme_retrieval(unique_pairs: pd.DataFrame, existing_results_file:
 
     return results_df
 
-# In[114]:
+# In[ ]:
 
 
 '''uniprot_results_path = Path(base_dir '/uniprot_results.tsv')
@@ -3194,7 +3191,7 @@ results = continue_enzyme_retrieval(ECcontri_otu, uniprot_results_path, start_ec
 
 # ## 8.6. Cleaning and Preparing Retrieved Data to integrate to ECContri
 
-# In[115]:
+# In[ ]:
 
 
 df_1_path = Path(output_dir / "uniprot_1_4_sorted.tsv") # First file retrieved on first run 4 am
@@ -3208,7 +3205,7 @@ df_3 = pd.read_csv(df_3_path, sep='\t')
 df_4 = pd.read_csv(df_4_path, sep='\t')
 print(len(df_1), len(df_2), len(df_3), len(df_4))
 
-# In[116]:
+# In[ ]:
 
 
 # extract EC and Genus from the Retrieved files, so I need to join them first
@@ -3218,7 +3215,7 @@ unique_pairs = ECcontri_otu[['ec', 'Genus']].drop_duplicates()
 
 # ## 8.7 Extracting the Genus from the retrieved_pairs
 
-# In[117]:
+# In[ ]:
 
 
 # Function to extract the Genus from the organism str
@@ -3234,12 +3231,12 @@ retrieved_unique = retrieved.sort_values('score', ascending=False)\
                             .drop_duplicates(subset=['ec_number', 'Genus'])
 retrieved_unique['ec_number'] = retrieved_unique['ec_number'].astype(str).str.replace(r'^EC:', '', regex=True)
 
-# In[118]:
+# In[ ]:
 
 
 retrieved_unique.dtypes
 
-# In[119]:
+# In[ ]:
 
 
 retrieved_unique["uniprot_id"] = retrieved_unique["uniprot_id"].astype("category")
@@ -3247,12 +3244,12 @@ retrieved_unique["ec_number"] = retrieved_unique["ec_number"].astype("category")
 retrieved_unique["protein_name"] = retrieved_unique["protein_name"].astype("category")
 retrieved_unique["Genus"] = retrieved_unique["Genus"].astype("category")
 
-# In[120]:
+# In[ ]:
 
 
 print(f"unique_pairs Galaxy data:{len(unique_pairs)}, Uniprot retrieved data:{len(retrieved_unique)}")
 
-# In[121]:
+# In[ ]:
 
 
 # Merging using a left join on the two keys (EC_number and Genus). Plus an indicator of missing data.
@@ -3266,7 +3263,7 @@ ECcontri_Uniprot  = pd.merge(
 )
 print(ECcontri_Uniprot.shape) # Very slow 1 minute, can kill the kernel
 
-# In[122]:
+# In[ ]:
 
 
 ECcontri_Uniprot = ECcontri_Uniprot.drop(columns = ["ec_number","score"])
@@ -3275,7 +3272,7 @@ ECcontri_Uniprot['idx'] = range(len(ECcontri_Uniprot))
 ECcontri_Uniprot= ECcontri_Uniprot.sort_values("idx", ascending=True).reset_index(drop=True)
 ECcontri_Uniprot = ECcontri_Uniprot.set_index("idx").reset_index()
 
-# In[123]:
+# In[ ]:
 
 
 ECcontri_Uniprot["idx"] = ECcontri_Uniprot["idx"].astype("int")
@@ -3285,7 +3282,7 @@ ECcontri_Uniprot["ec"] = ECcontri_Uniprot["ec"].astype("category")
 # ## 8.8. Missing Values
 # ECcontri_uniprot_info is the final df mixed and is keep for reference only purposes. With the missing unique df I will retrive again the rest of the missing values
 
-# In[124]:
+# In[ ]:
 
 
 #Rows with no match from retrieved_unique will have '_merge' value of 'left_only'
@@ -3305,7 +3302,7 @@ ECcontri_missing = ECcontri_missing[["ec", "Genus"]]
 file_path = os.path.join(output_base, "ECcontri_missing.tsv")
 ECcontri_missing.to_csv(file_path, sep='\t', index=False)
 
-# In[125]:
+# In[ ]:
 
 
 del df_1
@@ -3438,7 +3435,7 @@ def normalize_dataset(df, name_col='protein_name', sample_size=20):
 
     return normalized_df'''
 
-# In[127]:
+# In[ ]:
 
 
 '''def enhanced_clean_protein_name(name):
@@ -3596,7 +3593,7 @@ def normalize_dataset(df, name_col='protein_name', sample_size=20):
 
     return normalized_df'''
 
-# In[128]:
+# In[ ]:
 
 
 # Standardize EC format: Extract numbers without the 'EC:' prefix
@@ -3605,7 +3602,7 @@ ECcontri_Uniprot = ECcontri_Uniprot.drop(columns = ["ec"])
 ECcontri_Uniprot = ECcontri_Uniprot.rename(columns={"EC_clean": "ec"})
 gc.collect()
 
-# In[129]:
+# In[ ]:
 
 
 ECcontri_Uniprot['protein_name'] = ECcontri_Uniprot['protein_name'].apply(cs.enhanced_clean_protein_name)
@@ -3614,7 +3611,7 @@ ECcontri_Uniprot['protein_name'] = ECcontri_Uniprot['protein_name'].apply(cs.cle
 ECcontri_Uniprot= ECcontri_Uniprot.sort_values("idx", ascending=True).reset_index(drop=True)
 ECcontri_Uniprot
 
-# In[130]:
+# In[ ]:
 
 
 total_memory =ECcontri_Uniprot.memory_usage(deep=True).sum()
@@ -3625,7 +3622,7 @@ print(f"Memory usage ECcontri_Uniprot: {total_memory / 1024**2:.2f} MB") #611
 # ## 8.10 Calculate & Visualize Total Protein Count per EC
 # The aim here is to calculate if the protein are in direct relationship with EC numbers, so to be able to understand if those are totally equivalent and how the abundance would relate. 
 
-# In[131]:
+# In[ ]:
 
 
 ec_protein_counts = ECcontri_Uniprot.groupby('ec')['protein_name'].nunique().reset_index()
@@ -3646,7 +3643,7 @@ ec_protein_counts
 # 1792	6.6.1.2	5
 # 1793 rows × 2 columns
 
-# In[132]:
+# In[ ]:
 
 
 # Replace inf and -inf with NaN future warning
@@ -3671,7 +3668,7 @@ plt.show()
 # ## 8.11 Computing the Knee point for Genus of Protein Significance
 # Here it is computed the knee point where the activity of protein drops for each genus
 
-# In[133]:
+# In[ ]:
 
 
 def knee_point_analysis(eccontri_df, abundance_col):
@@ -3750,7 +3747,7 @@ def knee_point_analysis(eccontri_df, abundance_col):
 # The knee plot ![image.png](attachment:image.png)
 # 
 
-# In[134]:
+# In[ ]:
 
 
 '''knee_path = output_base / "genus_to_threshold.csv"
@@ -3760,7 +3757,7 @@ with open(knee_path, 'w', newline='') as csvfile:
     writer.writerow(genus_to_threshold)'''
 
 
-# In[135]:
+# In[ ]:
 
 
 # Get genus labels from columns (level 6)
@@ -3776,7 +3773,7 @@ gen_site_to_cat = {(genus, site): category_series.loc[site]
     for genus, site in product(genus_labels, sites)
 }
 
-# In[136]:
+# In[ ]:
 
 
 ECcontri_Uniprot["Category"] = ECcontri_Uniprot.apply(
@@ -3794,7 +3791,7 @@ ECcontri_Uniprot["protein_name"] = ECcontri_Uniprot["protein_name"].astype("cate
 # ### Identifying the Uniquenes datapoints of the Data
 # All 1.5 millon rows are unique?, would a EC-Genus-Site be unique or is it protein_name-Genus-Site combination?
 
-# In[137]:
+# In[ ]:
 
 
 def identify_uniqueness_factors(eccontri_df):
@@ -3850,7 +3847,7 @@ uniquenes= identify_uniqueness_factors(ECcontri_Uniprot)
 
 # The same EC number (enzyme function) can be performed by different proteins and the same protein can have multiple EC numbers (multiple enzymatic functions), that mens the reltion EC-Genus-Sites is unique
 
-# In[138]:
+# In[ ]:
 
 
 # remove unnecessary columns
@@ -3860,7 +3857,7 @@ pre_ECcontri_Uniprot_path = output_large / 'pre_ECcontri_Uniprot.parquet'
 ECcontri_Uniprot.to_parquet(pre_ECcontri_Uniprot_path)
 ECcontri_Uniprot.head()
 
-# In[139]:
+# In[ ]:
 
 
 # read the saved parquet file to check if it was saved correctly
@@ -3872,7 +3869,7 @@ pre_ECcontri_Uniprot["protein_name"] = pre_ECcontri_Uniprot["protein_name"].asty
 print(pre_ECcontri_Uniprot.dtypes, ECcontri_Uniprot.dtypes)
 
 
-# In[140]:
+# In[ ]:
 
 
 assert pre_ECcontri_Uniprot.equals(ECcontri_Uniprot), "Dataframes are not equal after saving and loading!"
@@ -3886,7 +3883,7 @@ print(f"Memory usage pre_ECcontri_Uniprot: {total_memory / 1024**2:.2f} MB")#33
 
 # ### Cleaning anc collecting garbage
 
-# In[141]:
+# In[ ]:
 
 
 del unique_pairs
@@ -3911,7 +3908,31 @@ gc.collect()
 
 # ## 9.1 Setting up Paths and Parsing the Dataframes
 
-# In[50]:
+# In[8]:
+
+
+#temporal function
+def notify_complete():
+   
+    # Visual notification
+    print(f"\n🔔 TASK FINISHED at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 🔔")
+    
+    # Try audio methods (no installation required)
+    try:
+        # Method 1: PowerShell (Windows/WSL)
+        os.system('powershell.exe -c "[console]::beep(4800,8800)"')
+    except:
+        try:
+            # Method 2: Terminal bell
+            print('\a\a\a')
+            print('\a\a\a')
+            print('\a\a\a')
+            sys.stdout.flush()
+        except:
+            # Method 3: Just visual
+            print("🚨🚨🚨 DONE 🚨🚨🚨")
+
+# In[9]:
 
 
 def setup_paths() -> Dict[str, Path]:
@@ -3998,7 +4019,7 @@ MetalPDB: a database of metal sites in biological macromolecular structures. (n.
 # BRENDA, the ELIXIR core data resource in 2021: new developments and updates. (2021), Nucleic Acids Res., 49:D498-D508.
 # DOI: 10.1093/nar/gkaa1025 PubMed: 33211880
 
-# In[51]:
+# In[10]:
 
 
 logger = logging.getLogger(__name__)
@@ -4258,7 +4279,6 @@ def parse_brenda_file() -> Dict[str, dict]:
                 'brenda_metals': [],
                 '_metal_text': [],
                 '_mech_text': [], 
-
                 # Gene aggregation
                 'gene_name': [],
                 # Organisms and per-genus routing
@@ -4645,19 +4665,18 @@ def parse_brenda_file() -> Dict[str, dict]:
             info.pop('_mech_text', None)   # drop buffer
 
             # parse 22 Finalize: metal text-mining#brenda_metals = ME ∪ mined-text (exclude CF)
-            corpus = ' '.join(info.get('_metal_text', []))
-            mined_syms = []
+            corpus = ' '.join(info.get('_metal_text', [])).lower()
+            mined_syms = set()
             if corpus:
-                lc = corpus.lower()
-                seen = set()
-                for pat, sym in _METAL_PATTERNS: # constructed from cs.metal_mapping
-                    if pat.search(lc) and sym not in seen:
-                        seen.add(sym)
-                        mined_syms.append(sym)
+                for pat, sym in _METAL_PATTERNS: #metal processor incorporated
+                    if pat.search(corpus):
+                        mined_syms.add(sym)  
 
-            # Start with explicit ME (keeps ME order), then append mined (no dups)
-            me_list = info.get('metals', []) or []
-            merged = list(dict.fromkeys(me_list + [s for s in mined_syms if s not in me_list]))
+            # Symbols already captured from ME tag (parser put canonical symbols there)
+            me_syms = set(info.get('metals', []))
+            # Whitelist to canonical symbols only, as defined by your mapping values
+            allowed_symbols = set(cs.metal_mapping.values())
+            merged = [s for s in dict.fromkeys(list(me_syms | mined_syms)) if s in allowed_symbols]
 
             # parse 23 merging of all the metals from brenda
             info['brenda_metals'] = merged # corresponds to all the metals that are found in brenda
@@ -4693,9 +4712,10 @@ def parse_brenda_file() -> Dict[str, dict]:
 
     except Exception as e:
         logger.exception("Error parsing BRENDA file: %s", e)
+    notify_complete()
     return {}
 
-# In[52]:
+# In[11]:
 
 
 # Call the function # 14min at 11 GB
@@ -4703,28 +4723,23 @@ brenda_data = parse_brenda_file() # Only file of the dictionary that has to be c
 
 # 2025-09-10 10:23:46,859 - INFO - BRENDA parsing (trimmed): kept=7874, skipped=1 | organisms=6708 (85.2%), names=7874 (100.0%), brenda_metals=4563 (58.0%), mechanisms=309 (3.9%), env=5434 (69.0%), cofactors=3016 (38.3%), activators=2927 (37.2%), gene=2451 (31.1%), reactions=5646 (71.7%)
 
-# In[66]:
+# In[12]:
 
 
 brenda_data_df = pd.DataFrame.from_dict(brenda_data, orient='index')
-print(brenda_data_df.head(2))
+print(brenda_data_df.columns)
 
-# In[55]:
+# In[13]:
 
 
-brenda_data_df[ 'operational_environmental_factors'].explode().unique()
+brenda_data_df[ 'brenda_metals'].explode().unique()
 
-# In[56]:
+# In[14]:
 
 
 brenda_data_df['reaction_equation']#.explode().unique()
 
-# In[57]:
-
-
-brenda_data_df[ 'corrosion_mechanisms'].explode().unique()
-
-# In[58]:
+# In[15]:
 
 
 # brenda_data sample
@@ -4739,59 +4754,9 @@ brenda_data_df[ 'corrosion_mechanisms'].explode().unique()
    '-dehydro-3-deoxy-D-gluconate + NADH + H+ = -deoxy-L-erythro-5-hexoseulose + NAD+ {r}',
 '''
 
-# ### Cleaning pathways function
-#  The following function applies the correct pandas series logic Series.apply behavior and regular expression design (Pandas documentation, 2024).
-# For regex practice
-# Friedl, J. E. F. (2006). Mastering Regular Expressions (3rd ed.). O'Reilly Media.
-
-# In[59]:
-
-
-def clean_pathway_strings(pathway_series: pd.Series) -> pd.Series:
-    """
-    Clean pathway strings by removing common headers and database references that don't represent specific pathways.
-    Parameters:pathway_series : pandas.Series containing pathway strings with pathways separated by semicolons
-    Returns:  pandas.Series with cleaned pathway strings
-    """
-    # Terms to remove - add or remove based on specific needs
-    terms_to_remove = [
-        'Enzymes with EC numbers', # anotations mistake
-        'proteins [BR:ko00194]', # anotations mistake
-        'Metabolic pathways', # to broad term
-        'Other Metabolic Processes',
-        'Biosynthesis of secondary metabolites', # to broad term
-        'Microbial metabolism in diverse environments','Microbial metabolism in diverse environments', 'Metabolic pathways', # to broad term
-        'Exosome \[BR:ko04147\]', # mostly eucariotic
-        'photosynthesis', 'Photosynthesis', 'Photosynthesis  proteins [BR:ko00194]', # mostly plants
-        'Photosynthesis proteins', # mostly plants
-    ]
-    
-    # Compile regex pattern
-    pattern = re.compile(
-        '|'.join([re.escape(term) for term in terms_to_remove]),
-        flags=re.IGNORECASE
-    )
-    
-    def clean_single_entry(entry: str) -> str:
-        if pd.isna(entry) or not isinstance(entry, str) or entry.strip() == '[]':
-            return ''
-        
-        # Remove matched unwanted terms
-        cleaned = pattern.sub('', entry)
-        
-        # Clean up formatting issues
-        cleaned = pattern.sub('', entry)
-        cleaned = re.sub(r';\s*;', ';', cleaned)
-        cleaned = re.sub(r'[;\s]+$', '', cleaned)
-        cleaned = re.sub(r'^[;\s]+', '', cleaned)
-        
-        return cleaned
-    
-    return pathway_series.apply(clean_single_entry)
-
 # ### Brenda Proccesor
 
-# In[60]:
+# In[16]:
 
 
 # Lightweight cofactor cleaner
@@ -4987,7 +4952,11 @@ def process_brenda_data(brenda_data, fc_processor=None, metal_processor=None, sy
             ' '.join(parsed_mechanisms),
         ]
         text = ' '.join([t for t in text_parts if t]).lower()
-           
+        env_text = ' '.join(rec.get('operational_environmental_factors', [])).lower()
+        op_matches = ope_processor.find_all_matches(env_text) if ope_processor else {}
+        rec['operational_factors'] = sorted(op_matches.keys())
+        rec['operational_factor_terms'] = {k: sorted(v) for k, v in op_matches.items()}
+                
         #================================
         # brenda_11 Metals
         #================================
@@ -4995,8 +4964,13 @@ def process_brenda_data(brenda_data, fc_processor=None, metal_processor=None, sy
 
         # brenda_12 Use scoring module; only the 3 processors
         fc_matches = fc_processor.find_all_matches(text) if fc_processor else {}
-        rec['functional_categories'] = sorted(fc_matches.keys())  # <-- text-mined strings (do NOT overwrite later)
+        rec['functional_categories'] = sorted(fc_matches.keys())  # <-- text-mined strings 
         rec['functional_category_terms'] = {k: sorted(v) for k, v in fc_matches.items()}
+
+        syn_matches = synergy_processor.find_all_matches(text) if synergy_processor else {}
+        rec['corrosion_synergies_text'] = sorted(syn_matches.keys())            # TEXT (separate view)
+        rec['synergy_terms'] = sorted({t for ts in syn_matches.values() for t in ts}) if syn_matches else []
+
         try:
             score_results = cs.calculate_overall_scores(
                 text,
@@ -5013,13 +4987,13 @@ def process_brenda_data(brenda_data, fc_processor=None, metal_processor=None, sy
             if k in score_results:
                 rec[k] = score_results[k]
       
-        # Prefer synergy evidence returned by scoring; else fallback to processor
+        '''# Prefer synergy evidence returned by scoring; else fallback to processor
         rec['corrosion_synergies'] = list(score_results.get('corrosion_synergies', []))
         if 'synergy_terms' in score_results:
             rec['synergy_terms'] = list(score_results['synergy_terms'])
         else:
             syn_matches = synergy_processor.find_all_matches(text)
-            rec['synergy_terms'] = sorted({t for ts in syn_matches.values() for t in ts})
+            rec['synergy_terms'] = sorted({t for ts in syn_matches.values() for t in ts})'''
 
         # brenda_13 Consolidate mechanisms (parser-provided + classifier)
         mech_matches = mechanisms_processor.find_all_matches(text) if mechanisms_processor else {}
@@ -5045,32 +5019,12 @@ def process_brenda_data(brenda_data, fc_processor=None, metal_processor=None, sy
             rec.get('overall_synergy_score', 0.0),
             rec.get('overall_functional_score', 0.0)
         )
-
-        # no sure I wont need this on main function
-        #for k in ('cofactors','activators', 'gene_name','organisms','by_genus','substrates','inhibitors','compounds'):
-           # rec.pop(k, None)
         processed_data[ec_number] = rec
-    import winsound  
-    winsound.Beep(1000, 500)  # frequency, duration in ms
+    notify_complete()
     
     return processed_data
 
-# In[61]:
-
-
-sample_ec, sample = next(iter(brenda_en.items()))
-
-assert isinstance(sample['functional_categories'], list) and all(isinstance(x, str) for x in sample['functional_categories'])
-
-assert isinstance(sample.get('functional_categories_scored', []), list)  # list of dicts from scorer
-
-assert isinstance(sample.get('functional_category_terms', {}), dict)
-
-assert isinstance(sample.get('brenda_metals', []), list)
-
-assert isinstance(sample.get('corrosion_synergies', []), list)
-
-# In[62]:
+# In[17]:
 
 
 # Temporal brenda sample creation for testing purposes # 20 min at 11 GB and 3 cores 
@@ -5086,61 +5040,36 @@ def create_brenda_sample(brenda_data, sample_size=1000):
 # Create a sample of BRENDA data 6 min
 brenda_data = create_brenda_sample(brenda_data, sample_size=1500)
 
-# In[63]:
+# In[18]:
 
 
 # Call the function # 15min (1500)-240 min
 brenda_en = process_brenda_data(brenda_data, fc_processor, metal_processor, synergy_processor)
 
-# In[ ]:
+# In[19]:
 
 
-brenda_en
+brenda_en_df = pd.DataFrame.from_dict(brenda_en, orient='index')
+brenda_en_df.columns 
 
-# {'1.1.1.1': {'ec_number': '1.1.1.1',
-#   'protein_name': 'alcohol-dehydrogenase',
-#   'enzyme_class': 'oxidoreductases',
-#   'enzyme_names': ['alcohol-dehydrogenase'],
-#   'cofactors': ['NAD+',
-#    'preferred substrate',
-#    'NADP+',
-#    'NADH',
-#    'Pyrococcus furiosus. The resultant chimera',
-#    'activity. The addition of calcium to beta-AdhD preferentially inhibits NAD+-dependent activity in comparison to NADP+-dependent activity. Calcium is a competitive inhibitor of AdhD',
-#    'NADP',
-#    'Bordetella pertussis into a loop near the catalytic active site of the thermostable alcohol dehydrogenase D from Pyrococcus furiosus. The resultant chimera',
-#    'beta-roll',
-#    'NADPH',
-#    'to be dependent on cofactor concentration',
-#    'benzoylpyridine-adenine',
-#    'oxidation',
-#    'AcycloNAD+ converts horse liver ADH from a broad spectrum alcohol dehydrogenase',
-#    'glutathione'],
-#   'gene_name': ['ADH1',
-#    'ADH3',
-#    'GmAdh2',
-#    'YIM1',
-#    'adh3',
-#    'adhE',
-# ...
-#   'functional_category_keys': [],
-#   'functional_categories_scored': [],
-#   'corrosion_synergies_scored': [],
-#   'synergy_terms_scored': []},
-#  ...}
-
-# In[ ]:
+# In[20]:
 
 
-#brenda_en_df = pd.DataFrame.from_dict(brenda_en, orient='index')
-#brenda_en_df.columns
+brenda_en_df[['operational_environmental_factors','functional_categories', 'operational_factors',
+       'operational_factor_terms', 'brenda_metals', 'functional_category_terms', 'corrosion_synergies_text',
+       'synergy_terms', 'synergy_type', 'synergy_description', 'functional_category_keys']]
 
-# In[ ]:
+# In[21]:
 
 
-brenda_en
+brenda_en_df["synergy_description"].explode().unique()
 
-# In[ ]:
+# In[22]:
+
+
+brenda_en_df["corrosion_mechanisms"].explode().unique()
+
+# In[23]:
 
 
 '''brenda_en
@@ -5166,6 +5095,11 @@ brenda_en
   'gene_name': ['ADH1',
    'ADH3','''
 
+# In[24]:
+
+
+brenda_en_df["functional_categories"].explode().unique()
+
 # ___________________
 # ### Enzyme names
 # ____________________
@@ -5173,7 +5107,7 @@ brenda_en
 # 
 # wget https://www.enzyme-database.org/downloads/enzyme-database.sql.gz
 
-# In[ ]:
+# In[25]:
 
 
 def read_enzyme_names(unique_ecs_to_filter=None):
@@ -5228,7 +5162,7 @@ def read_enzyme_names(unique_ecs_to_filter=None):
   'primary alcohol-dehydrogenase',
   'yeast alcohol-dehydrogenase'],'''
 
-# In[ ]:
+# In[26]:
 
 
 #sum(1 for k in ec_to_names if re.fullmatch(r'\d+(?:\.\d+){3}', k))
@@ -5238,7 +5172,7 @@ def read_enzyme_names(unique_ecs_to_filter=None):
 # ________________
 # The enzyme classification system (text-based hierarchy).
 
-# In[ ]:
+# In[27]:
 
 
 '''def read_enzyme_class():
@@ -5274,7 +5208,7 @@ enzyme_class sample
  '1.2.-.-': 'Acting on the aldehyde or oxo group of donors.',
  '1.2.1.-': '''
 
-# In[ ]:
+# In[28]:
 
 
 def read_enzyme_class():
@@ -5299,7 +5233,7 @@ def read_enzyme_class():
 #enzyme_class =read_enzyme_class()
 #enzyme_class
 
-# In[ ]:
+# In[29]:
 
 
 #sum(1 for k in enzyme_class if re.fullmatch(r'\d+(?:\.\d+){3}', k))
@@ -5312,7 +5246,7 @@ def read_enzyme_class():
 # 
 # wget -O ec_pathway.list "https://rest.kegg.jp/link/pathway/ec"
 
-# In[ ]:
+# In[30]:
 
 
 def read_ec_pathway_mapping():
@@ -5363,7 +5297,7 @@ ec_pathway_mapping
 #  A new variable mapping  KO numbers to EC numbers from KEGG KO file.
 # rsync -avz rsync://rest.kegg.jp/kegg/ko/ . 
 
-# In[ ]:
+# In[31]:
 
 
 def read_ko_data() -> dict:
@@ -5448,7 +5382,7 @@ ko_ec sample
 # |Infectious disease (bacterial & parasitic)|	Possible indicators of bacterial species present
 # 
 
-# In[ ]:
+# In[32]:
 
 
 def read_ko_hierarchy():
@@ -5533,7 +5467,7 @@ hierarchy_all =  read_ko_hierarchy()
 
 # I decided against getting all the KEGG ortogonal classification because it was too much and it was necesary just the broad picture, so the Brite database was instead retrieved. The brite database had also more EC and protein_names retrievable from the eccontri.
 
-# In[ ]:
+# In[33]:
 
 
 paths = setup_paths()
@@ -5598,12 +5532,14 @@ hierarchy_brite = parse_ko_brite_filtered(brite_path, allowed_categories)
 2  K12407          gck  2.7.1.2  Carbohydrate metabolism   
 3  K12407  glucokinase  2.7.1.2  Carbohydrate metabolism '''
 
-# Reaction Data
+# _________________________________________
+# ### Reaction Data
+# ____________________________________________
 #  Reaction-level information.
 # 
 # !wget -c "ftp://ftp.genome.jp/pub/kegg/reaction/reaction.tar.gz" # This reaction data wont be used in the creation of the db
 
-# In[ ]:
+# In[34]:
 
 
 def read_reaction_data():
@@ -5643,9 +5579,11 @@ def read_reaction_data():
  'R00004': {'name': 'diphosphate phosphohydrolase'}'''
 
 
+# ________________________________
 # ### Create reaction mapping
+# _____________________
 
-# In[ ]:
+# In[35]:
 
 
 def create_ec_to_reaction_mapping():  
@@ -5685,13 +5623,76 @@ def create_ec_to_reaction_mapping():
     return {ec: list(rxns) for ec, rxns in ec_to_reaction.items()}  
     
 
+# In[36]:
+
+
+reaction_x =create_ec_to_reaction_mapping()
+
+# In[37]:
+
+
+reaction_x
+
+# ___________________________
+# ### Cleaning pathways function
+# ______________________________
+#  The following function applies the correct pandas series logic Series.apply behavior and regular expression design (Pandas documentation, 2024).
+# For regex practice
+# Friedl, J. E. F. (2006). Mastering Regular Expressions (3rd ed.). O'Reilly Media.
+# 
+
+# In[38]:
+
+
+def clean_pathway_strings(pathway_series: pd.Series) -> pd.Series:
+    """
+    Clean pathway strings by removing common headers and database references that don't represent specific pathways.
+    Parameters:pathway_series : pandas.Series containing pathway strings with pathways separated by semicolons
+    Returns:  pandas.Series with cleaned pathway strings
+    """
+    # Terms to remove - add or remove based on specific needs
+    terms_to_remove = [
+        'Enzymes with EC numbers', # anotations mistake
+        'proteins [BR:ko00194]', # anotations mistake
+        'Metabolic pathways', # to broad term
+        'Other Metabolic Processes',
+        'Biosynthesis of secondary metabolites', # to broad term
+        'Microbial metabolism in diverse environments','Microbial metabolism in diverse environments', 'Metabolic pathways', # to broad term
+        'Exosome \[BR:ko04147\]', # mostly eucariotic
+        'photosynthesis', 'Photosynthesis', 'Photosynthesis  proteins [BR:ko00194]', # mostly plants
+        'Photosynthesis proteins', # mostly plants
+    ]
+    
+    # Compile regex pattern
+    pattern = re.compile(
+        '|'.join([re.escape(term) for term in terms_to_remove]),
+        flags=re.IGNORECASE
+    )
+    
+    def clean_single_entry(entry: str) -> str:
+        if pd.isna(entry) or not isinstance(entry, str) or entry.strip() == '[]':
+            return ''
+        
+        # Remove matched unwanted terms
+        cleaned = pattern.sub('', entry)
+        
+        # Clean up formatting issues
+        cleaned = pattern.sub('', entry)
+        cleaned = re.sub(r';\s*;', ';', cleaned)
+        cleaned = re.sub(r'[;\s]+$', '', cleaned)
+        cleaned = re.sub(r'^[;\s]+', '', cleaned)
+        
+        return cleaned
+    
+    return pathway_series.apply(clean_single_entry)
+
 # ______________________
 # ### Pathway Database
 # ________________
 # Chemical compounds database.wget https://biocyc.org/download.shtml. wget https://www.brenda-enzymes.org/download.php
 # 
 
-# In[ ]:
+# In[39]:
 
 
 def read_pathway_data():
@@ -5720,7 +5721,7 @@ pathway_data
 # ### Mapping ko to ec
 # ______________________
 
-# In[ ]:
+# In[40]:
 
 
 def build_ec_to_ko_map(ko_ec:dict) -> dict:
@@ -5752,7 +5753,7 @@ def build_ec_to_ko_map(ko_ec:dict) -> dict:
 # 
 # This master assembler takes the outputs from various parsers (BRENDA, pathway_info/data, pathway_mapping) and combines them.
 
-# In[ ]:
+# In[41]:
 
 
 def _std_map_id(pid: str) -> str:
@@ -5830,7 +5831,7 @@ def build_pathways_db_curated(record, ec_pathway_mapping, pathway_data, ko_ec, e
 # ### Module Database
 # _________________
 
-# In[ ]:
+# In[42]:
 
 
 def read_module_data():
@@ -5856,7 +5857,7 @@ def read_module_data():
 # ### Compound Database
 # _____________________
 
-# In[ ]:
+# In[43]:
 
 
 def read_compound_data():
@@ -5896,127 +5897,8 @@ def read_compound_data():
 # Nucleic Acids Res. 2018 Jan;46(D1):D459-D464. [PMID: 29077942]
 # 
 
-# In[ ]:
+# In[44]:
 
-
-'''def parse_metalpdb_xml():
-    """Parse MetalPDB XML file to extract metal-binding information"""
-    paths = setup_paths()
-    metalpdb_path = paths['metalpdb']
-
-    metal_binding_data = {}
-
-    try:
-        # Use a more tolerant parser
-        parser = etree.XMLParser(recover=True)
-        tree = etree.parse(metalpdb_path, parser)
-        root = tree.getroot()
-
-        # Process each site
-        for site in root.findall('.//site'):
-            # Extract site information
-            site_name = site.findtext('site_name')
-            pdb_code = site.findtext('pdb_code')
-            site_nuclearity = site.findtext('site_nuclearity')
-
-            # Process each metal in the site
-            for metal in site.findall('.//metal'):
-                metal_symbol = metal.findtext('periodic_symbol')
-                metal_name = metal.findtext('periodic_name')
-                coordination_number = metal.findtext('coordination_number')
-                geometry = metal.findtext('geometry')
-
-                # Process ligands
-                ligands = []
-                for ligand in metal.findall('.//ligand'):
-                    residue_name = ligand.findtext('residue_name')
-                    residue_num = ligand.findtext('residue_pdb_number')
-                    chain = ligand.findtext('chain_letter')
-                    binding_type = ligand.findtext('endo_exo')
-
-                    # Process donor atoms
-                    donors = []
-                    for donor in ligand.findall('.//donor'):
-                        distance = donor.findtext('distance')
-                        atom_name = donor.findtext('atom_pdb_name')
-                        atom_symbol = donor.findtext('atom_symbol')
-                        interaction_type = donor.findtext('interaction_type')
-
-                        donors.append({
-                            'distance': distance,
-                            'atom_name': atom_name,
-                            'atom_symbol': atom_symbol,
-                            'interaction_type': interaction_type
-                        })
-
-                    ligands.append({
-                        'residue_name': residue_name,
-                        'residue_number': residue_num,
-                        'chain': chain,
-                        'binding_type': binding_type,
-                        'donors': donors
-                    })
-
-                # Get the protein/molecule information
-                site_chains = []
-                for chain in site.findall('.//site_chain'):
-                    molecule_name = chain.findtext('molecule_name')
-                    molecule_type = chain.findtext('molecule_type')
-                    chain_letter = chain.findtext('letter')
-
-                    site_chains.append({
-                        'molecule_name': molecule_name,
-                        'molecule_type': molecule_type,
-                        'chain_letter': chain_letter
-                    })
-
-                # Create a unique key for this metal site
-                metal_site_key = f"{pdb_code}_{site_name}_{metal_symbol}"
-
-                # Store the data
-                metal_binding_data[metal_site_key] = {
-                    'pdb_code': pdb_code,
-                    'site_name': site_name,
-                    'site_nuclearity': site_nuclearity,
-                    'metal': {
-                        'symbol': metal_symbol,
-                        'name': metal_name,
-                        'coordination_number': coordination_number,
-                        'geometry': geometry
-                    },
-                    'ligands': ligands,
-                    'site_chains': site_chains
-                }
-
-    except Exception as e:
-        logging.error("Error parsing MetalPDB XML: %s", e)
-        return {}
-
-    return metal_binding_data
-#metal_binding_data = parse_metalpdb_xml()
-# 16 min at 16 GB first rows
-{'101d_101d_1_Mg': {'pdb_code': '101d',
-  'site_name': '101d_1',
-  'site_nuclearity': 'Mononuclear',
-  'metal': {'symbol': 'Mg',
-   'name': 'Magnesium',
-   'coordination_number': '3',
-   'geometry': 'irregular (n/a)'},
-  'ligands': [{'residue_name': 'HOH',
-    'residue_number': '61',
-    'chain': 'A',
-    'binding_type': 'exogenous',
-    'donors': [{'distance': '2.164',
-      'atom_name': 'O',
-      'atom_symbol': 'O',
-      'interaction_type': 'Main chain'}]},
-   {'residue_name': 'HOH',
-    'residue_number': '60','''
-
-# In[ ]:
-
-
-from lxml import etree
 
 def parse_metalpdb_xml():
     """Parse MetalPDB XML and return per-metal entries with metal, coordination_number, and residues only."""
@@ -6096,15 +5978,29 @@ def parse_metalpdb_xml():
     except Exception as e:
         logging.error("Error parsing MetalPDB XML: %s", e)
         return {}
+    notify_complete()
 
     return out
 
+'''metal_binding_data_new = parse_metalpdb_xml()
+metal_binding_data_new 
+{'101d_101d_1_Mg_01': {'pdb_code': '101d',
+  'site_name': '101d_1',
+  'metal': {'symbol': 'Mg',
+   'coordination_number': 3,
+   'geometry': 'irregular (n/a)'},
+  'residues': [{'residue_name': 'HOH',
+    'residue_number': '61',
+    'chain': 'A',
+    'binding_type': 'exogenous'},
+   {'residue_name': 'HOH',
+    'residue_number': '60'''
 
 # ______________________
 # ### Extracting metal binding patterns from metal binding data
 # ______________________
 
-# In[ ]:
+# In[45]:
 
 
 '''def extract_metal_coordination_patterns(metal_binding_data):
@@ -6157,7 +6053,7 @@ def parse_metalpdb_xml():
 #metal_coordination, metal_residue_binding = extract_metal_coordination_patterns(metal_binding_data)
 #print(metal_coordination,  metal_residue_binding)'''
 
-# In[ ]:
+# In[46]:
 
 
 def extract_metal_coordination_patterns(metal_binding_data):
@@ -6213,8 +6109,10 @@ def extract_metal_coordination_patterns(metal_binding_data):
         'coordination': metal_coordination,
         'residue_binding': metal_residue_binding
     }
+#coordination, residue_binding = extract_metal_coordination_patterns(metal_binding_data)
+#rint(coordination, residue_binding)
 
-# In[ ]:
+# In[47]:
 
 
 '''{'101d_101d_1_Mg': {'pdb_code': '101d',
@@ -6239,7 +6137,7 @@ def extract_metal_coordination_patterns(metal_binding_data):
 # ### Integrating pathways to the ECcontri_Uniprot Data 
 # __________________________
 
-# In[ ]:
+# In[48]:
 
 
 # Reading loading 10 min
@@ -6259,7 +6157,7 @@ ECcontri_pathway["Genus"] = ECcontri_pathway["Genus"].astype("category")
 ECcontri_pathway["pathway"] = ECcontri_pathway["pathway"].astype("category")
 ECcontri_pathway["ipath"] = ECcontri_pathway["ipath"].astype("category")
 
-# In[ ]:
+# In[49]:
 
 
 # Read the df ECcontri_Uniprot
@@ -6269,12 +6167,12 @@ print(f"DataFrame loaded from {ECcontri_Uniprot_path} with shape {ECcontri_Unipr
 print(f"Memory usage after loading: {ECcontri_Uniprot.memory_usage(deep=True).sum() / 1024**2:.2f} MB") 
 #32.97
 
-# In[ ]:
+# In[50]:
 
 
 ECcontri_Uniprot = pd.merge(ECcontri_Uniprot, ECcontri_pathway, on=['Sites', 'Genus', 'ec'], how='left')
 
-# In[ ]:
+# In[51]:
 
 
 # Making sure the nans are Nans
@@ -6285,12 +6183,12 @@ ECcontri_Uniprot['pathway'] = ECcontri_Uniprot['pathway'].replace('nan', np.nan)
 ECcontri_Uniprot['protein_name'] = ECcontri_Uniprot['protein_name'].replace('nan', np.nan)
 ECcontri_Uniprot['ipath'] = ECcontri_Uniprot['ipath'].replace('nan', np.nan)
 
-# In[ ]:
+# In[52]:
 
 
 ECcontri_Uniprot["pathway"].isna().sum()
 
-# In[ ]:
+# In[53]:
 
 
 del ECcontri_pathway
@@ -6301,7 +6199,7 @@ gc.collect()  # Run garbage collection to free up memory
 # _________
 # In order to use the pathway to retrieve data from the db, the programatic ipath is no suitable since the db do no contain data wiht pwy id so the best option is to find them with the descriptive pathways obtained from pathway column. However when there are nans the programatic column would be used to fill the gaps when ever posible.
 
-# In[ ]:
+# In[54]:
 
 
 # It takes the value from 'pathway'. If that value is null, it fills it with the value from 'ipath' from the exact same row.
@@ -6313,25 +6211,25 @@ ECcontri_Uniprot = ECcontri_Uniprot.rename(columns={"pathways": "pathway_primary
 # probe that the number of nans has decresed
 ECcontri_Uniprot["pathway_primary"].isna().sum()
 
-# In[ ]:
+# In[55]:
 
 
 ECcontri_Uniprot['pathway_primary']= ECcontri_Uniprot['pathway_primary'].astype('category')
 ECcontri_Uniprot['protein_name'] = ECcontri_Uniprot['protein_name'].astype('category')
 
-# In[ ]:
+# In[56]:
 
 
 # saving the df
 ECcontri_Uniprot_path = output_large / 'ECcontri_Uniprot_pathway.parquet'
 ECcontri_Uniprot.to_parquet(ECcontri_Uniprot_path)
 
-# In[ ]:
+# In[57]:
 
 
 ECcontri_Uniprot.head()
 
-# In[ ]:
+# In[58]:
 
 
 # I decided that taking KO information was too memory intensive and it would take a year to process on my computer or pay an external platform to do it.
@@ -6371,21 +6269,18 @@ ECcontri_Uniprot = ECcontri_Uniprot.rename(columns={"KOs": "iKO"})'''
 # System used: 4.1 GB
 # System available: 3.3 GB
 
-# In[ ]:
+# In[59]:
 
 
 def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, synergy_processor):
     """
-    Build a list of dictionaries, each representing a single EC record.
-    
+    Build a list of dictionaries, each representing a single EC record.    
     This function builds a comprehensive database of enzyme records with detailed information
     about their potential relevance to corrosion processes. It incorporates data from various
     sources, including BRENDA, MetalPDB, KEGG, and own experimental data proccesed by Picrust2.
     
-    Args:   
-        ECcontri_Uniprot_df: Main dataframe with EC, protein, abundances, genus (1.5M rows)       
-    Returns:  
-        list: List of dictionaries, each containing information about an enzyme
+    Args:     ECcontri_Uniprot: Main dataframe with EC, protein, abundances, genus (1.5M rows)       
+    Returns:  list: List of dictionaries, each containing information about an enzyme
     """
     global brenda_data
     try:
@@ -6429,8 +6324,7 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
     
         unique_ecs_list = list(unique_ecs)  # Make a list for slicing
         ec_to_names = read_enzyme_names(unique_ecs_to_filter=unique_ecs) or {}
-        enzyme_class = read_enzyme_class() or {}
-
+        
         # 3. extract protein information
         print("Preparing protein database...")
         protein_database = []
@@ -6594,7 +6488,6 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
                 record['operational_environmental_factors'] = brenda_en[normalized_ec].get('operational_environmental_factors', [])
                 
             ec_records.append(record)
-            
         
     elapsed_time_record = time.time() - start_time_record
     print(f"Processing took {elapsed_time_record:.2f} seconds")
@@ -6649,13 +6542,11 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
                                         rec_item.setdefault('consolidated_metals', [])
                                         rec_item['consolidated_metals'].append(m)
                                         break
-                        for db_name_key, db_rec_val in protein_lookup.items(): 
-                            if db_name_key in protein_name_norm or protein_name_norm in db_name_key:
-                                break
-                for rec_item in batch:
-                    if rec_item.get('consolidated_metals'):
-                        rec_item['consolidated_metals'] = list(dict.fromkeys(rec_item['consolidated_metals']))
 
+                    for rec_item in batch:
+                        if rec_item.get('consolidated_metals'):
+                            rec_item['consolidated_metals'] = list(dict.fromkeys(rec_item['consolidated_metals']))
+                
             except Exception as e:
                 print(f"Error processing protein name {rec_item.get('protein_name')}: {e}") # Use rec_item
 
@@ -6665,8 +6556,8 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
             try:
                 enzyme_names = rec.get('enzyme_names', []) or []
                 class_text = rec.get('enzyme_class', '') or ''
-                pathway_text = rec.get('pathway_db', '' )or ''
-                rxn_text = rec.get('reaction_db', '')or ''
+                pathways_txt = ' '.join(rec.get('pathways_db', []) or [])
+                rxn_text     = ' '.join(rec.get('reaction_db', []) or [])
                 
                 # 33. Combined text for all scoring
                 subs = []; inhib = []; cofac = []; env = []
@@ -6676,18 +6567,14 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
                     subs  = be.get('substrates', []) or []
                     inhib = be.get('inhibitors', []) or []
                     cofac = be.get('cofactors', []) or []
-                    env   = be.get('operational_environmental_factors', []) or []
 
                 text_parts = [
                     ' '.join(enzyme_names),
-                    class_text, pathway_text, rxn_text,
-                    rec.get('protein_name', '') or '',
-                    ' '.join(rec.get('pathways_db', []) or []),
-                    ' '.join(subs),
-                    ' '.join(inhib),
-                    ' '.join(cofac),
-                    ' '.join(env),
+                    class_text,
+                    pathways_txt,
                     rxn_text,
+                    rec.get('protein_name', '') or '',
+                    ' '.join(subs), ' '.join(inhib), ' '.join(cofac), ' '.join(env)
                 ]
                 text = ' '.join([t for t in text_parts if t]).lower()
                 
@@ -6737,15 +6624,14 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
                             geom_counts[geom] = geom_counts.get(geom, 0) + cnt
                 top_geom = max(geom_counts, key=geom_counts.get) if geom_counts else None
 
-            # Merge with any existing per-metal entry (prefer existing explicit info)
-            prev = mb_out.get(sym, {})
-            merged = {
-                'geometry': prev.get('geometry') or top_geom,
-                'residues': prev.get('residues') or top_res
-            }
-            mb_out[sym] = merged
+                # Merge with any existing per-metal entry (prefer existing explicit info)
+                prev = mb_out.get(sym, {})
+                merged = {
+                    'geometry': prev.get('geometry') or top_geom,
+                    'residues': prev.get('residues') or top_res
+                }
 
-        rec['metal_binding_info'] = mb_out
+            rec['metal_binding_info'] = mb_out
 
     except Exception as e:
         print(f"Error processing metal binding data: {e}")
@@ -6785,10 +6671,9 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
                 print(f"Skipping {rec.get('ec_number')} - already has corrosion_relevance_score: {rec.get('corrosion_relevance_score')}")
                 continue
             # 50. Assign corrosion mechanisms based on all available pathway data
-            # Combine primary and DB pathways for mechanism assignment   
             pathway_text_for_annotation =  ' ' + ' '.join(rec.get('pathways_db', []) or [])
             if pathway_text_for_annotation.strip():
-                pathway_mechanisms = cs.assign_mechanism_from_pathway(pathway_text_for_annotation)
+                pathway_mechanisms = cs.assign_mechanism_from_pathway(pathway_text_for_annotation, mechanisms_processor)
                 existing_mechanisms = set(rec.get('corrosion_mechanisms', []))
                 existing_mechanisms.update(pathway_mechanisms)
                 rec['corrosion_mechanisms'] = list(existing_mechanisms)
@@ -6872,7 +6757,7 @@ def create_metabolism_database(ECcontri_Uniprot, fc_processor, metal_processor, 
 
     return ec_records
 
-# In[ ]:
+# In[60]:
 
 
 ECcontri_Uniprot= ECcontri_Uniprot.sort_values("idx", ascending=True)
@@ -6881,7 +6766,7 @@ ECcontri_Uniprot_sample= ECcontri_Uniprot_sample.sort_values("idx", ascending=Tr
 
 # ## dict
 
-# In[ ]:
+# In[61]:
 
 
 # Takes 30 - 240 min

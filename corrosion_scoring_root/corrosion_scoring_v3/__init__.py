@@ -1,5 +1,5 @@
 """
-Refactored Corrosion Scoring System v2.0
+Refactored Corrosion Scoring System v3.0
 
 This module provides a clean separation between text mining, scoring, and synergy detection
 with improved error handling and maintainable architecture.
@@ -10,6 +10,13 @@ from .score_calculator import ScoreCalculator
 from .synergy_detector import SynergyDetector
 from .config import ScoringConfig
 from .exceptions import ScoringError, TextMiningError, SynergyDetectionError
+from .global_terms import (
+    functional_categories_dict, metal_terms_dict, corrosion_synergies_dict, # scoring dictionaries
+    metal_mapping, # cannonical mapping
+    mechanisms_dict, pathway_dict, operational_environmental_factors_dict) # additional dictionaries)
+from .validators import ValidationError
+from .term_processor import TermProcessor
+
 
 # Convenience function for backward compatibility
 def calculate_overall_scores(text: str, processors: dict, config: ScoringConfig = None, brenda_metals: list = None):
@@ -53,5 +60,15 @@ __all__ = [
     'ScoringError',
     'TextMiningError',
     'SynergyDetectionError',
-    'calculate_overall_scores'
+    'calculate_overall_scores',
+    # re-exported globals as names
+    'functional_categories_dict',
+    'metal_terms_dict',
+    'corrosion_synergies_dict',
+    'metal_mapping',
+    'pathway_dict',
+    'mechanisms_dict',
+    'operational_environmental_factors_dict',
+    'ValidationError',
+    'TermProcessor'
 ]

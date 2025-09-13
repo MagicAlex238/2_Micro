@@ -1,6 +1,6 @@
 import re
-from corrosion_scoring.utils_ec import normalize_ec_id
-from corrosion_scoring.name_utils import enhanced_clean_protein_name
+from corrosion_scoring_v2.utils_ec import normalize_ec_id
+from corrosion_scoring_v2.name_utils import enhanced_clean_protein_name
 
 def read_enzyme_names(unique_ecs_to_filter=None):
     paths = setup_paths()

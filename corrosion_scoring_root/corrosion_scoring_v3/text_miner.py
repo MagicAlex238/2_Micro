@@ -40,7 +40,7 @@ class TextMiner:
         
         # Import global dictionaries safely
         try:
-            from .global_terms import (
+            from ..corrosion_scoring_v3.global_terms import (
                 metal_terms_dict,
                 corrosion_synergies_dict,
                 functional_categories_dict,
@@ -153,7 +153,7 @@ class TextMiner:
     def _extract_mechanisms(self, text: str) -> Dict[str, Any]:
         """Extract corrosion mechanisms for population (not scoring)."""
         try:
-            from .term_processor import TermProcessor
+            from ..corrosion_scoring_v3.term_processor import TermProcessor
             mechanisms_processor = TermProcessor(self.mechanisms_dict)
             
             mechanism_matches = mechanisms_processor.find_all_matches(text)
@@ -170,7 +170,7 @@ class TextMiner:
     def _extract_pathways(self, text: str) -> Dict[str, Any]:
         """Extract pathway information for population (not scoring)."""
         try:
-            from .term_processor import TermProcessor
+            from ..corrosion_scoring_v3.term_processor import TermProcessor
             pathway_processor = TermProcessor(self.pathway_dict)
             
             pathway_matches = pathway_processor.find_all_matches(text)
@@ -187,7 +187,7 @@ class TextMiner:
     def _extract_operational_factors(self, text: str) -> Dict[str, Any]:
         """Extract operational environmental factors for population (not scoring)."""
         try:
-            from .term_processor import TermProcessor
+            from ..corrosion_scoring_v3.term_processor import TermProcessor
             operational_processor = TermProcessor(self.operational_dict)
             
             operational_matches = operational_processor.find_all_matches(text)

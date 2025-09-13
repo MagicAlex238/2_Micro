@@ -27,7 +27,7 @@ class ScoreCalculator:
         
         # Import global dictionaries safely
         try:
-            from .global_terms import (
+            from ..corrosion_scoring_v3.global_terms import (
                 functional_categories_dict,
                 corrosion_synergies_dict
             )
