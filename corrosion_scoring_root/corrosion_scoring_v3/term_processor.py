@@ -5,7 +5,7 @@ Fixed TermProcessor class with proper error handling and validation.
 import re
 from collections import OrderedDict, defaultdict
 from typing import Dict, List, Set, Optional, Pattern
-from ..corrosion_scoring_v3.exceptions import ProcessorError
+from .exceptions import ProcessorError
 
 class TermProcessor:
     """

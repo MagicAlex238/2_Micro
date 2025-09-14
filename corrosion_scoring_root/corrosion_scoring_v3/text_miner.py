@@ -1,11 +1,15 @@
-"""
-TextMiner class for extracting features from text without scoring.
-"""
+#==============================================================================
+# corrosion_scoring_root/corrosion_scoring_v3/text_miner.py
+#==============================================================================
+# TextMiner class for extracting features from text without scoring.
+#==============================================================================
 
 import math
 import re
 from typing import Dict, List, Set, Tuple, Any, Optional
 from collections import defaultdict
+
+from .term_processor import TermProcessor
 
 from .validators import validate_text, validate_processors, validate_metals_list
 from .exceptions import TextMiningError
@@ -19,28 +23,17 @@ class TextMiner:
     from text using various processors, but does NOT perform scoring.
     """
     
-    def __init__(self, processors: Dict[str, Any], config: ScoringConfig = None):
+    def __init__(self, config: ScoringConfig = None):
         """
-        Initialize the TextMiner.
-        
-        Args:
-            processors: Dictionary containing required processors
-            config: Configuration settings
-            
-        Raises:
-            TextMiningError: If processors are invalid
+        Initialize the TextMiner with global dictionaries.
+        Args:   config: Configuration settings
+        Raises:  TextMiningError: If global terms import fails
         """
-        try:
-            validate_processors(processors)
-        except Exception as e:
-            raise TextMiningError(f"Invalid processors: {e}") from e
-        
-        self.processors = processors
         self.config = config or ScoringConfig()
         
-        # Import global dictionaries safely
+        # Import global dictionaries FIRST
         try:
-            from ..corrosion_scoring_v3.global_terms import (
+            from .global_terms import (
                 metal_terms_dict,
                 corrosion_synergies_dict,
                 functional_categories_dict,
@@ -49,26 +42,34 @@ class TextMiner:
                 mechanisms_dict,
                 operational_environmental_factors_dict
             )
+            
+            # CREATE processors from global dictionaries
+            self.processors = {
+                'fc_processor': TermProcessor(functional_categories_dict),        # SCORING
+                'metal_processor': TermProcessor(metal_terms_dict),               # SCORING  
+                'synergy_processor': TermProcessor(corrosion_synergies_dict),     # SCORING
+                'mechanisms_processor': TermProcessor(mechanisms_dict),           # POPULATION ONLY
+                'pathway_processor': TermProcessor(pathway_dict),                 # POPULATION ONLY
+                'operational_processor': TermProcessor(operational_environmental_factors_dict)  # POPULATION ONLY
+            }
+            
+            # Store mappings for metal consolidation
             self.metal_mapping = metal_mapping
+            # Store the raw dictionaries so helper methods can access them
             self.mechanisms_dict = mechanisms_dict
             self.pathway_dict = pathway_dict
-            self.operational_dict = operational_environmental_factors_dict
+            self.operational_environmental_factors_dict = operational_environmental_factors_dict
+            
         except ImportError as e:
             raise TextMiningError(f"Failed to import global terms: {e}") from e
     
     def extract_all_features(self, text: str, brenda_metals: List[str] = None) -> Dict[str, Any]:
         """
         Extract all features from text.
-        
-        Args:
-            text: Text to analyze
-            brenda_metals: Optional list of metals from BRENDA
-            
-        Returns:
-            Dictionary containing extracted features
-            
-        Raises:
-            TextMiningError: If feature extraction fails
+        Args:text: Text to analyze
+        brenda_metals: list of metals from BRENDA
+        Returns:  Dictionary containing extracted features
+        Raises: TextMiningError: If feature extraction fails
         """
         try:
             # Validate and sanitize input
@@ -77,23 +78,20 @@ class TextMiner:
             
             features = {}
             
-            # Extract functional categories
+            # Extract SCORING features first (priority)
             fc_features = self._extract_functional_categories(clean_text)
             features.update(fc_features)
             
-            # Extract metals
             metal_features = self._extract_metals(clean_text, clean_metals)
             features.update(metal_features)
             
-            # Extract mechanisms (for population only, not scoring)
+            # Extract POPULATION-ONLY features (no scoring)
             mechanism_features = self._extract_mechanisms(clean_text)
             features.update(mechanism_features)
             
-            # Extract pathways (for population only, not scoring)
             pathway_features = self._extract_pathways(clean_text)
             features.update(pathway_features)
             
-            # Extract operational factors (for population only, not scoring)
             operational_features = self._extract_operational_factors(clean_text)
             features.update(operational_features)
             
@@ -103,7 +101,7 @@ class TextMiner:
             raise TextMiningError(f"Feature extraction failed: {e}") from e
     
     def _extract_functional_categories(self, text: str) -> Dict[str, Any]:
-        """Extract functional category features."""
+        """Extract functional category features for SCORING."""
         try:
             fc_processor = self.processors['fc_processor']
             fc_matches = fc_processor.find_all_matches(text)
@@ -129,7 +127,7 @@ class TextMiner:
             raise TextMiningError(f"Functional category extraction failed: {e}") from e
     
     def _extract_metals(self, text: str, brenda_metals: List[str]) -> Dict[str, Any]:
-        """Extract metal features."""
+        """Extract metal features for SCORING."""
         try:
             metal_processor = self.processors['metal_processor']
             
@@ -149,98 +147,96 @@ class TextMiner:
             
         except Exception as e:
             raise TextMiningError(f"Metal extraction failed: {e}") from e
-    
     def _extract_mechanisms(self, text: str) -> Dict[str, Any]:
         """Extract corrosion mechanisms for population (not scoring)."""
         try:
-            from ..corrosion_scoring_v3.term_processor import TermProcessor
+            from .term_processor import TermProcessor
             mechanisms_processor = TermProcessor(self.mechanisms_dict)
-            
+
             mechanism_matches = mechanisms_processor.find_all_matches(text)
-            detected_mechanisms = list(mechanism_matches.keys())
-            
+
+            # FIXED: Extract child terms instead of subcategory keys
+            child_terms_found = []
+            subcategories_involved = []
+            for subcategory, child_terms in mechanism_matches.items():
+                if child_terms:  # Only if we actually found terms
+                    subcategories_involved.append(subcategory)
+                    child_terms_found.extend(child_terms)
+
             return {
-                'corrosion_mechanisms': detected_mechanisms,
-                'mechanism_matches_detailed': {k: sorted(set(v)) for k, v in mechanism_matches.items()}
+                'corrosion_mechanisms': sorted(set(child_terms_found)),  # Child terms for evidence
+                'corrosion_mechanism_categories': sorted(set(subcategories_involved))  # Subcategories for analysis
             }
-            
+
         except Exception as e:
             raise TextMiningError(f"Mechanism extraction failed: {e}") from e
-    
+
     def _extract_pathways(self, text: str) -> Dict[str, Any]:
-        """Extract pathway information for population (not scoring)."""
+        """Extract pathway information for POPULATION ONLY (not scoring)."""
         try:
-            from ..corrosion_scoring_v3.term_processor import TermProcessor
-            pathway_processor = TermProcessor(self.pathway_dict)
-            
+            pathway_processor = self.processors['pathway_processor'] 
             pathway_matches = pathway_processor.find_all_matches(text)
             detected_pathways = list(pathway_matches.keys())
-            
+
             return {
                 'detected_pathways': detected_pathways,
                 'pathway_matches_detailed': {k: sorted(set(v)) for k, v in pathway_matches.items()}
             }
-            
+
         except Exception as e:
             raise TextMiningError(f"Pathway extraction failed: {e}") from e
-    
+
     def _extract_operational_factors(self, text: str) -> Dict[str, Any]:
-        """Extract operational environmental factors for population (not scoring)."""
+        """Extract operational environmental factors for POPULATION ONLY (not scoring)."""
         try:
-            from ..corrosion_scoring_v3.term_processor import TermProcessor
-            operational_processor = TermProcessor(self.operational_dict)
-            
+            operational_processor = self.processors['operational_processor']
             operational_matches = operational_processor.find_all_matches(text)
             detected_operational = list(operational_matches.keys())
-            
+
             return {
                 'operational_environmental_factors': detected_operational,
                 'operational_matches_detailed': {k: sorted(set(v)) for k, v in operational_matches.items()}
             }
-            
+
         except Exception as e:
             raise TextMiningError(f"Operational factor extraction failed: {e}") from e
-    
+
     def _consolidate_metal_terms(self, brenda_metals: List[str], detected_categories: List[str]) -> List[str]:
         """
         Consolidate metal names from BRENDA and detected categories into standardized symbols.
-        
-        Args:
-            brenda_metals: Raw metal terms from BRENDA data
-            detected_categories: Metal category names detected by TermProcessor
-            
-        Returns:
-            List of consolidated, unique, standardized metal symbols
+        Args:brenda_metals: Raw metal terms from BRENDA data
+        detected_categories: Metal category names detected by TermProcessor  
+        Returns:List of consolidated, unique, standardized metal symbols
         """
         consolidated = set()
-        
+
         # Process BRENDA metals (raw terms)
-        for metal in brenda_metals:
+        for metal in brenda_metals or []:
             metal_raw = str(metal)
             metal_norm = metal_raw.strip().lower()
-            
+
             if any(term in metal_norm for term in ['not detected', 'none']):
                 continue
-                
+
             # Strip brackets and the word ion
             metal_norm = re.sub(r'[\[\]\(\)]', '', metal_norm)
             metal_norm = re.sub(r'\bions?\b', '', metal_norm).strip()
-            
+
             if 'not detected' in metal_norm:
                 continue
-                
+
             raw_tokens = re.findall(r'[a-z0-9\+\-]+', metal_norm)
             tokens = {re.sub(r'^(fe|cu|zn|ni|co|mn|cr|al|mg|ca|ba|sr|pb|as|hg)\d+\+?$', r'\1', t)
                      for t in raw_tokens}
-            
+
             # Handle iron-sulfur cluster notation
             if re.search(r'\b\d+\s*fe\s*[-–]\s*\d+\s*s\b', metal_norm):
                 tokens.add('fe')
-            
+
             # Map tokens to standard symbols
             for token in tokens:
                 # Check mapping first
-                for key, symbol in self.metal_mapping.items():
+                for key, symbol in getattr(self, 'metal_mapping', {}).items():
                     if key.lower() == token:
                         consolidated.add(symbol)
                         break
@@ -253,12 +249,24 @@ class TextMiner:
                     }
                     if token in standard_metals:
                         consolidated.add(token.upper())
-        
+
         # Process detected categories (category names like 'iron', 'copper')
-        for category in detected_categories:
-            if category in self.metal_mapping:
+        for category in detected_categories or []:
+            if category in getattr(self, 'metal_mapping', {}):
                 consolidated.add(self.metal_mapping[category])
             else:
                 consolidated.add(category)  # Fallback to category name
-        
+
         return sorted(consolidated)
+
+    def preprocess_enhance_protein(self, text: str) -> str:
+        """Preprocess text containing protein names using enhance cleaning functions."""
+        from .name_utils import enhanced_clean_protein_name
+
+        return enhanced_clean_protein_name(text)
+
+    def preprocess_clean_protein(self, text: str) -> str:
+        """Preprocess text containing protein names using cleaning functions."""
+        from .name_utils import clean_protein_name
+
+        return clean_protein_name(text)
