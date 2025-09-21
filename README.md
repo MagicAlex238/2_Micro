@@ -54,7 +54,7 @@ python -m venv .venv_general
 .\.venv_general\Scripts\Activate.ps1.
 pip install --upgrade pip
 pip install -r general_requirements.txt
-python -m ipykernel install --user --name python11_general --display-name "python11_general (Python 3.11)"
+python -m ipykernel install --user --name python11_general --display-name "python11_general"
 ```
 ## Instructions to install environment per notebook 4
 1_ .venv_notebook4/ 
