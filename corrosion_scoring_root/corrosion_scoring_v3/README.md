@@ -14,17 +14,29 @@ This system provides a clean, modular architecture for:
 The system is built with separation of concerns in a nested module structure:
 
 ```
-your_package/
-├── __init__.py                     # Main entry point with backward compatibility
+corrosion_scoring_root/
+├── __init__.py                     # Main entry point with backward compatibility, I dont have
+|
+└── corrosion_scoring_V2/
+|    |
+|    ├── __init__.py                 # Term dictionaries and mappings
+|    ├── global_terms.py             # Term dictionaries and mappings      
+|    ├── scoring_system.py           # mining and scoring functions
+|    ├── utils_ec.py                # ec name normalisation
+|    ├── name_utils.py              # protein_name normalisation
+|    └── term_processor.py           # sdg Term normalization and matching
+|
 └── corrosion_scoring_v3/
     ├── __init__.py
-    ├── config.py                   # Configuration settings and parameters
-    ├── exceptions.py               # Custom exception classes
+    ├── config.py                  # Configuration settings and parameters
+    ├── exceptions.py              # Custom exception classes
     ├── text_miner.py              # Feature extraction (no scoring)
     ├── score_calculator.py        # Score computation from features
     ├── synergy_detector.py        # Synergy detection and analysis
-    ├── term_processor.py          # Term normalization and matching
+    ├── term_processor.py          # sdg Term normalization and matching
     ├── validators.py              # Input validation utilities
+    ├── utils_ec.py                # ec name normalisation
+    ├── name_utils.py              # protein_name normalisation
     └── global_terms.py            # Term dictionaries and mappings
 ```
 

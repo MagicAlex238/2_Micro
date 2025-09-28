@@ -3,7 +3,7 @@
 Refactored Corrosion Scoring System v3.0
 
 This module provides a clean separation between text mining, scoring, and synergy detection
-with improved error handling and maintainable architecture.
+with improved error handling and maintainable architecture.:)
 """
 from .text_miner import TextMiner
 from .score_calculator import ScoreCalculator

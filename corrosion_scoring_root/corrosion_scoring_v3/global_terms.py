@@ -79,8 +79,14 @@ metal_terms_dict = {
     'mercury': {
         'terms': ['Hg2+', 'Hg+', 'mercury', 'mercuric', 'mercurous', 'mercury methylation'],
         'score': 1.0
+    },
+    'sulfur':   {'terms': ['s', 'sulfide', 'sulfate', 'sulfite', 'thiosulfate', 'sulfur'], 'score': 1.0},
+    'chloride': {'terms': ['cl', 'chloride', 'nacl', 'chlorination'], 'score': 1.0},
+    'nitrate':  {'terms': ['no3', 'nitrate', 'nitrite', 'no2'], 'score': 1.0},
+    'phosphate':{'terms': ['po4', 'phosphate', 'orthophosphate'], 'score': 0.5},
+    'carbonate':{'terms': ['co3', 'carbonate', 'bicarbonate', 'hco3'], 'score': 0.5},
+    'hydrogen': {'terms': ['h2', 'hydrogen', 'proton', 'h+'], 'score': 0.5}
     }
-}
 
 # 2. COMPLETE corrosion_synergies 
 corrosion_synergies_dict = {
@@ -617,7 +623,7 @@ metal_mapping = {
 'manganous': 'Mn',
 'manganic': 'Mn',
 'manganese oxidation': 'Mn',
-'metal oxide': 'Mn',
+'manganese oxide': 'Mn',
 'copper': 'Cu',
 'cu+': 'Cu',
 'cu2+': 'Cu',
@@ -661,8 +667,22 @@ metal_mapping = {
 'phosphate': 'po4-3',
 'nitrate': 'NO3-',
 'nitrite': 'NO2',
-'chloride': 'Cl-'
+'chloride': 'Cl-',
+'cl-': 'Cl-',
+'fluoride': 'F-',
+'f-': 'F-',
+'arsenic': 'As',
+'as': 'As',
+'arsenate': 'As',
+'arsenite': 'As',
+'lead': 'Pb',
+'pb2+': 'Pb',
+'cadmium': 'Cd',    
+'cd2+': 'Cd',
+'mercury': 'Hg',
+'hg2+': 'Hg'
 }
+
 # 5. Complete corrosion_mechanisms, no to be use on scoring system
 # bridging thegap betwen the metabolic potential (pathways) and the actual physical or chemical effects on a surface.
 
