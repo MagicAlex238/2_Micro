@@ -17,27 +17,37 @@ The system is built with separation of concerns in a nested module structure:
 corrosion_scoring_root/
 ├── __init__.py                     # Main entry point with backward compatibility, I dont have
 |
-└── corrosion_scoring_V2/
-|    |
-|    ├── __init__.py                 # Term dictionaries and mappings
-|    ├── global_terms.py             # Term dictionaries and mappings      
-|    ├── scoring_system.py           # mining and scoring functions
-|    ├── utils_ec.py                # ec name normalisation
-|    ├── name_utils.py              # protein_name normalisation
-|    └── term_processor.py           # sdg Term normalization and matching
+└── corrosion_scoring_V2/        # Python package (importable code)  
+│   ├── __init__.py            # Package initialization  
+│   ├── scoring_system.py      # Functions for scoring found terms  
+│   ├── global_terms.py        # Realistic terms from bioinformatics databases (ec_records)  
+│   ├── utils_ec.py                # ec name normalisation
+|   ├── name_utils.py              # protein_name normalisation
+|   └── term_processor.py           # sdg Term normalization and matching
 |
 └── corrosion_scoring_v3/
-    ├── __init__.py
-    ├── config.py                  # Configuration settings and parameters
-    ├── exceptions.py              # Custom exception classes
-    ├── text_miner.py              # Feature extraction (no scoring)
-    ├── score_calculator.py        # Score computation from features
-    ├── synergy_detector.py        # Synergy detection and analysis
-    ├── term_processor.py          # sdg Term normalization and matching
-    ├── validators.py              # Input validation utilities
-    ├── utils_ec.py                # ec name normalisation
-    ├── name_utils.py              # protein_name normalisation
-    └── global_terms.py            # Term dictionaries and mappings
+|    ├── __init__.py
+|    ├── config.py                  # Configuration settings and parameters
+|    ├── exceptions.py              # Custom exception classes
+|    ├── text_miner.py              # Feature extraction (no scoring)
+|    ├── score_calculator.py        # Score computation from features
+|    ├── synergy_detector.py        # Synergy detection and analysis
+|    ├── term_processor.py          # sdg Term normalization and matching
+|    ├── validators.py              # Input validation utilities
+|    ├── utils_ec.py                # ec name normalisation
+|    ├── name_utils.py              # protein_name normalisation
+|    └── global_terms.py            # Term dictionaries and mappings
+|
+├── Explanatory/                   
+│   └── validation_tools.ipynb # Notebook for validation and term realism checks  
+│
+├── tests/                      
+│   ├── test_scoring_system.py  # Test functions for scoring  
+│   └── test_global_terms.py    # Test functions for term lists  
+│
+├──[text](.)├── pyproject.toml              # Project settings and version control  
+├── README.md                   # This file  
+└── .gitignore                  # Files/folders to ignore in version control      
 ```
 
 ## Key Features
