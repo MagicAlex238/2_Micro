@@ -324,7 +324,7 @@ cd /home/beatriz/MIC/2_Micro/corrosion_scoring_root/corrosion_scoring_v3
     cat config.py
     echo -e "\n\n# ========== exceptions.py =========="
     cat exceptions.py
-    echo -e "\n\n# ========== global_terms.py ========== too large" # it is too large
+    echo -e "\n\n# ========== global_terms.py ========== too large no included" # no included it is too large
     #cat global_terms.py
     echo -e "\n\n# ========== name_utils.py  =========="
     cat name_utils.py
