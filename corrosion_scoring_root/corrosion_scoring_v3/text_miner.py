@@ -164,10 +164,10 @@ class TextMiner:
                     child_terms_found.extend(child_terms)
 
             return {
-                'corrosion_mechanisms': sorted(set(child_terms_found)),  # Child terms for evidence
-                'corrosion_mechanism_categories': sorted(set(subcategories_involved))  # Subcategories for analysis
+                 'corrosion_mechanisms': sorted(set(subcategories_involved)),  # <-- Subcategories
+                'corrosion_mechanism_child_terms': sorted(set(child_terms_found)),  # <-- Child terms
+                'corrosion_mechanism_categories': sorted(set(subcategories_involved))  
             }
-
         except Exception as e:
             raise TextMiningError(f"Mechanism extraction failed: {e}") from e
 
