@@ -78,7 +78,12 @@ custom_dict = {
     "udp-3-o-acyl-n-acetylglucosamine deacetylase": "udp-3-o-acyl-n-acetylglucosamine deacetylase",
     "multifunctional oxoglutarate decarboxylase": "decarboxylase-oxoglutarate-dehydrogenase thiamine pyrophosphate",
     "aldo-keto-reductase 2 family": "aldo-keto-reductase", 
-    "coenzyme a biosynthesis bifunctional protein coabc (dna-pantothenate metabolism flavoprotein) (phosphopantothenoylcysteine-synthetase-decarboxy": "coenzyme a biosynthesis protein ppcs-ppcdc"
+    "coenzyme a biosynthesis bifunctional protein coabc (dna-pantothenate metabolism flavoprotein) (phosphopantothenoylcysteine-synthetase-decarboxy": "coenzyme a biosynthesis protein ppcs-ppcdc",
+    "bacterial ferritin": "bacterioferritin",
+    "bacterial non-heme ferritin": "bacterioferritin",
+    "bacterioferritin comigratory protein": "bacterioferritin",
+    "ferredoxin-nad+ reductase": "ferredoxin-nad-reductase",
+    "formate acetyltransferase": "formate c-acetyltransferase"
 }
 
 def clean_protein_name(name: str) -> str:
