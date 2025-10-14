@@ -540,7 +540,7 @@ functional_categories_dict =	{
             'superpathway of (R,R)-butanediol biosynthesis',
             'superpathway of 2,3-butanediol biosynthesis',
             'PWY-5751',
-            'PWY-5757', 'acid', 'carbonic acid', 'gluconic acid', 'low pH', 'proton generation', 'formate production', 'lactate metabolism'], 'score': 1.4, 'justification': 'Videla, H.A., Herrera, L.K. (2005). Microbiologically influenced corrosion: looking to the future. Int Microbiol, 8(3):169-180'}, # VERY HIGH for HVAC - organic acids major issue	
+            'PWY-5757', 'carbonic acid', 'gluconic acid', 'low pH', 'proton generation', 'formate production', 'lactate metabolism'], 'score': 1.4, 'justification': 'Videla, H.A., Herrera, L.K. (2005). Microbiologically influenced corrosion: looking to the future. Int Microbiol, 8(3):169-180'}, # VERY HIGH for HVAC - organic acids major issue	
 'metal_binding_chelation': {'terms': ['metal_chelation', 'metal_binding', 'siderophore', 'complexation', 'iron chelation', 'enzymatic_metal_oxid',   'chelator', 'metallophore', 'iron complex', 'metal transport', 'metal oxide', 'iron oxide deposits', 'metal deposition', 'metal solubilization', 'mineral dissolution', 'mineral precipitation', 'chelation', 'metal complexation', 'metal sequestration' , 'metal_organic_interaction', 'metal organic', 'metal homeostasis', 'organometallic',  'iron uptake', 'metal uptake', 'metalloprotein',  'iron-sulfur cluster', 'metal coordination', 'ferric reductase', 'ferrous oxidase', 'metal homeostasis', 'mineral dissolution', 'laccase', 'mineral precipitation', 'copper reduction', 'nickel oxidation', 'chromium reduction', 'crystal nucleation', 'metal immobilization', 'coenzyme A biosynthesis I','pantothenate and coenzyme A biosynthesis I','phosphopantothenate biosynthesis I','NAD biosynthesis I (from aspartate)','thiamin salvage II', 'metalloenzyme', 'enzyme-catalyzed oxidation', '6-hydroxymethyl-dihydropterin diphosphate biosynthesis I',
             '6-hydroxymethyl-dihydropterin diphosphate biosynthesis III (Chlamydia)',
             'adenosylcobalamin biosynthesis I (early cobalt insertion)',
@@ -1101,7 +1101,6 @@ mechanisms_dict = {
         'acetate production',
         'acetic acid',
         'acetyl-CoA fermentation to butanoate II',
-        'acid',
         'acidification',
         'carbonic acid',
         'citric acid',
@@ -1569,7 +1568,6 @@ pathway_dict = {
         'polysulfide metabolism',
         'sulfate',
         'sulfate reduction',
-
         'sulfate reduction I (assimilatory)',
         'sulfide',
         'sulfide:quinone oxidoreductase',
