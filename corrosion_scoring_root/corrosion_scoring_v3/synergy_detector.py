@@ -2,6 +2,7 @@
 SynergyDetector class for detecting corrosion synergies.
 """
 
+from turtle import pd
 from typing import Dict, Any, List, Set, Tuple, Optional
 from .config import ScoringConfig
 from .exceptions import SynergyDetectionError
@@ -15,11 +16,8 @@ class SynergyDetector:
     """
     
     def __init__(self, config: ScoringConfig = None):
-        """
-        Initialize the SynergyDetector.
-        
-        Args:
-            config: Configuration settings for synergy detection
+        """ Initialize the SynergyDetector.
+        Args: config: Configuration settings for synergy detection
         """
         self.config = config or ScoringConfig()
         
@@ -35,16 +33,10 @@ class SynergyDetector:
     
     def detect_synergies(self, features: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Detect synergies from extracted features.
-        
-        Args:
-            features: Dictionary containing extracted features
-            
-        Returns:
-            Dictionary containing synergy detection results
-            
-        Raises:
-            SynergyDetectionError: If synergy detection fails
+        Detect synergies from extracted features.        
+        Args: features: Dictionary containing extracted features
+        Returns: Dictionary containing synergy detection results
+        Raises:SynergyDetectionError: If synergy detection fails
         """
         try:
             # Get functional category matches
@@ -67,12 +59,8 @@ class SynergyDetector:
     def _detect_functional_category_synergies(self, fc_matches: Dict[str, List[str]]) -> Dict[str, Any]:
         """
         Detect synergies based on co-occurrence of terms from different functional categories.
-        
-        Args:
-            fc_matches: Dictionary of functional category matches
-            
-        Returns:
-            Dictionary containing synergy detection results
+        Args:fc_matches: Dictionary of functional category matches
+        Returns: Dictionary containing synergy detection results
         """
         try:
             # Step 1: Filter relevant categories and collect their terms
@@ -150,12 +138,8 @@ class SynergyDetector:
     def get_synergy_explanation(self, synergy_categories: List[str]) -> str:
         """
         Get a detailed explanation of detected synergies.
-        
-        Args:
-            synergy_categories: List of involved synergy categories
-            
-        Returns:
-            Detailed explanation string
+        Args:synergy_categories: List of involved synergy categories
+        Returns:Detailed explanation string
         """
         if not synergy_categories or len(synergy_categories) < 2:
             return "No significant synergies detected."
@@ -168,3 +152,155 @@ class SynergyDetector:
         
         # General explanation for multi-category synergies
         return f"Multi-pathway synergy detected involving {len(synergy_categories)} functional categories: {', '.join(synergy_categories)}"
+    
+    #===============================================================
+    priority_synergies = { # Based on failure analysis of cooling and heating operational water systems
+            ('organic_acid_metabolism', 'metal_binding_chelation'): {
+                'score': 3.0, 
+                'description': 'TOC-chelation Synergy (TOC-chelate)'
+            },
+            ('iron_metabolism', 'organic_acid_metabolism'): {
+                'score': 2.8, 
+                'description': 'Iron-Organic Acid Synergy (acid-enhanced Fe corrosion)'
+            },
+            ('biofilm_formation', 'metal_binding_chelation'): {
+                'score': 2.7,
+                'description': 'biofilm-chelate Synergy (biofilm-chelate-corrosion)'
+            },
+            ('o2_consumption', 'iron_metabolism'): {
+                'score': 2.5,
+                'description': 'Oxygen-Iron Synergy (aerobic Fe corrosion)'
+            },
+            ('sulfur_metabolism', 'iron_metabolism'): {
+                'score': 2.4,
+                'description': 'Sulfur-iron Synergy (SRB-mediated corrosion)'
+            },
+            ('sulfur_metabolism', 'h2_consumption'): {
+                'score': 2.3,
+                'description': 'Sulfur-Hydrogen Synergy (SRB-mediated corrosion)'
+            },
+            ('biofilm_formation', 'iron_metabolism'): {
+                'score': 2.2,
+                'description': 'Biofilm-Iron Synergy (biofilm-enhanced Fe corrosion)'
+            },
+            ('nitrogen_metabolism', 'iron_metabolism'): {
+                'score': 2.0,
+                'description': 'Nitrogen-Iron Synergy (nitrate-enhanced Fe corrosion)'
+            }
+        }
+    
+    def detect_synergies_from_dataframe(self, df: pd.DataFrame,
+        corrosion_synergy_dict: Dict[str, List[str]],
+        feature_columns: List[str]
+        ) -> pd.DataFrame:
+        """Detect synergies for each row in a dataframe based on feature columns.
+        Args:df: Input dataframe with feature columns
+            corrosion_synergy_dict: Dictionary mapping functional categories to terms
+            feature_columns: List of column names to check for synergy terms
+        Returns: DataFrame with added 'synergy_combi' and 'synergy_combi_score' columns
+        Raises: SynergyDetectionError: If synergy detection fails
+        """
+        try:
+            # Filter to only existing columns
+            available_columns = [col for col in feature_columns if col in df.columns]
+            
+            # Process each row and collect synergy info
+            synergy_combis = []
+            synergy_scores = []
+            
+            for idx, row in df.iterrows():
+                row_synergy = self._detect_row_synergies(
+                    row, 
+                    available_columns, 
+                    corrosion_synergy_dict
+                )
+                
+                synergy_combis.append(row_synergy['synergy_combi'])
+                synergy_scores.append(row_synergy['synergy_score'])
+            
+            # Add columns to dataframe
+            return pd.DataFrame({
+                'synergy_combi': synergy_combis,
+                'synergy_combi_score': synergy_scores
+            }, index=df.index)
+            
+        except Exception as e:
+            raise SynergyDetectionError(f"Dataframe synergy detection failed: {e}") from e
+
+    def _detect_row_synergies(self, row: pd.Series,feature_columns: List[str],
+        corrosion_synergy_dict: Dict[str, List[str]]
+        ) -> Dict[str, Any]:
+        """ Detect synergies for a single row based on feature columns.
+        Uses ONLY priority_synergies for detection.        
+        Args:row: Single row from dataframe
+            feature_columns: List of columns to check
+            corrosion_synergy_dict: Dictionary mapping categories to terms
+        Returns:Dictionary with 'synergy_combi' and 'synergy_score'"""
+        # Collect all terms from feature columns
+        all_terms = set()
+        for col in feature_columns:
+            value = row[col]
+            if pd.notna(value):
+                if isinstance(value, (list, set)):
+                    all_terms.update(str(v).lower() for v in value)
+                elif isinstance(value, str):
+                    # Handle comma-separated or pipe-separated values
+                    terms = [t.strip().lower() for t in value.replace('|', ',').split(',')]
+                    all_terms.update(terms)
+        
+        # Map terms to functional categories using corrosion_synergy_dict
+        detected_categories = {}
+        for category, category_terms in corrosion_synergy_dict.items():
+            matched_terms = set()
+            for term in category_terms:
+                term_lower = str(term).lower()
+                if term_lower in all_terms:
+                    matched_terms.add(term)
+            
+            if matched_terms:
+                detected_categories[category] = list(matched_terms)
+        
+        # Check ONLY priority_synergies for matches
+        max_score = 0.0
+        best_synergy_name = None
+        best_synergy_terms = []
+        
+        # Name mapping for short synergy names
+        name_map = {'iron_metabolism': 'Fe',
+            'sulfur_metabolism': 'S',
+            'organic_acid_metabolism': 'organic_acid',
+            'metal_binding_chelation': 'chelation',
+            'biofilm_formation': 'biofilm',
+            'o2_consumption': 'O2',
+            'nitrogen_metabolism': 'N',
+            'h2_consumption': 'H2'
+        }
+        
+        for synergy_pair, synergy_info in self.priority_synergies.items():
+            cat1, cat2 = synergy_pair
+            
+            # Check if both categories are present
+            if cat1 in detected_categories and cat2 in detected_categories:
+                current_score = synergy_info['score']
+                
+                if current_score > max_score:
+                    max_score = current_score
+                    
+                    # Create short synergy name
+                    short_name1 = name_map.get(cat1, cat1)
+                    short_name2 = name_map.get(cat2, cat2)
+                    best_synergy_name = f"{short_name1}-{short_name2}"
+                    
+                    # Collect all terms from both categories
+                    best_synergy_terms = detected_categories[cat1] + detected_categories[cat2]
+        
+        # Build result
+        if max_score > 0.0:
+            synergy_combi = {best_synergy_name: best_synergy_terms}
+        else:
+            synergy_combi = None
+        
+        return {
+            'synergy_combi': synergy_combi,
+            'synergy_score': max_score
+        }
