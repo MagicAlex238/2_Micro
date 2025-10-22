@@ -2,7 +2,7 @@
 SynergyDetector class for detecting corrosion synergies.
 """
 
-from turtle import pd
+import pandas as pd
 from typing import Dict, Any, List, Set, Tuple, Optional
 from .config import ScoringConfig
 from .exceptions import SynergyDetectionError
@@ -188,7 +188,72 @@ class SynergyDetector:
                 'description': 'Nitrogen-Iron Synergy (nitrate-enhanced Fe corrosion)'
             }
         }
-    
+    #===============================================================
+    # Second option chat
+    def detect_synergies_from_dataframe(
+        self,
+        df: pd.DataFrame,
+        feature_columns: List[str]
+    ) -> pd.DataFrame:
+        """
+        Detects corrosion-related synergies based only on priority_synergies.
+        Returns df with all original columns + 2 new ones.
+        """
+        try:
+            available_columns = [col for col in feature_columns if col in df.columns]
+            synergy_combis = []
+            synergy_scores = []
+
+            for _, row in df.iterrows():
+                result = self._detect_row_synergies(row, available_columns)
+                synergy_combis.append(result["synergy_combi"])
+                synergy_scores.append(result["synergy_score"])
+
+            df = df.copy()
+            df["synergy_combi"] = synergy_combis
+            df["synergy_combi_score"] = synergy_scores
+            return df
+
+        except Exception as e:
+            raise SynergyDetectionError(f"Dataframe synergy detection failed: {e}") from e
+
+
+    def _detect_row_synergies(self, row: pd.Series, feature_columns: List[str]) -> Dict[str, Any]:
+        """
+        Detect synergies for a single row using only textual pattern matching.
+        """
+        detected_text = " ".join(
+            str(row[col]).lower() for col in feature_columns if pd.notna(row[col])
+        )
+
+        found_cats = set()
+        for cat1, cat2 in self.priority_synergies.keys():
+            if cat1.split("_")[0] in detected_text:
+                found_cats.add(cat1)
+            if cat2.split("_")[0] in detected_text:
+                found_cats.add(cat2)
+
+        all_synergies = []
+        for (cat1, cat2), info in self.priority_synergies.items():
+            if cat1 in found_cats and cat2 in found_cats:
+                synergy_name = f"{cat1.split('_')[0]}-{cat2.split('_')[0]}"
+                synergy_dict = {synergy_name: [cat1, cat2]}
+                all_synergies.append({"dict": synergy_dict, "score": info["score"]})
+
+        if all_synergies:
+            all_synergies.sort(key=lambda x: x["score"], reverse=True)
+            synergy_combi = {k: v for s in all_synergies for k, v in s["dict"].items()}
+            max_score = all_synergies[0]["score"]
+        else:
+            synergy_combi = None
+            max_score = 0.0
+
+        return {"synergy_combi": synergy_combi, "synergy_score": max_score}
+   
+
+
+    ''' #first option claude
+    #===========================================================
     def detect_synergies_from_dataframe(self, df: pd.DataFrame,
         corrosion_synergy_dict: Dict[str, List[str]],
         feature_columns: List[str]
@@ -260,11 +325,6 @@ class SynergyDetector:
             if matched_terms:
                 detected_categories[category] = list(matched_terms)
         
-        # Check ONLY priority_synergies for matches
-        max_score = 0.0
-        best_synergy_name = None
-        best_synergy_terms = []
-        
         # Name mapping for short synergy names
         name_map = {'iron_metabolism': 'Fe',
             'sulfur_metabolism': 'S',
@@ -275,8 +335,38 @@ class SynergyDetector:
             'nitrogen_metabolism': 'N',
             'h2_consumption': 'H2'
         }
-        
+        # CHECK FOR ALL MATCHES IN priority_synergies
+
+        all_synergies = []
+
         for synergy_pair, synergy_info in self.priority_synergies.items():
+            cat1, cat2 = synergy_pair
+            if cat1 in detected_categories and cat2 in detected_categories:
+                current_score = synergy_info['score']
+                short_name1 = name_map.get(cat1, cat1)
+                short_name2 = name_map.get(cat2, cat2)
+                synergy_name = f"{short_name1}-{short_name2}"
+                synergy_terms = detected_categories[cat1] + detected_categories[cat2]
+                
+                all_synergies.append({
+                    'dict': {synergy_name: synergy_terms},
+                    'score': current_score
+                })
+
+        # Sort by score descending
+        all_synergies.sort(key=lambda x: x['score'], reverse=True)
+
+        # Extract just the dicts and max score
+        synergy_dicts = [s['dict'] for s in all_synergies]
+        max_score = all_synergies[0]['score'] if all_synergies else 0.0
+
+        return {
+            'synergy_combi': synergy_dicts if synergy_dicts else None,
+            'synergy_score': max_score
+        }
+        #===========================================================
+        # Check ONLY priority_synergies for matches
+         for synergy_pair, synergy_info in self.priority_synergies.items():
             cat1, cat2 = synergy_pair
             
             # Check if both categories are present
@@ -303,4 +393,9 @@ class SynergyDetector:
         return {
             'synergy_combi': synergy_combi,
             'synergy_score': max_score
-        }
+        }'''
+        #===========================================================
+
+# Custom exception (to keep your code functional)
+class SynergyDetectionError(Exception):
+    pass
