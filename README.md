@@ -43,7 +43,7 @@ sudo apt update
 sudo apt install python3.11 python3.11-venv python3.11-distutils
 python3.11 -m venv .venv_general
 source ./.venv_general/bin/activate
-pip install --upgrade pip
+pip install --upgrade pip setuptools wheel
 pip install -r general_requirements.txt
 python -m ipykernel install --user --name general_python11 --display-name "general_python11 (Python 3.11)"
 ```

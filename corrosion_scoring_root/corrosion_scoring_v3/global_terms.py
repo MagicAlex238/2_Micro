@@ -2086,4 +2086,3 @@ operational_environmental_factors_dict = {
 'concentration_cells': ['concentration cell', 'differential concentration', 'ion concentration gradient', 'oxygen concentration cell', 'metal ion gradient'],
 'syntrophic_interactions': ['syntrophic', 'cross-feeding', 'metabolic coupling', 'interspecies', 'consortia', 'metabolic cooperation']
 } 
-  

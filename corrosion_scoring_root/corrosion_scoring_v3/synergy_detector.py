@@ -188,214 +188,67 @@ class SynergyDetector:
                 'description': 'Nitrogen-Iron Synergy (nitrate-enhanced Fe corrosion)'
             }
         }
-    #===============================================================
-    # Second option chat
-    def detect_synergies_from_dataframe(
-        self,
-        df: pd.DataFrame,
-        feature_columns: List[str]
-    ) -> pd.DataFrame:
-        """
-        Detects corrosion-related synergies based only on priority_synergies.
-        Returns df with all original columns + 2 new ones.
-        """
-        try:
-            available_columns = [col for col in feature_columns if col in df.columns]
-            synergy_combis = []
-            synergy_scores = []
 
-            for _, row in df.iterrows():
-                result = self._detect_row_synergies(row, available_columns)
-                synergy_combis.append(result["synergy_combi"])
-                synergy_scores.append(result["synergy_score"])
-
-            df = df.copy()
-            df["synergy_combi"] = synergy_combis
-            df["synergy_combi_score"] = synergy_scores
-            return df
-
-        except Exception as e:
-            raise SynergyDetectionError(f"Dataframe synergy detection failed: {e}") from e
-
-
-    def _detect_row_synergies(self, row: pd.Series, feature_columns: List[str]) -> Dict[str, Any]:
-        """
-        Detect synergies for a single row using only textual pattern matching.
-        """
-        detected_text = " ".join(
-            str(row[col]).lower() for col in feature_columns if pd.notna(row[col])
-        )
-
-        found_cats = set()
-        for cat1, cat2 in self.priority_synergies.keys():
-            if cat1.split("_")[0] in detected_text:
-                found_cats.add(cat1)
-            if cat2.split("_")[0] in detected_text:
-                found_cats.add(cat2)
-
-        all_synergies = []
-        for (cat1, cat2), info in self.priority_synergies.items():
-            if cat1 in found_cats and cat2 in found_cats:
-                synergy_name = f"{cat1.split('_')[0]}-{cat2.split('_')[0]}"
-                synergy_dict = {synergy_name: [cat1, cat2]}
-                all_synergies.append({"dict": synergy_dict, "score": info["score"]})
-
-        if all_synergies:
-            all_synergies.sort(key=lambda x: x["score"], reverse=True)
-            synergy_combi = {k: v for s in all_synergies for k, v in s["dict"].items()}
-            max_score = all_synergies[0]["score"]
-        else:
-            synergy_combi = None
-            max_score = 0.0
-
-        return {"synergy_combi": synergy_combi, "synergy_score": max_score}
-   
-
-
-    ''' #first option claude
-    #===========================================================
-    def detect_synergies_from_dataframe(self, df: pd.DataFrame,
-        corrosion_synergy_dict: Dict[str, List[str]],
-        feature_columns: List[str]
-        ) -> pd.DataFrame:
-        """Detect synergies for each row in a dataframe based on feature columns.
-        Args:df: Input dataframe with feature columns
-            corrosion_synergy_dict: Dictionary mapping functional categories to terms
-            feature_columns: List of column names to check for synergy terms
-        Returns: DataFrame with added 'synergy_combi' and 'synergy_combi_score' columns
-        Raises: SynergyDetectionError: If synergy detection fails
-        """
-        try:
-            # Filter to only existing columns
-            available_columns = [col for col in feature_columns if col in df.columns]
-            
-            # Process each row and collect synergy info
-            synergy_combis = []
-            synergy_scores = []
-            
-            for idx, row in df.iterrows():
-                row_synergy = self._detect_row_synergies(
-                    row, 
-                    available_columns, 
-                    corrosion_synergy_dict
-                )
-                
-                synergy_combis.append(row_synergy['synergy_combi'])
-                synergy_scores.append(row_synergy['synergy_score'])
-            
-            # Add columns to dataframe
-            return pd.DataFrame({
-                'synergy_combi': synergy_combis,
-                'synergy_combi_score': synergy_scores
-            }, index=df.index)
-            
-        except Exception as e:
-            raise SynergyDetectionError(f"Dataframe synergy detection failed: {e}") from e
-
-    def _detect_row_synergies(self, row: pd.Series,feature_columns: List[str],
-        corrosion_synergy_dict: Dict[str, List[str]]
-        ) -> Dict[str, Any]:
-        """ Detect synergies for a single row based on feature columns.
-        Uses ONLY priority_synergies for detection.        
-        Args:row: Single row from dataframe
-            feature_columns: List of columns to check
-            corrosion_synergy_dict: Dictionary mapping categories to terms
-        Returns:Dictionary with 'synergy_combi' and 'synergy_score'"""
-        # Collect all terms from feature columns
-        all_terms = set()
-        for col in feature_columns:
-            value = row[col]
-            if pd.notna(value):
-                if isinstance(value, (list, set)):
-                    all_terms.update(str(v).lower() for v in value)
-                elif isinstance(value, str):
-                    # Handle comma-separated or pipe-separated values
-                    terms = [t.strip().lower() for t in value.replace('|', ',').split(',')]
-                    all_terms.update(terms)
+    
+    # Short name mapping for functional categories
+    name_map = {
+        'iron_metabolism': 'Fe_met',
+        'sulfur_metabolism': 'S_met',
+        'organic_acid_metabolism': 'organic_acid',
+        'metal_binding_chelation': 'chelation',
+        'biofilm_formation': 'biofilm',
+        'o2_consumption': 'O2',
+        'nitrogen_metabolism': 'N',
+        'h2_consumption': 'H2',
+        'carbon_metabolism': 'C_met',
+        'manganese_processes': 'Mn_met',
+        'methanogenesis': 'methanogenesis', 
+        'fumarate_formation': 'fumarate',
+        'phosphorus_metabolism': 'P_met'
+    }
+    def _detect_row_synergies(self, row: pd.Series) -> Dict[str, Any]:
+        """    Collect priority subcategories from 3 columns.        """
+        # Priority synergy definitions # Priority lists for each dimension
+        priority_functional = ['o2_consumption', 'nitrogen_metabolism', 'h2_consumption','iron_metabolism','sulfur_metabolism', 
+                            'organic_acid_metabolism','carbon_metabolism', 'manganese_processes', 'methanogenesis', 'fumarate_formation', 'phosphorus_metabolism',
+                                'metal_binding_chelation', 'biofilm_formation']
         
-        # Map terms to functional categories using corrosion_synergy_dict
-        detected_categories = {}
-        for category, category_terms in corrosion_synergy_dict.items():
-            matched_terms = set()
-            for term in category_terms:
-                term_lower = str(term).lower()
-                if term_lower in all_terms:
-                    matched_terms.add(term)
-            
-            if matched_terms:
-                detected_categories[category] = list(matched_terms)
+        priority_metals = ['Fe', 'S', 'Cl', 'Mn', 'Ni', 'Cr']
+        priority_operational = ['halogen_related', 'microaerobic_conditions','ph_modulation','direct_eet',
+                    'indirect_eet','exoelectrogenesis','enzymatic_corrosion','dealloying','galvanic_corrosion','chloride_attack','microbe_metal_synergy','cathodic_depolarization',
+                    'passivity_breakdown','concentration_cells','syntrophic_interactions'
+                ]
+        all_subcategories = []
+    
+        # 1. Check functional_sub (single string)
+        functional_sub = row.get('functional_sub', '')
+        if pd.notna(functional_sub) and str(functional_sub).strip():
+            func_val = str(functional_sub).strip()
+            if func_val in priority_functional:
+                all_subcategories.append(func_val)
         
-        # Name mapping for short synergy names
-        name_map = {'iron_metabolism': 'Fe',
-            'sulfur_metabolism': 'S',
-            'organic_acid_metabolism': 'organic_acid',
-            'metal_binding_chelation': 'chelation',
-            'biofilm_formation': 'biofilm',
-            'o2_consumption': 'O2',
-            'nitrogen_metabolism': 'N',
-            'h2_consumption': 'H2'
-        }
-        # CHECK FOR ALL MATCHES IN priority_synergies
-
-        all_synergies = []
-
-        for synergy_pair, synergy_info in self.priority_synergies.items():
-            cat1, cat2 = synergy_pair
-            if cat1 in detected_categories and cat2 in detected_categories:
-                current_score = synergy_info['score']
-                short_name1 = name_map.get(cat1, cat1)
-                short_name2 = name_map.get(cat2, cat2)
-                synergy_name = f"{short_name1}-{short_name2}"
-                synergy_terms = detected_categories[cat1] + detected_categories[cat2]
-                
-                all_synergies.append({
-                    'dict': {synergy_name: synergy_terms},
-                    'score': current_score
-                })
-
-        # Sort by score descending
-        all_synergies.sort(key=lambda x: x['score'], reverse=True)
-
-        # Extract just the dicts and max score
-        synergy_dicts = [s['dict'] for s in all_synergies]
-        max_score = all_synergies[0]['score'] if all_synergies else 0.0
+        # 2. Check consolidated_metals (semicolon-separated string)
+        consolidated_metals = row.get('consolidated_metals', '')
+        if pd.notna(consolidated_metals) and str(consolidated_metals).strip():
+            metal_items = [m.strip() for m in str(consolidated_metals).split(';')]
+            for metal in metal_items:
+                if metal in priority_metals:
+                    all_subcategories.append(metal)
+        
+        # 3. Check operational_sub (single string)
+        operational_sub = row.get('operational_sub', '')
+        if pd.notna(operational_sub) and str(operational_sub).strip():
+            ope_val = str(operational_sub).strip()
+            if ope_val in priority_operational:
+                all_subcategories.append(ope_val)
+        
+        # Weighted by importance 
+        high_priority = {'Fe', 'S', 'Cl', 'organic_acid_metabolism', 'enzymatic_corrosion', 'microbe_metal_synergy',
+                          'iron_metabolism', 'biofilm_formation', 'metal_binding_chelation'}
+        total_score = sum(1.5 if item in high_priority else 1.0 
+                          for item in all_subcategories)
 
         return {
-            'synergy_combi': synergy_dicts if synergy_dicts else None,
-            'synergy_score': max_score
+            "synergy_combi": all_subcategories if all_subcategories else None,
+            "synergy_combi_score": total_score
         }
-        #===========================================================
-        # Check ONLY priority_synergies for matches
-         for synergy_pair, synergy_info in self.priority_synergies.items():
-            cat1, cat2 = synergy_pair
-            
-            # Check if both categories are present
-            if cat1 in detected_categories and cat2 in detected_categories:
-                current_score = synergy_info['score']
-                
-                if current_score > max_score:
-                    max_score = current_score
-                    
-                    # Create short synergy name
-                    short_name1 = name_map.get(cat1, cat1)
-                    short_name2 = name_map.get(cat2, cat2)
-                    best_synergy_name = f"{short_name1}-{short_name2}"
-                    
-                    # Collect all terms from both categories
-                    best_synergy_terms = detected_categories[cat1] + detected_categories[cat2]
-        
-        # Build result
-        if max_score > 0.0:
-            synergy_combi = {best_synergy_name: best_synergy_terms}
-        else:
-            synergy_combi = None
-        
-        return {
-            'synergy_combi': synergy_combi,
-            'synergy_score': max_score
-        }'''
-        #===========================================================
-
-# Custom exception (to keep your code functional)
-class SynergyDetectionError(Exception):
-    pass
