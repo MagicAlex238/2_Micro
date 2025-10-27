@@ -228,12 +228,25 @@ class SynergyDetector:
                 all_subcategories.append(func_val)
         
         # 2. Check consolidated_metals (semicolon-separated string)
-        consolidated_metals = row.get('consolidated_metals', '')
-        if pd.notna(consolidated_metals) and str(consolidated_metals).strip():
-            metal_items = [m.strip() for m in str(consolidated_metals).split(';')]
-            for metal in metal_items:
-                if metal in priority_metals:
-                    all_subcategories.append(metal)
+        def _normalize_metals(value):
+            # list-aware, backward-compatible with old semicolon strings
+            if value is None or (isinstance(value, float) and pd.isna(value)):
+                items = []
+            elif isinstance(value, str):
+                items = [m.strip() for m in value.split(';') if m.strip()]
+            elif isinstance(value, (list, tuple, set)):
+                items = [str(m).strip() for m in value if str(m).strip()]
+            else:
+                s = str(value).strip()
+                items = [s] if s else []
+            # de-duplicate preserving order
+            seen = set()
+            return [x for x in items if not (x in seen or seen.add(x))]
+
+        metal_items = _normalize_metals(row.get('consolidated_metals'))
+        for metal in metal_items:
+            if metal in priority_metals:
+                all_subcategories.append(metal)
         
         # 3. Check operational_sub (single string)
         operational_sub = row.get('operational_sub', '')
