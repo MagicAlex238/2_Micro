@@ -80,12 +80,17 @@ metal_terms_dict = {
         'terms': ['Hg2+', 'Hg+', 'mercury', 'mercuric', 'mercurous', 'mercury methylation'],
         'score': 1.0
     },
-    'sulfur':   {'terms': ['s', 'sulfide', 'sulfate', 'sulfite', 'thiosulfate', 'sulfur'], 'score': 1.0},
-    'chloride': {'terms': ['cl', 'chloride', 'nacl', 'chlorination'], 'score': 1.0},
-    'nitrate':  {'terms': ['no3', 'nitrate', 'nitrite', 'no2'], 'score': 1.0},
-    'phosphate':{'terms': ['po4', 'phosphate', 'orthophosphate'], 'score': 0.5},
-    'carbonate':{'terms': ['co3', 'carbonate', 'bicarbonate', 'hco3'], 'score': 0.5},
-    'hydrogen': {'terms': ['h2', 'hydrogen', 'proton', 'h+'], 'score': 0.5}
+    'sulfate':     {'terms': ['sulfate', 'so4', 'sulphate'], 'score': 1.0},
+    'sulfide':     {'terms': ['sulfide', 's2-', 'hs-', 'h2s', 'hydrogen sulfide'], 'score': 1.0},
+    'sulfite':     {'terms': ['sulfite', 'so3'], 'score': 1.0},
+    'thiosulfate': {'terms': ['thiosulfate', 's2o3'], 'score': 1.0},
+    'sulfur':      {'terms': ['s', 'sulfur', 'sulphur', 'elemental sulfur'], 'score': 1.0},
+    'chloride':    {'terms': ['cl', 'chloride', 'nacl', 'chlorination'], 'score': 1.0},
+     'nitrate':    {'terms': ['no3', 'nitrate'], 'score': 1.0},
+    'nitrite':     {'terms': ['no2', 'nitrite'], 'score': 1.0},
+    'phosphate':   {'terms': ['po4', 'phosphate', 'orthophosphate'], 'score': 0.5},
+    'carbonate':   {'terms': ['co3', 'carbonate', 'bicarbonate', 'hco3'], 'score': 0.5},
+    'hydrogen':    {'terms': ['h2', 'hydrogen', 'proton', 'h+'], 'score': 0.5}
     }
 
 # 2. COMPLETE corrosion_synergies 
@@ -653,20 +658,20 @@ metal_mapping = {
 'se': 'Se',
 'barium': 'Ba2+',
 'ba2+': 'Ba2+',
-'sulfate': 'S',
-'sulfide': 'S',
-'thiosulfate': 'S',
-'s-s': 'S',
-'sulfur': 'S',
-'sulfur oxidation': 'S',
-'srb': 'S',
+'sulfate': 'SO4-',
+'sulfide': 'S2-',
+'thiosulfate': 'S2O3-',
+'s-s': 'S2-',
+'sulfur': 'S', 
+'sulfur oxidation': 'SO4-',
+'srb': 'S2-',
 'hydrogen': 'H',
 'h2': 'H',
 'h2o': 'H',
 'h2s': 'H',
-'phosphate': 'po4-3',
+'phosphate': 'PO4-',
 'nitrate': 'NO3-',
-'nitrite': 'NO2',
+'nitrite': 'NO2-',
 'chloride': 'Cl-',
 'cl-': 'Cl-',
 'fluoride': 'F-',
@@ -680,10 +685,47 @@ metal_mapping = {
 'cadmium': 'Cd',    
 'cd2+': 'Cd',
 'mercury': 'Hg',
-'hg2+': 'Hg'
+'hg2+': 'Hg',
+# Sulfur species
+'sulfite': 'SO3-',
+'s2-': 'S2-',
+'hs-': 'S2-',
+'h2s': 'S2-',
+'so4': 'SO4-',
+'so3': 'SO3-',
+'s2o3': 'S2O3-',
+
+# Nitrogen species
+'no2': 'NO2-',
+'no3': 'NO3-',
+'no2-': 'NO2-',
+'no3-': 'NO3-',
+
+# Phosphate
+'po4': 'PO4-',
+'po4-3': 'PO4-',
+'po4-': 'PO4-',
+# Magnesium variations
+'magnesium': 'Mg',
+'mg': 'Mg',
+'mg2+': 'Mg2+',
+
+# Strontium variations
+'strontium': 'Sr',
+'sr': 'Sr',
+'sr2+': 'Sr2+',
+
+# Carbonate variations (if not already there)
+'carbonate': 'CO3-',
+'co3': 'CO3-',
+
+# Cadmium (if missing)
+'cadmium': 'Cd',
+'cd': 'Cd',
+'cd2+': 'Cd2+',
 }
 
-# 5. Complete corrosion_mechanisms, no to be use on scoring system
+# 5. Complete corrosion_mechanisms, no to be use as dict on scoring system
 # bridging thegap betwen the metabolic potential (pathways) and the actual physical or chemical effects on a surface.
 
 mechanisms_dict = {
