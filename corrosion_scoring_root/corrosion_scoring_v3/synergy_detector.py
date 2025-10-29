@@ -206,6 +206,10 @@ class SynergyDetector:
         'fumarate_formation': 'fumarate',
         'phosphorus_metabolism': 'P_met'
     }
+    # ===============================================================
+    # Synergy detection based on combined subcategories from multiple columns
+    # Done during prioritize_markers helper function on corrosion_protein pipeline
+    ############################################################################    
     def _detect_row_synergies(self, row: pd.Series) -> Dict[str, Any]:
         """    Collect priority subcategories from 3 columns.        """
         # Priority synergy definitions # Priority lists for each dimension
