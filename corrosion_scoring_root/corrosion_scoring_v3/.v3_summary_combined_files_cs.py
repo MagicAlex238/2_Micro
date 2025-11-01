@@ -1,3 +1,100 @@
+# ====== Imports in notebooks ======
+import os
+import sys
+from pathlib import Path
+sys.path.append(os.path.abspath('..'))  # Ensures the project root is in Python's search path
+
+if Path("/kaggle").exists():
+    print ("Running Kaggle environment")
+    # Create directory structure
+    !mkdir -p corrosion_scoring_v3
+    !wget -O corrosion_scoring_v3/__init__.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/__init__.py
+    !wget -O corrosion_scoring_v3/global_terms.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/global_terms.py
+    !wget -O corrosion_scoring_v3/term_processor.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/term_processor.py
+    !wget -O corrosion_scoring_v3/config.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/config.py
+    !wget -O corrosion_scoring_v3/score_calculator.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/score_calculator.py
+    !wget -O corrosion_scoring_v3/synergy_detector.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/synergy_detector.py
+    !wget -O corrosion_scoring_v3/name_utils.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/name_utils.py
+    !wget -O corrosion_scoring_v3/utils_ec.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/utils_ec.py
+    !wget -O corrosion_scoring_v3/validators.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/validators.py
+    !wget -O corrosion_scoring_v3/exceptions.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/exceptions.py
+
+    # Add current directory to path
+    sys.path.append(os.getcwd())
+    print("Running in Kaggle environment")  
+else:
+    print("Running in local (VSCode) environment")# Silencing the imports after stable package
+    os.system("pip uninstall -y corrosion_scoring_v3 || true")
+    #os.system("pip cache purge")
+    #os.system("pip install --force-reinstall git+https://github.com/MagicAlex238/2_Micro.git@refactor-scoring-system#subdirectory=corrosion_scoring_root/corrosion_scoring_v3")
+    #os.system("pip install git+https://github.com/MagicAlex238/2_Micro.git@refactor-scoring-system#subdirectory=corrosion_scoring_root/corrosion_scoring_v3")
+    # ensuring the path is set correctly:
+    sys.path.insert(0, "/home/beatriz/MIC/2_Micro/corrosion_scoring_root") 
+
+import corrosion_scoring_v3 as cs
+from corrosion_scoring_v3.term_processor import TermProcessor
+from corrosion_scoring_v3.name_utils import enhanced_clean_protein_name, clean_protein_name
+from corrosion_scoring_v3.utils_ec import normalize_ec_id, strip_all_ec_tokens, normalize_listlike
+from corrosion_scoring_v3.validators import ValidationError
+from corrosion_scoring_v3.exceptions import ScoringError, TextMiningError, SynergyDetectionError
+from corrosion_scoring_v3.global_terms import (metal_terms_dict, functional_categories_dict, corrosion_synergies_dict,
+    mechanisms_dict, pathway_dict, operational_environmental_factors_dict, metal_mapping)
+
+# create processors (use cs.<name> for consistency)
+fc_processor = TermProcessor(cs.functional_categories_dict)
+metal_processor = TermProcessor(cs.metal_terms_dict)
+synergy_processor = TermProcessor(cs.corrosion_synergies_dict)
+mechanisms_processor = TermProcessor(cs.mechanisms_dict)
+pathway_processor = TermProcessor(cs.pathway_dict)
+ope_processor = TermProcessor(cs.operational_environmental_factors_dict)
+
+processors =   {'fc_processor': fc_processor, 'metal_processor': metal_processor,
+    'synergy_processor': synergy_processor}
+
+# Initialize v3 components with existing processors
+# ---- Initialize v3 system components ----
+config = cs.ScoringConfig()
+text_miner = cs.TextMiner(config)
+text_miner.processors = processors 
+
+score_calculator = cs.ScoreCalculator(config)
+synergy_detector = cs.SynergyDetector(config)
+metal_mapping = cs.metal_mapping 
+# ========== pyproject.toml ==========
+from os import system
+
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "corrosion-scoring"
+version = "0.3.6"
+description = "Corrosion relevance scoring system for microbial analysis"
+authors = [{name = "MagicAlex238", email = "MagicAlex238@users.noreply.github.com"}]
+license = {text = "MIT"}
+keywords = ["corrosion", "microbiology", "HVAC", "biofilm"]
+requires-python = ">=3.11" 
+dependencies = [
+    "pandas",
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "seaborn"
+]
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering :: Bio-Informatics"
+]
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["corrosion_scoring*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+"corrosion_scoring" = ["*.py"]
+
 # ========== __init__.py ==========
 """
 Refactored Corrosion Scoring System v3.0
@@ -352,6 +449,63 @@ def strip_all_ec_tokens(text: str) -> str:
         return ""
     return _EC_RE.sub("", text).strip()
 
+#====================== Normalizing normalize_listlike =====================
+import re, ast, numpy as np, pandas as pd
+
+def normalize_listlike(val):
+    """
+    Return a clean list[str] from mixed inputs:
+    - list/tuple/set
+    - numpy/pandas arrays
+    - semicolon/comma-separated strings
+    - stringified lists/dicts: "['Fe','Ni']" or numpy repr "['Fe' 'Ni']"
+    - None/NaN -> []
+    Deduplicates while preserving order.
+    """
+    def unique_preserve(seq):
+        seen, out = set(), []
+        for x in seq:
+            if x not in seen:
+                seen.add(x)
+                out.append(x)
+        return out
+
+    # None/NaN
+    if val is None or (isinstance(val, float) and pd.isna(val)):
+        return []
+
+    # list-like
+    if isinstance(val, (list, tuple, set)):
+        return unique_preserve([str(x).strip() for x in val if str(x).strip()])
+
+    # numpy/pandas arrays
+    if isinstance(val, (np.ndarray, pd.api.extensions.ExtensionArray, pd.Series)):
+        return unique_preserve([str(x).strip() for x in list(np.array(val).tolist()) if str(x).strip()])
+
+    # strings
+    if isinstance(val, str):
+        s = val.strip()
+        if not s or s.lower() in {"nan", "none", "[]"}:
+            return []
+        # try literal eval for normal Python reprs
+        if (s.startswith('[') and s.endswith(']')) or (s.startswith('{') and s.endswith('}')):
+            try:
+                parsed = ast.literal_eval(s)
+                return normalize_listlike(parsed)
+            except Exception:
+                # numpy-like repr with quoted tokens and no commas
+                quoted = re.findall(r"'([^']+)'|\"([^\"]+)\"", s)
+                if quoted:
+                    return unique_preserve([(a or b).strip() for a, b in quoted if (a or b).strip()])
+        # semicolon/comma separated fallback
+        if ';' in s or ',' in s:
+            return unique_preserve([p.strip() for p in re.split(r'[;,]', s) if p.strip()])
+        # single token string
+        return [s]
+
+    # anything else
+    s = str(val).strip()
+    return [s] if s else []
 
 # ========== score_calculator.py ==========
 """
@@ -540,6 +694,7 @@ class ScoreCalculator:
 SynergyDetector class for detecting corrosion synergies.
 """
 
+import pandas as pd
 from typing import Dict, Any, List, Set, Tuple, Optional
 from .config import ScoringConfig
 from .exceptions import SynergyDetectionError
@@ -553,11 +708,8 @@ class SynergyDetector:
     """
     
     def __init__(self, config: ScoringConfig = None):
-        """
-        Initialize the SynergyDetector.
-        
-        Args:
-            config: Configuration settings for synergy detection
+        """ Initialize the SynergyDetector.
+        Args: config: Configuration settings for synergy detection
         """
         self.config = config or ScoringConfig()
         
@@ -573,16 +725,10 @@ class SynergyDetector:
     
     def detect_synergies(self, features: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Detect synergies from extracted features.
-        
-        Args:
-            features: Dictionary containing extracted features
-            
-        Returns:
-            Dictionary containing synergy detection results
-            
-        Raises:
-            SynergyDetectionError: If synergy detection fails
+        Detect synergies from extracted features.        
+        Args: features: Dictionary containing extracted features
+        Returns: Dictionary containing synergy detection results
+        Raises:SynergyDetectionError: If synergy detection fails
         """
         try:
             # Get functional category matches
@@ -605,12 +751,8 @@ class SynergyDetector:
     def _detect_functional_category_synergies(self, fc_matches: Dict[str, List[str]]) -> Dict[str, Any]:
         """
         Detect synergies based on co-occurrence of terms from different functional categories.
-        
-        Args:
-            fc_matches: Dictionary of functional category matches
-            
-        Returns:
-            Dictionary containing synergy detection results
+        Args:fc_matches: Dictionary of functional category matches
+        Returns: Dictionary containing synergy detection results
         """
         try:
             # Step 1: Filter relevant categories and collect their terms
@@ -688,12 +830,8 @@ class SynergyDetector:
     def get_synergy_explanation(self, synergy_categories: List[str]) -> str:
         """
         Get a detailed explanation of detected synergies.
-        
-        Args:
-            synergy_categories: List of involved synergy categories
-            
-        Returns:
-            Detailed explanation string
+        Args:synergy_categories: List of involved synergy categories
+        Returns:Detailed explanation string
         """
         if not synergy_categories or len(synergy_categories) < 2:
             return "No significant synergies detected."
@@ -706,6 +844,123 @@ class SynergyDetector:
         
         # General explanation for multi-category synergies
         return f"Multi-pathway synergy detected involving {len(synergy_categories)} functional categories: {', '.join(synergy_categories)}"
+    
+    #===============================================================
+    priority_synergies = { # Based on failure analysis of cooling and heating operational water systems
+            ('organic_acid_metabolism', 'metal_binding_chelation'): {
+                'score': 3.0, 
+                'description': 'TOC-chelation Synergy (TOC-chelate)'
+            },
+            ('iron_metabolism', 'organic_acid_metabolism'): {
+                'score': 2.8, 
+                'description': 'Iron-Organic Acid Synergy (acid-enhanced Fe corrosion)'
+            },
+            ('biofilm_formation', 'metal_binding_chelation'): {
+                'score': 2.7,
+                'description': 'biofilm-chelate Synergy (biofilm-chelate-corrosion)'
+            },
+            ('o2_consumption', 'iron_metabolism'): {
+                'score': 2.5,
+                'description': 'Oxygen-Iron Synergy (aerobic Fe corrosion)'
+            },
+            ('sulfur_metabolism', 'iron_metabolism'): {
+                'score': 2.4,
+                'description': 'Sulfur-iron Synergy (SRB-mediated corrosion)'
+            },
+            ('sulfur_metabolism', 'h2_consumption'): {
+                'score': 2.3,
+                'description': 'Sulfur-Hydrogen Synergy (SRB-mediated corrosion)'
+            },
+            ('biofilm_formation', 'iron_metabolism'): {
+                'score': 2.2,
+                'description': 'Biofilm-Iron Synergy (biofilm-enhanced Fe corrosion)'
+            },
+            ('nitrogen_metabolism', 'iron_metabolism'): {
+                'score': 2.0,
+                'description': 'Nitrogen-Iron Synergy (nitrate-enhanced Fe corrosion)'
+            }
+        }
+
+    
+    # Short name mapping for functional categories
+    name_map = {
+        'iron_metabolism': 'Fe_met',
+        'sulfur_metabolism': 'S_met',
+        'organic_acid_metabolism': 'organic_acid',
+        'metal_binding_chelation': 'chelation',
+        'biofilm_formation': 'biofilm',
+        'o2_consumption': 'O2',
+        'nitrogen_metabolism': 'N',
+        'h2_consumption': 'H2',
+        'carbon_metabolism': 'C_met',
+        'manganese_processes': 'Mn_met',
+        'methanogenesis': 'methanogenesis', 
+        'fumarate_formation': 'fumarate',
+        'phosphorus_metabolism': 'P_met'
+    }
+    # ===============================================================
+    # Synergy detection based on combined subcategories from multiple columns
+    # Done during prioritize_markers helper function on corrosion_protein pipeline
+    ############################################################################    
+    def _detect_row_synergies(self, row: pd.Series) -> Dict[str, Any]:
+        """    Collect priority subcategories from 3 columns.        """
+        # Priority synergy definitions # Priority lists for each dimension
+        priority_functional = ['o2_consumption', 'nitrogen_metabolism', 'h2_consumption','iron_metabolism','sulfur_metabolism', 
+                            'organic_acid_metabolism','carbon_metabolism', 'manganese_processes', 'methanogenesis', 'fumarate_formation', 'phosphorus_metabolism',
+                                'metal_binding_chelation', 'biofilm_formation']
+        
+        priority_metals = ['Fe', 'S', 'Cl', 'Mn', 'Ni', 'Cr']
+        priority_operational = ['halogen_related', 'microaerobic_conditions','ph_modulation','direct_eet',
+                    'indirect_eet','exoelectrogenesis','enzymatic_corrosion','dealloying','galvanic_corrosion','chloride_attack','microbe_metal_synergy','cathodic_depolarization',
+                    'passivity_breakdown','concentration_cells','syntrophic_interactions'
+                ]
+        all_subcategories = []
+    
+        # 1. Check functional_sub (single string)
+        functional_sub = row.get('functional_sub', '')
+        if pd.notna(functional_sub) and str(functional_sub).strip():
+            func_val = str(functional_sub).strip()
+            if func_val in priority_functional:
+                all_subcategories.append(func_val)
+        
+        # 2. Check consolidated_metals (semicolon-separated string)
+        def _normalize_metals(value):
+            # list-aware, backward-compatible with old semicolon strings
+            if value is None or (isinstance(value, float) and pd.isna(value)):
+                items = []
+            elif isinstance(value, str):
+                items = [m.strip() for m in value.split(';') if m.strip()]
+            elif isinstance(value, (list, tuple, set)):
+                items = [str(m).strip() for m in value if str(m).strip()]
+            else:
+                s = str(value).strip()
+                items = [s] if s else []
+            # de-duplicate preserving order
+            seen = set()
+            return [x for x in items if not (x in seen or seen.add(x))]
+
+        metal_items = _normalize_metals(row.get('consolidated_metals'))
+        for metal in metal_items:
+            if metal in priority_metals:
+                all_subcategories.append(metal)
+        
+        # 3. Check operational_sub (single string)
+        operational_sub = row.get('operational_sub', '')
+        if pd.notna(operational_sub) and str(operational_sub).strip():
+            ope_val = str(operational_sub).strip()
+            if ope_val in priority_operational:
+                all_subcategories.append(ope_val)
+        
+        # Weighted by importance 
+        high_priority = {'Fe', 'S', 'Cl', 'organic_acid_metabolism', 'enzymatic_corrosion', 'microbe_metal_synergy',
+                          'iron_metabolism', 'biofilm_formation', 'metal_binding_chelation'}
+        total_score = sum(1.5 if item in high_priority else 1.0 
+                          for item in all_subcategories)
+
+        return {
+            "synergy_combi": all_subcategories if all_subcategories else None,
+            "synergy_combi_score": total_score
+        }
 
 # ========== term_processor.py ==========
 """
