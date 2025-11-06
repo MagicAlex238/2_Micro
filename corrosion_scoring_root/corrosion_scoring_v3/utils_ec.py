@@ -75,3 +75,88 @@ def normalize_listlike(val):
     # anything else
     s = str(val).strip()
     return [s] if s else []
+#====================== Post-process DataFrame columns =====================
+
+def standardize_metal_symbol(metal):
+    """
+    Normalize a single metal token to a canonical symbol/string or return None for NA/empty.
+    Preserves species/charge tokens (e.g., 'Fe3+','V5+').
+    """
+    if metal is None:
+        return None
+    try:
+        if pd.isna(metal):
+            return None
+    except Exception:
+        pass
+
+    m = str(metal).strip()
+    if not m:
+        return None
+
+    # small canonical/dedup map (extend as needed)
+    dedup_map = {'Cd2+': 'Cd', 'Al3+': 'Al', 'Ba2+': 'Ba', 'Cr3+': 'Cr'}
+    full_name_map = {
+        'magnesium': 'Mg', 'calcium': 'Ca', 'strontium': 'Sr', 'barium': 'Ba',
+        'cadmium': 'Cd', 'chromium': 'Cr', 'carbonate': 'CO3-', 'bicarbonate': 'HCO3-',
+        'sulfate': 'SO4-', 'sulfide': 'S2-', 'sulfite': 'SO3-', 'thiosulfate': 'S2O3-',
+        'nitrate': 'NO3-', 'nitrite': 'NO2-', 'phosphate': 'PO4-', 'chloride': 'Cl-', 'fluoride': 'F-',
+        'sulfur': 'S', 'hydrogen': 'H+'
+    }
+
+    if m in dedup_map:
+        return dedup_map[m]
+    ml = m.lower()
+    if ml in full_name_map:
+        return full_name_map[ml]
+
+    if ml in ('h',):
+        return 'H+'
+    if ml in ('na', 'nacl', 'na+'):
+        return 'Na+'
+
+    # match element/ion-like tokens with optional charge
+    pat = r'^\s*([A-Za-z][A-Za-z0-9]{0,3})([+\-]\d*|[+\-])?\s*$'
+    mm = re.match(pat, m)
+    if mm:
+        base = mm.group(1)
+        charge = mm.group(2) or ''
+        if len(base) == 1:
+            base_norm = base.upper()
+        else:
+            base_norm = base[0].upper() + base[1:]
+        return base_norm + (charge or '')
+    return m
+
+def standardize_metals_list(metals) -> list:
+    """
+    Return a plain list of canonical metal tokens from many representations.
+    - returns [] for None/NA/empty
+    - preserves charge/species tokens
+    - deduplicates preserving first-seen order (case-insensitive)
+    """
+    flat = normalize_listlike(metals)
+    if not flat:
+        return []
+
+    out = []
+    seen = set()
+    for item in flat:
+        try:
+            if pd.isna(item):
+                continue
+        except Exception:
+            pass
+        if item is None:
+            continue
+        tok = standardize_metal_symbol(item)
+        if tok is None:
+            continue
+        s = str(tok).strip()
+        if not s or s.lower() in ('nan', 'none', ''):
+            continue
+        key = s.lower()
+        if key not in seen:
+            seen.add(key)
+            out.append(s)
+    return out
