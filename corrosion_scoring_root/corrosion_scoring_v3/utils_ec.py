@@ -39,17 +39,29 @@ def normalize_listlike(val):
                 out.append(x)
         return out
 
+    def is_valid_item(x):
+        """Check if an item is valid (not None/NaN)"""
+        if x is None:
+            return False
+        try:
+            if pd.isna(x):
+                return False
+        except (TypeError, ValueError):
+            pass
+        s = str(x).strip()
+        return s and s.lower() not in {'nan', 'none', '', 'null'}
+
     # None/NaN
     if val is None or (isinstance(val, float) and pd.isna(val)):
         return []
 
     # list-like
     if isinstance(val, (list, tuple, set)):
-        return unique_preserve([str(x).strip() for x in val if str(x).strip()])
+        return unique_preserve([str(x).strip() for x in val if is_valid_item(x)])
 
     # numpy/pandas arrays
     if isinstance(val, (np.ndarray, pd.api.extensions.ExtensionArray, pd.Series)):
-        return unique_preserve([str(x).strip() for x in list(np.array(val).tolist()) if str(x).strip()])
+        return unique_preserve([str(x).strip() for x in list(np.array(val).tolist()) if is_valid_item(x)])
 
     # strings
     if isinstance(val, str):
@@ -65,22 +77,23 @@ def normalize_listlike(val):
                 # numpy-like repr with quoted tokens and no commas
                 quoted = re.findall(r"'([^']+)'|\"([^\"]+)\"", s)
                 if quoted:
-                    return unique_preserve([(a or b).strip() for a, b in quoted if (a or b).strip()])
+                    return unique_preserve([(a or b).strip() for a, b in quoted if is_valid_item(a or b)])
         # semicolon/comma separated fallback
         if ';' in s or ',' in s:
-            return unique_preserve([p.strip() for p in re.split(r'[;,]', s) if p.strip()])
+            return unique_preserve([p.strip() for p in re.split(r'[;,]', s) if is_valid_item(p)])
         # single token string
-        return [s]
+        return [s] if is_valid_item(s) else []
 
     # anything else
     s = str(val).strip()
-    return [s] if s else []
+    return [s] if is_valid_item(s) else []
 #====================== Post-process DataFrame columns =====================
 
 def standardize_metal_symbol(metal):
     """
-    Normalize a single metal token to a canonical symbol/string or return None for NA/empty.
-    Preserves species/charge tokens (e.g., 'Fe3+','V5+').
+    Preserves species/charge tokens. Solid alloys in system components to be able to interact with the environment will convert into ionic species or be assimilated as organic species affecting water chemistry and corrosion in heating and cooling systems  
+    'PO4-', 'K+2', 'Mg+2', 'Na+',  'Ca+2', 'Co+2', 'Cu+', 'Cl-', 'Fe+2', 'Hg', 'Ni+2', 'Pb+2', 'Zn+2',  'Al+3', 'Cr+3',
+     'Cd+2','CO3-', 'Ba+2',  'F-', 'Mn+2', 'SO4-', 'S2-', 'S2O3-', 'SO3-', 'MoO4-2', 'V5+',  'NO2-', 'NO3-'
     """
     if metal is None:
         return None

@@ -322,8 +322,8 @@ cd /home/beatriz/MIC/2_Micro/corrosion_scoring_root/corrosion_scoring_v3
     cat __init__.py
     echo -e "\n\n# ========== config.py =========="
     cat config.py
-    echo -e "\n\n# ========== exceptions.py =========="
-    cat exceptions.py
+    echo -e "\n\n# ========== exceptions.py ========== no given to save space"
+    #cat exceptions.py
     echo -e "\n\n# ========== global_terms.py ========== too large no included" # no included it is too large
     #cat global_terms.py
     echo -e "\n\n# ========== name_utils.py  =========="
@@ -338,8 +338,8 @@ cd /home/beatriz/MIC/2_Micro/corrosion_scoring_root/corrosion_scoring_v3
     cat term_processor.py
     echo -e "\n\n# ========== text_miner.py =========="
     cat text_miner.py
-    echo -e "\n\n# ========== validators.py =========="
-    cat validators.py
+    echo -e "\n\n# ========== validators.py ========== no given to save space"
+    # cat validators.py
 } > /home/beatriz/MIC/2_Micro/corrosion_scoring_root/corrosion_scoring_v3/.v3_summary_combined_files_cs.py
 ´´´
 

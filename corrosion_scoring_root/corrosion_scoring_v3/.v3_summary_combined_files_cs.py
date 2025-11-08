@@ -1,100 +1,3 @@
-# ====== Imports in notebooks ======
-import os
-import sys
-from pathlib import Path
-sys.path.append(os.path.abspath('..'))  # Ensures the project root is in Python's search path
-
-if Path("/kaggle").exists():
-    print ("Running Kaggle environment")
-    # Create directory structure
-    !mkdir -p corrosion_scoring_v3
-    !wget -O corrosion_scoring_v3/__init__.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/__init__.py
-    !wget -O corrosion_scoring_v3/global_terms.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/global_terms.py
-    !wget -O corrosion_scoring_v3/term_processor.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/term_processor.py
-    !wget -O corrosion_scoring_v3/config.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/config.py
-    !wget -O corrosion_scoring_v3/score_calculator.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/score_calculator.py
-    !wget -O corrosion_scoring_v3/synergy_detector.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/synergy_detector.py
-    !wget -O corrosion_scoring_v3/name_utils.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/name_utils.py
-    !wget -O corrosion_scoring_v3/utils_ec.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/utils_ec.py
-    !wget -O corrosion_scoring_v3/validators.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/validators.py
-    !wget -O corrosion_scoring_v3/exceptions.py https://raw.githubusercontent.com/MagicAlex238/2_Micro/main/corrosion_scoring_root/corrosion_scoring_v3/exceptions.py
-
-    # Add current directory to path
-    sys.path.append(os.getcwd())
-    print("Running in Kaggle environment")  
-else:
-    print("Running in local (VSCode) environment")# Silencing the imports after stable package
-    os.system("pip uninstall -y corrosion_scoring_v3 || true")
-    #os.system("pip cache purge")
-    #os.system("pip install --force-reinstall git+https://github.com/MagicAlex238/2_Micro.git@refactor-scoring-system#subdirectory=corrosion_scoring_root/corrosion_scoring_v3")
-    #os.system("pip install git+https://github.com/MagicAlex238/2_Micro.git@refactor-scoring-system#subdirectory=corrosion_scoring_root/corrosion_scoring_v3")
-    # ensuring the path is set correctly:
-    sys.path.insert(0, "/home/beatriz/MIC/2_Micro/corrosion_scoring_root") 
-
-import corrosion_scoring_v3 as cs
-from corrosion_scoring_v3.term_processor import TermProcessor
-from corrosion_scoring_v3.name_utils import enhanced_clean_protein_name, clean_protein_name
-from corrosion_scoring_v3.utils_ec import normalize_ec_id, strip_all_ec_tokens, normalize_listlike
-from corrosion_scoring_v3.validators import ValidationError
-from corrosion_scoring_v3.exceptions import ScoringError, TextMiningError, SynergyDetectionError
-from corrosion_scoring_v3.global_terms import (metal_terms_dict, functional_categories_dict, corrosion_synergies_dict,
-    mechanisms_dict, pathway_dict, operational_environmental_factors_dict, metal_mapping)
-
-# create processors (use cs.<name> for consistency)
-fc_processor = TermProcessor(cs.functional_categories_dict)
-metal_processor = TermProcessor(cs.metal_terms_dict)
-synergy_processor = TermProcessor(cs.corrosion_synergies_dict)
-mechanisms_processor = TermProcessor(cs.mechanisms_dict)
-pathway_processor = TermProcessor(cs.pathway_dict)
-ope_processor = TermProcessor(cs.operational_environmental_factors_dict)
-
-processors =   {'fc_processor': fc_processor, 'metal_processor': metal_processor,
-    'synergy_processor': synergy_processor}
-
-# Initialize v3 components with existing processors
-# ---- Initialize v3 system components ----
-config = cs.ScoringConfig()
-text_miner = cs.TextMiner(config)
-text_miner.processors = processors 
-
-score_calculator = cs.ScoreCalculator(config)
-synergy_detector = cs.SynergyDetector(config)
-metal_mapping = cs.metal_mapping 
-# ========== pyproject.toml ==========
-from os import system
-
-
-[build-system]
-requires = ["setuptools>=45", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[project]
-name = "corrosion-scoring"
-version = "0.3.6"
-description = "Corrosion relevance scoring system for microbial analysis"
-authors = [{name = "MagicAlex238", email = "MagicAlex238@users.noreply.github.com"}]
-license = {text = "MIT"}
-keywords = ["corrosion", "microbiology", "HVAC", "biofilm"]
-requires-python = ">=3.11" 
-dependencies = [
-    "pandas",
-    "numpy",
-    "scipy",
-    "matplotlib",
-    "seaborn"
-]
-classifiers = [
-    "Programming Language :: Python :: 3.10",
-    "Topic :: Scientific/Engineering :: Bio-Informatics"
-]
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["corrosion_scoring*"]
-exclude = ["tests*"]
-
-[tool.setuptools.package-data]
-"corrosion_scoring" = ["*.py"]
-
 # ========== __init__.py ==========
 """
 Refactored Corrosion Scoring System v3.0
@@ -275,30 +178,8 @@ class ScoringConfig:
                 }
             }
 
-# ========== exceptions.py ==========
-"""
-Custom exceptions for the corrosion scoring system.
-"""
+# ========== exceptions.py ========== no given to save space
 
-class ScoringError(Exception):
-    """Base exception for scoring system errors."""
-    pass
-
-class TextMiningError(ScoringError):
-    """Exception raised during text mining operations."""
-    pass
-
-class SynergyDetectionError(ScoringError):
-    """Exception raised during synergy detection."""
-    pass
-
-class ProcessorError(ScoringError):
-    """Exception raised when processors are invalid or missing."""
-    pass
-
-class ValidationError(ScoringError):
-    """Exception raised when input validation fails."""
-    pass
 
 # ========== global_terms.py ========== too large no included
 
@@ -470,17 +351,29 @@ def normalize_listlike(val):
                 out.append(x)
         return out
 
+    def is_valid_item(x):
+        """Check if an item is valid (not None/NaN)"""
+        if x is None:
+            return False
+        try:
+            if pd.isna(x):
+                return False
+        except (TypeError, ValueError):
+            pass
+        s = str(x).strip()
+        return s and s.lower() not in {'nan', 'none', '', 'null'}
+
     # None/NaN
     if val is None or (isinstance(val, float) and pd.isna(val)):
         return []
 
     # list-like
     if isinstance(val, (list, tuple, set)):
-        return unique_preserve([str(x).strip() for x in val if str(x).strip()])
+        return unique_preserve([str(x).strip() for x in val if is_valid_item(x)])
 
     # numpy/pandas arrays
     if isinstance(val, (np.ndarray, pd.api.extensions.ExtensionArray, pd.Series)):
-        return unique_preserve([str(x).strip() for x in list(np.array(val).tolist()) if str(x).strip()])
+        return unique_preserve([str(x).strip() for x in list(np.array(val).tolist()) if is_valid_item(x)])
 
     # strings
     if isinstance(val, str):
@@ -496,16 +389,101 @@ def normalize_listlike(val):
                 # numpy-like repr with quoted tokens and no commas
                 quoted = re.findall(r"'([^']+)'|\"([^\"]+)\"", s)
                 if quoted:
-                    return unique_preserve([(a or b).strip() for a, b in quoted if (a or b).strip()])
+                    return unique_preserve([(a or b).strip() for a, b in quoted if is_valid_item(a or b)])
         # semicolon/comma separated fallback
         if ';' in s or ',' in s:
-            return unique_preserve([p.strip() for p in re.split(r'[;,]', s) if p.strip()])
+            return unique_preserve([p.strip() for p in re.split(r'[;,]', s) if is_valid_item(p)])
         # single token string
-        return [s]
+        return [s] if is_valid_item(s) else []
 
     # anything else
     s = str(val).strip()
-    return [s] if s else []
+    return [s] if is_valid_item(s) else []
+#====================== Post-process DataFrame columns =====================
+
+def standardize_metal_symbol(metal):
+    """
+    Preserves species/charge tokens. solid alloys in system components versus the ionic species affecting water chemistry and corrosion in heating and cooling systems Alloys : 'As', 'Cu', 'Co', 'Cu', 'Cd', Fe, 'Mn', 'Ni', 'Zn', 'Mo',  'Pb', 'Sr',  'Hg', 'Al', 'Cr' 
+    electrolytes: F⁻, H⁺, Mg²⁺, Na⁺, PO4³⁻, Ca²⁺, S, Ba²⁺, V⁵⁺, Cl⁻, K⁺, SO4²⁻, Se, CO3²⁻, NO2⁻, NO3⁻, S²⁻, S2O3²⁻, SO3²⁻ 
+    """
+    if metal is None:
+        return None
+    try:
+        if pd.isna(metal):
+            return None
+    except Exception:
+        pass
+
+    m = str(metal).strip()
+    if not m:
+        return None
+
+    # small canonical/dedup map (extend as needed)
+    dedup_map = {'Cd2+': 'Cd', 'Al3+': 'Al', 'Ba2+': 'Ba', 'Cr3+': 'Cr'}
+    full_name_map = {
+        'magnesium': 'Mg', 'calcium': 'Ca', 'strontium': 'Sr', 'barium': 'Ba',
+        'cadmium': 'Cd', 'chromium': 'Cr', 'carbonate': 'CO3-', 'bicarbonate': 'HCO3-',
+        'sulfate': 'SO4-', 'sulfide': 'S2-', 'sulfite': 'SO3-', 'thiosulfate': 'S2O3-',
+        'nitrate': 'NO3-', 'nitrite': 'NO2-', 'phosphate': 'PO4-', 'chloride': 'Cl-', 'fluoride': 'F-',
+        'sulfur': 'S', 'hydrogen': 'H+'
+    }
+
+    if m in dedup_map:
+        return dedup_map[m]
+    ml = m.lower()
+    if ml in full_name_map:
+        return full_name_map[ml]
+
+    if ml in ('h',):
+        return 'H+'
+    if ml in ('na', 'nacl', 'na+'):
+        return 'Na+'
+
+    # match element/ion-like tokens with optional charge
+    pat = r'^\s*([A-Za-z][A-Za-z0-9]{0,3})([+\-]\d*|[+\-])?\s*$'
+    mm = re.match(pat, m)
+    if mm:
+        base = mm.group(1)
+        charge = mm.group(2) or ''
+        if len(base) == 1:
+            base_norm = base.upper()
+        else:
+            base_norm = base[0].upper() + base[1:]
+        return base_norm + (charge or '')
+    return m
+
+def standardize_metals_list(metals) -> list:
+    """
+    Return a plain list of canonical metal tokens from many representations.
+    - returns [] for None/NA/empty
+    - preserves charge/species tokens
+    - deduplicates preserving first-seen order (case-insensitive)
+    """
+    flat = normalize_listlike(metals)
+    if not flat:
+        return []
+
+    out = []
+    seen = set()
+    for item in flat:
+        try:
+            if pd.isna(item):
+                continue
+        except Exception:
+            pass
+        if item is None:
+            continue
+        tok = standardize_metal_symbol(item)
+        if tok is None:
+            continue
+        s = str(tok).strip()
+        if not s or s.lower() in ('nan', 'none', ''):
+            continue
+        key = s.lower()
+        if key not in seen:
+            seen.add(key)
+            out.append(s)
+    return out
 
 # ========== score_calculator.py ==========
 """
@@ -1476,114 +1454,4 @@ class TextMiner:
 
         return clean_protein_name(text)
 
-# ========== validators.py ==========
-"""
-Input validation utilities for the scoring system.
-"""
-
-import re
-from typing import Any, Dict, List, Optional, Union
-from .exceptions import ValidationError
-
-def validate_text(text: Any, max_length: int = 10000, allow_empty: bool = False) -> str:
-    """
-    Validate and sanitize input text.
-    
-    Args:
-        text: Input text to validate
-        max_length: Maximum allowed text length
-        allow_empty: Whether to allow empty text
-        
-    Returns:
-        Sanitized text string
-        
-    Raises:
-        ValidationError: If text is invalid
-    """
-    if text is None:
-        if allow_empty:
-            return ""
-        raise ValidationError("Text cannot be None")
-    
-    if not isinstance(text, str):
-        try:
-            text = str(text)
-        except Exception as e:
-            raise ValidationError(f"Cannot convert text to string: {e}") from e
-    
-    if not allow_empty and not text.strip():
-        raise ValidationError("Text cannot be empty")
-    
-    if len(text) > max_length:
-        text = text[:max_length]
-    
-    # Sanitize text - remove potentially problematic characters for regex
-    text = re.sub(r'[\\^$.*+?{}[\]|()\x00-\x1f]', ' ', text)
-    text = re.sub(r'\s+', ' ', text).strip()
-    
-    return text
-
-def validate_processor(processor: Any, processor_name: str) -> None:
-    """
-    Validate that a processor has required methods.
-    
-    Args:
-        processor: Processor object to validate
-        processor_name: Name of the processor for error messages
-        
-    Raises:
-        ValidationError: If processor is invalid
-    """
-    if processor is None:
-        raise ValidationError(f"{processor_name} processor cannot be None")
-    
-    required_methods = ['find_all_matches', 'matches_normalized']
-    for method in required_methods:
-        if not hasattr(processor, method):
-            raise ValidationError(f"{processor_name} processor missing required method: {method}")
-
-def validate_processors(processors: Dict[str, Any]) -> None:
-    """
-    Validate all required processors are present and valid.
-    
-    Args:
-        processors: Dictionary of processors
-        
-    Raises:
-        ValidationError: If processors are invalid
-    """
-    required_processors = ['fc_processor', 'metal_processor', 'synergy_processor']
-    
-    if not isinstance(processors, dict):
-        raise ValidationError("Processors must be provided as a dictionary")
-    
-    for proc_name in required_processors:
-        if proc_name not in processors:
-            raise ValidationError(f"Missing required processor: {proc_name}")
-        validate_processor(processors[proc_name], proc_name)
-
-def validate_metals_list(metals: Any) -> List[str]:
-    """
-    Validate and clean metals list.
-    
-    Args:
-        metals: Input metals list
-        
-    Returns:
-        Cleaned list of metal strings
-    """
-    if metals is None:
-        return []
-    
-    if not isinstance(metals, (list, tuple)):
-        metals = [metals]
-    
-    cleaned_metals = []
-    for metal in metals:
-        if metal is not None:
-            metal_str = str(metal).strip()
-            if metal_str and metal_str.lower() not in ['not detected', 'none', '']:
-                cleaned_metals.append(metal_str)
-    
-    return cleaned_metals
-
+# ========== validators.py ========== no given to save space
