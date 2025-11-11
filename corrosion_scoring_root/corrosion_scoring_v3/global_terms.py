@@ -1,51 +1,51 @@
 # 1. COMPLETE metal_terms 
 metal_terms_dict = {
     'iron': {
-        'terms': ['Fe2+', 'Fe3+', 'iron', 'ferrous', 'ferric', 'heme', 'iron-sulfur', 'rust', 'ochre', 'iron oxide', 'siderophore', 'ferritin'],
+        'terms': ['Fe+2', 'Fe+3', 'iron', 'ferrous', 'ferric', 'heme', 'iron-sulfur', 'rust', 'ochre', 'iron oxide', 'siderophore', 'ferritin'],
         'score': 1.0
     },
     'manganese': {
-        'terms': ['Mn2+', 'manganese', 'mn', 'manganous', 'manganic', 'manganese oxidation', 'manganese oxide', 'MnO2'],
+        'terms': ['Mn+2', 'Mn+3', 'manganese', 'mn', 'manganous', 'manganic', 'manganese oxidation', 'manganese oxide', 'MnO2'],
         'score': 1.0
     },
     'copper': {
-        'terms': ['Cu+', 'Cu2+', 'copper', 'cupric', 'cuprous', 'copper oxide', 'copper corrosion'],
+        'terms': ['Cu+', 'Cu+2', 'copper', 'cupric', 'cuprous', 'copper oxide', 'copper corrosion'],
         'score': 1.0
     },
     'nickel': {
-        'terms': ['Ni2+', 'nickel', 'nickelous', 'nickel oxidation', 'nickel reduction'],
+        'terms': ['Ni+2', 'nickel', 'nickelous', 'nickel oxidation', 'nickel reduction'],
         'score': 1.0
     },
     'cobalt': {
-        'terms': ['Co2+', 'cobalt', 'cobaltous', 'cobalamin', 'vitamin B12'],
+        'terms': ['Co+2', 'Co+3', 'cobalt', 'cobaltous', 'cobalamin', 'vitamin B12'],
         'score': 1.0
     },
     'magnesium': {
-        'terms': ['Mg2+', 'magnesium', 'magnesium oxide'],
+        'terms': ['Mg+2', 'magnesium', 'magnesium oxide'],
         'score': 1.0
     },
     'calcium': {
-        'terms': ['Ca2+', 'calcium', 'calcium carbonate', 'calcite', 'calcium precipitation'],
+        'terms': ['Ca+2', 'calcium', 'calcium carbonate', 'calcite', 'calcium precipitation'],
         'score': 1.0
     },
     'molybdenum': {
-        'terms': ['Mo', 'molybdenum', 'molybdopterin', 'molybdenum cofactor'],
+        'terms': ['Mo', 'MoO4-2', 'molybdenum', 'molybdate', 'molybdopterin', 'molybdenum cofactor'],
         'score': 1.0
     },
     'vanadium': {
-        'terms': ['V5+', 'vanadium', 'vanadate', 'vanadyl'],
+        'terms': ['V5+', 'V+5', 'vanadium', 'vanadate', 'vanadyl'],
         'score': 1.0
     },
     'aluminum': {
-        'terms': ['Al3+', 'aluminum', 'aluminate', 'aluminum oxide'],
+        'terms': ['Al+3', 'aluminum', 'aluminium', 'aluminate', 'aluminum oxide'],
         'score': 1.0
     },
     'chromium': {
-        'terms': ['Cr3+', 'Cr6+', 'chromium', 'chromate', 'dichromate', 'chromium oxide'],
+        'terms': ['Cr+3', 'Cr+6', 'chromium', 'chromate', 'dichromate', 'chromium oxide'],
         'score': 1.0
     },
     'zinc': {
-        'terms': ['Zn2+', 'zinc', 'zinc finger', 'zinc oxide'],
+        'terms': ['Zn+2', 'zinc', 'zinc finger', 'zinc oxide'],
         'score': 1.0
     },
     'sodium': {
@@ -57,41 +57,82 @@ metal_terms_dict = {
         'score': 1.0
     },
     'selenium': {
-        'terms': ['selenium', 'Se', 'selenocysteine', 'selenoprotein', 'selenite'],
+        'terms': ['selenium', 'Se', 'selenocysteine', 'selenoprotein', 'selenite', 'SeO3-2', 'selenate', 'SeO4-2'],
         'score': 1.0
     },
     'barium': {
-        'terms': ['Ba2+', 'barium', 'barium sulfate', 'barite'],
+        'terms': ['Ba+2', 'barium', 'barium sulfate', 'barite'],
         'score': 1.0
     },
     'strontium': {
-        'terms': ['Sr2+', 'strontium', 'strontium carbonate', 'strontium sulfate'],
+        'terms': ['Sr+2', 'strontium', 'strontium carbonate', 'strontium sulfate'],
         'score': 1.0
     },
     'lead': {
-        'terms': ['Pb2+', 'Pb4+', 'lead', 'plumbous', 'plumbic', 'lead oxide'],
+        'terms': ['Pb+2', 'Pb+4', 'lead', 'plumbous', 'plumbic', 'lead oxide'],
+        'score': 1.0
+    },
+    'cadmium': {
+        'terms': ['Cd+2', 'cadmium', 'cadmium oxide'],
         'score': 1.0
     },
     'arsenic': {
-        'terms': ['As3+', 'As5+', 'arsenic', 'arsenite', 'arsenate', 'arsenic oxidation'],
+        'terms': ['As+3', 'As+5', 'arsenic', 'arsenite', 'AsO3-3', 'arsenate', 'AsO4-3', 'arsenic oxidation'],
         'score': 1.0
     },
     'mercury': {
-        'terms': ['Hg2+', 'Hg+', 'mercury', 'mercuric', 'mercurous', 'mercury methylation'],
+        'terms': ['Hg+2', 'Hg+', 'mercury', 'mercuric', 'mercurous', 'mercury methylation'],
         'score': 1.0
     },
-    'sulfate':     {'terms': ['sulfate', 'so4', 'sulphate'], 'score': 1.0},
-    'sulfide':     {'terms': ['sulfide', 's2-', 'hs-', 'h2s', 'hydrogen sulfide'], 'score': 1.0},
-    'sulfite':     {'terms': ['sulfite', 'so3'], 'score': 1.0},
-    'thiosulfate': {'terms': ['thiosulfate', 's2o3'], 'score': 1.0},
-    'sulfur':      {'terms': ['s', 'sulfur', 'sulphur', 'elemental sulfur'], 'score': 1.0},
-    'chloride':    {'terms': ['cl', 'chloride', 'nacl', 'chlorination'], 'score': 1.0},
-     'nitrate':    {'terms': ['no3', 'nitrate'], 'score': 1.0},
-    'nitrite':     {'terms': ['no2', 'nitrite'], 'score': 1.0},
-    'phosphate':   {'terms': ['po4', 'phosphate', 'orthophosphate'], 'score': 0.5},
-    'carbonate':   {'terms': ['co3', 'carbonate', 'bicarbonate', 'hco3'], 'score': 0.5},
-    'hydrogen':    {'terms': ['h2', 'hydrogen', 'proton', 'h+'], 'score': 0.5}
+    'sulfate': {
+        'terms': ['sulfate', 'SO4-2', 'so4', 'sulphate'],
+        'score': 1.0
+    },
+    'sulfide': {
+        'terms': ['sulfide', 'S-2', 's2-', 'hs-', 'h2s', 'hydrogen sulfide'],
+        'score': 1.0
+    },
+    'sulfite': {
+        'terms': ['sulfite', 'SO3-2', 'so3'],
+        'score': 1.0
+    },
+    'thiosulfate': {
+        'terms': ['thiosulfate', 'S2O3-2', 's2o3'],
+        'score': 1.0
+    },
+    'sulfur': {
+        'terms': ['s', 'sulfur', 'sulphur', 'elemental sulfur'],
+        'score': 1.0
+    },
+    'chloride': {
+        'terms': ['cl', 'Cl-', 'chloride', 'nacl', 'chlorination'],
+        'score': 1.0
+    },
+    'fluoride': {
+        'terms': ['f', 'F-', 'fluoride'],
+        'score': 1.0
+    },
+    'nitrate': {
+        'terms': ['no3', 'NO3-', 'nitrate'],
+        'score': 1.0
+    },
+    'nitrite': {
+        'terms': ['no2', 'NO2-', 'nitrite'],
+        'score': 1.0
+    },
+    'phosphate': {
+        'terms': ['po4', 'PO4-3', 'phosphate', 'orthophosphate'],
+        'score': 0.5
+    },
+    'carbonate': {
+        'terms': ['co3', 'CO3-2', 'carbonate', 'bicarbonate', 'HCO3-', 'hco3'],
+        'score': 0.5
+    },
+    'hydrogen': {
+        'terms': ['h2', 'hydrogen', 'proton', 'H+', 'h+'],
+        'score': 0.5
     }
+}
 
 # 2. COMPLETE corrosion_synergies 
 corrosion_synergies_dict = {
@@ -615,116 +656,210 @@ functional_categories_dict =	{
 
 # 4.The following is a mapping no a dictionary 
 metal_mapping = {
-'iron': 'Fe',
-'fe': 'Fe',
-'ferrous': 'Fe',
-'ferric': 'Fe',
-'heme': 'Fe',
-'iron-sulfur': 'Fe',
-'fe2+': 'Fe',
-'fe3+': 'Fe',
-'manganese': 'Mn',
-'mn': 'Mn',
-'manganous': 'Mn',
-'manganic': 'Mn',
-'manganese oxidation': 'Mn',
-'manganese oxide': 'Mn',
-'copper': 'Cu',
-'cu+': 'Cu',
-'cu2+': 'Cu',
-'nickel': 'Ni',
-'ni2+': 'Ni',
-'cobalt': 'Co',
-'co2+': 'Co',
-'zinc': 'Zn',
-'zn2+': 'Zn',
-'calcium': 'Ca',
-'ca2+': 'Ca',
-'molybdenum': 'Mo',
-'mo': 'Mo',
-'vanadium': 'V5+',
-'v5+': 'V5+',
-'aluminum': 'Al3+',
-'al3+': 'Al3+',
-'chromium': 'Cr3+',
-'cr3+': 'Cr3+',
-'sodium': 'Na',
-'na+': 'Na',
-'nacl': 'Na',
-'potassium': 'K',
-'k+': 'K',
-'kcl': 'K',
-'selenium': 'Se',
-'se': 'Se',
-'barium': 'Ba2+',
-'ba2+': 'Ba2+',
-'sulfate': 'SO4-',
-'sulfide': 'S2-',
-'thiosulfate': 'S2O3-',
-'s-s': 'S2-',
-'sulfur': 'S', 
-'sulfur oxidation': 'SO4-',
-'srb': 'S2-',
-'hydrogen': 'H',
-'h2': 'H',
-'h2o': 'H',
-'h2s': 'H',
-'phosphate': 'PO4-',
-'nitrate': 'NO3-',
-'nitrite': 'NO2-',
-'chloride': 'Cl-',
-'cl-': 'Cl-',
-'fluoride': 'F-',
-'f-': 'F-',
-'arsenic': 'As',
-'as': 'As',
-'arsenate': 'As',
-'arsenite': 'As',
-'lead': 'Pb',
-'pb2+': 'Pb',
-'cadmium': 'Cd',    
-'cd2+': 'Cd',
-'mercury': 'Hg',
-'hg2+': 'Hg',
-# Sulfur species
-'sulfite': 'SO3-',
-'s2-': 'S2-',
-'hs-': 'S2-',
-'h2s': 'S2-',
-'so4': 'SO4-',
-'so3': 'SO3-',
-'s2o3': 'S2O3-',
-
-# Nitrogen species
-'no2': 'NO2-',
-'no3': 'NO3-',
-'no2-': 'NO2-',
-'no3-': 'NO3-',
-
-# Phosphate
-'po4': 'PO4-',
-'po4-3': 'PO4-',
-'po4-': 'PO4-',
-# Magnesium variations
-'magnesium': 'Mg',
-'mg': 'Mg',
-'mg2+': 'Mg2+',
-
-# Strontium variations
-'strontium': 'Sr',
-'sr': 'Sr',
-'sr2+': 'Sr2+',
-
-# Carbonate variations (if not already there)
-'carbonate': 'CO3-',
-'co3': 'CO3-',
-
-# Cadmium (if missing)
-'cadmium': 'Cd',
-'cd': 'Cd',
-'cd2+': 'Cd2+',
+    # === IRON (Fe) - Multiple oxidation states ===
+    'iron': 'Fe',           # Base element (will use DEFAULT_CANONICAL → Fe+2)
+    'fe': 'Fe',
+    'ferrous': 'Fe+2',      # Fe(II) - explicit
+    'ferric': 'Fe+3',       # Fe(III) - explicit
+    'heme': 'Fe+2',           # Heme context - usually Fe+2 or Fe+3
+    'iron-sulfur': 'Fe+2',    # Fe-S cluster context
+    'fe2+': 'Fe+2',         # ✓ Correct format
+    'fe3+': 'Fe+3',         # ✓ Correct format
+    
+    # === MANGANESE (Mn) ===
+    'manganese': 'Mn+2',      # Base element (DEFAULT_CANONICAL → Mn+2)
+    'mn': 'Mn+2',
+    'manganous': 'Mn+2',    # Mn(II)
+    'manganic': 'Mn+3',     # Mn(III) - less common
+    'manganese oxidation':'Mn+2',
+    'manganese oxide': 'Mn+2',
+    'mn2+': 'Mn+2',         # ✓ Correct format
+    
+    # === COPPER (Cu) ===
+    'copper': 'Cu+',         # Base element (DEFAULT_CANONICAL → Cu+)
+    'cu': 'Cu+',
+    'cu+': 'Cu+',           # ✓ Cu(I)
+    'cu2+': 'Cu+2',         # ✓ Cu(II) - corrected format
+    'cuprous': 'Cu+',
+    'cupric': 'Cu+2',
+    
+    # === NICKEL (Ni) ===
+    'nickel': 'Ni+2',         # Base element (DEFAULT_CANONICAL → Ni+2)
+    'ni': 'Ni+2',
+    'ni2+': 'Ni+2',         # ✓ Correct format
+    
+    # === COBALT (Co) ===
+    'cobalt': 'Co+2',         # Base element (DEFAULT_CANONICAL → Co+2)
+    'co': 'Co+2',
+    'co2+': 'Co+2',         # ✓ Correct format
+    'cobaltous': 'Co+2',
+    
+    # === ZINC (Zn) ===
+    'zinc': 'Zn+2',           # Base element (DEFAULT_CANONICAL → Zn+2)
+    'zn': 'Zn+2',
+    'zn2+': 'Zn+2',         # ✓ Correct format
+    
+    # === CALCIUM (Ca) ===
+    'calcium': 'Ca+2',        # Base element (DEFAULT_CANONICAL → Ca+2)
+    'ca': 'Ca+2',
+    'ca2+': 'Ca+2',         # ✓ Correct format
+    
+    # === MAGNESIUM (Mg) ===
+    'magnesium': 'Mg+2',      # Base element (DEFAULT_CANONICAL → Mg+2)
+    'mg': 'Mg+2',
+    'mg2+': 'Mg+2',         # ✓ Correct format
+    
+    # === STRONTIUM (Sr) ===
+    'strontium': 'Sr+2',      # Base element (DEFAULT_CANONICAL → Sr+2)
+    'sr': 'Sr+2',
+    'sr2+': 'Sr+2',         # ✓ Correct format
+    
+    # === BARIUM (Ba) ===
+    'barium': 'Ba+2',         # Base element (DEFAULT_CANONICAL → Ba+2)
+    'ba': 'Ba+2',
+    'ba2+': 'Ba+2',         # ✓ Correct format
+    
+    # === MOLYBDENUM (Mo) ===
+    'molybdenum': 'MoO4-2',     # Base element (DEFAULT_CANONICAL → MoO4-2)
+    'mo': 'MoO4-2',
+    'molybdate': 'MoO4-2',  # Molybdate ion - explicit
+    'moo4': 'MoO4-2',       # Direct notation
+    
+    # === VANADIUM (V) ===
+    'vanadium':  'V5+',        # Base element (DEFAULT_CANONICAL → V5+)
+    'v':  'V5+',
+    'v5+': 'V5+',           # ✓ Vanadate - correct format
+    'vanadate': 'V5+',
+    
+    # === ALUMINUM (Al) ===
+    'aluminum': 'Al+3',       # Base element (DEFAULT_CANONICAL → Al+3)
+    'aluminium': 'Al+3',
+    'al': 'Al+3',
+    'al3+': 'Al+3',         # ✓ Correct format
+    
+    # === CHROMIUM (Cr) ===
+    'chromium': 'Cr+3',       # Base element (DEFAULT_CANONICAL → Cr+3)
+    'cr': 'Cr+3',
+    'cr3+': 'Cr+3',         # ✓ Cr(III) - correct format
+    'chromic': 'Cr+3',
+    
+    # === SODIUM (Na) ===
+    'sodium': 'Na+',         # Base element (DEFAULT_CANONICAL → Na+)
+    'na': 'Na+',
+    'na+': 'Na+',           # ✓ Correct format
+    'nacl': 'Na+',          # NaCl context → Na+
+    
+    # === POTASSIUM (K) ===
+    'potassium': 'K+',       # Base element (DEFAULT_CANONICAL → K+)
+    'k': 'K+',
+    'k+': 'K+',             # ✓ Correct format (NOT K+2!)
+    'kcl': 'K+',            # KCl context → K+
+    
+    # === SELENIUM (Se) ===
+    'selenium': 'Se',       # Base element
+    'se': 'Se',
+    'selenite': 'SeO3-2',   # Selenite ion
+    'selenate': 'SeO4-2',   # Selenate ion
+    
+    # === LEAD (Pb) ===
+    'lead': 'Pb+2',           # Base element (DEFAULT_CANONICAL → Pb+2)
+    'pb': 'Pb+2',
+    'pb2+': 'Pb+2',         # ✓ Correct format
+    
+    # === CADMIUM (Cd) ===
+    'cadmium': 'Cd+2',        # Base element (DEFAULT_CANONICAL → Cd+2)
+    'cd': 'Cd+2',
+    'cd2+': 'Cd+2',         # ✓ Correct format
+    
+    # === MERCURY (Hg) ===
+    'mercury': 'Hg+2',        # Base element (DEFAULT_CANONICAL → Hg+2)
+    'hg': 'Hg+2',
+    'hg2+': 'Hg+2',         # ✓ Hg(II) - correct format
+    'mercuric': 'Hg+2',
+    
+    # === ARSENIC (As) ===
+    'arsenic': 'As',        # Base element
+    'as': 'As',
+    'arsenate': 'AsO4-3',   # Arsenate ion
+    'arsenite': 'AsO3-3',   # Arsenite ion
+    
+    # === HYDROGEN (H) ===
+    'hydrogen': 'H+',       # ✓ Proton/hydronium context
+    'h': 'H+',
+    'h+': 'H+',
+    'h2': 'H+',             # H2 oxidation context → H+
+    'h2o': 'H+',            # Water dissociation context
+    'proton': 'H+',
+    
+    # === SULFUR SPECIES ===
+    'sulfur': 'S',          # Elemental sulfur
+    's': 'S',
+    'sulfide': 'S-2',       # ✓ Correct format (NOT S2-)
+    's2-': 'S-2',           # ✓ Corrected
+    's-2': 'S-2',           # Already correct
+    'hs-': 'S-2',           # Hydrogen sulfide → sulfide
+    'h2s': 'S-2',           # Hydrogen sulfide gas → sulfide
+    's-s': 'S-2',           # Disulfide context → sulfide
+    'sulfate': 'SO4-2',     # ✓ Correct format (NOT SO4-)
+    'so4': 'SO4-2',         # ✓ Corrected
+    'so4-': 'SO4-2',        # ✓ Corrected
+    'so4-2': 'SO4-2',       # Already correct
+    'sulfite': 'SO3-2',     # ✓ Correct format
+    'so3': 'SO3-2',         # ✓ Corrected
+    'so3-': 'SO3-2',        # ✓ Corrected
+    'so3-2': 'SO3-2',       # Already correct
+    'thiosulfate': 'S2O3-2', # ✓ Correct format
+    's2o3': 'S2O3-2',       # ✓ Corrected
+    's2o3-': 'S2O3-2',      # ✓ Corrected
+    's2o3-2': 'S2O3-2',     # Already correct
+    'sulfur oxidation': 'SO4-2',  # Sulfur oxidation → sulfate (endpoint)
+    'srb': 'S-2',           # ✓ Sulfate-reducing bacteria → sulfide product
+    
+    # === NITROGEN SPECIES ===
+    'nitrate': 'NO3-',      # ✓ Correct format
+    'no3': 'NO3-',          # ✓ Corrected
+    'no3-': 'NO3-',         # Already correct
+    'nitrite': 'NO2-',      # ✓ Correct format
+    'no2': 'NO2-',          # ✓ Corrected
+    'no2-': 'NO2-',         # Already correct
+    
+    # === PHOSPHORUS SPECIES ===
+    'phosphate': 'PO4-3',   # ✓ Correct format (NOT PO4-)
+    'po4': 'PO4-3',         # ✓ Corrected
+    'po4-': 'PO4-3',        # ✓ Corrected
+    'po4-3': 'PO4-3',       # Already correct
+    'phosphite': 'PO3-3',   # Phosphite ion (less common)
+    
+    # === CHLORINE/CHLORIDE ===
+    'chloride': 'Cl-',      # ✓ Correct format
+    'cl': 'Cl-',
+    'cl-': 'Cl-',           # Already correct
+    
+    # === FLUORINE/FLUORIDE ===
+    'fluoride': 'F-',       # ✓ Correct format
+    'f': 'F-',
+    'f-': 'F-',             # Already correct
+    
+    # === CARBONATE ===
+    'carbonate': 'CO3-2',   # ✓ Correct format (NOT CO3-)
+    'co3': 'CO3-2',         # ✓ Corrected
+    'co3-': 'CO3-2',        # ✓ Corrected
+    'co3-2': 'CO3-2',       # Already correct
+    'bicarbonate': 'HCO3-', # Bicarbonate ion
+    'hco3': 'HCO3-',
+    'hco3-': 'HCO3-',
+    # COMMON ALTERNATIVE NAMES / normalizations (alias keys)
+    'mag': 'Mg+2',
+    'magnesium ion': 'Mg+2',
+    'calcium ion': 'Ca+2',
+    'potassium ion': 'K+',
+    'sodium ion': 'Na+',
+    'zinc ion': 'Zn+2',
+    'copper ion': 'Cu+2',
+    # explicit canonical forms for tokens that sometimes appear with signs
+    'fe+2': 'Fe+2', 'fe+3': 'Fe+3', 'mg+2': 'Mg+2', 'al+3': 'Al+3',
+    'pb+2': 'Pb+2', 'hg+2': 'Hg+2', 'cd+2': 'Cd+2', 'zn+2': 'Zn+2',
 }
-
 # 5. Complete corrosion_mechanisms, no to be use as dict on scoring system
 # bridging thegap betwen the metabolic potential (pathways) and the actual physical or chemical effects on a surface.
 
