@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.egg-info/
+.env
+.venv/
+.venv_general
+.venv_general/
+.venv_notebook4
+.venv_notebook4/
+.ipynb_checkpoints/
+.DS_Store
+*.sqlite3
