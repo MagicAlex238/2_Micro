@@ -1,57 +1,29 @@
-# Core Data Libraries
-pandas>=2.0.0
-numpy>=1.23,<2.3  # Compatible with numba
-scipy>=1.11.0
-numexpr>=2.8.0
+#Python 3.11 compatibility
+# Core Data Processing
+pandas>=1.5.0
+numpy>=1.21.0
 
-# Machine Learning & Statistics
-scikit-learn>=1.1.0
-umap-learn>=0.5.5
-kneed>=0.8.0
-statsmodels>=0.13.0
-joblib>=1.1.0
-
-# Data Matching & Utilities
-python-Levenshtein>=0.12.0
-fuzzywuzzy>=0.18.0
-natsort>=8.0.0
-
-# Data Visualization Libraries
-matplotlib>=3.6.0
-seaborn>=0.12.0
-plotly>=5.5.0
-networkx>=2.8.0
-
-# Bioinformatics
-biopython>=1.80
-biom-format>=2.1.0
-
-# File Handling & Utilities
-openpyxl>=3.1.2  # Excel support
+# File Format Support
 pyarrow>=10.0.0
-h5py>=3.3.0
-gzip
+openpyxl>=3.0.0
 
-# IPython Framework
-ipykernel>=6.20.0
-ipywidgets>=8.0.0
-nbformat>=5.0.0
-notebook>=7.0.0
+# XML Parsing
+lxml>=4.9.0
 
-# General Tools
-tqdm>=4.0.0
-natsort>=7.0.0
-pyzmq>=21.0.0
-pickle  # For serialization
-gc      # Garbage collection
-os      # System access
-csv
-json
-random
+# System Monitoring
+psutil>=5.9.0
+# Corrosion Scoring Module
+pandas>=1.5.0
+numpy>=1.21.0
+pyarrow>=10.0.0
+openpyxl>=3.0.0
+lxml>=4.9.0
+psutil>=5.9.0
 
-# Optional Tools for Parsing & Analysis
-python-levenshtein>=0.12.2  # Efficient string matching
-fuzzywuzzy>=0.18.0
-
-# Visualization Extras
-plotly-express
+# Jupyter/Notebook Support (local only)
+ipykernel>=6.0.0
+jupyter>=1.0.0
+notebook>=6.0.0
+# Build Tools (for installing packages from source)
+wheel>=0.40.0
+setuptools>=65.0.0

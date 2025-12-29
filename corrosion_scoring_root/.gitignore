@@ -7,10 +7,11 @@ __pycache__/
 *.egg-info/
 .env
 .venv/
-.venv_general
+.venv_new_general
 .venv_general/
 .venv_notebook4
 .venv_notebook4/
 .ipynb_checkpoints/
 .DS_Store
 *.sqlite3
+*.py

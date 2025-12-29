@@ -42,10 +42,10 @@ Following are instructions for local installation for vscode, done once. For Kag
 sudo apt update
 sudo apt install python3.11 python3.11-venv python3.11-distutils
 python3.11 -m venv .venv_general
-source ./.venv_general/bin/activate
+source .venv_general/bin/activate
 pip install --upgrade pip setuptools wheel
 pip install -r general_requirements.txt
-python -m ipykernel install --user --name general_python11 --display-name "general_python11 (Python 3.11)"
+python -m ipykernel install --user --name .venv_general--display-name ".venv_general (Python 3.11)"
 ```
 3_ For powershell in Windows
 
@@ -54,7 +54,7 @@ python -m venv .venv_general
 .\.venv_general\Scripts\Activate.ps1.
 pip install --upgrade pip
 pip install -r general_requirements.txt
-python -m ipykernel install --user --name python11_general --display-name "python11_general"
+ python -m ipykernel install --user --name .venv_new_general --display-name ".venv_new_general (Python 3.11)"
 ```
 ## Instructions to install environment per notebook 4
 1_ .venv_notebook4/ 

@@ -1,3 +1,4 @@
+# Python 3.12 compatibility
 wheel
 setuptools
 # Core data science libraries
