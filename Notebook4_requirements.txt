@@ -11,11 +11,11 @@ biopython
 # File I/O # Scraping/parsing
 beautifulsoup4==4.13.4
 openpyxl==3.1.5
-pillow==11.3.0
+pillow>=12.3.0
 
 # HTTP/network library (upgraded to secure versions)
 requests==2.32.4
-urllib3==2.5.0
+urllib3>=2.6.3
 
 # Scientific research libraries (updated )
 scholarly==1.7.11

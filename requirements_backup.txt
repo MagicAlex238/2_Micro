@@ -35,7 +35,7 @@ jupyter_core==5.8.1
 # Utility & Other Direct Imports
 natsort==8.4.0
 h5py
-pyarrow==19.0.1
+pyarrow>=23.0.1
 ipykernel
 imbalanced-learn
 nbformat
