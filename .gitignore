@@ -6,6 +6,7 @@ log
 .venv_general/
 .venv_notebook4
 .venv_notebook4/
+multitax_env
 config.py
 Token.git.backup
 *.pkl
