@@ -1,4 +1,7 @@
 .venv/
+Data
+data*
+*xlsx
 *.log
 log
 .venv
